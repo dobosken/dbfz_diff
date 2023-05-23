@@ -1,0 +1,20 @@
+2530c2530
+< 	sprite: s32'jrn230_02', 2
+---
+> 	sprite: s32'jrn230_02', 1
+2564c2564
+< 	sprite: s32'jrn203_01', 2
+---
+> 	sprite: s32'jrn203_01', 1
+2571c2571
+< 	sprite: s32'jrn203_05', 2
+---
+> 	sprite: s32'jrn203_05', 1
+2633c2633
+< 	sprite: s32'jrn231_04', 4
+---
+> 	sprite: s32'jrn231_04', 2
+5132c5132
+< 		damage: 2600
+---
+> 		damage: 2800

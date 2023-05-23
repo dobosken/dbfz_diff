@@ -1,0 +1,19 @@
+4115,4117c4115,4120
+< 	sprite: s32'krn036_02', 3
+< 	sprite: s32'krn036_01', 3
+< 	sprite: s32'krn036_00', 3
+---
+> 	ifNot: var(act6) {
+> 		callSubroutine: s32'cmn_NandemoEnableStand'
+> 	} endIf: 
+> 	sprite: s32'krn036_02', 2
+> 	sprite: s32'krn036_01', 2
+> 	sprite: s32'krn036_00', 2
+5130a5134
+> 	headInvul: 1
+5520,5521d5523
+< 	sprite: s32'krn402_13', 3
+< 	sprite: s32'krn402_14', 3
+5524a5527,5528
+> 	sprite: s32'krn402_13', 3
+> 	sprite: s32'krn402_14', 3

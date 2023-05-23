@@ -1,0 +1,156 @@
+335a336,344
+> 		addMove: s32'InterceptKickB' {
+> 			moveType: (SPECIAL)
+> 			characterState: (AIRBORNE)
+> 			moveInput: (INPUT_2)
+> 			moveInput: (INPUT_PRESS_M)
+> 			skillEstAtkBox: -310, -170, 230, 630
+> 			skillEstTagXMidPanashi: 
+> 			cpuIsOverhead: 
+> 		} endMove: 
+340a350
+> 			maxChainIntoSelf: 1
+352a363
+> 			maxChainIntoSelf: 1
+579a591
+> 		registerMove: s32'InterceptKickB'
+3275a3288,3294
+> 	checkInput: (INPUT_ANY_FORWARD)
+> 	if: var(Result) {
+> 		setXSpeed: 38000
+> 		xSpeedPerFrame: 95
+> 		setYSpeed: 36000
+> 		landingRecovery: 8, 1
+> 	} endIf: 
+3557a3577,3583
+> 	checkInput: (INPUT_ANY_FORWARD)
+> 	if: var(Result) {
+> 		setXSpeed: 38000
+> 		xSpeedPerFrame: 95
+> 		setYSpeed: 36000
+> 		landingRecovery: 8, 1
+> 	} endIf: 
+4211a4238,4352
+> beginState: s32'InterceptKickB' {
+> 	upon: (IMMEDIATE) {
+> 		callSubroutine: s32'cmnAtkLevel_2_AtkInit'
+> 		damage: 950
+> 		callSubroutine: s32'cmn_AirAtkHosei'
+> 		groundKnockbackEffect: (AIR_FACE_UP)
+> 		airKnockbackEffect: (AIR_FACE_UP)
+> 		attackXKnockback: 20000
+> 		attackYKnockback: -90000
+> 		airHitstun: 30
+> 		blockstun: 13
+> 		atkRange: 50000000, 0, 0, 0
+> 		attackGuardtype: (MID)
+> 		damageSoundEffect: s32'ARC_BTL_CMN_Hit_Large-A'
+> 		guardSoundEffect: s32'ARC_BTL_CMN_Guard_Large'
+> 		atkShakeCamera: s32'ShakeTate', 500, 0, 15, 0
+> 		upon: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE_PRE_CTRL) {
+> 			clearRegisteredUponCode: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE_PRE_CTRL)
+> 			setXSpeed: 20000
+> 			setYSpeed: -90000
+> 			xSpeedPerFrame: 100
+> 			ySpeedPerFrame: 100
+> 			setGravity: 4000
+> 			ifVarOfObjectTrue: (ENEMY_MAIN_PLAYER), var(CmnCharaReg6) {
+> 				attackXKnockback: 25000
+> 				groundBounceCount: 1
+> 				groundBounceYVelocityPercent: 100
+> 				groundBounceYVelocity: 25000
+> 			} endIf: 
+> 			if: var(IN_BATTLE) {
+> 				if: var(IsMainPlayerSelf) {
+> 					ifVarOfObjectFalse: (ENEMY_MAIN_PLAYER), var(CmnCharaReg6) {
+> 						ifNot: var(SmashKnockdown) {
+> 							copyVar: var(SmashKnockdown), int(1)
+> 							cameraMotion: 25000, 375000, 210000, -3000, 330, 1000, 54, 1, 25, 10, 1
+> 							hitstop: 0
+> 							slidingKnockdownDuration: 25
+> 							groundBounceUntechTime: 15000
+> 							airHitstun: 80
+> 							atkFrontDirection: 0
+> 							atkHitPositionType: 4, 190000, -50000
+> 							upon: (ON_PLAYER_AFTER_EXECUTE_DAMAGE) {
+> 								clearRegisteredUponCode: (ON_PLAYER_AFTER_EXECUTE_DAMAGE)
+> 								ifBeginAliveEnemyPlayer: 0 {
+> 									superFreeze: 0, 100, 25, 25
+> 									cameraShake: s32'ShakeTateYoko', 1000, 0, 18, 1
+> 								} endIf: 
+> 							} endUpon: 
+> 							if: var(Direction) {
+> 								ifOperation: (IS_LESS_OR_EQUAL), var(PosXRaw), int(-2900000) {
+> 									copyVar: var(PosXRaw), int(-2900000)
+> 								} endIf: 
+> 							} endIf: 
+> 							else:  {
+> 								ifOperation: (IS_GREATER_OR_EQUAL), var(PosXRaw), int(2900000) {
+> 									copyVar: var(PosXRaw), int(2900000)
+> 								} endIf: 
+> 							} endElse: 
+> 						} endIf: 
+> 					} endIf: 
+> 				} endIf: 
+> 			} endIf: 
+> 		} endUpon: 
+> 		landingAutoAction: 0
+> 		jumpToStateInObject: (PARENT), s32'landing'
+> 	} endUpon: 
+> 	sprite: s32'vgs402_00', 2
+> 	facePose: (STRESSED)
+> 	mouthPose: 3
+> 	resetSpeed: 1
+> 	setXSpeed: -1000
+> 	setYSpeed: 1000
+> 	sprite: s32'vgs402_01', 2
+> 	sprite: s32'vgs402_02', 2
+> 	characterSfx: s32'ARC_BTL_VGS_InterceptKick'
+> 	sprite: s32'vgs402_03', 6
+> 	randomVoice: s16'vxxx206', 100, s16'vxxx207', 100, s16'', 0, s16'', 0
+> 	sprite: s32'vgs402_04', 2
+> 	sprite: s32'vgs402_05', 2
+> 	createObject: s32'VGS_402Eff', (ZERO)
+> 	sprite: s32'vgs402_06', 1
+> 	enableHitbox: 
+> 	addXPosition: 50000
+> 	addYPosition: 5000
+> 	setXSpeed: 38000
+> 	setYSpeed: -55000
+> 	percentageGravity: 0
+> 	xSpeedPerFrame: 105
+> 	ySpeedPerFrame: 105
+> 	sprite: s32'vgs402_06', 1
+> 	sprite: s32'vgs402_07', 2
+> 	label: s32'loop'
+> 	sprite: s32'vgs402_06', 2
+> 	sprite: s32'vgs402_07', 2
+> 	spriteEnd: 
+> 	gotoLabelIfOperation: s32'loop', (IS_LESS_OR_EQUAL), var(LoopCount), int(300)
+> 	exitState: 
+> 	label: s32'landing'
+> 	sprite: s32'vgs402_08', 1
+> 	deactivateObjectByName: s32'VGS_402Eff'
+> 	createParticle: s32'bg_groundsmokeM', (FRONT_2_BODY)
+> 	effectForLandBreak: 0, 1000, 0, 0
+> 	resetSpeed: 1
+> 	setXSpeed: 27000
+> 	xSpeedPerFrame: 80
+> 	recoveryState: 
+> 	sprite: s32'vgs402_09', 1
+> 	sprite: s32'vgs402_10', 1
+> 	sprite: s32'vgs402_11', 2
+> 	sprite: s32'vgs402_12', 3
+> 	sprite: s32'vgs402_13', 2
+> 	sprite: s32'vgs402_14', 2
+> 	sprite: s32'vgs402_15', 2
+> } endState: 
+> 
+4586a4728
+> 		enableSpecialCancel: 1
+4598a4741
+> 	enableVanish: 1
+4681a4825
+> 		enableSpecialCancel: 1
+4694a4839
+> 	enableVanish: 1

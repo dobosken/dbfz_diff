@@ -1,0 +1,38 @@
+875c875
+< 	setXSpeed: 75000
+---
+> 	setXSpeed: 95000
+880,881c880,881
+< 		ifOperation: (IS_GREATER), var(SpeedX), int(90000) {
+< 			setXSpeed: 85000
+---
+> 		ifOperation: (IS_GREATER), var(SpeedX), int(120000) {
+> 			setXSpeed: 120000
+913c913,919
+< 		percentageXSpeed: 30
+---
+> 		if: var(ObjectParameter2) {
+> 			percentageXSpeed: 30
+> 		} endIf: 
+> 		else:  {
+> 			setNoCollision: 0
+> 			setWallCollision: 0
+> 		} endElse: 
+925c931
+< 	xSpeedPerFrame: 50
+---
+> 	xSpeedPerFrame: 80
+3530c3536
+< 		attackYKnockback: 40000
+---
+> 		attackYKnockback: 30000
+3547,3548c3553,3554
+< 			damage: 2500
+< 			minimalDamagePercent: 44
+---
+> 			damage: 2000
+> 			minimalDamagePercent: 40
+3609c3615
+< 				damage: 2500
+---
+> 				damage: 2000

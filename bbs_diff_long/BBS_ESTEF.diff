@@ -1,0 +1,4348 @@
+--- 1.31/BBS_ESTEF.bbs	2023-05-23 14:16:10.964707629 +0200
++++ 1.32/BBS_ESTEF.bbs	2023-05-23 14:14:46.759263861 +0200
+@@ -1,4334 +1,4343 @@
+ beginState: s32'dmy' {
+ 	sprite: s32'null', 1
+ } endState: 
+ 
+ beginState: s32'okasi' {
+ 	upon: (IMMEDIATE) {
+ 		callSubroutine: s32'cmn_okasi'
+ 	} endUpon: 
+ 	sprite: s32'null', 2147483647
+ 	ifVarOfObjectTrue: (PLAYER), var(obj0) {
+ 		linkParticle: s32'esh_okasi'
+ 	} endIf: 
+ 	else:  {
+ 		linkParticle: s32'est_okasi'
+ 	} endElse: 
+ } endState: 
+ 
+ beginState: s32'EST600cs_mnp' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectStop: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		ignoreWorldStopByFriend: 1
+ 		linkPawnWithAnimation: s32'MNP', s32'MNP_EST600cs_01'
+ 	} endUpon: 
+ 	sprite: s32'null', 450
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'EST610cs_mnp' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectStop: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		ignoreWorldStopByFriend: 1
+ 		linkPawnWithAnimation: s32'MNP', s32'MNP_EST610cs_01'
+ 	} endUpon: 
+ 	sprite: s32'null', 450
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'ESF610cs' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectStop: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		ignoreWorldStopByFriend: 1
+ 		zLine: var(plr0)
+ 		linkPawnWithAnimation: s32'ESF', s32'ESF610cs'
+ 		ifVarOfObjectOperation: (IS_EQUAL), (PLAYER), var(WSBMoveDir), int(2) {
+ 			naguruAtkRangeCheck: 0, 2
+ 		} endIf: 
+ 		ifVarOfObjectOperation: (IS_EQUAL), (PLAYER), var(WSBMoveDir), int(1) {
+ 			naguruAtkRangeCheck: 0, 1
+ 		} endIf: 
+ 	} endUpon: 
+ 	sprite: s32'null', 2147483647
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est201_Tame01' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectStop: (PLAYER)
+ 		linkParticle: s32'est_kidan_throw'
+ 		upon: (NO_STOP_IDLING) {
+ 			moveToPosType: (PARENT), (EX_POINT_0)
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'null', 3
+ 	addZPosition: 75000
+ 	setScale: 100
+ 	sprite: s32'null', 3
+ 	setScale: 200
+ 	sprite: s32'null', 2
+ 	setScale: 400
+ 	sprite: s32'null', 2
+ 	addZPosition: 50000
+ 	setScale: 600
+ 	sprite: s32'null', 1
+ 	addZPosition: -25000
+ 	sprite: s32'null', 1
+ 	addZPosition: -25000
+ 	sprite: s32'null', 1
+ 	addZPosition: -145000
+ 	sprite: s32'null', 1
+ 	sprite: s32'null', 50
+ 	linkParticle: s32''
+ } endState: 
+ 
+ beginState: s32'est201_Strike01' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectStop: (PLAYER)
+ 	} endUpon: 
+ 	sprite: s32'null', 30
+ 	linkParticle: s32'est201_end01'
+ } endState: 
+ 
+ beginState: s32'est201_Kidan01' {
+ 	upon: (IMMEDIATE) {
+ 		jumpToStateInObject: (SELF), s32'End'
+ 	} endUpon: 
+ 	sprite: s32'null', 4
+ 	linkParticle: s32'est201_kidan01'
+ 	addZPosition: -90000
+ 	setScale: 300
+ 	sprite: s32'null', 4
+ 	addYPosition: 12500
+ 	setXScale: 400
+ 	setYScale: 300
+ 	sprite: s32'null', 4
+ 	addYPosition: 12500
+ 	setXScale: 500
+ 	setYScale: 350
+ 	sprite: s32'null', 4
+ 	addYPosition: 12500
+ 	setXScale: 750
+ 	setYScale: 450
+ 	sprite: s32'null', 100
+ 	addYPosition: 12500
+ 	setXScale: 850
+ 	setYScale: 550
+ 	label: s32'End'
+ 	sprite: s32'null', 100
+ 	linkParticle: s32'est201_end02'
+ 	setScale: 550
+ 	addYPosition: 100000
+ 	createObject: s32'est201_Smoke01_Eff', (ZERO)
+ 	createObject: s32'est201_Smoke02_Eff', (ZERO)
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est201_Smoke01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByFriend: 1
+ 		flipDirection: 
+ 		addYPosition: -595000
+ 	} endUpon: 
+ 	sprite: s32'null', 90
+ 	linkParticle: s32'bg_jump_default'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est201_Smoke02_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByFriend: 1
+ 		addXPosition: -150000
+ 		addYPosition: -595000
+ 	} endUpon: 
+ 	sprite: s32'null', 90
+ 	linkParticle: s32'bg_undersmoke00'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est202_PointLight_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		linkParticle: s32'est202_PointLight'
+ 		jumpToStateInObject: (SELF), s32'End'
+ 	} endUpon: 
+ 	sprite: s32'null', 500
+ 	label: s32'End'
+ 	sprite: s32'null', 40
+ 	linkParticle: s32''
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est202_PointLight2_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkObjectDamageToEliminate: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		linkParticle: s32'est202_PointLight2'
+ 		jumpToStateInObject: (SELF), s32'End'
+ 	} endUpon: 
+ 	sprite: s32'null', 500
+ 	label: s32'End'
+ 	sprite: s32'null', 40
+ 	linkParticle: s32''
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est202_TameAura_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkObjectDamageToEliminate: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		linkParticle: s32'est_tameAura00'
+ 		setActionTimeMax: 600
+ 		jumpToStateInObject: (SELF), s32'End'
+ 		setScale: 1200
+ 		addXPosition: -50000
+ 	} endUpon: 
+ 	sprite: s32'null', 350
+ 	label: s32'End'
+ 	sprite: s32'null', 40
+ 	linkParticle: s32'est_tameAura00End'
+ 	linkObjectPosition: (NULL)
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est202_Aura01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		linkParticle: s32'est202_Aura01Loop'
+ 		jumpToStateInObject: (SELF), s32'End'
+ 		setActionTimeMax: 600
+ 		setScale: 1200
+ 		addAngle: 55000
+ 		addXPosition: 150000
+ 		addYPosition: 550000
+ 	} endUpon: 
+ 	sprite: s32'null', 350
+ 	label: s32'End'
+ 	sprite: s32'null', 40
+ 	linkParticle: s32'est202_Aura01End'
+ 	linkObjectPosition: (NULL)
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est202_JumpImpact_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		setActionTimeMax: 60
+ 	} endUpon: 
+ 	sprite: s32'null', 90
+ 	linkParticle: s32'est202_Shock'
+ 	setArg_scale: int(1000)
+ 	createParticleWithArg: s32'bg_down_default', (PLAYER_LAND)
+ 	createParticleWithArg: s32'bg_jump_default', (PLAYER_LAND)
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est202_Punch_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectStop: (PLAYER)
+ 	} endUpon: 
+ 	sprite: s32'null', 1
+ 	linkParticle: s32'est202_Punch'
+ 	sprite: s32'null', 10
+ 	linkParticle: s32'est202_PunchEnd'
+ } endState: 
+ 
+ beginState: s32'est202_Impact_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectStop: (PLAYER)
+ 		addAngle: 35000
+ 		setAngleY: -75000
+ 		addXPosition: 150000
+ 		addYPosition: 600000
+ 	} endUpon: 
+ 	sprite: s32'null', 30
+ 	linkParticle: s32'est202_Impact'
+ } endState: 
+ 
+ beginState: s32'est202_Lines_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		linkParticle: s32'est202_lines'
+ 		ignoreWorldStopByFriend: 1
+ 		ignoreFinishStop: 1
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ } endState: 
+ 
+ beginState: s32'est202_BG_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		setAngle: 30000
+ 		setScale: 500
+ 	} endUpon: 
+ 	sprite: s32'null', 90
+ 	linkParticle: s32'est202_RyuhaiBG'
+ } endState: 
+ 
+ beginState: s32'est204_Aura_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		addYPosition: 260000
+ 		addXPosition: 350000
+ 		jumpToStateInObject: (SELF), s32'End'
+ 	} endUpon: 
+ 	sprite: s32'null', 180
+ 	linkParticle: s32'est204_Aura'
+ 	spriteEnd: 
+ 	label: s32'End'
+ 	sprite: s32'null', 45
+ 	linkParticle: s32'est204_Aura_end'
+ 	linkObjectPosition: (NULL)
+ 	linkObjectStop: (NULL)
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est204_Ring_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		addYPosition: 300000
+ 	} endUpon: 
+ 	sprite: s32'null', 90
+ 	linkParticle: s32'est204_Ring'
+ } endState: 
+ 
+ beginState: s32'est204_GroundSmoke_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		setYPosition: 0
+ 		linkObjectStop: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		addXPosition: -75000
+ 	} endUpon: 
+ 	label: s32'loop'
+ 	sprite: s32'null', 3
+ 	createParticleWithArg: s32'bg_undersmoke00', (ZERO)
+ 	spriteEnd: 
+ 	gotoLabel: s32'loop'
+ } endState: 
+ 
+ beginState: s32'est204_Smoke_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		setYPosition: 0
+ 		ignoreWorldStopByFriend: 1
+ 		flipDirection: 
+ 		addXPosition: 150000
+ 		setScale: 1250
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	linkParticle: s32'bg_groundsmokeS'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est206_Line00_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectStop: (PARENT)
+ 		linkParticle: s32'est206_Line00'
+ 		setScale: 1000
+ 		addXPosition: 80000
+ 		addYPosition: 180000
+ 		addAngle: -25000
+ 	} endUpon: 
+ 	sprite: s32'null', 120
+ } endState: 
+ 
+ beginState: s32'est206_Line01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkParticle: s32'est206_Line01'
+ 	} endUpon: 
+ 	sprite: s32'null', 120
+ } endState: 
+ 
+ beginState: s32'est206_HeadButt_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		setAngle: -15000
+ 		addXPosition: 220000
+ 		addYPosition: 330000
+ 		addZPosition: 150000
+ 	} endUpon: 
+ 	sprite: s32'null', 120
+ 	linkParticle: s32'est206_HeadButt'
+ } endState: 
+ 
+ beginState: s32'est206_Smoke_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectPosition: (PARENT)
+ 		ignoreWorldStopByFriend: 1
+ 		setActionTimeMax: 120
+ 	} endUpon: 
+ 	label: s32'Loop'
+ 	sprite: s32'null', 5
+ 	setArg_setYAngle: int(-5000)
+ 	setArg_scale: int(800)
+ 	createParticleWithArg: s32'bg_dash_default', (PLAYER_LAND)
+ 	spriteEnd: 
+ 	gotoLabel: s32'Loop'
+ } endState: 
+ 
+ beginState: s32'est206_impact_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		ignoreWorldStopByFriend: 1
+ 	} endUpon: 
+ 	sprite: s32'null', 120
+ 	linkParticle: s32'bg_est206_impact1'
+ } endState: 
+ 
+ beginState: s32'est205_Kidan_Start' {
+ 	upon: (IMMEDIATE) {
+ 		worldOutToEliminate: 1
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkParticle: s32'est_kidan_throw'
+ 		setActionTimeMax: 60
+ 		moveToPosType: (PARENT), (EX_POINT_0)
+ 		upon: (NO_STOP_IDLING) {
+ 			moveToPosType: (PARENT), (EX_POINT_0)
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'null', 6
+ 	setZPosition: -250000
+ 	cmnSfx: s32'ARC_BTL_CMN_kidan_Chrg'
+ 	sprite: s32'null', 2
+ 	setZPosition: -170000
+ 	addXPosition: 50000
+ 	sprite: s32'null', 3
+ 	sprite: s32'null', 60
+ } endState: 
+ 
+ beginState: s32'est205_Kidan_Start2' {
+ 	upon: (IMMEDIATE) {
+ 		worldOutToEliminate: 1
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkParticle: s32'est_kidan_throw'
+ 		setActionTimeMax: 60
+ 		moveToPosType: (PARENT), (EX_POINT_0)
+ 		upon: (NO_STOP_IDLING) {
+ 			moveToPosType: (PARENT), (EX_POINT_0)
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'null', 1
+ 	setZPosition: 130000
+ 	cmnSfx: s32'ARC_BTL_CMN_kidan_Chrg'
+ 	sprite: s32'null', 2
+ 	setZPosition: 145000
+ 	sprite: s32'null', 1
+ 	setZPosition: 180000
+ 	sprite: s32'null', 2
+ 	setZPosition: 320000
+ 	sprite: s32'null', 1
+ 	sprite: s32'null', 60
+ } endState: 
+ 
+ beginState: s32'est205_Kidan_Start3' {
+ 	upon: (IMMEDIATE) {
+ 		worldOutToEliminate: 1
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkParticle: s32'est_kidan_throw'
+ 		setActionTimeMax: 60
+ 		moveToPosType: (PARENT), (EX_POINT_0)
+ 		upon: (NO_STOP_IDLING) {
+ 			moveToPosType: (PARENT), (EX_POINT_0)
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'null', 6
+ 	setZPosition: -230000
+ 	cmnSfx: s32'ARC_BTL_CMN_kidan_Chrg'
+ 	sprite: s32'null', 2
+ 	setZPosition: -170000
+ 	addXPosition: 50000
+ 	sprite: s32'null', 3
+ 	sprite: s32'null', 60
+ } endState: 
+ 
+ beginState: s32'est205_Kidan_Start4' {
+ 	upon: (IMMEDIATE) {
+ 		worldOutToEliminate: 1
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkParticle: s32'est_kidan_throw'
+ 		setActionTimeMax: 60
+ 		moveToPosType: (PARENT), (EX_POINT_0)
+ 		upon: (NO_STOP_IDLING) {
+ 			moveToPosType: (PARENT), (EX_POINT_0)
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'null', 1
+ 	setZPosition: 130000
+ 	cmnSfx: s32'ARC_BTL_CMN_kidan_Chrg'
+ 	sprite: s32'null', 2
+ 	setZPosition: 145000
+ 	sprite: s32'null', 1
+ 	setZPosition: 150000
+ 	sprite: s32'null', 2
+ 	setZPosition: 200000
+ 	sprite: s32'null', 1
+ 	sprite: s32'null', 60
+ } endState: 
+ 
+ beginState: s32'kidan_5D' {
+ 	upon: (IMMEDIATE) {
+ 		normalAttack: 
+ 		callSubroutine: s32'cmnAtkLevel_2_AtkInit'
+ 		callSubroutine: s32'cmn5DKidan_AtkInit'
+ 		callSubroutine: s32'cmnKidan_Init'
+ 		attackYKnockback: 7000
+ 		attackDamageEffect: 4, s32'cmn_BomHit'
+ 		xSpeedPerFrame: 102
+ 		linkParticle: s32'est_kidan'
+ 		upon: (Z_REVERSAL) {
+ 			clearRegisteredUponCode: (Z_REVERSAL)
+ 			linkParticle: s32''
+ 			createObject: s32'est_reversalkidan', (ZERO)
+ 			copyVar: var(act7), int(1)
+ 			requestDestroy: (SELF)
+ 		} endUpon: 
+ 		upon: (SIGNAL_NAME) {
+ 			checkSignalName: s32'Kidan_5D'
+ 			if: var(Result) {
+ 				clearRegisteredUponCode: (SIGNAL_NAME)
+ 				clearRegisteredUponCode: (IDLING)
+ 				upon: (ATTACK_COLLISION) {
+ 					createObject: s32'cmn_kidan_end', (ZERO)
+ 				} endUpon: 
+ 			} endIf: 
+ 		} endUpon: 
+ 		checkCurrentStateName: (PLAYER), s32'NmlAtk5D'
+ 		if: var(Result) {
+ 			copyVarFromObject: (SELF), var(Result), (PLAYER), var(act0)
+ 			ifNot: var(Result) {
+ 				groundKnockbackEffect: (AIR_FACE_UP)
+ 				airKnockbackEffect: (AIR_FACE_UP)
+ 				attackXKnockback: 20000
+ 				attackYKnockback: 19000
+ 			} endIf: 
+ 		} endIf: 
+ 	} endUpon: 
+ 	sprite: s32'kidan0', 1
+ 	enableHitbox: 
+ 	sprite: s32'kidan', 600
+ 	worldOutToEliminate: 1
+ 	setSpeedByCurrentAngle: 80000, 0
+ 	label: s32'Koware'
+ 	sprite: s32'null', 10
+ 	linkParticle: s32''
+ 	resetSpeed: 1
+ } endState: 
+ 
+ beginState: s32'est_reversalkidan' {
+ 	upon: (IMMEDIATE) {
+ 		linkCollisionObject: s32'est_reversal_kidan'
+ 		resetSpeed: 1
+ 	} endUpon: 
+ 	sprite: s32'null', 2147483647
+ 	createObject: s32'cmn_reversal_mazzle', (ZERO)
+ } endState: 
+ 
+ beginState: s32'est232_Upper_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectStop: (PLAYER)
+ 		addYPosition: -20000
+ 	} endUpon: 
+ 	sprite: s32'null', 1
+ 	linkParticle: s32'est232_Upper'
+ 	sprite: s32'null', 20
+ 	linkParticle: s32'est232_UpperEnd'
+ } endState: 
+ 
+ beginState: s32'est232_Smoke_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByFriend: 1
+ 		addXPosition: 170000
+ 		setScale: 900
+ 		setXScale: 700
+ 		flipDirection: 
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	linkParticle: s32'bg_undersmoke00'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est232_UpperSmoke_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByFriend: 1
+ 		addXPosition: 315000
+ 		setScale: 700
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	linkParticle: s32'bg_est232_Upper'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est301_Hajiki_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		setActionTimeMax: 60
+ 		setScale: 450
+ 		setAngleY: 15000
+ 		addXPosition: 200000
+ 		addYPosition: 320000
+ 		addZPosition: 100000
+ 	} endUpon: 
+ 	sprite: s32'null', 90
+ 	linkParticle: s32'est301_Hajiki'
+ 	characterSfx: s32'ARC_BTL_EST_ShotHajiki'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est301_Smoke_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		addXPosition: -100000
+ 		flipDirection: 
+ 	} endUpon: 
+ 	sprite: s32'null', 1
+ 	setArg_scale: int(1200)
+ 	createParticleWithArg: s32'bg_est232_Smoke', (PLAYER_LAND)
+ } endState: 
+ 
+ beginState: s32'2D_core' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectStop: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		atkTadanHoseiTypeHistory: s32'2D_Atk'
+ 		setActionTimeMax: 300
+ 		linkParticle: s32'est233_core00'
+ 		privateBankSE: 0, s32'ARC_BTL_EST_Atk2D_Shot', 100
+ 		jumpToStateInObject: (SELF), s32'end'
+ 		jumpToStateInObject: 47, s32'end'
+ 		upon: (PLAYER_DAMAGE) {
+ 			linkObjectPosition: (NULL)
+ 			linkObjectStop: (NULL)
+ 			ignoreWorldStopByAll: 1
+ 		} endUpon: 
+ 		upon: (SIGNAL1) {
+ 			clearRegisteredUponCode: (SIGNAL1)
+ 			copyVar: var(act0), int(0)
+ 			triggerUponInObject: s32'2D_Atk', (SIGNAL6)
+ 			checkCurrentStateName: (PLAYER), s32'NmlAtk2D'
+ 			if: var(Result) {
+ 				copyVarFromObject: (PLAYER), var(act0), (SELF), int(0)
+ 				sendSignal: (PLAYER), (SIGNAL2)
+ 			} endIf: 
+ 			checkCurrentStateName: (PLAYER), s32'AssistAttack3'
+ 			if: var(Result) {
+ 				copyVarFromObject: (PLAYER), var(act0), (SELF), int(0)
+ 			} endIf: 
+ 			copyVar: var(act2), int(1)
+ 			copyVar: var(act6), int(1)
+ 			upon: (SIGNAL1) {
+ 				modifyVar: (ADD), var(act2), int(1)
+ 				ifOperation: (IS_GREATER_OR_EQUAL), var(act2), int(4) {
+ 					checkCurrentStateName: (PLAYER), s32'NmlAtk2D'
+ 					if: var(Result) {
+ 						sendSignal: (PLAYER), (SIGNAL1)
+ 					} endIf: 
+ 					checkCurrentStateName: (PLAYER), s32'AssistAttack3'
+ 					if: var(Result) {
+ 						sendSignal: (PLAYER), (SIGNAL1)
+ 					} endIf: 
+ 				} endIf: 
+ 				else:  {
+ 					checkCurrentStateName: (PLAYER), s32'NmlAtk2D'
+ 					if: var(Result) {
+ 						sendSignal: (PLAYER), (SIGNAL2)
+ 					} endIf: 
+ 				} endElse: 
+ 			} endUpon: 
+ 		} endUpon: 
+ 		upon: (SIGNAL2) {
+ 			clearRegisteredUponCode: (SIGNAL2)
+ 			copyVar: var(act7), int(1)
+ 			copyVar: var(act0), int(1)
+ 			jumpToLabel: s32'loop'
+ 		} endUpon: 
+ 		upon: (IDLING) {
+ 			ifNot: var(act1) {
+ 				sendSignalActionNameOldest: s32'2D_Atk', (SIGNAL0)
+ 			} endIf: 
+ 		} endUpon: 
+ 	} endUpon: 
+ 	label: s32'loop'
+ 	sprite: s32'null', 2
+ 	modifyVar: (ADD), var(act3), int(1)
+ 	setArg_objectParameters: var(act3), var(act6)
+ 	createObjectWithArg: s32'2D_Atk', (ZERO)
+ 	ifOperation: (IS_GREATER_OR_EQUAL), var(act0), int(3) {
+ 		copyVarFromObject: (PREVIOUS), var(act0), (SELF), int(1)
+ 	} endIf: 
+ 	sprite: s32'null', 2
+ 	spriteEnd: 
+ 	modifyVar: (ADD), var(act0), int(1)
+ 	gotoLabelIfOperation: s32'loop', (IS_LESS_OR_EQUAL), var(act0), int(3)
+ 	label: s32'end'
+ 	sprite: s32'null', 1
+ 	clearRegisteredUponCode: (SIGNAL0)
+ 	clearRegisteredUponCode: (SIGNAL1)
+ 	clearRegisteredUponCode: (AFTER_EXIT)
+ 	clearRegisteredUponCode: (IDLING)
+ 	copyVar: var(act4), int(1)
+ 	createObject: s32'2D_Atk', (ZERO)
+ 	checkCurrentStateName: (PLAYER), s32'NmlAtk2D'
+ 	if: var(Result) {
+ 		sendSignal: (PLAYER), (SIGNAL1)
+ 	} endIf: 
+ 	checkCurrentStateName: (PLAYER), s32'AssistAttack3'
+ 	if: var(Result) {
+ 		sendSignal: (PLAYER), (SIGNAL1)
+ 	} endIf: 
+ 	linkObjectStop: (NULL)
+ 	linkObjectPosition: (NULL)
+ 	ignoreWorldStopByFriend: 1
+ 	sprite: s32'null', 13
+ 	deactivateObjectByName: s32'2D_Atk'
+ 	linkParticle: s32'est233_core01'
+ 	sprite: s32'null', 35
+ 	stopBankSE: 0, 35
+ } endState: 
+ 
+ beginState: s32'2D_Atk' {
+ 	upon: (IMMEDIATE) {
+ 		normalAttack: 
+ 		callSubroutine: s32'cmnAtkLevel_3_AtkInit'
+ 		callSubroutine: s32'cmnSpecialShot_AtkInit'
+ 		damage: 900
+ 		damageScalingOverride: 1000
+ 		tensionGainOnConnect: 700
+ 		hitstop: 10
+ 		enemyHitstopAddition: -1, -2, -2
+ 		groundKnockbackEffect: (AIR_STRONG)
+ 		airKnockbackEffect: (AIR_STRONG)
+ 		attackXKnockback: 90000
+ 		attackYKnockback: 15000
+-		airHitstun: 33
++		airHitstun: 38
+ 		blockstun: 22
+ 		atkShotIgnoreZReversal: 1
+ 		wallBounceXVelocityPercent: 0
+ 		atkWallBoundWaitTime: 12
+ 		atkTargetPlayerHitOnly: s32'2D_Atk', 1
+ 		atkRange: 50000000, -435000, 0, 0
+ 		atkSousaiSevereCheck: 1
+ 		atkEffectBeamSousai: 1
+ 		atkIgnoreSousaiSameLevel: 1
+ 		atkShakeCamera: s32'ShakeYoko', 1000, 1, 20, 0
+ 		upon: (SIGNAL7) {
+ 			ifVarOfObjectOperation: (IS_GREATER_OR_EQUAL), (PARENT), var(act2), int(4) {
+ 				recoveryState: 
+ 			} endIf: 
+ 		} endUpon: 
+ 		checkCurrentStateName: (PLAYER), s32'AssistAttack3'
+ 		if: var(Result) {
+ 			damage: 800
+ 			attackXKnockback: 20000
+ 			attackYKnockback: 45000
+ 			airHitstun: 35
+ 			groundKnockbackEffect: (SPIN)
+ 			airKnockbackEffect: (SPIN)
+ 			wallBounceCount: 0
+ 			enemyHitstopAddition: 0, 5, 5
+ 			noHitstunScaling: 1
+ 			callSubroutine: s32'cmn_AssistHosei'
+ 			upon: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE_AFTER_FIX_PARAM) {
+ 				clearRegisteredUponCode: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE_AFTER_FIX_PARAM)
+ 				checkCurrentStateName: (PLAYER), s32'AssistAttack3'
+ 				if: var(Result) {
+ 					copyVarFromObject: (PLAYER), var(act6), (SELF), int(1)
+ 				} endIf: 
+ 			} endUpon: 
+ 		} endIf: 
+ 		linkObjectStop: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectAngle: 2
+ 		setActionTimeMax: 60
+ 		autoHitSignalSending: 1
+ 		worldOutToEliminate: 1
+ 		linkParticle: s32'est233_naka00'
+ 		damageSoundEffect: s32'ARC_BTL_CMN_Hit_kidan'
+ 		guardSoundEffect: s32'ARC_BTL_CMN_Guard_Beam'
+ 		upon: (SIGNAL0) {
+ 			clearRegisteredUponCode: (SIGNAL0)
+ 			createObject: s32'2D_end', (ZERO)
+ 			copyVar: var(act1), int(1)
+ 			copyVarFromObject: (PARENT), var(act1), (SELF), int(1)
+ 		} endUpon: 
+ 		upon: (SIGNAL1) {
+ 			disableHitbox: 
+ 		} endUpon: 
+ 		upon: (ON_ATTACK_COLLISION_SOUSAI) {
+ 			copyVarFromObject: (PARENT), var(ObjectParameter1), (SELF), var(ObjectParameter1)
+ 			deactivateObject: (SELF)
+ 			sendSignal: (PARENT), (SIGNAL1)
+ 		} endUpon: 
+ 		upon: (SIGNAL6) {
+ 			copyVar: var(act0), int(0)
+ 		} endUpon: 
+ 		upon: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE) {
+ 			sendSignal: (PARENT), (SIGNAL2)
+ 			triggerUponInObject: s32'2D_Atk', (SIGNAL1)
+ 			checkCurrentStateName: (PLAYER), s32'NmlAtk2D'
+ 			if: var(Result) {
+ 				sendSignal: (PLAYER), (SIGNAL3)
+ 			} endIf: 
+ 		} endUpon: 
+ 		upon: (ON_ATTACK_COLLISION_MAIN_PLAYER) {
+ 			sendSignal: (PARENT), (SIGNAL2)
+ 			triggerUponInObject: s32'2D_Atk', (SIGNAL1)
+ 			checkCurrentStateName: (PLAYER), s32'NmlAtk2D'
+ 			if: var(Result) {
+ 				sendSignal: (PLAYER), (SIGNAL3)
+ 			} endIf: 
+ 			checkCurrentStateName: (PLAYER), s32'AssistAttack3'
+ 			if: var(Result) {
+ 				sendSignal: (PLAYER), (SIGNAL3)
+ 			} endIf: 
+ 		} endUpon: 
+ 		upon: (ATTACK_COLLISION) {
+ 			copyVar: var(act7), int(1)
+ 			createObject: s32'2D_Count', (ZERO)
+ 			if: var(act0) {
+ 				sendSignal: (PARENT), (SIGNAL0)
+ 			} endIf: 
+ 		} endUpon: 
+ 		upon: (AFTER_EXIT) {
+ 			clearRegisteredUponCode: (AFTER_EXIT)
+ 			deactivateObjectByName: s32'2D_Count'
+ 		} endUpon: 
+ 		upon: (IDLING) {
+ 			ifVarOfObjectTrue: (PARENT), var(act2) {
+ 				ifVarOfObjectFalse: (PARENT), var(act4) {
+ 					copyVarFromObject: (SELF), var(Result), (PARENT), var(ObjectParameter1)
+ 					ifOperation: (IS_LESS_OR_EQUAL), var(ObjectParameter1), var(Result) {
+ 						deactivateObject: (SELF)
+ 					} endIf: 
+ 				} endIf: 
+ 			} endIf: 
+ 			ifVarOfObjectTrue: (PARENT), var(act7) {
+ 				disableHitbox: 
+ 			} endIf: 
+ 			ifOperation: (IS_LESS_OR_EQUAL), var(PosY), int(400000) {
+ 				effectForLandBreak: 2, 1000, 0, 0
+ 			} endIf: 
+ 		} endUpon: 
+ 		upon: (BEFORE_EXIT) {
+ 			if: var(act1) {
+ 				copyVar: var(act1), int(0)
+ 				copyVarFromObject: (PARENT), var(act1), (SELF), int(0)
+ 			} endIf: 
+ 			setArg_multiplyScale: int(1000)
+ 			setArg_addAngle: int(0)
+ 			createParticle: s32'est233_naka01', (ZERO)
+ 		} endUpon: 
+ 		upon: (Z_REVERSAL) {
+ 			clearRegisteredUponCode: (Z_REVERSAL)
+ 			createObject: s32'cmn_reversal_mazzle', (ATTACK)
+ 			createObject: s32'2D_Count', (ZERO)
+ 			copyVarFromObject: (PARENT), var(act5), (SELF), int(1)
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'2d', 1
+ 	enableHitbox: 
+ 	setXScale: 1250
+ 	setSpeedByCurrentAngle: 100000, 0
+ 	label: s32'loop'
+ 	sprite: s32'2d', 1
+ 	atkIgnoreSousaiSameLevel: 0
+ 	sprite: s32'2d', 2
+ 	scaleForLinkY: 1200
+ 	sprite: s32'2d', 1
+ 	scaleForLinkY: 1000
+ 	spriteEnd: 
+ 	gotoLabelIfOperation: s32'loop', (IS_LESS_OR_EQUAL), var(LoopCount), int(120)
+ } endState: 
+ 
+ beginState: s32'2D_Count' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		upon: (IDLING) {
+ 			checkCurrentStateName: (PLAYER), s32'NmlAtk2D'
+ 			if: var(Result) {
+ 				modifyVar: (ADD), var(act7), int(1)
+ 				ifOperation: (IS_GREATER), var(act7), int(10) {
+ 					copyVar: var(act7), int(0)
+ 					copyVarFromObject: (PLAYER), var(act7), (PLAYER), int(1)
+ 				} endIf: 
+ 			} endIf: 
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ } endState: 
+ 
+ beginState: s32'2D_end' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectStop: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		setActionTimeMax: 60
+ 		moveToPosType: (PARENT), (EX_POINT_0)
+ 		copyVarFromParent: var(PosZ), var(PosZ)
+ 		worldOutToEliminate: 1
+ 		linkParticle: s32'est233_end00'
+ 		upon: (IDLING) {
+ 			checkIsObjectActive: (PARENT)
+ 			if: var(Result) {
+ 				copyVarFromParent: var(PosZ), var(PosZ)
+ 				moveToPosType: (PARENT), (EX_POINT_0)
+ 			} endIf: 
+ 		} endUpon: 
+ 		upon: (BEFORE_EXIT) {
+ 			setArg_multiplyScale: int(1000)
+ 			setArg_addAngle: int(0)
+ 			createParticle: s32'est233_end01', (ZERO)
+ 		} endUpon: 
+ 	} endUpon: 
+ 	label: s32'loop'
+ 	sprite: s32'null', 2
+ 	scaleForLinkY: 1000
+ 	sprite: s32'null', 2
+ 	scaleForLinkY: 1100
+ 	sprite: s32'null', 2
+ 	scaleForLinkY: 1200
+ 	spriteEnd: 
+ 	gotoLabelIfOperation: s32'loop', (IS_LESS_OR_EQUAL), var(LoopCount), int(120)
+ } endState: 
+ 
+ beginState: s32'est233_Tame01' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkParticle: s32'est233_tame01'
+ 		upon: (NO_STOP_IDLING) {
+ 			moveToPosType: (PARENT), (EX_POINT_0)
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'null', 3
+ 	addZPosition: 200000
+ 	setScale: 100
+ 	sprite: s32'null', 3
+ 	addZPosition: -175000
+ 	setScale: 200
+ 	sprite: s32'null', 3
+ 	setScale: 350
+ 	sprite: s32'null', 4
+ 	addZPosition: 125000
+ 	sprite: s32'null', 3
+ 	addZPosition: 40000
+ 	sprite: s32'null', 3
+ 	sprite: s32'null', 2
+ } endState: 
+ 
+ beginState: s32'est233_groundSmoke' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		addXPosition: 150000
+ 	} endUpon: 
+ 	label: s32'loop'
+ 	sprite: s32'null', 10
+ 	createParticle: s32'bg_undersmoke00', (ZERO)
+ 	spriteEnd: 
+ 	gotoLabel: s32'loop'
+ } endState: 
+ 
+ beginState: s32'est233_shadow' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		setActionTimeMax: 300
+ 		jumpToStateInObject: (SELF), s32'end'
+ 	} endUpon: 
+ 	sprite: s32'null', 2147483647
+ 	linkParticle: s32'cmn_shadowLine_loop'
+ 	spriteEnd: 
+ 	label: s32'end'
+ 	sprite: s32'null', 1
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est262_Throw_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByAll: 1
+ 		setAngle: 120000
+ 		addXPosition: 140000
+ 		addYPosition: 350000
+ 		addZPosition: 180000
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	linkParticle: s32'cmn_burst_wind'
+ } endState: 
+ 
+ beginState: s32'est262_Charge_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectStop: (PLAYER)
+ 		linkParticle: s32'est262_Charge'
+ 		addXPosition: 135000
+ 		addYPosition: 410000
+ 	} endUpon: 
+ 	sprite: s32'null', 24
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est262_Blast_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectStop: (PLAYER)
+ 		linkParticle: s32'est262_Blast'
+ 		addXPosition: 15000
+ 		addYPosition: 410000
+ 		addAngle: 10000
+ 	} endUpon: 
+ 	sprite: s32'null', 30
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est263_Punch_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectStop: (PLAYER)
+ 		addXPosition: -10000
+ 		addYPosition: -5000
+ 	} endUpon: 
+ 	sprite: s32'null', 1
+ 	linkParticle: s32'est263_Punch'
+ 	sprite: s32'null', 20
+ 	linkParticle: s32'est263_Punch_End'
+ } endState: 
+ 
+ beginState: s32'est265_kidan_hold_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		upon: (NO_STOP_IDLING) {
+ 			moveToPosType: (PARENT), (EX_POINT_0)
+ 		} endUpon: 
+ 		linkParticle: s32'est402_loop01'
+ 		setScale: 1
+ 		upon: (AFTER_EXIT) {
+ 			clearRegisteredUponCode: (AFTER_EXIT)
+ 			setArg_scale: int(600)
+ 			createParticleWithArg: s32'est265_end', (ZERO)
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'null', 6
+ 	setScaleSpeed: 140
+ 	sprite: s32'null', 200
+ 	setScaleSpeed: 0
+ } endState: 
+ 
+ beginState: s32'est265_tame_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectStop: (PLAYER)
+ 		linkParticle: s32'est265_tame01'
+ 		setScale: 5
+ 	} endUpon: 
+ 	sprite: s32'null', 6
+ 	setScaleSpeed: 70
+ 	sprite: s32'null', 5
+ 	setScaleSpeed: 0
+ } endState: 
+ 
+ beginState: s32'Air5D_Atk1' {
+ 	upon: (IMMEDIATE) {
+ 		normalAttack: 
+ 		callSubroutine: s32'cmnAtkLevel_3_AtkInit'
+ 		callSubroutine: s32'cmnSpecialShot_AtkInit'
+ 		atkShotIgnoreZReversal: 1
+ 		damage: 100
+ 		tensionGainOnConnect: 100
+ 		atkHoseiTadan: 0
+ 		hitstop: 10
+ 		atkRange: 224000, -1000000, -37000, -537000
+ 		atkHitPositionType: 4, 100000, -500000
+ 		atkFrontDirection: 0
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectStop: (PLAYER)
+ 		atkHitCommonSEReset: s32'ARC_BTL_CMN_Hit_Beam'
+ 		guardSoundEffect: s32''
+ 		guardSoundEffect: s32'ARC_BTL_CMN_Guard_Beam'
+ 	} endUpon: 
+ 	sprite: s32'air5d0', 30
+ 	enableHitbox: 
+ } endState: 
+ 
+ beginState: s32'Air5D_Atk2' {
+ 	upon: (IMMEDIATE) {
+ 		normalAttack: 
+ 		callSubroutine: s32'cmnAtkLevel_3_AtkInit'
+ 		callSubroutine: s32'cmnSpecialShot_AtkInit'
+ 		atkShotIgnoreZReversal: 1
+ 		damage: 100
+ 		tensionGainOnConnect: 100
+ 		groundKnockbackEffect: (SPIN)
+ 		airKnockbackEffect: (SPIN)
+ 		attackXKnockback: 20000
+ 		attackYKnockback: 40000
+ 		atkHoseiTadan: 0
+ 		hitstop: 3
+ 		atkRange: 440000, -1000000, 226000, -354000
+ 		atkHitPositionType: 4, 100000, -500000
+ 		atkFrontDirection: 0
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectStop: (PLAYER)
+ 		upon: (ON_ATTACK_COLLISION_MAIN_PLAYER) {
+ 			checkCurrentStateName: (PLAYER), s32'NmlAtkAir5D'
+ 			if: var(Result) {
+ 				sendSignalName: (PLAYER), s32'Air5D_Hit', 0
+ 			} endIf: 
+ 		} endUpon: 
+ 		atkHitCommonSEReset: s32'ARC_BTL_CMN_Hit_Beam'
+ 		guardSoundEffect: s32''
+ 		guardSoundEffect: s32'ARC_BTL_CMN_Guard_Beam'
+ 	} endUpon: 
+ 	sprite: s32'air5d0', 30
+ 	enableHitbox: 
+ } endState: 
+ 
+ beginState: s32'Air5D' {
+ 	upon: (IMMEDIATE) {
+ 		normalAttack: 
+ 		callSubroutine: s32'cmnAtkLevel_3_AtkInit'
+ 		callSubroutine: s32'cmnSpecialShot_AtkInit'
+ 		callSubroutine: s32'cmnKidan_Init'
+ 		damage: 300
+ 		tensionGainOnConnect: 500
+ 		atkHoseiTadan: 0
+ 		hitstop: 3
+ 		attackYKnockback: -30000
+ 		attackXKnockback: 42000
+ 		airHitstun: 40
+ 		groundBounceCount: 1
+ 		groundBounceYVelocity: 20000
+ 		groundBounceGravity: 5000
+ 		groundBounceYVelocityPercent: 100
+ 		groundKnockbackEffect: (AIR_DEFAULT)
+ 		atkShotIgnoreZReversal: 1
+ 		attackDamageEffect: 4, s32'cmn_BomHit'
+ 		atkHitCommonSEReset: s32'ARC_BTL_CMN_Hit_Beam'
+ 		guardSoundEffect: s32''
+ 		guardSoundEffect: s32'ARC_BTL_CMN_Guard_Beam'
+ 		setWallCollision: 1
+ 		setAngle: -60000
+ 		xSpeedPerFrame: 102
+ 		ySpeedPerFrame: 102
+ 		setZPosition: 80000
+ 		landingHeight: 0
+ 		linkParticle: s32'est265_loop'
+ 		scaleForLink: 750
+ 		upon: (AFTER_EXIT) {
+ 			clearRegisteredUponCode: (AFTER_EXIT)
+ 			copyVar: var(act1), int(1)
+ 		} endUpon: 
+ 		upon: (ATTACK_COLLISION) {
+ 			clearRegisteredUponCode: (ATTACK_COLLISION)
+ 			copyVar: var(act7), int(1)
+ 		} endUpon: 
+ 		upon: (ON_ATTACK_COLLISION_SOUSAI) {
+ 			ifNot: var(act0) {
+ 				pushXSpeed: 
+ 				pushYSpeed: 
+ 			} endIf: 
+ 			copyVar: var(act2), int(0)
+ 			upon: (FRAME_STEP_AFTER_EX) {
+ 				ifNot: var(CheckStop) {
+ 					modifyVar: (ADD), var(act2), int(1)
+ 					ifOperation: (IS_GREATER_OR_EQUAL), var(act2), int(5) {
+ 						clearRegisteredUponCode: (FRAME_STEP_AFTER_EX)
+ 						resetSpeed: 1
+ 						popXSpeed: 
+ 						popYSpeed: 
+ 						ifOperation: (IS_GREATER_OR_EQUAL), var(PosY), int(0) {
+ 							ifOperation: (IS_LESS_OR_EQUAL), var(SpeedX), int(25500) {
+ 								setXSpeed: 25500
+ 							} endIf: 
+ 							ifOperation: (IS_GREATER_OR_EQUAL), var(SpeedY), int(-44115) {
+ 								setYSpeed: -44115
+ 							} endIf: 
+ 						} endIf: 
+ 					} endIf: 
+ 				} endIf: 
+ 			} endUpon: 
+ 			damage: 150
+ 			addXPosition: -50000
+ 			addYPosition: 100000
+ 			setSpeedByCurrentAngle: 30000, 0
+ 			enableHitbox: 
+ 			modifyVar: (ADD), var(act0), int(1)
+ 			ifOperation: (IS_GREATER_OR_EQUAL), var(act0), int(4) {
+ 				requestDestroy: (SELF)
+ 			} endIf: 
+ 		} endUpon: 
+ 		upon: (IDLING) {
+ 			ifNot: var(act1) {
+ 				if: var(act7) {
+ 					modifyVar: (ADD), var(act7), int(1)
+ 				} endIf: 
+ 				ifOperation: (IS_GREATER), var(act7), int(3) {
+ 					copyVar: var(act7), int(0)
+ 					checkCurrentStateName: (PLAYER), s32'NmlAtkAir5D'
+ 					if: var(Result) {
+ 						copyVarFromObject: (PLAYER), var(act7), (PLAYER), int(1)
+ 					} endIf: 
+ 				} endIf: 
+ 			} endIf: 
+ 		} endUpon: 
+ 		upon: (TOUCH_GROUND) {
+ 			createParticle: s32'est265_ground_end', (PLAYER_LAND)
+ 			createObject: s32'est265_smoke_all', (PLAYER_LAND)
+ 			effectForLandBreak: 1, 1000, 0, 0
+ 			jumpToLabel: s32'Koware'
+ 			enableHitbox: 
+ 			damage: 700
+ 			atkHoseiTadan: 1
+ 			attackXKnockback: 5000
+ 			attackYKnockback: 30000
+ 			hitstop: 8
+ 			airHitstun: 30
+ 			groundBounceCount: 0
+ 			atkHitCommonSEReset: s32'ARC_BTL_CMN_Hit_kidan'
+ 			guardSoundEffect: s32''
+ 			guardSoundEffect: s32'ARC_BTL_CMN_Guard_Kidan'
+ 			if: var(ObjectParameter1) {
+ 				airHitstun: 25
+ 			} endIf: 
+ 			attackXSuctionBaseObject: (NULL), (ZERO), 0, 0, 0, 0
+ 			attackYSuctionBaseObject: (NULL), (ZERO), 0, 0, 0, 0
+ 			upon: (ATTACK_COLLISION) {
+ 				clearRegisteredUponCode: (ATTACK_COLLISION)
+ 				copyVar: var(act7), int(1)
+ 				createObject: s32'cmn_kidan_end', (ZERO)
+ 				applyTo: (PREVIOUS) {
+ 					setScale: 1200
+ 				} endApply: 
+ 			} endUpon: 
+ 		} endUpon: 
+ 		numberOfHits: 1
+ 		kowareCountDamageCollision: 0
+ 		destroyOnEnemyDamage: 0
+ 		destroyOnEnemyGuard: 0
+ 		destroyOnHit: 0
+ 		kowareCountSousai: 0
+ 	} endUpon: 
+ 	sprite: s32'air5d', 1
+ 	enableHitbox: 
+ 	sprite: s32'air5d', 600
+ 	worldOutToEliminate: 1
+ 	setSpeedByCurrentAngle: 50000, 0
++	checkInputFromParent: (INPUT_ANY_UP)
++	if: var(Result) {
++		setSpeedByCurrentAngle: 20000, 0
++	} endIf: 
++	checkInputFromParent: (INPUT_ANY_DOWN)
++	if: var(Result) {
++		setSpeedByCurrentAngle: 95000, 0
++	} endIf: 
+ 	createObject: s32'est265_nokosi_Eff', (ZERO)
+ 	spriteEnd: 
+ 	label: s32'Koware'
+ 	sprite: s32'air5d', 3
+ 	clearRegisteredUponCode: (FRAME_STEP_AFTER_EX)
+ 	clearRegisteredUponCode: (ON_ATTACK_COLLISION_SOUSAI)
+ 	linkParticle: s32'est265_end'
+ 	setAngle: 0
+ 	scaleForLink: 600
+ 	resetSpeed: 1
+ 	deactivateObjectByName: s32'est265_nokosi_Eff'
+ 	ignoreFinishStop: 1
+ 	sprite: s32'air5d_land', 7
+ 	sprite: s32'null', 25
+ 	recoveryState: 
+ 	ignoreFinishStop: 0
+ } endState: 
+ 
+ beginState: s32'est265_nokosi_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		setActionTimeMax: 120
+ 	} endUpon: 
+ 	label: s32'loop'
+ 	sprite: s32'null', 3
+ 	createParticle: s32'est402_nokosi01', (ZERO)
+ 	spriteEnd: 
+ 	gotoLabel: s32'loop'
+ } endState: 
+ 
+ beginState: s32'est265_smoke_all' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectPosition: (PARENT)
+ 	} endUpon: 
+ 	sprite: s32'null', 90
+ 	createObject: s32'est265_smoke_R_Eff', (ZERO)
+ 	createObject: s32'est265_smoke_L_Eff', (ZERO)
+ } endState: 
+ 
+ beginState: s32'est265_smoke_R_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectPosition: (PARENT)
+ 		addXPosition: 250000
+ 	} endUpon: 
+ 	sprite: s32'null', 90
+ 	linkParticle: s32'bg_groundsmokeS'
+ } endState: 
+ 
+ beginState: s32'est265_smoke_L_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectPosition: (PARENT)
+ 		addXPosition: 50000
+ 		setScale: 750
+ 	} endUpon: 
+ 	sprite: s32'null', 90
+ 	linkParticle: s32'bg_dash_default'
+ } endState: 
+ 
+ beginState: s32'est400_shock01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectStop: (PLAYER)
+ 		upon: (AFTER_EXIT) {
+ 			clearRegisteredUponCode: (AFTER_EXIT)
+ 			linkObjectStop: (NULL)
+ 			ignoreWorldStopByAll: 1
+ 		} endUpon: 
+ 		upon: (NO_STOP_IDLING) {
+ 			ifNot: var(IN_BATTLE) {
+ 				linkObjectStop: (NULL)
+ 			} endIf: 
+ 		} endUpon: 
+ 		ignoreFinishStop: 1
+ 	} endUpon: 
+ 	sprite: s32'null', 3
+ 	setXPosition: 200000
+ 	createObject: s32'est400_rock01_Eff', (ZERO)
+ 	cameraShake: s32'ShakeTate', 50000, 30, 10, 30
+ 	sprite: s32'null', 3
+ 	addXPosition: 300000
+ 	createObject: s32'est400_rock01_Eff', (ZERO)
+ 	sprite: s32'null', 3
+ 	addXPosition: 300000
+ 	createObject: s32'est400_rock01_Eff', (ZERO)
+ } endState: 
+ 
+ beginState: s32'est400_rock01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectStop: (PLAYER)
+ 		upon: (AFTER_EXIT) {
+ 			clearRegisteredUponCode: (AFTER_EXIT)
+ 			linkObjectStop: (NULL)
+ 			ignoreWorldStopByAll: 1
+ 		} endUpon: 
+ 		upon: (NO_STOP_IDLING) {
+ 			ifNot: var(IN_BATTLE) {
+ 				linkObjectStop: (NULL)
+ 			} endIf: 
+ 		} endUpon: 
+ 		ignoreFinishStop: 1
+ 		ignoreWorldStopByFriend: 1
+ 		setScale: 850
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	linkParticle: s32'bg_est400_rock00'
+ } endState: 
+ 
+ beginState: s32'Earth_Atk' {
+ 	upon: (IMMEDIATE) {
+ 		specialAttack: 
+ 		callSubroutine: s32'cmnAtkLevel_3_AtkInit'
+ 		callSubroutine: s32'cmnSpecialShot_AtkInit'
+ 		damage: 800
+ 		damageScalingOverride: 500
+ 		hitstop: 8
+ 		enemyHitstopAddition: 0, 6, 6
+ 		groundHitstun: 18
+ 		airHitstun: 18
+ 		attackXKnockback: 17000
+ 		attackYKnockback: 22000
+ 		groundKnockbackEffect: (AIR_FACE_UP)
+ 		airKnockbackEffect: (AIR_FACE_UP)
+ 		disableAttackClashing: 1
+ 		atkHead: 1
+ 		tensionGainOnConnect: 600
+ 		if: var(SmashRegular) {
+ 			damage: 300
+ 			damageScalingOverride: 1000
+ 			tensionGainOnConnect: 100
+ 		} endIf: 
+ 		upon: (SIGNAL0) {
+ 			clearRegisteredUponCode: (SIGNAL0)
+ 			ifNot: var(act1) {
+ 				damage: 400
+ 				airHitstun: 25
+ 				enemyHitstopAddition: 0, 1, 1
+ 				ifOperation: (IS_EQUAL), var(act0), int(10) {
+ 					groundKnockbackEffect: (SPIN)
+ 					airKnockbackEffect: (SPIN)
+ 					airHitstun: 50
+ 					groundBounceCount: 0
+ 					wallBounceCount: 1
+ 					wallBounceXVelocityPercent: 0
+ 					atkWallBoundWaitTime: 9
+ 				} endIf: 
+ 				ifOperation: (IS_EQUAL), var(act0), int(20) {
+ 					groundKnockbackEffect: (AIR_VERTICAL)
+ 					airKnockbackEffect: (AIR_VERTICAL)
+ 					airHitstun: 50
+ 					attackXKnockback: 13000
+ 					attackYKnockback: 47000
+ 					groundBounceCount: 0
+ 				} endIf: 
+ 				ifOperation: (IS_GREATER_OR_EQUAL), var(act0), int(21) {
+ 					groundKnockbackEffect: (AIR_VERTICAL)
+ 					airKnockbackEffect: (AIR_VERTICAL)
+ 					airHitstun: 40
+ 					attackXKnockback: 13000
+ 					attackYKnockback: 47000
+ 					groundBounceCount: 0
+ 				} endIf: 
+ 			} endIf: 
+ 		} endUpon: 
+ 		upon: (AFTER_EXIT) {
+ 			clearRegisteredUponCode: (AFTER_EXIT)
+ 			linkObjectPosition: (NULL)
+ 			linkObjectStop: (NULL)
+ 			ignoreWorldStopByAll: 1
+ 			copyVar: var(act1), int(1)
+ 		} endUpon: 
+ 		upon: (ATTACK_COLLISION) {
+ 			ifNot: var(act1) {
+ 				sendSignalName: (PLAYER), s32'Earthb_Shot_Hit', 0
+ 			} endIf: 
+ 		} endUpon: 
+ 		upon: (PLAYER_DAMAGE) {
+ 			clearRegisteredUponCode: (PLAYER_DAMAGE)
+ 			jumpToLabel: s32'end'
+ 		} endUpon: 
+ 		autoHitSignalSending: 1
+ 		linkObjectStop: (PLAYER)
+ 	} endUpon: 
+ 	sprite: s32'null', 2
+ 	sprite: s32'null', 3
+ 	grabOrRelease: 
+ 	ifOperation: (IS_EQUAL), var(act0), int(12) {
+ 		damage: 800
+ 		airHitstun: 24
+ 		attackXKnockback: 13000
+ 		attackYKnockback: 23000
+ 		enemyHitstopAddition: 13, 13, 13
+ 		callSubroutine: s32'cmn_AssistHosei'
+ 	} endIf: 
+ 	ifOperation: (IS_GREATER_OR_EQUAL), var(act0), int(20) {
+ 		damage: 1200
+ 		callSubroutine: s32'cmnSpecialAttackEx_ShotInit'
+ 	} endIf: 
+ 	addXPosition: 300000
+ 	setArg_objectParameters: int(1), int(0)
+ 	createObjectWithArg: s32'est400_rock01_Eff_Atk', (ZERO)
+ 	linkObjectCollision: (PREVIOUS)
+ 	sprite: s32'null', 3
+ 	addXPosition: 300000
+ 	createObject: s32'est400_rock02_Eff_Atk', (ZERO)
+ 	linkObjectCollision: (PREVIOUS)
+ 	atkHead: 0
+ 	spriteEnd: 
+ 	gotoLabelIfOperation: s32'add', (IS_GREATER_OR_EQUAL), var(act0), int(10)
+ 	sprite: s32'null', 60
+ 	spriteEnd: 
+ 	exitState: 
+ 	label: s32'add'
+ 	sprite: s32'null', 3
+ 	addXPosition: 450000
+ 	createObject: s32'est400_rock01_Eff_Atk', (ZERO)
+ 	linkObjectCollision: (PREVIOUS)
+ 	sprite: s32'null', 3
+ 	addXPosition: 300000
+ 	createObject: s32'est400_rock02_Eff_Atk', (ZERO)
+ 	linkObjectCollision: (PREVIOUS)
+ 	label: s32'end'
+ 	sprite: s32'null', 60
+ 	clearRegisteredUponCode: (PLAYER_DAMAGE)
+ 	recoveryState: 
+ } endState: 
+ 
+ beginState: s32'est400_rock01_Eff_Atk' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectStop: (PLAYER)
+ 		upon: (NO_STOP_IDLING) {
+ 			ifVarOfObjectTrue: (PARENT), var(act1) {
+ 				clearRegisteredUponCode: (NO_STOP_IDLING)
+ 				recoveryState: 
+ 				linkObjectPosition: (NULL)
+ 				linkObjectStop: (NULL)
+ 				ignoreWorldStopByAll: 1
+ 			} endIf: 
+ 			ifNot: var(IN_BATTLE) {
+ 				linkObjectStop: (NULL)
+ 			} endIf: 
+ 		} endUpon: 
+ 		ignoreFinishStop: 1
+ 		setZPosition: 0
+ 		scaleForLink: 850
+ 	} endUpon: 
+ 	sprite: s32'earth_shot', 6
+ 	linkParticle: s32'bg_est400_rock00'
+ 	effectForLandBreak: 3, 1000, 0, 0
+ 	createObject: s32'est400_Ganban_Eff', (PLAYER_LAND)
+ 	if: var(ObjectParameter1) {
+ 		spriteOverrideFrame: s32'earth_shot0'
+ 	} endIf: 
+ 	sprite: s32'null', 50
+ 	ignoreFinishStop: 0
+ } endState: 
+ 
+ beginState: s32'est400_rock02_Eff_Atk' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectStop: (PLAYER)
+ 		upon: (NO_STOP_IDLING) {
+ 			ifVarOfObjectTrue: (PARENT), var(act1) {
+ 				clearRegisteredUponCode: (NO_STOP_IDLING)
+ 				recoveryState: 
+ 				linkObjectPosition: (NULL)
+ 				linkObjectStop: (NULL)
+ 				ignoreWorldStopByAll: 1
+ 			} endIf: 
+ 			ifNot: var(IN_BATTLE) {
+ 				linkObjectStop: (NULL)
+ 			} endIf: 
+ 		} endUpon: 
+ 		ignoreFinishStop: 1
+ 		setZPosition: 0
+ 		scaleForLink: 850
+ 	} endUpon: 
+ 	sprite: s32'earth_shot', 6
+ 	linkParticle: s32'bg_est400_rock00'
+ 	effectForLandBreak: 3, 1000, 0, 0
+ 	createObject: s32'est400_Ganban2_Eff', (PLAYER_LAND)
+ 	sprite: s32'null', 50
+ 	ignoreFinishStop: 0
+ } endState: 
+ 
+ beginState: s32'est400_Ganban_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreFinishStop: 1
+ 		ignoreWorldStopByFriend: 1
+ 		addXPosition: -40000
+ 		setScale: 700
+ 	} endUpon: 
+ 	sprite: s32'null', 2
+ 	linkParticle: s32'bg_est400_uprock01'
+ 	addYPosition: -100000
+ 	sprite: s32'null', 12
+ 	addYPosition: 115000
+ 	sprite: s32'null', 10
+ 	linkParticle: s32'bg_est400_downrock01'
+ 	ignoreFinishStop: 0
+ } endState: 
+ 
+ beginState: s32'est400_Ganban2_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreFinishStop: 1
+ 		ignoreWorldStopByFriend: 1
+ 		addXPosition: 75000
+ 		setScale: 600
+ 	} endUpon: 
+ 	sprite: s32'null', 2
+ 	linkParticle: s32'bg_est400_uprock02'
+ 	addYPosition: -100000
+ 	sprite: s32'null', 12
+ 	addYPosition: 115000
+ 	sprite: s32'null', 10
+ 	linkParticle: s32'bg_est400_downrock02'
+ 	ignoreFinishStop: 0
+ } endState: 
+ 
+ beginState: s32'est400_FallLine' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PLAYER)
+ 		jumpToStateInObject: (SELF), s32'end'
+ 		setScale: 1000
+ 		addAngle: 15000
+ 	} endUpon: 
+ 	label: s32'loop'
+ 	sprite: s32'null', 3
+ 	linkParticle: s32'est400_FallLine'
+ 	spriteEnd: 
+ 	gotoLabel: s32'loop'
+ 	label: s32'end'
+ 	sprite: s32'null', 30
+ } endState: 
+ 
+ beginState: s32'est403_ganban_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkParticle: s32'bg_GroundBrakeEX'
+ 		setScale: 550
+ 		flipDirection: 
+ 		jumpToStateInObject: (SELF), s32'end'
+ 		ignoreWorldStopByFriend: 1
+ 	} endUpon: 
+ 	sprite: s32'null', 5
+ 	setScaleSpeed: 50
+ 	sprite: s32'null', 350
+ 	setScaleSpeed: 0
+ 	spriteEnd: 
+ 	label: s32'end'
+ 	sprite: s32'null', 2
+ 	addYPosition: -60000
+ 	sprite: s32'null', 2
+ 	addYPosition: -60000
+ 	sprite: s32'null', 1
+ 	addYPosition: -60000
+ 	sprite: s32'null', 1
+ 	addYPosition: -60000
+ } endState: 
+ 
+ beginState: s32'est403_Smoke_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkParticle: s32'bg_groundsmokeL'
+ 		ignoreWorldStopByFriend: 1
+ 		setScale: 1000
+ 	} endUpon: 
+ 	sprite: s32'null', 120
+ } endState: 
+ 
+ beginState: s32'est403_Smoke2_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkParticle: s32'bg_down_default'
+ 		setScale: 1000
+ 		ignoreWorldStopByFriend: 1
+ 	} endUpon: 
+ 	sprite: s32'null', 120
+ } endState: 
+ 
+ beginState: s32'est403_Line01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		ignoreWorldStopByFriend: 1
+ 	} endUpon: 
+ 	sprite: s32'null', 120
+ 	linkParticle: s32'est403_Line'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est403_Swing01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 	} endUpon: 
+ 	sprite: s32'null', 120
+ 	linkParticle: s32'est403_Swing01'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est403_Swing02_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 	} endUpon: 
+ 	sprite: s32'null', 120
+ 	linkParticle: s32'est403_Swing02'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est403_Swing03_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 	} endUpon: 
+ 	sprite: s32'null', 120
+ 	linkParticle: s32'est403_Swing03'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est403_Swing04_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 	} endUpon: 
+ 	sprite: s32'null', 120
+ 	linkParticle: s32'est403_Swing04'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est403_ThrowLine_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 	} endUpon: 
+ 	sprite: s32'null', 120
+ 	linkParticle: s32'est403_ThrowLine'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est403_Throw_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		addXPosition: 450000
+ 		addYPosition: 410000
+ 		upon: (AFTER_EXIT) {
+ 			clearRegisteredUponCode: (AFTER_EXIT)
+ 			linkObjectPosition: (NULL)
+ 			linkObjectStop: (NULL)
+ 			ignoreWorldStopByAll: 1
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'null', 30
+ 	linkParticle: s32'est403_Throw'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est403_ThrowSmoke_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		flipDirection: 
+ 		ignoreFinishStop: 1
+ 		ignoreWorldStopByAll: 1
+ 	} endUpon: 
+ 	sprite: s32'null', 120
+ 	linkParticle: s32'bg_est403_ThrowSmoke'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est406_ganban00_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkParticle: s32'bg_est406_ganban00'
+ 		setScale: 1000
+ 		flipDirection: 
+ 		jumpToStateInObject: (SELF), s32'end'
+ 		ignoreWorldStopByFriend: 1
+ 	} endUpon: 
+ 	sprite: s32'null', 5
+ 	setScaleSpeed: 50
+ 	sprite: s32'null', 350
+ 	setScaleSpeed: 0
+ 	spriteEnd: 
+ 	label: s32'end'
+ 	sprite: s32'null', 2
+ 	addYPosition: -60000
+ 	sprite: s32'null', 2
+ 	addYPosition: -60000
+ 	sprite: s32'null', 1
+ 	addYPosition: -60000
+ 	sprite: s32'null', 1
+ 	addYPosition: -60000
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est405_ganban_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkParticle: s32'bg_GroundBrakeEX'
+ 		setScale: 800
+ 		addXPosition: -150000
+ 		jumpToStateInObject: (SELF), s32'end'
+ 	} endUpon: 
+ 	sprite: s32'null', 5
+ 	setScaleSpeed: 50
+ 	sprite: s32'null', 350
+ 	setScaleSpeed: 0
+ 	spriteEnd: 
+ 	label: s32'end'
+ 	sprite: s32'null', 2
+ 	addYPosition: -60000
+ 	sprite: s32'null', 2
+ 	addYPosition: -60000
+ 	sprite: s32'null', 1
+ 	addYPosition: -60000
+ 	sprite: s32'null', 1
+ 	addYPosition: -60000
+ 	sprite: s32'null', 30
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est405_AttackSmokeA_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		setActionTimeMax: 300
+ 		jumpToStateInObject: (SELF), s32'End'
+ 		ignoreWorldStopByFriend: 1
+ 	} endUpon: 
+ 	label: s32'loop'
+ 	sprite: s32'null', 6
+ 	createObject: s32'est405_AttackSmokeB_Eff', (PLAYER_LAND)
+ 	spriteEnd: 
+ 	gotoLabel: s32'loop'
+ 	label: s32'End'
+ 	sprite: s32'null', 180
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est405_AttackSmokeB_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		addXPosition: -50000
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	linkParticle: s32'bg_groundsmokeS'
+ 	effectForDownLv1: 0x01000000E8030000E0930400000000000100000000000000
+ } endState: 
+ 
+ beginState: s32'est405_StopSmoke_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkParticle: s32'bg_est405_BrakeSmoke00'
+ 		ignoreWorldStopByFriend: 1
+ 		setScale: 800
+ 		addXPosition: -250000
+ 	} endUpon: 
+ 	sprite: s32'null', 120
+ } endState: 
+ 
+ beginState: s32'est405_throw_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectStop: (PARENT)
+ 	} endUpon: 
+ 	sprite: s32'null', 120
+ 	linkParticle: s32'est405_throw'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est405_throw02_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectStop: (PARENT)
+ 	} endUpon: 
+ 	sprite: s32'null', 120
+ 	linkParticle: s32'est405_throw02'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est405_shock_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectStop: (PARENT)
+ 	} endUpon: 
+ 	sprite: s32'null', 2
+ 	sprite: s32'null', 2
+ 	linkParticle: s32'est405_shock'
+ 	addAngle: 35000
+ 	addXPosition: -200000
+ 	addYPosition: 590000
+ 	linkObjectPosition: (NULL)
+ 	sprite: s32'null', 120
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est405_Ring_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectStop: (PARENT)
+ 		ignoreWorldStopByAll: 1
+ 		setAngle: 35000
+ 		addXPosition: -250000
+ 		addYPosition: 650000
+ 		addZPosition: 180000
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	linkParticle: s32'cmn_burst_wind'
+ } endState: 
+ 
+ beginState: s32'est405_Line_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectStop: (PARENT)
+ 		linkParticle: s32'est405_Line_b'
+ 	} endUpon: 
+ 	sprite: s32'null', 30
+ 	setScale: 1200
+ 	setYScale: 1300
+ 	setAngle: 30000
+ 	addXPosition: 100000
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est405_Line2_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectStop: (PARENT)
+ 		linkParticle: s32'est405_Line'
+ 	} endUpon: 
+ 	sprite: s32'null', 30
+ 	setScale: 1200
+ 	setAngle: 160000
+ 	addYPosition: 700000
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est405_Line3_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		setScale: 150
+ 		addXPosition: -250000
+ 		addYPosition: 350000
+ 		addZPosition: 500000
+ 	} endUpon: 
+ 	sprite: s32'null', 300
+ 	linkParticle: s32'est405_Line_c'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est406_BGsmoke00_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		setAngleY: -45000
+ 		ignoreWorldStopByFriend: 1
+ 	} endUpon: 
+ 	sprite: s32'null', 180
+ 	linkParticle: s32'bg_est406_BGsmoke00'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est406_CutLine_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		ignoreWorldStopByFriend: 1
+ 		setAngleY: -48000
+ 		addYPosition: -30000
+ 		addZPosition: 80000
+ 	} endUpon: 
+ 	sprite: s32'null', 180
+ 	linkParticle: s32'est406_CutLine'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est406_CutSmoke00_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		ignoreWorldStopByFriend: 1
+ 		setAngleY: -48000
+ 		addYPosition: 180000
+ 		addZPosition: 80000
+ 	} endUpon: 
+ 	sprite: s32'null', 180
+ 	linkParticle: s32'bg_est406_CutSmoke00'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est430_BANKSE4_Check' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectStop: (PLAYER)
+ 		upon: (IDLING) {
+ 			checkCurrentStateName: (PLAYER), s32'Gimpact'
+ 			ifNot: var(Result) {
+ 				stopBankSE: 20, 30
+ 				deactivateObject: (SELF)
+ 			} endIf: 
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'null', 300
+ 	sprite: s32'null', 5
+ 	stopBankSE: 20, 30
+ } endState: 
+ 
+ beginState: s32'est430_Aura01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectStop: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		ignoreWorldStopByFriend: 1
+ 		jumpToStateInObject: (SELF), s32'loop'
+ 	} endUpon: 
+ 	sprite: s32'null', 200
+ 	linkParticle: s32'est434_aura00'
+ 	setAngleY: -30000
+ 	setScale: 1000
+ 	label: s32'loop'
+ 	sprite: s32'null', 200
+ 	linkParticle: s32'est430_aura01'
+ 	setScale: 1500
+ } endState: 
+ 
+ beginState: s32'est430_Aura02_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectStop: (PLAYER)
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		ignoreWorldStopByFriend: 1
+ 		jumpToStateInObject: (SELF), s32'loop1'
+ 		jumpToStateInObject: (ATTACKER), s32'loop2'
+ 		jumpToStateInObject: (DEFENDER), s32'loop3'
+ 		jumpToStateInObject: 26, s32'loop4'
+ 		jumpToStateInObject: (PLAYER_1), s32'loop5'
+ 		jumpToStateInObject: (PLAYER_2), s32'end'
+ 	} endUpon: 
+ 	sprite: s32'null', 200
+ 	linkParticle: s32'est430_Sphere00'
+ 	setXPosition: -25000
+ 	setYPosition: 120000
+ 	setScale: 900
+ 	deactivateObjectByName: s32'est430_undersmoke_Eff'
+ 	label: s32'loop1'
+ 	sprite: s32'null', 200
+ 	linkParticle: s32'est430_Sphere01'
+ 	setYPosition: 240000
+ 	setScale: 1600
+ 	createObject: s32'est430_undersmoke_Eff', (CENTER)
+ 	createObject: s32'est430_nokosi01_Eff', (CENTER)
+ 	applyTo: (PREVIOUS) {
+ 		addXPosition: 150000
+ 	} endApply: 
+ 	label: s32'loop2'
+ 	sprite: s32'null', 2
+ 	sprite: s32'null', 200
+ 	linkParticle: s32'est430_Sphere01'
+ 	setAngle: 90000
+ 	setXPosition: 5000
+ 	setYPosition: 240000
+ 	setScale: 1600
+ 	createObject: s32'est430_nokosi01_Eff', (CENTER)
+ 	applyTo: (PREVIOUS) {
+ 		setAngle: 90000
+ 		addYPosition: 150000
+ 	} endApply: 
+ 	createObject: s32'est430_undersmoke_Eff', (CENTER)
+ 	label: s32'loop3'
+ 	sprite: s32'null', 2
+ 	sprite: s32'null', 200
+ 	linkParticle: s32'est430_Sphere01'
+ 	setAngle: 45000
+ 	setYPosition: 240000
+ 	setScale: 1600
+ 	createObject: s32'est430_nokosi01_Eff', (CENTER)
+ 	applyTo: (PREVIOUS) {
+ 		addXPosition: 150000
+ 		addYPosition: 150000
+ 		setAngle: 45000
+ 	} endApply: 
+ 	createObject: s32'est430_undersmoke_Eff', (CENTER)
+ 	label: s32'loop4'
+ 	sprite: s32'null', 2
+ 	sprite: s32'null', 200
+ 	linkParticle: s32'est430_Sphere01'
+ 	setAngle: -45000
+ 	setYPosition: 240000
+ 	setScale: 1600
+ 	createObject: s32'est430_undersmoke_Eff', (CENTER)
+ 	createObject: s32'est430_nokosi01_Eff', (CENTER)
+ 	applyTo: (PREVIOUS) {
+ 		addXPosition: 150000
+ 		addYPosition: -150000
+ 		setAngle: -45000
+ 	} endApply: 
+ 	label: s32'loop5'
+ 	sprite: s32'null', 2
+ 	sprite: s32'null', 200
+ 	linkParticle: s32'est430_Sphere01'
+ 	setAngle: -90000
+ 	setXPosition: -25000
+ 	setYPosition: 280000
+ 	setScale: 1600
+ 	createObject: s32'est430_nokosi01_Eff', (CENTER)
+ 	applyTo: (PREVIOUS) {
+ 		setAngle: -90000
+ 		addYPosition: -150000
+ 	} endApply: 
+ 	label: s32'end'
+ 	sprite: s32'null', 12
+ 	linkParticle: s32'est430_Sphere01_End'
+ 	setAngle: 0
+ 	setScale: 1000
+ 	setXPosition: 20000
+ 	deactivateObjectByName: s32'est430_undersmoke_Eff'
+ 	clearRegisteredUponCode: (SIGNAL0)
+ 	clearRegisteredUponCode: (SIGNAL1)
+ 	clearRegisteredUponCode: (SIGNAL2)
+ 	clearRegisteredUponCode: (SIGNAL3)
+ 	clearRegisteredUponCode: (SIGNAL4)
+ 	clearRegisteredUponCode: (SIGNAL5)
+ 	sprite: s32'null', 120
+ 	linkObjectPosition: (NULL)
+ } endState: 
+ 
+ beginState: s32'est430_undersmoke_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectStop: (PLAYER)
+ 		linkObjectPosition: (PARENT)
+ 		flipDirection: 
+ 		setActionTimeMax: 100
+ 		addXPosition: -50000
+ 		upon: (NO_STOP_IDLING) {
+ 			checkCurrentStateName: (PLAYER), s32'Gimpact'
+ 			ifNot: var(Result) {
+ 				deactivateObject: (SELF)
+ 			} endIf: 
+ 		} endUpon: 
+ 	} endUpon: 
+ 	label: s32'loop'
+ 	sprite: s32'null', 5
+ 	createObject: s32'est430_undersmoke01', (CENTER)
+ 	spriteEnd: 
+ 	gotoLabel: s32'loop'
+ } endState: 
+ 
+ beginState: s32'est430_undersmoke01' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectStop: (PLAYER)
+ 		upon: (IDLING) {
+ 			ifOperation: (IS_LESS_OR_EQUAL), var(PosY), int(400000) {
+ 				ifNot: var(act0) {
+ 					copyVar: var(act0), int(90)
+ 					createParticle: s32'bg_groundsmokeS', (PLAYER_LAND)
+ 					effectForLandBreak: 1, 1000, 0, 0
+ 				} endIf: 
+ 				else:  {
+ 					modifyVar: (ADD), var(act0), int(-1)
+ 				} endElse: 
+ 			} endIf: 
+ 			ifOperation: (IS_LESS_OR_EQUAL), var(act0), int(-1) {
+ 				copyVar: var(act0), int(0)
+ 			} endIf: 
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ } endState: 
+ 
+ beginState: s32'est430_nokosi01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByFriend: 1
+ 		upon: (AFTER_EXIT) {
+ 			clearRegisteredUponCode: (AFTER_EXIT)
+ 			ignoreWorldStopByAll: 1
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'null', 30
+ 	linkParticle: s32'est434_nokosi01'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'Omega_atk' {
+ 	upon: (IMMEDIATE) {
+ 		overdriveAttack: 
+ 		callSubroutine: s32'cmnAtkLevel_4_AtkInit'
+ 		callSubroutine: s32'cmnUltimateShot_AtkInit'
+ 		damage: 550
+ 		minimalDamagePercent: 20
+ 		hitstop: 2
+ 		enemyHitstopAddition: 0, 5, 5
+ 		attackXKnockback: 40000
+ 		attackYKnockback: 45000
+ 		airHitstun: 45
+ 		guardPushback: 120
+ 		groundKnockbackEffect: (SPIN)
+ 		airKnockbackEffect: (SPIN)
+ 		atkHitCommonBankSE: 16, s32'ARC_BTL_CMN_Hit_BeamLoop_LP', 0
+ 		atkGuardCommonBankSE: 17, s32'ARC_BTL_CMN_Grd_BeamLoop_LP', 0
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkParticle: s32'est431_Sphere'
+ 		upon: (SIGNAL0) {
+ 			clearRegisteredUponCode: (SIGNAL0)
+ 			effectForLandBreak: 1, 10000, 0, 0
+ 		} endUpon: 
+ 		upon: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE) {
+ 			callSubroutine: s32'cmnUltimate_CameraCombo'
+ 		} endUpon: 
+ 		upon: (IDLING) {
+ 			copyVarFromObject: (SELF), var(Result), (ENEMY), var(PlayerDamageOrGuard)
+ 			ifNot: var(Result) {
+ 				stopBankSE: 16, 20
+ 				stopBankSE: 17, 20
+ 			} endIf: 
+ 		} endUpon: 
+ 		upon: (BEFORE_EXIT) {
+ 			stopBankSE: 16, 20
+ 			stopBankSE: 17, 20
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'omega', 3
+ 	setScale: 1000
+ 	scaleForLink: 2000
+ 	characterSfx: s32'ARC_BTL_EST_Gimpact_Sphr_Start'
+ 	sprite: s32'omega', 3
+ 	enableHitbox: 
+ 	setScale: 1200
+ 	sprite: s32'omega', 3
+ 	enableHitbox: 
+ 	setScale: 1400
+ 	sprite: s32'omega', 3
+ 	enableHitbox: 
+ 	setScale: 1600
+ 	sprite: s32'omega', 3
+ 	enableHitbox: 
+ 	setScale: 1800
+ 	sprite: s32'omega', 3
+ 	enableHitbox: 
+ 	setScale: 2000
+ 	sprite: s32'omega', 3
+ 	enableHitbox: 
+ 	enemyHitstopAddition: 0, 10, 10
+ 	airHitstun: 35
+ 	linkParticle: s32''
+ 	createObject: s32'est431_SphereAuraEnd_Eff', (ZERO)
+ 	linkObjectPosition: (NULL)
+ 	linkObjectStop: (NULL)
+ 	linkObjectChangeToEliminate: (NULL)
+ 	stopBankSE: 16, 20
+ 	stopBankSE: 17, 20
+ 	sprite: s32'null', 30
+ 	sprite: s32'null', 30
+ 	clearRegisteredUponCode: (BEFORE_EXIT)
+ } endState: 
+ 
+ beginState: s32'est431_SphereAura_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectPosition: (PARENT)
+ 		ignoreWorldStopByFriend: 1
+ 		setScale: 2000
+ 		linkParticle: s32'est431_Sphere'
+ 		ignoreDispOnlyMe: 1
+ 	} endUpon: 
+ 	sprite: s32'null', 12
+ 	addYPosition: 50000
+ 	sprite: s32'null', 8
+ 	sprite: s32'null', 4
+ 	setScaleSpeed: -250
+ 	sprite: s32'null', 34
+ 	setScale: 0
+ 	setScaleSpeed: 0
+ 	sprite: s32'null', 12
+ 	setScale: 2000
+ 	addYPosition: -50000
+ 	sprite: s32'null', 16
+ 	setScale: 3000
+ 	linkObjectPosition: (NULL)
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est431_Burst_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectPosition: (PARENT)
+ 		ignoreWorldStopByFriend: 1
+ 		setScale: 2000
+ 		ignoreDispOnlyMe: 1
+ 	} endUpon: 
+ 	sprite: s32'null', 120
+ 	linkParticle: s32'est431_Burst'
+ 	characterSfx: s32'ARC_BTL_EST_Groar_Hensin'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est431_SphereAuraEnd_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByFriend: 1
+ 		setScale: 4000
+ 		ignoreDispOnlyMe: 1
+ 	} endUpon: 
+ 	sprite: s32'null', 120
+ 	linkParticle: s32'est431_SphereEnd'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est431_Charge_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectPosition: (PARENT)
+ 		ignoreWorldStopByFriend: 1
+ 		setScale: 2000
+ 		addYPosition: 50000
+ 		ignoreDispOnlyMe: 1
+ 	} endUpon: 
+ 	sprite: s32'null', 120
+ 	linkParticle: s32'est431_Charge'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est431_Smoke_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		setActionTimeMax: 300
+ 		ignoreDispOnlyMe: 1
+ 	} endUpon: 
+ 	sprite: s32'null', 10
+ 	setArg_scale: int(2500)
+ 	setArg_setYScale: int(1000)
+ 	createParticleWithArg: s32'bg_CircleSmoke00', (PLAYER_LAND)
+ 	sprite: s32'null', 10
+ 	setArg_scale: int(3500)
+ 	setArg_setYScale: int(700)
+ 	createParticleWithArg: s32'bg_CircleSmoke00', (PLAYER_LAND)
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est431_Aura_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectStop: (PLAYER)
+ 		jumpToStateInObject: (SELF), s32'End'
+ 		addXPosition: -50000
+ 	} endUpon: 
+ 	sprite: s32'null', 180
+ 	linkParticle: s32'est431_Aura00'
+ 	spriteEnd: 
+ 	label: s32'End'
+ 	sprite: s32'null', 45
+ 	linkParticle: s32'est431_Aura00End'
+ 	clearRegisteredUponCode: (SIGNAL0)
+ 	linkObjectPosition: (NULL)
+ 	linkObjectStop: (NULL)
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'EST000_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 	} endUpon: 
+ 	sprite: s32'null', 30
+ 	linkParticle: s32'est_spark'
+ } endState: 
+ 
+ beginState: s32'est433_Aura01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectStop: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		ignoreWorldStopByFriend: 1
+ 		jumpToStateInObject: (SELF), s32'loop'
+ 		jumpToStateInObject: (ATTACKER), s32'end1'
+ 		setAngleY: -30000
+ 		addXPosition: -25000
+ 	} endUpon: 
+ 	sprite: s32'null', 300
+ 	linkParticle: s32'est434_aura00'
+ 	setScale: 950
+ 	setAngle: 0
+ 	createObject: s32'est434_undersmoke_Eff01_all', (PLAYER_LAND)
+ 	label: s32'loop'
+ 	sprite: s32'null', 300
+ 	linkParticle: s32'est433_aura01'
+ 	setScale: 1500
+ 	deactivateObjectByName: s32'est434_undersmoke_Eff01_all'
+ 	label: s32'end1'
+ 	sprite: s32'null', 90
+ 	linkParticle: s32'est433_aura01_end'
+ 	linkObjectPosition: (NULL)
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est433_Aura02_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectStop: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		ignoreWorldStopByFriend: 1
+ 		jumpToStateInObject: (SELF), s32'burst'
+ 	} endUpon: 
+ 	sprite: s32'null', 300
+ 	linkParticle: s32'est433_aura00'
+ 	setScale: 1250
+ 	setAngleY: -30000
+ 	addXPosition: -25000
+ 	createObject: s32'est434_undersmoke_Eff01_all', (PLAYER_LAND)
+ 	label: s32'burst'
+ 	sprite: s32'null', 90
+ 	linkParticle: s32'est433_aura02_end'
+ 	addXPosition: 30000
+ 	addYPosition: 225000
+ 	setScale: 1000
+ 	setAngleY: 0
+ 	deactivateObjectByName: s32'est434_undersmoke_Eff01_all'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est433_Aura03_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		setScale: 1300
+ 	} endUpon: 
+ 	sprite: s32'null', 50
+ 	sprite: s32'null', 120
+ 	linkParticle: s32'est433_aura03'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est433_Aura_end_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		addXPosition: 30000
+ 		addYPosition: 250000
+ 		setScale: 1300
+ 		setAngleY: -30000
+ 	} endUpon: 
+ 	sprite: s32'null', 90
+ 	linkParticle: s32'est433_aura03_end'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est433_strike01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkObjectPosition: (PARENT)
+ 		ignoreWorldStopByFriend: 1
+ 		jumpToStateInObject: (SELF), s32'loop'
+ 		jumpToStateInObject: (ATTACKER), s32'end'
+ 	} endUpon: 
+ 	sprite: s32'null', 100
+ 	linkParticle: s32'est433_strike01'
+ 	label: s32'loop'
+ 	sprite: s32'null', 100
+ 	linkParticle: s32'est433_strike02'
+ 	createParticle: s32'est433_wind01', (CENTER)
+ 	label: s32'end'
+ 	sprite: s32'null', 60
+ 	linkParticle: s32'est433_strike02_end'
+ } endState: 
+ 
+ beginState: s32'est433_smoke01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectStop: (PLAYER)
+ 	} endUpon: 
+ 	sprite: s32'null', 3
+ 	createParticle: s32'bg_dash_default', (ZERO)
+ 	addXPosition: 200000
+ 	sprite: s32'null', 3
+ 	createParticle: s32'bg_dash_default', (ZERO)
+ 	addXPosition: 200000
+ 	sprite: s32'null', 4
+ 	createParticle: s32'bg_dash_default', (ZERO)
+ 	addXPosition: 200000
+ 	sprite: s32'null', 4
+ } endState: 
+ 
+ beginState: s32'est433_beam_Eff' {
+ 	upon: (IMMEDIATE) {
+ 	} endUpon: 
+ 	linkObjectDamageToEliminate: (PARENT)
+ 	upon: (NO_STOP_IDLING) {
+ 		moveToPosType: (PARENT), (EX_POINT_0)
+ 	} endUpon: 
+ 	setActionTimeMax: 200
+ 	setScale: 2500
+ 	jumpToStateInObject: (SELF), s32'end'
+ 	} endUpon: 
+ 	sprite: s32'null', 6
+ 	linkParticle: s32'est433_beam01'
+ 	setAngle: -35000
+ 	sprite: s32'null', 6
+ 	setAngle: -25000
+ 	sprite: s32'null', 6
+ 	setAngle: -15000
+ 	sprite: s32'null', 6
+ 	setAngle: -10000
+ 	sprite: s32'null', 6
+ 	setAngle: -15000
+ 	sprite: s32'null', 6
+ 	setAngle: -25000
+ 	sprite: s32'null', 6
+ 	setAngle: -35000
+ 	sprite: s32'null', 12
+ 	setAngle: -35000
+ 	sprite: s32'null', 3
+ 	setAngle: -25000
+ 	sprite: s32'null', 3
+ 	setAngle: -15000
+ 	sprite: s32'null', 3
+ 	setAngle: -10000
+ 	sprite: s32'null', 3
+ 	setAngle: -5000
+ 	sprite: s32'null', 3
+ 	setAngle: 0
+ 	sprite: s32'null', 3
+ 	setAngle: 20000
+ 	sprite: s32'null', 3
+ 	setAngle: 40000
+ 	sprite: s32'null', 3
+ 	setAngle: 60000
+ 	sprite: s32'null', 300
+ 	label: s32'end'
+ 	sprite: s32'null', 3
+ 	linkParticle: s32'est433_beam01_end'
+ 	setAngle: 80000
+ 	sprite: s32'null', 60
+ 	setAngle: 90000
+ } endState: 
+ 
+ beginState: s32'est433_beam_ground_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		jumpToStateInObject: (SELF), s32'end'
+ 	} endUpon: 
+ 	sprite: s32'null', 200
+ 	linkParticle: s32'est433_ground01'
+ 	label: s32'end'
+ 	sprite: s32'null', 60
+ 	linkParticle: s32'est433_ground01_end'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est433_ground_bom01_Eff_all' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		setXPosition: 450000
+ 		setZPosition: 150000
+ 		createObject: s32'est433_ground_bom01_Eff', (PLAYER_LAND)
+ 	} endUpon: 
+ 	sprite: s32'null', 6
+ 	sprite: s32'null', 6
+ 	addXPosition: 50000
+ 	sprite: s32'null', 6
+ 	addXPosition: 50000
+ 	sprite: s32'null', 6
+ 	addXPosition: 50000
+ 	sprite: s32'null', 6
+ 	addXPosition: -50000
+ 	sprite: s32'null', 6
+ 	addXPosition: -50000
+ 	sprite: s32'null', 6
+ 	addXPosition: -50000
+ 	sprite: s32'null', 12
+ 	addXPosition: -50000
+ 	sprite: s32'null', 3
+ 	addXPosition: 150000
+ 	sprite: s32'null', 3
+ 	addXPosition: 150000
+ 	sprite: s32'null', 3
+ 	addXPosition: 150000
+ 	deactivateObjectByName: s32'est433_ground_bom01_Eff'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est433_ground_bom01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		setActionTimeMax: 300
+ 	} endUpon: 
+ 	label: s32'loop'
+ 	sprite: s32'null', 10
+ 	createObject: s32'est433_ground_bom02_Eff', (PLAYER_LAND)
+ 	applyTo: (PREVIOUS) {
+ 		setScale: 650
+ 	} endApply: 
+ 	sprite: s32'null', 12
+ 	createObject: s32'est433_ground_bom02_Eff', (PLAYER_LAND)
+ 	applyTo: (PREVIOUS) {
+ 		setScale: 950
+ 		addXPosition: 200000
+ 	} endApply: 
+ 	sprite: s32'null', 9
+ 	createObject: s32'est433_ground_bom02_Eff', (PLAYER_LAND)
+ 	applyTo: (PREVIOUS) {
+ 		setScale: 800
+ 		addXPosition: -200000
+ 	} endApply: 
+ 	gotoLabel: s32'loop'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est433_ground_bom02_Eff_all' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		setXPosition: 350000
+ 		setZPosition: 150000
+ 	} endUpon: 
+ 	sprite: s32'null', 2
+ 	createObject: s32'est433_ground_bom02_Eff', (ZERO)
+ 	applyTo: (PREVIOUS) {
+ 		setScale: 750
+ 	} endApply: 
+ 	sprite: s32'null', 2
+ 	addXPosition: 500000
+ 	createObject: s32'est433_ground_bom02_Eff', (ZERO)
+ 	applyTo: (PREVIOUS) {
+ 		setScale: 1500
+ 	} endApply: 
+ 	sprite: s32'null', 2
+ 	addXPosition: 500000
+ 	createObject: s32'est433_ground_bom02_Eff', (ZERO)
+ 	applyTo: (PREVIOUS) {
+ 		setScale: 1750
+ 	} endApply: 
+ 	sprite: s32'null', 2
+ 	addXPosition: 500000
+ 	createObject: s32'est433_ground_bom02_Eff', (ZERO)
+ 	applyTo: (PREVIOUS) {
+ 		setScale: 2000
+ 	} endApply: 
+ } endState: 
+ 
+ beginState: s32'est433_ground_bom02_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectStop: (PARENT)
+ 	} endUpon: 
+ 	sprite: s32'null', 90
+ 	linkParticle: s32'est433_bomb02'
+ 	addWindPowerOffset: 0, 0, 0, 1000, 0, 100, 30
+ 	effectForDownLv1: 0x01000000E803000000000000000000000100000001000000
+ } endState: 
+ 
+ beginState: s32'est433_undersmoke_Eff01_all' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		setActionTimeMax: 100
+ 		ignoreWorldStopByFriend: 1
+ 		addZPosition: 100000
+ 	} endUpon: 
+ 	label: s32'loop'
+ 	sprite: s32'null', 10
+ 	createObject: s32'est434_undersmoke_Eff01', (PLAYER_LAND)
+ 	spriteEnd: 
+ 	gotoLabel: s32'loop'
+ } endState: 
+ 
+ beginState: s32'ESF_Move1' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectStop: (PLAYER)
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkPawnWithAnimation: s32'ESF', s32''
+ 		ifVarOfObjectOperation: (IS_EQUAL), (PLAYER), var(WSBMoveDir), int(2) {
+ 			naguruAtkRangeCheck: 0, 2
+ 		} endIf: 
+ 		ifVarOfObjectOperation: (IS_EQUAL), (PLAYER), var(WSBMoveDir), int(1) {
+ 			naguruAtkRangeCheck: 0, 1
+ 		} endIf: 
+ 	} endUpon: 
+ 	sprite: s32'esf433_00', 3
+ 	sprite: s32'esf433_01', 3
+ 	sprite: s32'esf433_02', 3
+ 	sprite: s32'esf433_03', 3
+ 	sprite: s32'esf433_04', 3
+ 	sprite: s32'esf433_05', 3
+ 	sprite: s32'esf433_00', 3
+ 	sprite: s32'esf433_01', 3
+ 	sprite: s32'esf433_02', 3
+ 	sprite: s32'esf433_03', 3
+ 	sprite: s32'esf433_04', 3
+ 	sprite: s32'esf433_05', 3
+ 	sprite: s32'esf433_06', 3
+ 	sprite: s32'esf433_07', 3
+ 	sprite: s32'esf433_08', 3
+ 	sprite: s32'esf433_09', 3
+ } endState: 
+ 
+ beginState: s32'ESF_Move2' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectStop: (PLAYER)
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkPawnWithAnimation: s32'ESF', s32''
+ 		setActionTimeMax: 400
+ 		upon: (SIGNAL0) {
+ 			copyVar: var(act0), int(1)
+ 		} endUpon: 
+ 		ifVarOfObjectOperation: (IS_EQUAL), (PLAYER), var(WSBMoveDir), int(2) {
+ 			naguruAtkRangeCheck: 0, 2
+ 		} endIf: 
+ 		ifVarOfObjectOperation: (IS_EQUAL), (PLAYER), var(WSBMoveDir), int(1) {
+ 			naguruAtkRangeCheck: 0, 1
+ 		} endIf: 
+ 	} endUpon: 
+ 	sprite: s32'esf433_10', 3
+ 	createObject: s32'est433_beam_Eff', (ZERO)
+ 	createObject: s32'est433_ground_bom01_Eff_all', (PLAYER_LAND)
+ 	createObject: s32'est433_beam_ground_Eff', (PLAYER_LAND)
+ 	createObject: s32'est433_undersmoke_Eff01_all', (ZERO)
+ 	createObject: s32'cmn_bigSmokeEff', (ZERO)
+ 	sprite: s32'esf433_11', 3
+ 	sprite: s32'esf433_12', 3
+ 	sprite: s32'esf433_13', 3
+ 	sprite: s32'esf433_14', 3
+ 	sprite: s32'esf433_15', 3
+ 	sprite: s32'esf433_16', 3
+ 	sprite: s32'esf433_17', 3
+ 	sprite: s32'esf433_16', 3
+ 	sprite: s32'esf433_15', 3
+ 	sprite: s32'esf433_14', 3
+ 	sprite: s32'esf433_13', 3
+ 	sprite: s32'esf433_12', 3
+ 	sprite: s32'esf433_11', 3
+ 	sprite: s32'esf433_10', 3
+ 	sprite: s32'esf433_11', 3
+ 	sprite: s32'esf433_12', 3
+ 	sprite: s32'esf433_13', 3
+ 	sprite: s32'esf433_14', 3
+ 	sprite: s32'esf433_15', 3
+ 	sprite: s32'esf433_16', 3
+ 	sprite: s32'esf433_17', 3
+ 	sprite: s32'esf433_18', 3
+ 	sprite: s32'esf433_19', 3
+ 	createObject: s32'est433_ground_bom02_Eff_all', (ZERO)
+ 	sprite: s32'esf433_20', 3
+ 	sprite: s32'esf433_21', 3
+ 	sprite: s32'esf433_22', 3
+ 	triggerUponInObject: s32'est433_beam_Eff', (SIGNAL0)
+ 	triggerUponInObject: s32'est433_beam_ground_Eff', (SIGNAL0)
+ 	deactivateObjectByName: s32'est433_undersmoke_Eff01_all'
+ 	label: s32'loop'
+ 	sprite: s32'esf433_23', 3
+ 	sprite: s32'esf433_24', 3
+ 	sprite: s32'esf433_25', 3
+ 	sprite: s32'esf433_26', 3
+ 	spriteEnd: 
+ 	gotoLabelIfTrue: s32'loop', var(act0)
+ 	sprite: s32'esf433_27', 3
+ 	sprite: s32'esf433_28', 3
+ 	sprite: s32'esf433_29', 3
+ 	sprite: s32'esf433_30', 3
+ 	sprite: s32'esf433_31', 3
+ 	sprite: s32'esf433_32', 3
+ 	sprite: s32'esf433_33', 3
+ 	sprite: s32'esf433_34', 3
+ 	sprite: s32'esf433_35', 3
+ 	sprite: s32'esf433_36', 3
+ 	sprite: s32'esf433_37', 2
+ 	sprite: s32'esf433_38', 2
+ 	sprite: s32'esf433_39', 2
+ } endState: 
+ 
+ beginState: s32'ESF433cs' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectStop: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		ignoreWorldStopByFriend: 1
+ 		zLine: var(plr0)
+ 		linkPawnWithAnimation: s32'ESF', s32'ESF433cs'
+ 		ifVarOfObjectOperation: (IS_EQUAL), (PLAYER), var(WSBMoveDir), int(2) {
+ 			naguruAtkRangeCheck: 0, 2
+ 		} endIf: 
+ 		ifVarOfObjectOperation: (IS_EQUAL), (PLAYER), var(WSBMoveDir), int(1) {
+ 			naguruAtkRangeCheck: 0, 1
+ 		} endIf: 
+ 	} endUpon: 
+ 	sprite: s32'null', 207
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'DMY_ESF433cs' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectStop: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		ignoreWorldStopByFriend: 1
+ 		zLine: var(plr0)
+ 		linkPawnWithAnimation: s32'DMY', s32'EFF_ESF433cs'
+ 		ifVarOfObjectOperation: (IS_EQUAL), (PLAYER), var(WSBMoveDir), int(2) {
+ 			naguruAtkRangeCheck: 0, 2
+ 		} endIf: 
+ 		ifVarOfObjectOperation: (IS_EQUAL), (PLAYER), var(WSBMoveDir), int(1) {
+ 			naguruAtkRangeCheck: 0, 1
+ 		} endIf: 
+ 	} endUpon: 
+ 	sprite: s32'null', 1000
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'ESF433cs_scr_beam01' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkObjectDamageToEliminate: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		setActionTimeMax: 600
+ 	} endUpon: 
+ 	sprite: s32'null', 150
+ 	linkParticle: s32'est433_scr_beam01'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'ESF433cs_scr_beam02' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkObjectDamageToEliminate: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		setActionTimeMax: 600
+ 	} endUpon: 
+ 	sprite: s32'null', 150
+ 	linkParticle: s32'est433_scr_beam02'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'ESF433cs_scr_beam03' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkObjectDamageToEliminate: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		setActionTimeMax: 600
+ 		jumpToStateInObject: (SELF), s32'End'
+ 		addYPosition: 385000
+ 		addZPosition: 50000
+ 		setScale: 300
+ 	} endUpon: 
+ 	sprite: s32'null', 150
+ 	linkParticle: s32'est433_scr_beam03'
+ 	label: s32'End'
+ 	sprite: s32'null', 150
+ 	linkParticle: s32'est433_scr_beam03_end'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est433_scr_grade01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 	} endUpon: 
+ 	sprite: s32'null', 500
+ 	linkParticle: s32'est433_scr_grade01'
+ } endState: 
+ 
+ beginState: s32'Eraser_DBS_Bullet' {
+ 	upon: (IMMEDIATE) {
+ 		specialAttack: 
+ 		callSubroutine: s32'cmnAtkLevel_3_AtkInit'
+ 		callSubroutine: s32'cmnSpecialShot_AtkInit'
+ 		damage: 1100
+ 		hitstop: 6
+ 		groundKnockbackEffect: (SPIN)
+ 		airKnockbackEffect: (SPIN)
+ 		attackXKnockback: 20000
+ 		attackYKnockback: 45000
+ 		airHitstun: 25
+ 		autoHitSignalSending: 1
+ 		attackDamageEffect: 4, s32'cmn_BomHit'
+ 		tensionGainOnConnect: 1200
+ 		atkFrontDirection: 0
+ 		checkCurrentStateName: (PLAYER), s32'AssistAttack2'
+ 		if: var(Result) {
+ 			damage: 800
+ 			airHitstun: 40
+-			attackXKnockback: 15000
++			attackXKnockback: 10000
++			attackYKnockback: 35000
+ 			hitstop: 15
+ 			callSubroutine: s32'cmn_AssistHosei'
+ 			copyVar: var(act3), int(1)
+ 		} endIf: 
+ 		damageSoundEffect: s32'dammy'
+ 		guardSoundEffect: s32'ARC_BTL_CMN_Guard_Kidan'
+ 		xSpeedPerFrame: 102
+ 		ySpeedPerFrame: 102
+ 		setAngle: 25000
+ 		setSpeedByCurrentAngle: 90000, 0
+ 		worldOutToEliminate: 1
+ 		linkObjectDamageToEliminate: (NULL)
+ 		setActionTimeMax: 120
+ 		numberOfHits: 1
+ 		destroyOnHit: 1
+ 		upon: (DESTROY) {
+ 			clearRegisteredUponCode: (DESTROY)
+ 			clearRegisteredUponCode: (FRAME_STEP_AFTER_EX)
+ 			resetSpeed: 1
+ 			deactivateObject: (SELF)
+ 			createObject: s32'cmn_kidan_end_M', (ZERO)
+ 			cmnSfx: s32'ARC_BTL_CMN_KidanLast_Expl'
+ 			deactivateObjectByName: s32'est402_nokosi_Eff'
+ 		} endUpon: 
+ 		upon: (AFTER_EXIT) {
+ 			clearRegisteredUponCode: (AFTER_EXIT)
+ 			copyVar: var(act1), int(1)
+ 		} endUpon: 
+ 		upon: (ATTACK_COLLISION) {
+ 			ifNot: var(act1) {
+ 				checkCurrentStateName: (PLAYER), s32'Eraser_DBS'
+ 				if: var(Result) {
+ 					sendSignal: (PLAYER), (SIGNAL3)
+ 				} endIf: 
+ 			} endIf: 
+ 		} endUpon: 
+ 		upon: (ON_ATTACK_COLLISION_MAIN_PLAYER) {
+ 			clearRegisteredUponCode: (ON_ATTACK_COLLISION_MAIN_PLAYER)
+ 			damage: 1100
+ 			if: var(act3) {
+ 				damage: 800
+ 			} endIf: 
+ 			cameraShake: s32'ShakeTate', 1200, 0, 30, 5
+ 			requestDestroy: (SELF)
+ 		} endUpon: 
+ 		upon: (ON_ATTACK_COLLISION_SOUSAI) {
+ 			ifNot: var(act0) {
+ 				pushXSpeed: 
+ 				pushYSpeed: 
+ 			} endIf: 
+ 			copyVar: var(act2), int(0)
+ 			upon: (FRAME_STEP_AFTER_EX) {
+ 				ifNot: var(CheckStop) {
+ 					modifyVar: (ADD), var(act2), int(1)
+ 					ifOperation: (IS_GREATER_OR_EQUAL), var(act2), int(5) {
+ 						clearRegisteredUponCode: (FRAME_STEP_AFTER_EX)
+ 						resetSpeed: 1
+ 						popXSpeed: 
+ 						popYSpeed: 
+ 					} endIf: 
+ 				} endIf: 
+ 			} endUpon: 
+ 			enableHitbox: 
+ 			damage: 200
+ 			setXSpeed: 30000
+ 			addXPosition: -100000
+ 			setYSpeed: 10000
+ 			addYPosition: -30000
+ 			modifyVar: (ADD), var(act0), int(1)
+ 			ifOperation: (IS_GREATER_OR_EQUAL), var(act0), int(4) {
+ 				clearRegisteredUponCode: (ON_ATTACK_COLLISION_SOUSAI)
+ 				clearRegisteredUponCode: (FRAME_STEP_AFTER_EX)
+ 				requestDestroy: (SELF)
+ 			} endIf: 
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'DBSEraser_atk0', 1
+ 	enableHitbox: 
+ 	linkParticle: s32'est402_loop01'
+ 	scaleForLink: 500
+ 	createObject: s32'est402_nokosi_Eff', (ZERO)
+ 	sprite: s32'DBSEraser_atk', 100
+ } endState: 
+ 
+ beginState: s32'est402_chage01' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectStop: (PARENT)
+ 		linkParticle: s32'est402_tame01'
+ 		upon: (NO_STOP_IDLING) {
+ 			moveToPosType: (PARENT), (EX_POINT_0)
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'null', 3
+ 	addZPosition: 50000
+ 	setAngle: -25000
+ 	setScale: 150
+ 	privateBankSE: 0, s32'ARC_BTL_EST_Eraser_Chrg', 100
+ 	sprite: s32'null', 3
+ 	setScale: 250
+ 	sprite: s32'null', 2
+ 	setScale: 350
+ 	sprite: s32'null', 2
+ 	setAngle: -15000
+ 	sprite: s32'null', 2
+ 	addZPosition: 100000
+ 	sprite: s32'null', 2
+ 	sprite: s32'null', 2
+ 	setAngle: 0
+ 	sprite: s32'null', 1
+ 	setAngle: 15000
+ 	stopBankSE: 0, 20
+ 	sprite: s32'null', 1
+ 	sprite: s32'null', 1
+ } endState: 
+ 
+ beginState: s32'est402_chage01_Assist' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectStop: (PARENT)
+ 		linkParticle: s32'est402_tame01_Assist'
+ 		upon: (NO_STOP_IDLING) {
+ 			moveToPosType: (PARENT), (EX_POINT_0)
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'null', 3
+ 	addZPosition: 50000
+ 	setAngle: -25000
+ 	setScale: 150
+ 	privateBankSE: 0, s32'ARC_BTL_EST_Eraser_Chrg', 100
+ 	sprite: s32'null', 3
+ 	setScale: 250
+ 	sprite: s32'null', 2
+ 	setScale: 350
+ 	sprite: s32'null', 2
+ 	setAngle: -15000
+ 	sprite: s32'null', 2
+ 	addZPosition: 100000
+ 	sprite: s32'null', 2
+ 	sprite: s32'null', 2
+ 	setAngle: 0
+ 	sprite: s32'null', 1
+ 	setAngle: 15000
+ 	stopBankSE: 0, 20
+ 	sprite: s32'null', 1
+ 	sprite: s32'null', 1
+ } endState: 
+ 
+ beginState: s32'est402_hit_loop01' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		addZPosition: 50000
+ 		setScale: 400
+ 		setAngle: 15000
+ 	} endUpon: 
+ 	sprite: s32'null', 120
+ 	linkParticle: s32'est402_hit_loop01'
+ } endState: 
+ 
+ beginState: s32'est402_nokosi_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		setActionTimeMax: 120
+ 		setScale: 750
+ 	} endUpon: 
+ 	label: s32'loop'
+ 	sprite: s32'null', 3
+ 	createParticle: s32'est402_nokosi01', (ZERO)
+ 	spriteEnd: 
+ 	gotoLabel: s32'loop'
+ } endState: 
+ 
+ beginState: s32'est402_end01' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectStop: (PARENT)
+ 		linkObjectPosition: (PLAYER)
+ 		ignoreWorldStopByFriend: 1
+ 		setScale: 750
+ 	} endUpon: 
+ 	sprite: s32'null', 1
+ 	linkParticle: s32'est402_end'
+ 	addWindPowerOffset: 0, 0, 0, 1000, 0, 100, 30
+ 	sprite: s32'null', 60
+ 	linkObjectPosition: (NULL)
+ 	linkObjectStop: (NULL)
+ } endState: 
+ 
+ beginState: s32'est402_Smoke01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByFriend: 1
+ 		flipDirection: 
+ 		addXPosition: -500000
+ 	} endUpon: 
+ 	sprite: s32'null', 90
+ 	linkParticle: s32'bg_jump_default'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est402_Smoke02_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByFriend: 1
+ 		addXPosition: 150000
+ 	} endUpon: 
+ 	sprite: s32'null', 90
+ 	linkParticle: s32'bg_undersmoke00'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est434_Aura01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectStop: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		ignoreWorldStopByFriend: 1
+ 		jumpToStateInObject: (SELF), s32'loop1'
+ 		jumpToStateInObject: (ATTACKER), s32'loop2'
+ 		jumpToStateInObject: (DEFENDER), s32'end1'
+ 		jumpToStateInObject: 26, s32'end2'
+ 		upon: (IDLING) {
+ 			checkCurrentStateName: (PLAYER), s32'Gcharge'
+ 			ifNot: var(Result) {
+ 				checkCurrentStateName: (PLAYER), s32'GchargeExe'
+ 				ifNot: var(Result) {
+ 					deactivateObject: (SELF)
+ 				} endIf: 
+ 			} endIf: 
+ 		} endUpon: 
+ 		setAngleY: -30000
+ 		addXPosition: -50000
+ 	} endUpon: 
+ 	sprite: s32'null', 27
+ 	linkParticle: s32'est434_aura00'
+ 	setScale: 1000
+ 	sprite: s32'null', 200
+ 	linkParticle: s32'est434_aura01'
+ 	setScale: 1500
+ 	createObject: s32'est434_undersmoke_Eff01_all', (PLAYER_LAND)
+ 	label: s32'loop1'
+ 	sprite: s32'null', 200
+ 	createObject: s32'est434_nokosi01_Eff', (CENTER)
+ 	createObject: s32'est434_undersmoke_Eff02_all', (PLAYER_LAND)
+ 	linkParticle: s32'est434_aura02'
+ 	setAngleY: 0
+ 	setXPosition: 250000
+ 	setYPosition: 380000
+ 	deactivateObjectByName: s32'est434_undersmoke_Eff01_all'
+ 	label: s32'loop2'
+ 	sprite: s32'null', 8
+ 	setXPosition: 325000
+ 	sprite: s32'null', 200
+ 	setYPosition: 350000
+ 	label: s32'end1'
+ 	sprite: s32'null', 4
+ 	clearRegisteredUponCode: (SIGNAL0)
+ 	clearRegisteredUponCode: (SIGNAL1)
+ 	clearRegisteredUponCode: (SIGNAL2)
+ 	clearRegisteredUponCode: (SIGNAL3)
+ 	triggerUponInObject: s32'est434_undersmoke_Eff02_all', (SIGNAL0)
+ 	linkParticle: s32'est434_aura02_end'
+ 	setXPosition: 400000
+ 	sprite: s32'null', 2
+ 	addXPosition: -75000
+ 	sprite: s32'null', 2
+ 	addXPosition: -75000
+ 	sprite: s32'null', 90
+ 	addXPosition: -75000
+ 	spriteEnd: 
+ 	exitState: 
+ 	label: s32'end2'
+ 	sprite: s32'null', 2
+ 	clearRegisteredUponCode: (SIGNAL0)
+ 	clearRegisteredUponCode: (SIGNAL1)
+ 	clearRegisteredUponCode: (SIGNAL2)
+ 	clearRegisteredUponCode: (SIGNAL3)
+ 	triggerUponInObject: s32'est434_undersmoke_Eff02_all', (SIGNAL0)
+ 	linkParticle: s32'est434_aura02_end'
+ 	sprite: s32'null', 2
+ 	addXPosition: -25000
+ 	sprite: s32'null', 2
+ 	addXPosition: -25000
+ 	sprite: s32'null', 90
+ 	addXPosition: -25000
+ } endState: 
+ 
+ beginState: s32'est434_nokosi01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		ignoreWorldStopByFriend: 1
+ 		addXPosition: 300000
+ 		addYPosition: 380000
+ 	} endUpon: 
+ 	sprite: s32'null', 30
+ 	linkParticle: s32'est434_nokosi01'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'est434_undersmoke_Eff01_all' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		setActionTimeMax: 100
+ 		ignoreWorldStopByFriend: 1
+ 		upon: (IDLING) {
+ 			checkCurrentStateName: (PLAYER), s32'Gcharge'
+ 			ifNot: var(Result) {
+ 				checkCurrentStateName: (PLAYER), s32'GchargeExe'
+ 				ifNot: var(Result) {
+ 					deactivateObject: (SELF)
+ 				} endIf: 
+ 			} endIf: 
+ 		} endUpon: 
+ 		addZPosition: 100000
+ 	} endUpon: 
+ 	label: s32'loop'
+ 	sprite: s32'null', 10
+ 	createObject: s32'est434_undersmoke_Eff01', (PLAYER_LAND)
+ 	createObject: s32'est434_undersmoke_Eff02', (PLAYER_LAND)
+ 	spriteEnd: 
+ 	gotoLabel: s32'loop'
+ } endState: 
+ 
+ beginState: s32'est434_undersmoke_Eff01' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		addXPosition: -125000
+ 		addZPosition: -175000
+ 		setScale: 1500
+ 		ignoreWorldStopByFriend: 1
+ 	} endUpon: 
+ 	sprite: s32'null', 45
+ 	linkParticle: s32'bg_undersmoke00'
+ } endState: 
+ 
+ beginState: s32'est434_undersmoke_Eff02' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		addXPosition: 125000
+ 		addZPosition: -175000
+ 		setAngleY: -180000
+ 		setScale: 1500
+ 		ignoreWorldStopByFriend: 1
+ 	} endUpon: 
+ 	sprite: s32'null', 45
+ 	linkParticle: s32'bg_undersmoke00'
+ } endState: 
+ 
+ beginState: s32'est434_undersmoke_Eff02_all' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		setActionTimeMax: 300
+ 		jumpToStateInObject: (SELF), s32'End'
+ 		upon: (IDLING) {
+ 			checkCurrentStateName: (PLAYER), s32'Gcharge'
+ 			ifNot: var(Result) {
+ 				checkCurrentStateName: (PLAYER), s32'GchargeExe'
+ 				ifNot: var(Result) {
+ 					deactivateObject: (SELF)
+ 				} endIf: 
+ 			} endIf: 
+ 		} endUpon: 
+ 		ignoreWorldStopByFriend: 1
+ 	} endUpon: 
+ 	label: s32'loop'
+ 	sprite: s32'null', 4
+ 	createObject: s32'est434_undersmoke_Eff03', (PLAYER_LAND)
+ 	spriteEnd: 
+ 	gotoLabel: s32'loop'
+ 	label: s32'End'
+ 	sprite: s32'null', 180
+ 	clearRegisteredUponCode: (SIGNAL0)
+ } endState: 
+ 
+ beginState: s32'est434_undersmoke_Eff03' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		flipDirection: 
+ 		addXPosition: -50000
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	linkParticle: s32'bg_groundsmokeS'
+ } endState: 
+ 
+ beginState: s32'est434_loop01_R' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		ignoreWorldStopByFriend: 1
+ 		setActionTimeMax: 300
+ 		linkParticle: s32'est434_kidan01'
+ 		jumpToStateInObject: (ATTACKER), s32'end1'
+ 		jumpToStateInObject: (DEFENDER), s32'end2'
+ 		jumpToStateInObject: 26, s32'gurd'
+ 		upon: (SIGNAL0) {
+ 			clearRegisteredUponCode: (SIGNAL0)
+ 			ifVarOfObjectOperation: (IS_LESS_OR_EQUAL), (PLAYER), var(obj1), int(0) {
+ 				jumpToLabel: s32'hit1'
+ 			} endIf: 
+ 			ifVarOfObjectOperation: (IS_EQUAL), (PLAYER), var(obj1), int(1) {
+ 				jumpToLabel: s32'hit2'
+ 			} endIf: 
+ 			ifVarOfObjectOperation: (IS_EQUAL), (PLAYER), var(obj1), int(2) {
+ 				jumpToLabel: s32'hit3'
+ 			} endIf: 
+ 			ifVarOfObjectOperation: (IS_EQUAL), (PLAYER), var(obj1), int(3) {
+ 				addXPosition: -15000
+ 				addYPosition: 10000
+ 				jumpToLabel: s32'hit4'
+ 			} endIf: 
+ 			ifVarOfObjectOperation: (IS_EQUAL), (PLAYER), var(obj1), int(4) {
+ 				addXPosition: -15000
+ 				addYPosition: 10000
+ 				jumpToLabel: s32'hit5'
+ 			} endIf: 
+ 		} endUpon: 
+ 		upon: (IDLING) {
+ 			checkCurrentStateName: (PLAYER), s32'Gcharge'
+ 			ifNot: var(Result) {
+ 				checkCurrentStateName: (PLAYER), s32'GchargeExe'
+ 				ifNot: var(Result) {
+ 					deactivateObject: (SELF)
+ 				} endIf: 
+ 			} endIf: 
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'null', 19
+ 	setScale: 750
+ 	addXPosition: 150000
+ 	addYPosition: 432000
+ 	sprite: s32'null', 4
+ 	addYPosition: -20000
+ 	sprite: s32'null', 12
+ 	setScale: 450
+ 	addXPosition: -15000
+ 	addYPosition: -130000
+ 	sprite: s32'null', 4
+ 	sprite: s32'null', 300
+ 	addXPosition: 50000
+ 	addYPosition: 25000
+ 	addZPosition: -150000
+ 	spriteEnd: 
+ 	exitState: 
+ 	label: s32'hit1'
+ 	sprite: s32'null', 1
+ 	label: s32'hit2'
+ 	sprite: s32'null', 1
+ 	label: s32'hit3'
+ 	sprite: s32'null', 1
+ 	addXPosition: -15000
+ 	addYPosition: 10000
+ 	label: s32'hit4'
+ 	sprite: s32'null', 2
+ 	label: s32'hit5'
+ 	sprite: s32'null', 3
+ 	addXPosition: 55000
+ 	addYPosition: -50000
+ 	sprite: s32'null', 3
+ 	setXScale: 350
+ 	setYScale: 500
+ 	addXPosition: 65000
+ 	addYPosition: -80000
+ 	addZPosition: 100000
+ 	sprite: s32'null', 3
+ 	sprite: s32'null', 3
+ 	sprite: s32'null', 3
+ 	sprite: s32'null', 3
+ 	sprite: s32'null', 30
+ 	addXPosition: 15000
+ 	addYPosition: 15000
+ 	spriteEnd: 
+ 	exitState: 
+ 	label: s32'end1'
+ 	sprite: s32'null', 2
+ 	clearRegisteredUponCode: (SIGNAL0)
+ 	clearRegisteredUponCode: (SIGNAL1)
+ 	clearRegisteredUponCode: (SIGNAL2)
+ 	clearRegisteredUponCode: (SIGNAL3)
+ 	setScale: 450
+ 	addXPosition: 100000
+ 	addYPosition: 75000
+ 	addZPosition: 100000
+ 	sprite: s32'null', 2
+ 	linkParticle: s32'est434_kidan01_end'
+ 	sprite: s32'null', 2
+ 	sprite: s32'null', 2
+ 	addXPosition: -75000
+ 	addYPosition: 100000
+ 	sprite: s32'null', 6
+ 	addXPosition: -145000
+ 	addYPosition: 105000
+ 	spriteEnd: 
+ 	exitState: 
+ 	label: s32'end2'
+ 	sprite: s32'null', 3
+ 	clearRegisteredUponCode: (SIGNAL0)
+ 	clearRegisteredUponCode: (SIGNAL1)
+ 	clearRegisteredUponCode: (SIGNAL2)
+ 	clearRegisteredUponCode: (SIGNAL3)
+ 	linkParticle: s32'est434_kidan01_end'
+ 	addXPosition: 0
+ 	addYPosition: 175000
+ 	addZPosition: 100000
+ 	setScale: 450
+ 	sprite: s32'null', 3
+ 	addXPosition: -50000
+ 	addZPosition: -15000
+ 	sprite: s32'null', 60
+ 	addXPosition: -50000
+ 	addZPosition: -30000
+ 	spriteEnd: 
+ 	exitState: 
+ 	label: s32'gurd'
+ 	sprite: s32'null', 2
+ 	clearRegisteredUponCode: (SIGNAL0)
+ 	clearRegisteredUponCode: (SIGNAL1)
+ 	clearRegisteredUponCode: (SIGNAL2)
+ 	clearRegisteredUponCode: (SIGNAL3)
+ 	linkParticle: s32'est434_kidan01_end'
+ 	addXPosition: 215000
+ 	addYPosition: -30000
+ 	addZPosition: 200000
+ 	sprite: s32'null', 2
+ 	sprite: s32'null', 2
+ 	sprite: s32'null', 2
+ 	addXPosition: -40000
+ 	addYPosition: 100000
+ 	sprite: s32'null', 6
+ 	addXPosition: -180000
+ 	addYPosition: 90000
+ } endState: 
+ 
+ beginState: s32'est434_loop01_L' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		ignoreWorldStopByFriend: 1
+ 		setActionTimeMax: 300
+ 		linkParticle: s32'est434_kidan01'
+ 		jumpToStateInObject: (SELF), s32'hit1'
+ 		jumpToStateInObject: (ATTACKER), s32'end1'
+ 		jumpToStateInObject: (DEFENDER), s32'end2'
+ 		jumpToStateInObject: 26, s32'gurd'
+ 		upon: (SIGNAL0) {
+ 			clearRegisteredUponCode: (SIGNAL0)
+ 			ifVarOfObjectOperation: (IS_LESS_OR_EQUAL), (PLAYER), var(obj1), int(0) {
+ 				jumpToLabel: s32'hit1'
+ 			} endIf: 
+ 			ifVarOfObjectOperation: (IS_EQUAL), (PLAYER), var(obj1), int(1) {
+ 				jumpToLabel: s32'hit2'
+ 			} endIf: 
+ 			ifVarOfObjectOperation: (IS_EQUAL), (PLAYER), var(obj1), int(2) {
+ 				jumpToLabel: s32'hit3'
+ 			} endIf: 
+ 			ifVarOfObjectOperation: (IS_EQUAL), (PLAYER), var(obj1), int(3) {
+ 				addXPosition: -20000
+ 				jumpToLabel: s32'hit4'
+ 			} endIf: 
+ 			ifVarOfObjectOperation: (IS_EQUAL), (PLAYER), var(obj1), int(4) {
+ 				addXPosition: -20000
+ 				jumpToLabel: s32'hit5'
+ 			} endIf: 
+ 		} endUpon: 
+ 		upon: (IDLING) {
+ 			checkCurrentStateName: (PLAYER), s32'Gcharge'
+ 			ifNot: var(Result) {
+ 				checkCurrentStateName: (PLAYER), s32'GchargeExe'
+ 				ifNot: var(Result) {
+ 					deactivateObject: (SELF)
+ 				} endIf: 
+ 			} endIf: 
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'null', 19
+ 	setScale: 750
+ 	addXPosition: -250000
+ 	addYPosition: 415000
+ 	addZPosition: 150000
+ 	sprite: s32'null', 4
+ 	addXPosition: 50000
+ 	addYPosition: 65000
+ 	sprite: s32'null', 12
+ 	setScale: 450
+ 	addXPosition: 175000
+ 	addYPosition: -35000
+ 	addZPosition: 100000
+ 	sprite: s32'null', 4
+ 	addYPosition: 25000
+ 	sprite: s32'null', 300
+ 	addXPosition: 50000
+ 	addYPosition: 75000
+ 	addZPosition: 0
+ 	spriteEnd: 
+ 	exitState: 
+ 	label: s32'hit1'
+ 	sprite: s32'null', 1
+ 	label: s32'hit2'
+ 	sprite: s32'null', 1
+ 	label: s32'hit3'
+ 	sprite: s32'null', 1
+ 	addXPosition: -20000
+ 	label: s32'hit4'
+ 	sprite: s32'null', 2
+ 	label: s32'hit5'
+ 	sprite: s32'null', 3
+ 	addXPosition: 125000
+ 	addZPosition: -75000
+ 	sprite: s32'null', 3
+ 	addXPosition: 125000
+ 	addYPosition: -75000
+ 	addZPosition: -25000
+ 	setXScale: 350
+ 	setYScale: 500
+ 	sprite: s32'null', 3
+ 	sprite: s32'null', 3
+ 	sprite: s32'null', 3
+ 	sprite: s32'null', 3
+ 	sprite: s32'null', 30
+ 	spriteEnd: 
+ 	exitState: 
+ 	label: s32'end1'
+ 	sprite: s32'null', 2
+ 	clearRegisteredUponCode: (SIGNAL0)
+ 	clearRegisteredUponCode: (SIGNAL1)
+ 	clearRegisteredUponCode: (SIGNAL2)
+ 	clearRegisteredUponCode: (SIGNAL3)
+ 	addXPosition: 100000
+ 	addYPosition: -50000
+ 	addZPosition: 25000
+ 	setScale: 450
+ 	sprite: s32'null', 2
+ 	linkParticle: s32'est434_kidan01_end'
+ 	sprite: s32'null', 2
+ 	sprite: s32'null', 2
+ 	addXPosition: -125000
+ 	addYPosition: 100000
+ 	sprite: s32'null', 6
+ 	addXPosition: -200000
+ 	addYPosition: 50000
+ 	spriteEnd: 
+ 	exitState: 
+ 	label: s32'end2'
+ 	sprite: s32'null', 3
+ 	clearRegisteredUponCode: (SIGNAL0)
+ 	clearRegisteredUponCode: (SIGNAL1)
+ 	clearRegisteredUponCode: (SIGNAL2)
+ 	clearRegisteredUponCode: (SIGNAL3)
+ 	linkParticle: s32'est434_kidan01_end'
+ 	addZPosition: -100000
+ 	sprite: s32'null', 3
+ 	addXPosition: -75000
+ 	addYPosition: -40000
+ 	addZPosition: -40000
+ 	sprite: s32'null', 60
+ 	addXPosition: -25000
+ 	spriteEnd: 
+ 	exitState: 
+ 	label: s32'gurd'
+ 	sprite: s32'null', 2
+ 	clearRegisteredUponCode: (SIGNAL0)
+ 	clearRegisteredUponCode: (SIGNAL1)
+ 	clearRegisteredUponCode: (SIGNAL2)
+ 	clearRegisteredUponCode: (SIGNAL3)
+ 	linkParticle: s32'est434_kidan01_end'
+ 	addXPosition: 320000
+ 	addYPosition: -130000
+ 	sprite: s32'null', 2
+ 	sprite: s32'null', 2
+ 	sprite: s32'null', 2
+ 	addXPosition: -125000
+ 	addYPosition: 100000
+ 	sprite: s32'null', 6
+ 	addXPosition: -225000
+ 	addYPosition: 10000
+ } endState: 
+ 
+ beginState: s32'est434_bomb_end' {
+ 	upon: (IMMEDIATE) {
+ 		linkParticle: s32'cmn_bomb_sp'
+ 		ignoreWorldStopByFriend: 1
+ 		ignoreFinishStop: 1
+ 		upon: (NO_STOP_IDLING) {
+ 			ifNot: var(IsMainPlayerSelf) {
+ 				clearRegisteredUponCode: (NO_STOP_IDLING)
+ 				ignoreWorldStopByAll: 1
+ 			} endIf: 
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'null', 15
+ 	addWindPowerOffset: 0, 0, 0, 1000, 0, 100, 30
+ 	sprite: s32'null', 120
+ 	ignoreFinishStop: 0
+ } endState: 
+ 
+ beginState: s32'blastermeteor' {
+ 	upon: (IMMEDIATE) {
+ 		overdriveAttack: 
+ 		callSubroutine: s32'cmnAtkLevel_4_AtkInit'
+ 		callSubroutine: s32'cmnUltimateShot_AtkInit'
+ 		callSubroutine: s32'cmn_MutekiHosei'
+ 		damage: 100
+ 		minimalDamagePercent: 20
+ 		groundKnockbackEffect: (AIR_FACE_UP)
+ 		airKnockbackEffect: (AIR_FACE_UP)
+ 		attackXKnockback: 25000
+ 		attackYKnockback: -45000
+ 		groundBounceCount: 1
+ 		groundBounceYVelocityPercent: 100
+ 		groundBounceGravity: 5000
+ 		groundBounceYVelocity: 25000
+ 		airHitstun: 65
+ 		hitstop: 5
+ 		attackDamageEffect: 4, s32'cmn_BomHit'
+ 		atkIgnoreCaution: 1
+ 		atkFrontDirection: 0
+ 		slidingKnockdownDuration: 3
+ 		atkHitTensionPenalty: 1
+ 		atkDamageToRecovery: 1
+ 		atkHoseiTadan: 1
+ 		damageScalingOverride: 500
+ 		atkTargetPlayerHitOnly: s32'blastermeteor', 5
+ 		damageSoundEffect: s32'ARC_BTL_CMN_Hit_Kidan'
+ 		guardSoundEffect: s32'ARC_BTL_CMN_Guard_Kidan'
+ 		autoHitSignalSending: 1
+ 		linkObjectDamageToEliminate: (NULL)
+ 		worldOutToEliminate: 1
+ 		setActionTimeMax: 300
+ 		linkParticle: s32'est432_kidan01'
+ 		upon: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE) {
+ 			callSubroutine: s32'cmnUltimate_CameraCombo'
+ 			sendSignalName: (PLAYER), s32'Blraster_hit', 0
+ 		} endUpon: 
+ 		landingHeight: 0
+ 		jumpToStateInObject: (PARENT), s32'landing'
+ 		initializeDestroy: 
+ 		numberOfHits: 1
+ 		kowareCountSousai: 1
+ 		destroyOnPlayerDamage: 1
+ 		upon: (DESTROY) {
+ 			clearRegisteredUponCode: (DESTROY)
+ 			ifNot: var(act0) {
+ 				createObject: s32'cmn_kidan_end', (ZERO)
+ 				jumpToLabel: s32'end'
+ 			} endIf: 
+ 			ignoreWorldStopByAll: 1
+ 			recoveryState: 
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'blaster', 4
+ 	enableHitbox: 
+ 	upon: (SIGNAL0) {
+ 		setAngle: 60000
+ 		setSpeedByCurrentAngle: 100000, 0
+ 		copyVar: var(act1), int(1)
+ 	} endUpon: 
+ 	upon: (SIGNAL1) {
+ 		setAngle: 30000
+ 		setSpeedByCurrentAngle: 100000, 0
+ 		copyVar: var(act1), int(1)
+ 	} endUpon: 
+ 	upon: (SIGNAL2) {
+ 		setAngle: 0
+ 		setSpeedByCurrentAngle: 100000, 0
+ 		copyVar: var(act1), int(1)
+ 	} endUpon: 
+ 	upon: (SIGNAL3) {
+ 		setAngle: -30000
+ 		setSpeedByCurrentAngle: 100000, 0
+ 	} endUpon: 
+ 	upon: (SIGNAL4) {
+ 		setAngle: -60000
+ 		setSpeedByCurrentAngle: 100000, 0
+ 	} endUpon: 
+ 	upon: (SIGNAL5) {
+ 		setAngle: -120000
+ 		setSpeedByCurrentAngle: 100000, 0
+ 	} endUpon: 
+ 	upon: (SIGNAL6) {
+ 		setAngle: -150000
+ 		setSpeedByCurrentAngle: 100000, 0
+ 		copyVar: var(act1), int(1)
+ 	} endUpon: 
+ 	upon: (SIGNAL7) {
+ 		setAngle: -180000
+ 		setSpeedByCurrentAngle: 100000, 0
+ 		copyVar: var(act1), int(2)
+ 	} endUpon: 
+ 	upon: (SIGNAL8) {
+ 		setAngle: -210000
+ 		setSpeedByCurrentAngle: 100000, 0
+ 		copyVar: var(act1), int(2)
+ 	} endUpon: 
+ 	upon: (SIGNAL9) {
+ 		setAngle: -240000
+ 		setSpeedByCurrentAngle: 100000, 0
+ 		copyVar: var(act1), int(2)
+ 		attackXKnockback: 50000
+ 		attackYKnockback: 20000
+ 	} endUpon: 
+ 	sprite: s32'blaster', 40
+ 	if: var(act1) {
+ 		airHitstun: 40
+ 		attackXKnockback: 50000
+ 		attackYKnockback: 20000
+ 		groundBounceCount: 0
+ 		ifOperation: (IS_GREATER_OR_EQUAL), var(act1), int(2) {
+ 			atkFrontDirection: 3
+ 		} endIf: 
+ 	} endIf: 
+ 	label: s32'end'
+ 	sprite: s32'null', 10
+ 	resetSpeed: 1
+ 	linkParticle: s32''
+ 	spriteEnd: 
+ 	exitState: 
+ 	label: s32'landing'
+ 	sprite: s32'blaster', 3
+ 	clearRegisteredUponCode: (IDLING)
+ 	resetSpeed: 1
+ 	ignoreFinishStop: 1
+ 	attackXKnockback: 1000
+ 	attackYKnockback: 1000
+ 	sprite: s32'blaster_end0', 4
+ 	cameraShake: s32'ShakeTate', 1000, 0, 20, 10
+ 	linkParticle: s32'cmn_bomb_g1'
+ 	effectForLandBreak: 0, 1000, 0, 0
+ 	addWindPowerOffset: 0, 0, 0, 1000, 0, 100, 30
+ 	copyVar: var(act0), int(1)
+ 	enableHitbox: 
+ 	damage: 300
+ 	airHitstun: 35
+ 	groundKnockbackEffect: (AIR_FACE_UP)
+ 	airKnockbackEffect: (AIR_FACE_UP)
+ 	attackXKnockback: 5000
+ 	attackYKnockback: 17000
+ 	groundBounceCount: 0
+ 	slidingKnockdownDuration: 0
+ 	setAngle: 0
+ 	atkYogore: 1
+ 	sprite: s32'blaster_end0', 3
+ 	sprite: s32'blaster_end0', 4
+ 	sprite: s32'null', 13
+ 	ignoreWorldStopByAll: 1
+ 	setScaleSpeed: 0
+ 	recoveryState: 
+ 	sprite: s32'null', 25
+ 	ignoreFinishStop: 0
+ } endState: 
+ 
+ beginState: s32'blastermeteor_fall_Core' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectStop: (PLAYER)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		setActionTimeMax: 300
+ 		upon: (IDLING) {
+ 			ifNot: var(IsMainPlayerSelf) {
+ 				deactivateObject: (SELF)
+ 			} endIf: 
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'null', 40
+ 	spriteOverrideTime: 10, var(EnemyInHitstun)
+ 	sprite: s32'null', 4
+ 	createObject: s32'blastermeteor_fall', (ZERO)
+ 	sendSignal: (PREVIOUS), (SIGNAL1)
+ 	createObject: s32'blastermeteor_fall', (ZERO)
+ 	sendSignal: (PREVIOUS), (SIGNAL4)
+ 	sprite: s32'null', 4
+ 	createObject: s32'blastermeteor_fall', (ZERO)
+ 	sendSignal: (PREVIOUS), (SIGNAL3)
+ 	sprite: s32'null', 4
+ 	createObject: s32'blastermeteor_fall', (ZERO)
+ 	sendSignal: (PREVIOUS), (SIGNAL2)
+ 	sprite: s32'null', 4
+ 	createObject: s32'blastermeteor_fall', (ZERO)
+ 	sendSignal: (PREVIOUS), (SIGNAL6)
+ 	sprite: s32'null', 4
+ 	createObject: s32'blastermeteor_fall', (ZERO)
+ 	sendSignal: (PREVIOUS), (SIGNAL4)
+ 	sprite: s32'null', 4
+ 	createObject: s32'blastermeteor_fall', (ZERO)
+ 	sendSignal: (PREVIOUS), (SIGNAL5)
+ 	sprite: s32'null', 4
+ 	createObject: s32'blastermeteor_fall', (ZERO)
+ 	sendSignal: (PREVIOUS), (SIGNAL2)
+ 	sprite: s32'null', 4
+ 	createObject: s32'blastermeteor_fall', (ZERO)
+ 	sendSignal: (PREVIOUS), (SIGNAL6)
+ 	sprite: s32'null', 4
+ 	createObject: s32'blastermeteor_fall', (ZERO)
+ 	sendSignal: (PREVIOUS), (SIGNAL1)
+ 	createObject: s32'blastermeteor_fall', (ZERO)
+ 	sendSignal: (PREVIOUS), (SIGNAL5)
+ } endState: 
+ 
+ beginState: s32'blastermeteor_fall' {
+ 	upon: (IMMEDIATE) {
+ 		overdriveAttack: 
+ 		callSubroutine: s32'cmnAtkLevel_4_AtkInit'
+ 		callSubroutine: s32'cmnUltimateShot_AtkInit'
+ 		callSubroutine: s32'cmn_MutekiHosei'
+ 		damage: 100
+ 		minimalDamagePercent: 20
+ 		groundKnockbackEffect: (AIR_FACE_UP)
+ 		airKnockbackEffect: (AIR_FACE_UP)
+ 		attackXKnockback: 1000
+ 		attackYKnockback: -120000
+ 		airHitstun: 100
+ 		hitstop: 5
+ 		slidingKnockdownDuration: 10
+ 		attackDamageEffect: 4, s32'cmn_BomHit'
+ 		atkAngle: -90
+ 		disableAttackClashing: 1
+ 		atkHitTensionPenalty: 1
+ 		atkDamageToRecovery: 1
+ 		atkYogore: 0
+ 		disableDoubleSuperScaling: 1
+ 		atkHoseiTadan: 1
+ 		damageScalingOverride: 500
+ 		damageSoundEffect: s32'ARC_BTL_CMN_Hit_Beam'
+ 		guardSoundEffect: s32'ARC_BTL_CMN_Guard_Beam'
+ 		autoHitSignalSending: 1
+ 		linkObjectDamageToEliminate: (NULL)
+ 		setActionTimeMax: 600
+ 		linkParticle: s32'est432_kidan01'
+ 		upon: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE) {
+ 			callSubroutine: s32'cmnUltimate_CameraCombo'
+ 		} endUpon: 
+ 		upon: (IDLING) {
+ 			ifOperation: (IS_LESS_OR_EQUAL), var(PosY), int(5000000) {
+ 				disableAttackClashing: 0
+ 			} endIf: 
+ 		} endUpon: 
+ 		landingHeight: 0
+ 		jumpToStateInObject: (PARENT), s32'landing'
+ 		initializeDestroy: 
+ 		numberOfHits: 1
+ 		kowareCountSousai: 1
+ 		destroyOnPlayerDamage: 1
+ 		upon: (DESTROY) {
+ 			clearRegisteredUponCode: (DESTROY)
+ 			ifNot: var(act0) {
+ 				createObject: s32'cmn_kidan_end', (ZERO)
+ 				jumpToLabel: s32'end'
+ 			} endIf: 
+ 			ignoreWorldStopByAll: 1
+ 			recoveryState: 
+ 		} endUpon: 
+ 		jumpToStateInObject: (ATTACKER), s32'AT1'
+ 		jumpToStateInObject: (DEFENDER), s32'AT2'
+ 		jumpToStateInObject: 26, s32'AT3'
+ 		jumpToStateInObject: (PLAYER_1), s32'AT4'
+ 		jumpToStateInObject: (PLAYER_2), s32'AT5'
+ 		jumpToStateInObject: (SELF_MAIN_PLAYER), s32'AT6'
+ 		jumpToStateInObject: (SELF_SUB_MEMBER1), s32'AT7'
+ 	} endUpon: 
+ 	label: s32'AT1'
+ 	sprite: s32'blaster', 600
+ 	setYPosition: 7000000
+ 	setAngle: -82000
+ 	setSpeedByCurrentAngle: 200000, 0
+ 	enableHitbox: 
+ 	label: s32'AT2'
+ 	sprite: s32'blaster', 600
+ 	setYPosition: 7000000
+ 	setAngle: -85000
+ 	setSpeedByCurrentAngle: 200000, 0
+ 	enableHitbox: 
+ 	label: s32'AT3'
+ 	sprite: s32'blaster', 600
+ 	setYPosition: 7000000
+ 	setAngle: -88000
+ 	setSpeedByCurrentAngle: 200000, 0
+ 	enableHitbox: 
+ 	label: s32'AT4'
+ 	sprite: s32'blaster', 600
+ 	setYPosition: 7000000
+ 	setAngle: -92000
+ 	setSpeedByCurrentAngle: 200000, 0
+ 	enableHitbox: 
+ 	label: s32'AT5'
+ 	sprite: s32'blaster', 600
+ 	setYPosition: 7000000
+ 	setAngle: -95000
+ 	setSpeedByCurrentAngle: 200000, 0
+ 	enableHitbox: 
+ 	label: s32'AT6'
+ 	sprite: s32'blaster', 600
+ 	setYPosition: 7000000
+ 	setAngle: -98000
+ 	setSpeedByCurrentAngle: 200000, 0
+ 	enableHitbox: 
+ 	label: s32'AT7'
+ 	sprite: s32'blaster', 600
+ 	setYPosition: 7000000
+ 	setAngle: -90000
+ 	setSpeedByCurrentAngle: 200000, 0
+ 	enableHitbox: 
+ 	label: s32'end'
+ 	sprite: s32'null', 30
+ 	resetSpeed: 1
+ 	linkParticle: s32''
+ 	spriteEnd: 
+ 	exitState: 
+ 	label: s32'landing'
+ 	sprite: s32'blaster', 3
+ 	clearRegisteredUponCode: (IDLING)
+ 	resetSpeed: 1
+ 	ignoreFinishStop: 1
+ 	attackXKnockback: 1000
+ 	attackYKnockback: 1000
+ 	sprite: s32'blaster_end0', 4
+ 	cameraShake: s32'ShakeTate', 1000, 0, 20, 10
+ 	linkParticle: s32'cmn_bomb_g1'
+ 	effectForLandBreak: 0, 1000, 0, 0
+ 	addWindPowerOffset: 0, 0, 0, 1000, 0, 100, 30
+ 	copyVar: var(act0), int(1)
+ 	enableHitbox: 
+ 	damage: 300
+ 	airHitstun: 35
+ 	groundKnockbackEffect: (AIR_FACE_UP)
+ 	airKnockbackEffect: (AIR_FACE_UP)
+ 	attackXKnockback: 5000
+ 	attackYKnockback: 35000
+ 	groundBounceCount: 0
+ 	slidingKnockdownDuration: 0
+ 	hitstop: 15
+ 	setAngle: 0
+ 	atkYogore: 1
+ 	sprite: s32'blaster_end0', 3
+ 	sprite: s32'blaster_end0', 4
+ 	sprite: s32'null', 13
+ 	ignoreWorldStopByAll: 1
+ 	setScaleSpeed: 0
+ 	recoveryState: 
+ 	sprite: s32'null', 25
+ 	ignoreFinishStop: 0
+ } endState: 
+ 
+ beginState: s32'est432_aura01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		overdriveAttack: 
+ 		callSubroutine: s32'cmnAtkLevel_4_AtkInit'
+ 		callSubroutine: s32'cmnUltimateShot_AtkInit'
+ 		callSubroutine: s32'cmn_MutekiHosei'
+ 		damage: 1800
+ 		minimalDamagePercent: 20
+ 		groundKnockbackEffect: (AIR_FACE_UP)
+ 		airKnockbackEffect: (AIR_FACE_UP)
+ 		attackYKnockback: 20000
+ 		airHitstun: 45
+ 		hitstop: 5
+ 		atkIgnoreCaution: 1
+ 		atkHitTensionPenalty: 1
+ 		atkDamageToRecovery: 1
+ 		ignoreDispOnlyMe: 1
+ 		damageSoundEffect: s32'ARC_BTL_CMN_Hit_Beam'
+ 		guardSoundEffect: s32'ARC_BTL_CMN_Guard_Beam'
+ 		autoHitSignalSending: 1
+ 		upon: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE) {
+ 			callSubroutine: s32'cmnUltimate_CameraCombo'
+ 			sendSignalName: (PLAYER), s32'Blraster_hit', 0
+ 		} endUpon: 
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectStop: (PLAYER)
+ 		jumpToStateInObject: (SELF), s32'loop'
+ 		jumpToStateInObject: (ATTACKER), s32'shot'
+ 		jumpToStateInObject: (DEFENDER), s32'end'
+ 		upon: (SIGNAL3) {
+ 			recoveryState: 
+ 		} endUpon: 
+ 		addXPosition: -30000
+ 		addYPosition: 85000
+ 	} endUpon: 
+ 	sprite: s32'blaster_core', 300
+ 	linkParticle: s32'est432_aura00'
+ 	label: s32'loop'
+ 	sprite: s32'blaster_core', 300
+ 	linkParticle: s32'est432_aura01'
+ 	label: s32'shot'
+ 	sprite: s32'blaster_core', 300
+ 	enableHitbox: 
+ 	linkParticle: s32'est432_aura02'
+ 	label: s32'end'
+ 	sprite: s32'blaster_core', 60
+ 	linkParticle: s32'est432_aura02_end'
+ 	linkObjectPosition: (NULL)
+ 	clearRegisteredUponCode: (SIGNAL0)
+ 	clearRegisteredUponCode: (SIGNAL1)
+ 	clearRegisteredUponCode: (SIGNAL2)
+ } endState: 
+ 
+ beginState: s32'FinishCamera_NmlAtk5A2ndExe' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByFriend: 1
+ 		ignoreFinishStop: 1
+ 		resetCamera: 
+ 		linkCommonPawn: 
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	createObject: s32'cmn_syutyusen', (ENEMY_CENTER)
+ 	cameraShake: s32'ShakeTate', 1500, 3, 25, 3
+ 	cmnSfx: s32'ARC_BTL_CMN_Hit_XLarge'
+ 	cameraMotion: -62998, 506777, 68622, 2700, 1570, 0, 54, 0, 90, 30, 1
+ 	sprite: s32'null', 30
+ 	deactivateObjectByName: s32'cmn_syutyusen'
+ } endState: 
+ 
+ beginState: s32'FinishCamera_NmlAtk5A3rdExe' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByFriend: 1
+ 		ignoreFinishStop: 1
+ 		resetCamera: 
+ 		linkCommonPawn: 
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	createObject: s32'cmn_syutyusen', (ENEMY_CENTER)
+ 	cameraShake: s32'ShakeTate', 1500, 3, 25, 3
+ 	cmnSfx: s32'ARC_BTL_CMN_Hit_XLarge'
+ 	cameraMotion: -62998, 506777, 68622, 2700, 1570, 0, 54, 0, 90, 30, 1
+ 	sprite: s32'null', 30
+ 	deactivateObjectByName: s32'cmn_syutyusen'
+ } endState: 
+ 
+ beginState: s32'FinishCamera_NmlAtk2C' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByFriend: 1
+ 		ignoreFinishStop: 1
+ 		resetCamera: 
+ 		linkCommonPawn: 
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	createObject: s32'cmn_syutyusen', (ENEMY_CENTER)
+ 	cameraShake: s32'ShakeTate', 1500, 3, 25, 3
+ 	cmnSfx: s32'ARC_BTL_CMN_Hit_XLarge'
+ 	cameraMotion: -165574, 444999, 122850, 1583, 4077, 0, 54, 0, 60, 30, 1
+ 	sprite: s32'null', 30
+ 	deactivateObjectByName: s32'cmn_syutyusen'
+ } endState: 
+ 
+ beginState: s32'FinishCamera_NmlAtkAir5C' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByFriend: 1
+ 		ignoreFinishStop: 1
+ 		resetCamera: 
+ 		linkCommonPawn: 
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	createObject: s32'cmn_syutyusen', (ENEMY_CENTER)
+ 	cameraShake: s32'ShakeTate', 1500, 3, 25, 3
+ 	cmnSfx: s32'ARC_BTL_CMN_Hit_XLarge'
+ 	cameraMotion: -57126, 410143, 152048, -1285, 2587, 0, 54, 0, 60, 30, 1
+ 	sprite: s32'null', 30
+ 	deactivateObjectByName: s32'cmn_syutyusen'
+ } endState: 
+ 
+ beginState: s32'FinishCamera_Earth' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByFriend: 1
+ 		ignoreFinishStop: 1
+ 		resetCamera: 
+ 		linkCommonPawn: 
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	createObject: s32'cmn_syutyusen', (ENEMY_CENTER)
+ 	cameraShake: s32'ShakeTate', 1500, 3, 25, 3
+ 	cmnSfx: s32'ARC_BTL_CMN_Hit_XLarge'
+ 	cameraMotion: -57126, 410143, 152048, -1285, 2587, 0, 54, 0, 60, 30, 1
+ 	sprite: s32'null', 30
+ 	deactivateObjectByName: s32'cmn_syutyusen'
+ } endState: 
+ 
+ beginState: s32'FinishCamera_RageExe' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByFriend: 1
+ 		ignoreFinishStop: 1
+ 		resetCamera: 
+ 		linkCommonPawn: 
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	createObject: s32'cmn_syutyusen', (ENEMY_CENTER)
+ 	cameraShake: s32'ShakeTate', 1500, 3, 25, 3
+ 	cmnSfx: s32'ARC_BTL_CMN_Hit_XLarge'
+ 	cameraMotion: 83177, 535980, 244184, -2329, -4432, 0, 54, 0, 60, 30, 1
+ 	sprite: s32'null', 30
+ 	deactivateObjectByName: s32'cmn_syutyusen'
+ } endState: 
+ 
+ beginState: s32'FinishCamera_Eraser_DBS_Exe' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByFriend: 1
+ 		ignoreFinishStop: 1
+ 		resetCamera: 
+ 		linkCommonPawn: 
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	createObject: s32'cmn_syutyusen', (ENEMY_CENTER)
+ 	cameraShake: s32'ShakeTate', 1500, 3, 25, 3
+ 	cmnSfx: s32'ARC_BTL_CMN_Hit_XLarge'
+ 	cameraMotion: -57126, 410143, 152048, -1285, 2587, 0, 54, 0, 90, 60, 1
+ 	sprite: s32'null', 30
+ 	deactivateObjectByName: s32'cmn_syutyusen'
+ } endState: 
+ 
+ beginState: s32'FinishCamera_Throw_Exe' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByFriend: 1
+ 		ignoreFinishStop: 1
+ 		resetCamera: 
+ 		linkCommonPawn: 
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	createObject: s32'cmn_syutyusen', (ENEMY_CENTER)
+ 	cameraShake: s32'ShakeTate', 1500, 3, 25, 3
+ 	cmnSfx: s32'ARC_BTL_CMN_Hit_XLarge'
+ 	cameraMotion: 70000, 453137, 24619, 3618, -2330, 0, 54, 0, 100, 40, 1
+ 	sprite: s32'null', 30
+ 	deactivateObjectByName: s32'cmn_syutyusen'
+ } endState: 
+ 
+ beginState: s32'est600_aura01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 	} endUpon: 
+ 	sprite: s32'null', 83
+ 	linkParticle: s32'est600_aura00'
+ 	setAngleY: 90000
+ 	sprite: s32'null', 77
+ 	linkParticle: s32'est600_aura01'
+ 	setScale: 850
+ 	setAngleY: -90000
+ 	sprite: s32'null', 500
+ 	linkParticle: s32'est600_aura02'
+ 	addXPosition: 100000
+ 	addYPosition: 85000
+ 	setScale: 550
+ 	setAngleY: 90000
+ } endState: 
+ 
+ beginState: s32'est600_aura03_Eff' {
+ 	upon: (IMMEDIATE) {
+ 	} endUpon: 
+ 	sprite: s32'null', 80
+ 	linkParticle: s32'est600_aura03'
+ 	setAngleY: 90000
+ } endState: 
+ 
+ beginState: s32'est600_Wind_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		addYPosition: 150000
+ 	} endUpon: 
+ 	sprite: s32'null', 30
+ 	linkParticle: s32'est600_Wind'
+ } endState: 
+ 
+ beginState: s32'est600_aura_Pillar01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 	} endUpon: 
+ 	sprite: s32'null', 7
+ 	linkParticle: s32'est600_aura_Pillar01'
+ 	createObject: s32'est600_aura_Pillar02_Eff', (ZERO)
+ 	sprite: s32'null', 500
+ 	createObject: s32'bg_est600_smoke01_Eff', (ZERO)
+ } endState: 
+ 
+ beginState: s32'est600_aura_Pillar02_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	linkParticle: s32'est600_aura_Pillar02'
+ 	setScale: 1100
+ 	setAngleY: 90000
+ } endState: 
+ 
+ beginState: s32'est600_spark02_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		addXPosition: 50000
+ 		addYPosition: 375000
+ 		setAngleY: 55000
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	linkParticle: s32'est600_spark02'
+ } endState: 
+ 
+ beginState: s32'est600_dust01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		addXPosition: 50000
+ 		addYPosition: 375000
+ 		setAngleY: 55000
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	linkParticle: s32'est600_dust01'
+ } endState: 
+ 
+ beginState: s32'est600_spark03_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		addXPosition: 90000
+ 		addYPosition: 395000
+ 		addZPosition: -20000
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	linkParticle: s32'est600_spark03'
+ } endState: 
+ 
+ beginState: s32'est600_Destruction01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		addXPosition: 1250000
+ 		addYPosition: 150000
+ 		setScale: 150
+ 	} endUpon: 
+ 	sprite: s32'null', 500
+ 	linkParticle: s32'est600_DestructionFinish_Start'
+ } endState: 
+ 
+ beginState: s32'bg_est600_smoke01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		setAngleY: -90000
+ 	} endUpon: 
+ 	sprite: s32'null', 500
+ 	linkParticle: s32'bg_est600_smoke01'
+ } endState: 
+ 
+ beginState: s32'est600_fade_in_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 	} endUpon: 
+ 	sprite: s32'null', 500
+ 	linkParticle: s32'est600_fade_in'
+ } endState: 
+ 
+ beginState: s32'est600_fade_out_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		addXPosition: 250000
+ 		addYPosition: 200000
+ 	} endUpon: 
+ 	sprite: s32'null', 150
+ 	linkParticle: s32'est600_fade_out'
+ } endState: 
+ 
+ beginState: s32'est600_FistLine_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 	} endUpon: 
+ 	sprite: s32'null', 30
+ 	linkParticle: s32'est600_FistLine'
+ 	addXPosition: 150000
+ 	addYPosition: 305000
+ } endState: 
+ 
+ beginState: s32'est610_aura01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		jumpToStateInObject: (SELF), s32'loop1'
+ 		jumpToStateInObject: (ATTACKER), s32'loop2'
+ 	} endUpon: 
+ 	sprite: s32'null', 300
+ 	linkParticle: s32'est610_aura01'
+ 	label: s32'loop1'
+ 	sprite: s32'null', 300
+ 	linkParticle: s32'est610_aura02'
+ 	label: s32'loop2'
+ 	sprite: s32'null', 300
+ 	linkParticle: s32'est610_aura03'
+ } endState: 
+ 
+ beginState: s32'est610_shine01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		addYPosition: 400000
+ 		setScale: 400
+ 	} endUpon: 
+ 	sprite: s32'null', 300
+ 	linkParticle: s32'est610_shine01'
+ } endState: 
+ 
+ beginState: s32'est610_rock01_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 	} endUpon: 
+ 	sprite: s32'null', 300
+ 	linkParticle: s32'est610_rock01'
+ } endState: 
+ 
+ beginState: s32'est610_rock02_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 	} endUpon: 
+ 	sprite: s32'null', 1200
+ 	linkParticle: s32'est610_rock02'
+ 	createObject: s32'est610_aura04_Eff', (ZERO)
+ } endState: 
+ 
+ beginState: s32'est610_aura04_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PLAYER)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		addZPosition: 250000
+ 	} endUpon: 
+ 	sprite: s32'null', 1200
+ 	linkParticle: s32'est610_aura04'
+ } endState: 
+ 
+ beginState: s32'NHY820_ESF' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectPosition: (ENEMY_MAIN_PLAYER)
+ 		linkObjectChangeToEliminate: (ENEMY_MAIN_PLAYER)
+ 		linkPawnWithAnimation: s32'VS_NHY_ESF', s32'ESF_NHY820cs'
+ 		boneControl_Position: 32, 0x01000000
+ 		moveTo: (ENEMY_MAIN_PLAYER)
+ 		copyVarFromObject: (SELF), var(Direction), (ENEMY_MAIN_PLAYER), var(Direction)
+ 		naguruAtkRangeCheck: 0, 2
+ 		zLine: int(5)
+ 	} endUpon: 
+ 	sprite: s32'null', 2147483647
+ } endState: 
+ 
+ beginState: s32'DUMMYDUMMY' {
+ 	sprite: s32'null', 1
+ } endState: 
+ 

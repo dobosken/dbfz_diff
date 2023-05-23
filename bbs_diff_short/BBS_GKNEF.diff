@@ -1,0 +1,15 @@
+817c817
+< 		airHitstun: 30
+---
+> 		airHitstun: 45
+819c819
+< 		wallBounceXVelocityPercent: 0
+---
+> 		wallBounceXVelocityPercent: 10
+933a934,939
+> 			} endIf: 
+> 			checkCurrentStateName: (PLAYER), s32'AssistAttack3'
+> 			ifNot: var(Result) {
+> 				ifOperation: (IS_GREATER_OR_EQUAL), var(LoopCount), int(4) {
+> 					enemyHitstopAddition: 0, 14, 14
+> 				} endIf: 

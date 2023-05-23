@@ -1,0 +1,10 @@
+2966,2967c2966,2967
+< 	sprite: s32'osm230_02', 4
+< 	setXSpeed: 60000
+---
+> 	sprite: s32'osm230_02', 2
+> 	setXSpeed: 80000
+3023c3023
+< 	sprite: s32'osm203_04', 5
+---
+> 	sprite: s32'osm203_04', 3

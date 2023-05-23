@@ -1,0 +1,12 @@
+3347c3347
+< 	sprite: s32'asn400_01', 2
+---
+> 	sprite: s32'asn400_01', 1
+3464c3464
+< 	setXSpeed: 80000
+---
+> 	setXSpeed: 110000
+4096c4096
+< 	setXSpeed: 80000
+---
+> 	setXSpeed: 100000

@@ -1,0 +1,9 @@
+531a532
+> 			guardPushback: 100
+603c604,607
+< 			enemyHitstopAddition: 0, 5, 5
+---
+> 			enemyHitstopAddition: 0, 10, 10
+> 			attackXKnockback: 2000
+> 			attackYKnockback: 20000
+> 			guardPushback: 50

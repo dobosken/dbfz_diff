@@ -1,0 +1,46 @@
+2814a2815,2816
+> 		blockstun: 18
+> 		enemyHitstopAddition: 3, 0, 0
+3061c3063
+< 					airHitstun: 40
+---
+> 					airHitstun: 50
+3803c3805
+< 	sprite: s32'clf010_01', 2
+---
+> 	sprite: s32'clf010_01', 1
+3805,3806c3807,3808
+< 	setXSpeed: -30000
+< 	setYSpeed: 70000
+---
+> 	setXSpeed: -65000
+> 	setYSpeed: 80000
+3820c3822,3823
+< 	sprite: s32'clf400_06', 3
+---
+> 	sprite: s32'clf400_06', 2
+> 	enableSuperArmor: 0
+3824c3827
+< 	setXSpeed: 78000
+---
+> 	setXSpeed: 118000
+5679c5682
+< 	sprite: s32'clf404_05', 4
+---
+> 	sprite: s32'clf404_05', 2
+5681c5684
+< 	sprite: s32'clf404_07', 4
+---
+> 	sprite: s32'clf404_07', 2
+5755c5758
+< 	sprite: s32'clf430_00', 3
+---
+> 	sprite: s32'clf430_00', 1
+5759c5762
+< 	sprite: s32'clf430_01', 2
+---
+> 	sprite: s32'clf430_01', 1
+5761c5764
+< 	sprite: s32'clf430_02', 3
+---
+> 	sprite: s32'clf430_02', 2

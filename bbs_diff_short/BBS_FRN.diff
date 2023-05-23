@@ -1,0 +1,20 @@
+1903c1903
+< 	copyVar: var(act6), int(800000)
+---
+> 	copyVar: var(act6), int(1100000)
+2668c2668
+< 	sprite: s32'frn202_00', 4
+---
+> 	sprite: s32'frn202_00', 3
+2670c2670
+< 	sprite: s32'frn202_01', 4
+---
+> 	sprite: s32'frn202_01', 2
+2673c2673
+< 	sprite: s32'frn202_02', 4
+---
+> 	sprite: s32'frn202_02', 2
+2819c2819
+< 	xSpeedPerFrame: 105
+---
+> 	xSpeedPerFrame: 110

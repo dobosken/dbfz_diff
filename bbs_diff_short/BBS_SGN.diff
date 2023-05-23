@@ -1,0 +1,12 @@
+3341a3342
+> 	atkZReversal: 1
+3416a3418
+> 	atkZReversal: 0
+3670a3673
+> 		enableJumpCancel: 1
+8371,8372c8374,8375
+< 	ifOperation: (IS_GREATER_OR_EQUAL), var(PosY), int(5000000) {
+< 		setYPosition: 5000000
+---
+> 	ifOperation: (IS_GREATER_OR_EQUAL), var(PosY), int(4500000) {
+> 		setYPosition: 4500000

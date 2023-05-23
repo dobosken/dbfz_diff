@@ -1,0 +1,40 @@
+5792c5792
+< 		enemyHitstopAddition: -3, -3, -3
+---
+> 		enemyHitstopAddition: 11, -3, -3
+5799c5799
+< 		blockstun: 20
+---
+> 		blockstun: 25
+5911,5913c5911,5913
+< 	sprite: s32'gkn430_29', 3
+< 	sprite: s32'gkn430_37', 3
+< 	sprite: s32'gkn430_38', 3
+---
+> 	sprite: s32'gkn430_29', 2
+> 	sprite: s32'gkn430_37', 2
+> 	sprite: s32'gkn430_38', 2
+5924c5924
+< 		enemyHitstopAddition: -3, -3, -3
+---
+> 		enemyHitstopAddition: -3, 3, 3
+6004d6003
+< 	sprite: s32'gkn101_07', 1
+6006d6004
+< 	sprite: s32'gkn101_01', 1
+6010d6007
+< 	sprite: s32'gkn262_00', 1
+6566,6571c6563,6568
+< 	sprite: s32'gkn401_03', 3
+< 	sprite: s32'gkn401_04', 3
+< 	sprite: s32'gkn401_02', 3
+< 	sprite: s32'gkn401_03', 3
+< 	sprite: s32'gkn401_04', 3
+< 	sprite: s32'gkn401_02', 3
+---
+> 	sprite: s32'gkn401_03', 2
+> 	sprite: s32'gkn401_04', 2
+> 	sprite: s32'gkn401_02', 2
+> 	sprite: s32'gkn401_03', 2
+> 	sprite: s32'gkn401_04', 2
+> 	sprite: s32'gkn401_02', 2

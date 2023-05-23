@@ -1,0 +1,38 @@
+770c770
+< 		damage: 300
+---
+> 		damage: 400
+787c787
+< 			damage: 150
+---
+> 			damage: 200
+907c907
+< 		damage: 1800
+---
+> 		damage: 2000
+918a919
+> 		damageScalingOverride: 2000
+956c957
+< 			damage: 1800
+---
+> 			damage: 2000
+1097c1098
+< 		damage: 1800
+---
+> 		damage: 2000
+1108a1110
+> 		damageScalingOverride: 2000
+1117,1118c1119,1120
+< 			damage: 1600
+< 			airHitstun: 49
+---
+> 			damage: 2000
+> 			airHitstun: 59
+1156c1158
+< 			damage: 1800
+---
+> 			damage: 2000
+1159c1161
+< 				damage: 1600
+---
+> 				damage: 2000

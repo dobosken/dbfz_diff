@@ -1,0 +1,26 @@
+2900c2900
+< 	sprite: s32'vdn231_00', 2
+---
+> 	sprite: s32'vdn231_00', 1
+2906c2906
+< 	sprite: s32'vdn231_03', 2
+---
+> 	sprite: s32'vdn231_03', 1
+3303,3306c3303,3306
+< 	sprite: s32'vdn205_09', 3
+< 	sprite: s32'vdn205_10', 3
+< 	sprite: s32'vdn205_11', 3
+< 	sprite: s32'vdn205_12', 3
+---
+> 	sprite: s32'vdn205_09', 2
+> 	sprite: s32'vdn205_10', 2
+> 	sprite: s32'vdn205_11', 2
+> 	sprite: s32'vdn205_12', 2
+5547a5548,5550
+> 					ifOperation: (IS_LESS_OR_EQUAL), var(EnemyFrontDistance), int(-1000) {
+> 						percentageXSpeed: 50
+> 					} endIf: 
+6807c6810
+< 	sprite: s32'vdn061_04', 7
+---
+> 	sprite: s32'vdn061_04', 2

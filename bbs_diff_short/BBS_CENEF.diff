@@ -1,0 +1,14 @@
+714c714
+< 		airHitstun: 25
+---
+> 		airHitstun: 35
+727a728
+> 			atkWallBoundWaitTime: 10
+1247c1248
+< 		airHitstun: 25
+---
+> 		airHitstun: 35
+1282c1283
+< 			airHitstun: 33
+---
+> 			airHitstun: 40

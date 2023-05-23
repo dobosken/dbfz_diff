@@ -1,0 +1,5 @@
+1278c1278,1279
+< 	setXSpeed: 45000
+---
+> 	setXSpeed: 75000
+> 	changeWeight: 500

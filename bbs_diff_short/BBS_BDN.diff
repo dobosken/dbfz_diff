@@ -1,0 +1,72 @@
+1473c1473
+< 		attackXKnockback: 35000
+---
+> 		attackXKnockback: 15000
+3133d3132
+< 	sprite: s32'bdn400_01', 1
+3143c3142
+< 	sprite: s32'bdn400_08', 2
+---
+> 	sprite: s32'bdn400_08', 1
+3323a3323
+> 	setXSpeed: 110000
+3325c3325
+< 	setXSpeed: 10000
+---
+> 	setXSpeed: 110000
+3369c3369
+< 	hitstop: 12
+---
+> 	hitstop: 3
+3387a3388,3390
+> 	upon: (ON_ATTACK_HIT_PLAYER_DAMAGE_PRE_CTRL) {
+> 		hitstop: 12
+> 	} endUpon: 
+3445d3447
+< 	sprite: s32'bdn400_20', 1
+3455c3457
+< 	sprite: s32'bdn400_08ex', 2
+---
+> 	sprite: s32'bdn400_08ex', 1
+3802c3804
+< 	setXSpeed: 10000
+---
+> 	setXSpeed: 110000
+3807c3809
+< 	setXSpeed: 100000
+---
+> 	setXSpeed: 110000
+3843c3845
+< 	hitstop: 12
+---
+> 	hitstop: 3
+3862a3865,3867
+> 	upon: (ON_ATTACK_HIT_PLAYER_DAMAGE_PRE_CTRL) {
+> 		hitstop: 12
+> 	} endUpon: 
+4579,4580c4584,4585
+< 	sprite: s32'bdn403_29', 4
+< 	sprite: s32'bdn403_30', 4
+---
+> 	sprite: s32'bdn403_29', 3
+> 	sprite: s32'bdn403_30', 3
+4815c4820
+< 	sprite: s32'bdn430_00', 3
+---
+> 	sprite: s32'bdn430_00', 1
+4817d4821
+< 	sprite: s32'bdn430_01', 1
+4818a4823
+> 	sprite: s32'bdn430_02', 1
+4820d4824
+< 	sprite: s32'bdn430_02', 3
+4979c4983
+< 	sprite: s32'bdn431_00', 3
+---
+> 	sprite: s32'bdn431_00', 2
+4982,4983c4986,4987
+< 	sprite: s32'bdn431_01', 3
+< 	sprite: s32'bdn431_02', 3
+---
+> 	sprite: s32'bdn431_01', 1
+> 	sprite: s32'bdn431_02', 1

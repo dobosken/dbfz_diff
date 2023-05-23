@@ -1,0 +1,18 @@
+738c738
+< 		airHitstun: 33
+---
+> 		airHitstun: 38
+1255a1256,1263
+> 	checkInputFromParent: (INPUT_ANY_UP)
+> 	if: var(Result) {
+> 		setSpeedByCurrentAngle: 20000, 0
+> 	} endIf: 
+> 	checkInputFromParent: (INPUT_ANY_DOWN)
+> 	if: var(Result) {
+> 		setSpeedByCurrentAngle: 95000, 0
+> 	} endIf: 
+2851c2859,2860
+< 			attackXKnockback: 15000
+---
+> 			attackXKnockback: 10000
+> 			attackYKnockback: 35000

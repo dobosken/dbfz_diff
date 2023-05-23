@@ -1,0 +1,15 @@
+2404c2404
+< 	setXSpeed: 100000
+---
+> 	setXSpeed: 150000
+3204c3204
+< 	airHitstun: 30
+---
+> 	airHitstun: 40
+3285a3286,3289
+> 	checkInput: (INPUT_ANY_FORWARD)
+> 	if: var(Result) {
+> 		addXSpeed: 15000
+> 	} endIf: 
+3291a3296
+> 	setXSpeed: 0

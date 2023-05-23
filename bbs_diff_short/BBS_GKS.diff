@@ -1,0 +1,12 @@
+3390c3390,3392
+< 	sprite: s32'gks404_02', 2
+---
+> 	sprite: s32'gks404_02', 1
+> 	sprite: s32'gks404_02', 1
+> 	enableSuperArmor: 1
+3607c3609,3611
+< 	sprite: s32'gks405_02', 2
+---
+> 	sprite: s32'gks405_02', 1
+> 	sprite: s32'gks405_02', 1
+> 	enableSuperArmor: 1

@@ -1,0 +1,106 @@
+3616a3617
+> 	setProjectileDurability: 1
+3689a3691
+> 	setProjectileDurability: 1
+4232a4235
+> 	setProjectileDurability: 1
+4294a4298
+> 	setProjectileDurability: 1
+6330,6331c6334,6335
+< 	damage: 196
+< 	minimalDamagePercent: 36
+---
+> 	damage: 194
+> 	minimalDamagePercent: 27
+6448c6452
+< 	damage: 1495
+---
+> 	damage: 1386
+7013,7018c7017,7024
+< 	ifVarOfObjectTrue: (ENEMY_SUB_MEMBER1), var(PlayerDamage) {
+< 		applyTo: (ENEMY_SUB_MEMBER1) {
+< 			screenCollision: 0
+< 			setYPosition: 1
+< 			resetSpeed: 1
+< 		} endApply: 
+---
+> 	ifBeginAliveEnemyPlayer: 1 {
+> 		ifVarOfObjectTrue: (ENEMY_SUB_MEMBER1), var(PlayerDamage) {
+> 			applyTo: (ENEMY_SUB_MEMBER1) {
+> 				screenCollision: 0
+> 				setYPosition: 1
+> 				resetSpeed: 1
+> 			} endApply: 
+> 		} endIf: 
+7020,7025c7026,7033
+< 	ifVarOfObjectTrue: (ENEMY_SUB_MEMBER2), var(PlayerDamage) {
+< 		applyTo: (ENEMY_SUB_MEMBER2) {
+< 			screenCollision: 0
+< 			setYPosition: 1
+< 			resetSpeed: 1
+< 		} endApply: 
+---
+> 	ifBeginAliveEnemyPlayer: 2 {
+> 		ifVarOfObjectTrue: (ENEMY_SUB_MEMBER2), var(PlayerDamage) {
+> 			applyTo: (ENEMY_SUB_MEMBER2) {
+> 				screenCollision: 0
+> 				setYPosition: 1
+> 				resetSpeed: 1
+> 			} endApply: 
+> 		} endIf: 
+7031,7034c7039,7044
+< 	ifVarOfObjectTrue: (ENEMY_SUB_MEMBER1), var(PlayerDamage) {
+< 		applyTo: (ENEMY_SUB_MEMBER1) {
+< 			moveTo: (ENEMY_MAIN_PLAYER)
+< 		} endApply: 
+---
+> 	ifBeginAliveEnemyPlayer: 1 {
+> 		ifVarOfObjectTrue: (ENEMY_SUB_MEMBER1), var(PlayerDamage) {
+> 			applyTo: (ENEMY_SUB_MEMBER1) {
+> 				moveTo: (ENEMY_MAIN_PLAYER)
+> 			} endApply: 
+> 		} endIf: 
+7036,7039c7046,7051
+< 	ifVarOfObjectTrue: (ENEMY_SUB_MEMBER2), var(PlayerDamage) {
+< 		applyTo: (ENEMY_SUB_MEMBER2) {
+< 			moveTo: (ENEMY_MAIN_PLAYER)
+< 		} endApply: 
+---
+> 	ifBeginAliveEnemyPlayer: 2 {
+> 		ifVarOfObjectTrue: (ENEMY_SUB_MEMBER2), var(PlayerDamage) {
+> 			applyTo: (ENEMY_SUB_MEMBER2) {
+> 				moveTo: (ENEMY_MAIN_PLAYER)
+> 			} endApply: 
+> 		} endIf: 
+7074,7079c7086,7093
+< 		ifVarOfObjectTrue: (ENEMY_SUB_MEMBER1), var(PlayerDamage) {
+< 			applyTo: (ENEMY_SUB_MEMBER1) {
+< 				screenCollision: 1
+< 				moveTo: (ENEMY_MAIN_PLAYER)
+< 				addXPosition: -100000
+< 			} endApply: 
+---
+> 		ifBeginAliveEnemyPlayer: 1 {
+> 			ifVarOfObjectTrue: (ENEMY_SUB_MEMBER1), var(PlayerDamage) {
+> 				applyTo: (ENEMY_SUB_MEMBER1) {
+> 					screenCollision: 1
+> 					moveTo: (ENEMY_MAIN_PLAYER)
+> 					addXPosition: -100000
+> 				} endApply: 
+> 			} endIf: 
+7081,7086c7095,7102
+< 		ifVarOfObjectTrue: (ENEMY_SUB_MEMBER2), var(PlayerDamage) {
+< 			applyTo: (ENEMY_SUB_MEMBER2) {
+< 				screenCollision: 1
+< 				moveTo: (ENEMY_MAIN_PLAYER)
+< 				addXPosition: -100000
+< 			} endApply: 
+---
+> 		ifBeginAliveEnemyPlayer: 2 {
+> 			ifVarOfObjectTrue: (ENEMY_SUB_MEMBER2), var(PlayerDamage) {
+> 				applyTo: (ENEMY_SUB_MEMBER2) {
+> 					screenCollision: 1
+> 					moveTo: (ENEMY_MAIN_PLAYER)
+> 					addXPosition: -100000
+> 				} endApply: 
+> 			} endIf: 

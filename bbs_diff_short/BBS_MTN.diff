@@ -1,0 +1,42 @@
+716a717
+> 		maxChainIntoSelf: 1
+5888,5892c5889,5893
+< 	sprite: s32'mtn205_04', 3
+< 	sprite: s32'mtn205_05', 3
+< 	sprite: s32'mtn205_06', 3
+< 	sprite: s32'mtn205_04', 3
+< 	sprite: s32'mtn205_05', 3
+---
+> 	sprite: s32'mtn205_04', 2
+> 	sprite: s32'mtn205_05', 2
+> 	sprite: s32'mtn205_06', 2
+> 	sprite: s32'mtn205_04', 2
+> 	sprite: s32'mtn205_05', 2
+7428d7428
+< 	attackFinishBlowback: 1
+8643a8644
+> 		enableSpecialCancel: 1
+9120c9121
+< 	sprite: s32'mtn404_10', 5
+---
+> 	sprite: s32'mtn404_10', 2
+9122c9123
+< 	sprite: s32'mtn404_11', 5
+---
+> 	sprite: s32'mtn404_11', 3
+9124c9125
+< 	sprite: s32'mtn404_12', 5
+---
+> 	sprite: s32'mtn404_12', 3
+9126c9127
+< 	sprite: s32'mtn404_13', 5
+---
+> 	sprite: s32'mtn404_13', 3
+9128c9129
+< 	sprite: s32'mtn404_14', 5
+---
+> 	sprite: s32'mtn404_14', 3
+9130c9131
+< 	sprite: s32'mtn404_15', 3
+---
+> 	sprite: s32'mtn404_15', 2

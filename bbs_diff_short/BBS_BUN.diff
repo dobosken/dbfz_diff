@@ -1,0 +1,36 @@
+4522,4527c4522,4527
+< 	sprite: s32'bun402_21', 3
+< 	sprite: s32'bun402_22', 3
+< 	sprite: s32'bun402_23', 3
+< 	sprite: s32'bun402_24', 3
+< 	sprite: s32'bun402_25', 3
+< 	sprite: s32'bun402_26', 3
+---
+> 	sprite: s32'bun402_21', 1
+> 	sprite: s32'bun402_22', 2
+> 	sprite: s32'bun402_23', 2
+> 	sprite: s32'bun402_24', 2
+> 	sprite: s32'bun402_25', 2
+> 	sprite: s32'bun402_26', 1
+4575,4576c4575,4576
+< 	sprite: s32'bun402_33', 2
+< 	sprite: s32'bun402_34', 3
+---
+> 	sprite: s32'bun402_33', 1
+> 	sprite: s32'bun402_34', 1
+4578,4580c4578,4580
+< 	sprite: s32'bun402_35', 3
+< 	sprite: s32'bun402_36', 3
+< 	sprite: s32'bun402_37', 3
+---
+> 	sprite: s32'bun402_35', 2
+> 	sprite: s32'bun402_36', 2
+> 	sprite: s32'bun402_37', 2
+4584c4584
+< 	sprite: s32'bun402_38', 3
+---
+> 	sprite: s32'bun402_38', 2
+4653a4654
+> 	enableSuperArmor: 1
+5068a5070
+> 		displayModel: 1

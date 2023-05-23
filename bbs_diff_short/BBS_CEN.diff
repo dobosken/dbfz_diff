@@ -1,0 +1,19 @@
+1512c1512
+< 		airHitstun: 38
+---
+> 		airHitstun: 43
+2581c2581
+< 	setXSpeed: 50000
+---
+> 	setXSpeed: 75000
+3921a3922
+> 	faceOpponent: 
+3923c3924
+< 	sprite: s32'cen401_18', 4
+---
+> 	sprite: s32'cen401_18', 3
+3999c4000,4001
+< 	sprite: s32'cen401_17', 3
+---
+> 	faceOpponent: 
+> 	sprite: s32'cen401_17', 2

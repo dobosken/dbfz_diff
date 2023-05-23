@@ -1,0 +1,20 @@
+1250a1251
+> 		destroyOnPlayerDamage: 1
+1277a1279,1282
+> 		checkInputFromParent: (INPUT_ANY_BACK)
+> 		if: var(Result) {
+> 			setXSpeed: 15000
+> 		} endIf: 
+1294c1299
+< 	gotoLabelIfOperation: s32'loop', (IS_LESS_OR_EQUAL), var(LoopCount), int(300)
+---
+> 	gotoLabelIfOperation: s32'loop', (IS_LESS_OR_EQUAL), var(LoopCount), int(900)
+1779a1785,1792
+> 			checkInputFromParent: (INPUT_1)
+> 			if: var(Result) {
+> 				addXPosition: -450000
+> 			} endIf: 
+> 			checkInputFromParent: (INPUT_3)
+> 			if: var(Result) {
+> 				addXPosition: 450000
+> 			} endIf: 

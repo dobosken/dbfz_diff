@@ -1,0 +1,18 @@
+468a469
+> 		maxChainIntoSelf: 1
+480a482
+> 		maxChainIntoSelf: 1
+1630c1632
+< 		groundBounceYVelocity: 40000
+---
+> 		groundBounceYVelocity: 35000
+2418c2420
+< 	setXSpeed: 45000
+---
+> 	setXSpeed: 95000
+5547a5550,5551
+> 		enableSpecialCancel: 1
+> 		senkoInputSpecial: 10
+5740a5745,5746
+> 		enableSpecialCancel: 1
+> 		senkoInputSpecial: 10

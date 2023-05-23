@@ -1,0 +1,13 @@
+1651c1651
+< 	hitstop: 6
+---
+> 	hitstop: 11
+2742a2743,2744
+> 	enableSuperArmor: 1
+> 	superArmorLoseLow: 0
+2749a2752
+> 	enableSuperArmor: 0
+2871a2875
+> 	enableSuperArmor: 1
+2890a2895
+> 	enableSuperArmor: 0

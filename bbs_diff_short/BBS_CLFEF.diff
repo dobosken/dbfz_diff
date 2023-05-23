@@ -1,0 +1,4 @@
+648a649,651
+> 			ifOperation: (IS_GREATER_OR_EQUAL), var(LoopCount), int(4) {
+> 				airHitstun: 35
+> 			} endIf: 

@@ -1,0 +1,36 @@
+2721,2722c2721,2722
+< 	sprite: s32'kfs203_21', 3
+< 	sprite: s32'kfs203_22', 3
+---
+> 	sprite: s32'kfs203_21', 2
+> 	sprite: s32'kfs203_22', 2
+2948c2948
+< 	sprite: s32'kfs206_00', 3
+---
+> 	sprite: s32'kfs206_00', 2
+2954c2954
+< 	sprite: s32'kfs206_03', 3
+---
+> 	sprite: s32'kfs206_03', 2
+3140c3140
+< 	sprite: s32'kfs262_00', 2
+---
+> 	sprite: s32'kfs262_00', 1
+3143c3143
+< 	sprite: s32'kfs262_01', 2
+---
+> 	sprite: s32'kfs262_01', 1
+3375,3376d3374
+< 	sprite: s32'kfs401_15', 2
+< 	sprite: s32'kfs401_16', 2
+3379a3378,3381
+> 	addWhiffCancelOption: s32'SpecialMove'
+> 	whiffCancelOptionBufferTime: s32'SpecialMove', 10
+> 	sprite: s32'kfs401_15', 2
+> 	sprite: s32'kfs401_16', 2
+3455a3458,3459
+> 	addWhiffCancelOption: s32'SpecialMove'
+> 	whiffCancelOptionBufferTime: s32'SpecialMove', 10
+3570a3575,3576
+> 	addWhiffCancelOption: s32'SpecialMove'
+> 	whiffCancelOptionBufferTime: s32'SpecialMove', 10

@@ -1,0 +1,20 @@
+1280c1280
+< 		blockstun: 11
+---
+> 		blockstun: 18
+1282c1282
+< 		airHitstun: 30
+---
+> 		airHitstun: 35
+1289c1289
+< 			airHitstun: 30
+---
+> 			airHitstun: 40
+1625c1625
+< 		airHitstun: 25
+---
+> 		airHitstun: 37
+1642c1642
+< 			attackXKnockback: 26000
+---
+> 			attackXKnockback: 16000

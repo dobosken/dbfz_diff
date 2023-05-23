@@ -1,0 +1,54 @@
+1498c1498
+< 		airHitstun: 36
+---
+> 		airHitstun: 40
+1656a1657,1690
+> 	sprite: s32'ght233_07', 1
+> 	setXSpeed: 5000
+> 	setYSpeed: 12000
+> 	objectGravity: 
+> 	sprite: s32'ght233_08', 2
+> 	createObject: s32'jumpkidan_2D_start', (EX_POINT_0)
+> 	sprite: s32'ght233_09', 1
+> 	voiceLine: s16'vxxx109'
+> 	characterSfx: s32'ARC_BTL_GHT_NmtnKame_Chrg'
+> 	landingRecovery: 6, 1
+> 	sprite: s32'ght233_10', 1
+> 	percentageXSpeed: 60
+> 	percentageYSpeed: 50
+> 	percentageGravity: 50
+> 	sprite: s32'ght233_11', 1
+> 	percentageXSpeed: 60
+> 	percentageYSpeed: 50
+> 	percentageGravity: 50
+> 	sprite: s32'ght233_12', 1
+> 	percentageYSpeed: 50
+> 	percentageGravity: 50
+> 	sprite: s32'ght233_13', 2
+> 	sprite: s32'ght233_14', 2
+> 	cmnSfx: s32'ARC_BTL_CMN_Furi_FuriOroshi'
+> 	sprite: s32'ght233_13', 2
+> 	sprite: s32'ght233_14', 2
+> 	sprite: s32'ght233_15', 3
+> 	setGravity: 1200
+> 	sprite: s32'ght233_16', 2
+> 	createObject: s32'crouchkidan', (EX_POINT_0)
+> 	cmnSfx: s32'ARC_BTL_CMN_kidan_Fire1'
+> 	sprite: s32'ght233_17', 1
+> 	sprite: s32'ght233_18', 1
+> 	sprite: s32'ght233_19', 1
+1659,1661c1693,1695
+< 	sprite: s32'ght233_07', 2
+< 	setXSpeed: 30000
+< 	setYSpeed: 15000
+---
+> 	sprite: s32'ght233_07', 5
+> 	setXSpeed: 5000
+> 	setYSpeed: 20000
+1680c1714
+< 	sprite: s32'ght233_13', 1
+---
+> 	sprite: s32'ght233_13', 2
+1682a1717,1718
+> 	sprite: s32'ght233_13', 2
+> 	sprite: s32'ght233_14', 2
