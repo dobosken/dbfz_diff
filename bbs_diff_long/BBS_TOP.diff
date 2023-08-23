@@ -1,6 +1,6 @@
---- 1.31/BBS_TOP.bbs	2023-05-23 14:16:17.466819113 +0200
-+++ 1.32/BBS_TOP.bbs	2023-05-23 14:14:52.892369018 +0200
-@@ -1,8681 +1,8697 @@
+--- 1.32/BBS_TOP.bbs	2023-05-24 20:54:51.438075362 +0200
++++ 1.33/BBS_TOP.bbs	2023-08-23 04:23:06.412978511 +0200
+@@ -1,8697 +1,8730 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'top'
  } endSubroutine: 
@@ -2736,13 +2736,16 @@
  	sprite: s32'top204_10', 2
  	clearRegisteredUponCode: (ON_ATTACK_COLLISION_MAIN_PLAYER)
  	effectForDashStart: 126, 1, 0
- 	sprite: s32'top204_13', 6
+-	sprite: s32'top204_13', 6
++	sprite: s32'top204_13', 5
  	recoveryState: 
  	xSpeedPerFrame: 80
  	dashStopEffect: 104, 1, 1
  	stopBankSE: 0, 20
- 	sprite: s32'top204_14', 6
- 	sprite: s32'top204_15', 6
+-	sprite: s32'top204_14', 6
+-	sprite: s32'top204_15', 6
++	sprite: s32'top204_14', 5
++	sprite: s32'top204_15', 5
  	sprite: s32'top204_16', 3
  } endState: 
  
@@ -3339,6 +3342,9 @@
  							atkWallBoundWaitTime: 14
  							groundBounceYVelocity: 40000
  						} endIf: 
++						enableSpecialCancel: 1
++						addGatlingOption: s32'CmnActHomingDash'
++						enableGatlings: 1
  					} endIf: 
  				} endIf: 
  			} endIf: 
@@ -3617,7 +3623,7 @@
  	attackXSuction: 1, 200000, 100000, 100, 0
  	attackYSuction: 1, 80000, 100000, 100, 0
  	atkHead: 1
-+	setProjectileDurability: 1
+ 	setProjectileDurability: 1
  	atkHitCommonSEReset: s32'ARC_BTL_VTB_Atk5D_Hit'
  	guardSoundEffect: s32''
  	guardSoundEffect: s32'ARC_BTL_VTB_Barrier_Guard'
@@ -3691,7 +3697,7 @@
  	atkAdditionalHitCount: 0
  	attackDamageEffect: 4, s32'cmn_slash_s'
  	blockstun: 12
-+	setProjectileDurability: 1
+ 	setProjectileDurability: 1
  	atkHitCommonSEReset: s32'ARC_BTL_TRS_ShngSlsh_Hit_1'
  	guardSoundEffect: s32''
  	guardSoundEffect: s32'ARC_BTL_VTB_Barrier_Guard'
@@ -4235,7 +4241,7 @@
  	attackEffectScale: 700
  	disableAttackClashing: 1
  	atkHead: 1
-+	setProjectileDurability: 1
+ 	setProjectileDurability: 1
  	atkHitCommonSEReset: s32'ARC_BTL_VTB_Atk5D_Hit'
  	guardSoundEffect: s32''
  	guardSoundEffect: s32'ARC_BTL_VTB_Barrier_Guard'
@@ -4298,7 +4304,7 @@
  	atkHead: 1
  	disableAttackClashing: 1
  	attackDamageEffect: 4, s32'cmn_slash_s_tate'
-+	setProjectileDurability: 1
+ 	setProjectileDurability: 1
  	atkHitCommonSEReset: s32'ARC_BTL_TRS_ShngSlsh_Hit_1'
  	guardSoundEffect: s32''
  	guardSoundEffect: s32'ARC_BTL_VTB_Barrier_Guard'
@@ -4894,6 +4900,9 @@
  	triggerUponInObject: s32'FSwip_Core', (SIGNAL0)
  	stopBankSE: 16, 20
  	stopBankSE: 17, 20
++	enableWhiffCancel: 1
++	addWhiffCancelOption: s32'CmnActHomingDash'
++	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 10
  	sprite: s32'top403_08', 3
  	sprite: s32'top403_09', 3
  	spriteEnd: 
@@ -4902,12 +4911,18 @@
  	sprite: s32'top403_10', 3
  	stopBankSE: 16, 20
  	stopBankSE: 17, 20
- 	sprite: s32'top403_11', 2
- 	sprite: s32'top403_12', 2
- 	sprite: s32'top403_13', 2
- 	sprite: s32'top403_14', 2
- 	sprite: s32'top403_15', 2
- 	sprite: s32'top403_16', 2
+-	sprite: s32'top403_11', 2
+-	sprite: s32'top403_12', 2
+-	sprite: s32'top403_13', 2
+-	sprite: s32'top403_14', 2
+-	sprite: s32'top403_15', 2
+-	sprite: s32'top403_16', 2
++	sprite: s32'top403_11', 3
++	sprite: s32'top403_12', 3
++	sprite: s32'top403_13', 3
++	sprite: s32'top403_14', 3
++	sprite: s32'top403_15', 3
++	sprite: s32'top403_16', 3
  	exitState: 
  	label: s32'sousai'
  	sprite: s32'top403_07', 2
@@ -5005,6 +5020,9 @@
  	deactivateObjectByName: s32'Dodonpa_shadow'
  	stopBankSE: 16, 20
  	stopBankSE: 17, 20
++	enableWhiffCancel: 1
++	addWhiffCancelOption: s32'CmnActHomingDash'
++	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 10
  	sprite: s32'top403_25', 3
  	sprite: s32'top403_26', 3
  	spriteEnd: 
@@ -5362,6 +5380,12 @@
  	upon: (IMMEDIATE) {
  		playerActionInitializeByCategory: 20, 1
  		tensionUsage: 10000
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'ARush'
++			addGatlingOption: s32'EFullCourse'
++			whiffCancelOptionBufferTime: s32'ARush', 40
++			whiffCancelOptionBufferTime: s32'EFullCourse', 40
++		} endIf: 
  	} endUpon: 
  	sprite: s32'top000_00', 3
  	sprite: s32'top430_00', 5
@@ -5671,6 +5695,12 @@
  	stopBankSE: 0, 20
  	characterSfx: s32'ARC_BTL_TOP_FEnergy_ExeExpl'
  	sprite: s32'top431_15', 3
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'ARush'
++		addGatlingOption: s32'EFullCourse'
++		whiffCancelOptionBufferTime: s32'ARush', 40
++		whiffCancelOptionBufferTime: s32'EFullCourse', 40
++	} endIf: 
  	sprite: s32'top431_16', 10
  	sprite: s32'top431_17', 3
  	sprite: s32'top431_18', 3
@@ -5686,6 +5716,12 @@
  	upon: (IMMEDIATE) {
  		playerActionInitializeByCategory: 20, 1
  		tensionUsage: 10000
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'ARush'
++			addGatlingOption: s32'EFullCourse'
++			whiffCancelOptionBufferTime: s32'ARush', 40
++			whiffCancelOptionBufferTime: s32'EFullCourse', 40
++		} endIf: 
  	} endUpon: 
  	sprite: s32'top022_02', 3
  	resetSpeed: 1
@@ -5814,6 +5850,12 @@
  	upon: (IMMEDIATE) {
  		playerActionInitializeByCategory: 20, 1
  		tensionUsage: 10000
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'ARush'
++			addGatlingOption: s32'EFullCourse'
++			whiffCancelOptionBufferTime: s32'ARush', 40
++			whiffCancelOptionBufferTime: s32'EFullCourse', 40
++		} endIf: 
  	} endUpon: 
  	sprite: s32'top038_00', 4
  	resetSpeed: 1
@@ -6334,10 +6376,8 @@
  	airKnockbackEffect: (AIR_STRONG)
  	groundBounceCount: 0
  	wallBounceCount: 0
--	damage: 196
--	minimalDamagePercent: 36
-+	damage: 194
-+	minimalDamagePercent: 27
+ 	damage: 194
+ 	minimalDamagePercent: 27
  	attackXKnockback: 15000
  	attackYKnockback: -100000
  	attackGravity: 4000
@@ -6454,8 +6494,7 @@
  	flipDirection: 
  	atkDirectionReverse: 1
  	grabOrRelease: 
--	damage: 1495
-+	damage: 1386
+ 	damage: 1386
  	minimalDamagePercent: 75
  	hitstop: 0
  	attackXKnockback: 10500
@@ -7020,61 +7059,41 @@
  		setYPosition: 1
  		resetSpeed: 1
  	} endApply: 
--	ifVarOfObjectTrue: (ENEMY_SUB_MEMBER1), var(PlayerDamage) {
--		applyTo: (ENEMY_SUB_MEMBER1) {
--			screenCollision: 0
--			setYPosition: 1
--			resetSpeed: 1
--		} endApply: 
-+	ifBeginAliveEnemyPlayer: 1 {
-+		ifVarOfObjectTrue: (ENEMY_SUB_MEMBER1), var(PlayerDamage) {
-+			applyTo: (ENEMY_SUB_MEMBER1) {
-+				screenCollision: 0
-+				setYPosition: 1
-+				resetSpeed: 1
-+			} endApply: 
-+		} endIf: 
+ 	ifBeginAliveEnemyPlayer: 1 {
+ 		ifVarOfObjectTrue: (ENEMY_SUB_MEMBER1), var(PlayerDamage) {
+ 			applyTo: (ENEMY_SUB_MEMBER1) {
+ 				screenCollision: 0
+ 				setYPosition: 1
+ 				resetSpeed: 1
+ 			} endApply: 
+ 		} endIf: 
  	} endIf: 
--	ifVarOfObjectTrue: (ENEMY_SUB_MEMBER2), var(PlayerDamage) {
--		applyTo: (ENEMY_SUB_MEMBER2) {
--			screenCollision: 0
--			setYPosition: 1
--			resetSpeed: 1
--		} endApply: 
-+	ifBeginAliveEnemyPlayer: 2 {
-+		ifVarOfObjectTrue: (ENEMY_SUB_MEMBER2), var(PlayerDamage) {
-+			applyTo: (ENEMY_SUB_MEMBER2) {
-+				screenCollision: 0
-+				setYPosition: 1
-+				resetSpeed: 1
-+			} endApply: 
-+		} endIf: 
+ 	ifBeginAliveEnemyPlayer: 2 {
+ 		ifVarOfObjectTrue: (ENEMY_SUB_MEMBER2), var(PlayerDamage) {
+ 			applyTo: (ENEMY_SUB_MEMBER2) {
+ 				screenCollision: 0
+ 				setYPosition: 1
+ 				resetSpeed: 1
+ 			} endApply: 
+ 		} endIf: 
  	} endIf: 
  	copyVar: var(act3), var(PosXRaw)
  	copyVar: var(PosX), int(-250000)
  	copyVarFromObject: (SELF), var(act2), (ENEMY_MAIN_PLAYER), var(PosXRaw)
  	copyVarFromObject: (ENEMY_MAIN_PLAYER), var(PosXRaw), (SELF), int(-50000)
--	ifVarOfObjectTrue: (ENEMY_SUB_MEMBER1), var(PlayerDamage) {
--		applyTo: (ENEMY_SUB_MEMBER1) {
--			moveTo: (ENEMY_MAIN_PLAYER)
--		} endApply: 
-+	ifBeginAliveEnemyPlayer: 1 {
-+		ifVarOfObjectTrue: (ENEMY_SUB_MEMBER1), var(PlayerDamage) {
-+			applyTo: (ENEMY_SUB_MEMBER1) {
-+				moveTo: (ENEMY_MAIN_PLAYER)
-+			} endApply: 
-+		} endIf: 
+ 	ifBeginAliveEnemyPlayer: 1 {
+ 		ifVarOfObjectTrue: (ENEMY_SUB_MEMBER1), var(PlayerDamage) {
+ 			applyTo: (ENEMY_SUB_MEMBER1) {
+ 				moveTo: (ENEMY_MAIN_PLAYER)
+ 			} endApply: 
+ 		} endIf: 
  	} endIf: 
--	ifVarOfObjectTrue: (ENEMY_SUB_MEMBER2), var(PlayerDamage) {
--		applyTo: (ENEMY_SUB_MEMBER2) {
--			moveTo: (ENEMY_MAIN_PLAYER)
--		} endApply: 
-+	ifBeginAliveEnemyPlayer: 2 {
-+		ifVarOfObjectTrue: (ENEMY_SUB_MEMBER2), var(PlayerDamage) {
-+			applyTo: (ENEMY_SUB_MEMBER2) {
-+				moveTo: (ENEMY_MAIN_PLAYER)
-+			} endApply: 
-+		} endIf: 
+ 	ifBeginAliveEnemyPlayer: 2 {
+ 		ifVarOfObjectTrue: (ENEMY_SUB_MEMBER2), var(PlayerDamage) {
+ 			applyTo: (ENEMY_SUB_MEMBER2) {
+ 				moveTo: (ENEMY_MAIN_PLAYER)
+ 			} endApply: 
+ 		} endIf: 
  	} endIf: 
  	moveCameraEx: (SELF), 130000, 470000, 110000, -455, 54, 0, 0, 0, 10, 0, 0, 2, 0
  	hideAllButSelf: 0
@@ -7109,35 +7128,23 @@
  			moveTo: (ENEMY_MAIN_PLAYER)
  			addXPosition: -100000
  		} endApply: 
--		ifVarOfObjectTrue: (ENEMY_SUB_MEMBER1), var(PlayerDamage) {
--			applyTo: (ENEMY_SUB_MEMBER1) {
--				screenCollision: 1
--				moveTo: (ENEMY_MAIN_PLAYER)
--				addXPosition: -100000
--			} endApply: 
-+		ifBeginAliveEnemyPlayer: 1 {
-+			ifVarOfObjectTrue: (ENEMY_SUB_MEMBER1), var(PlayerDamage) {
-+				applyTo: (ENEMY_SUB_MEMBER1) {
-+					screenCollision: 1
-+					moveTo: (ENEMY_MAIN_PLAYER)
-+					addXPosition: -100000
-+				} endApply: 
-+			} endIf: 
+ 		ifBeginAliveEnemyPlayer: 1 {
+ 			ifVarOfObjectTrue: (ENEMY_SUB_MEMBER1), var(PlayerDamage) {
+ 				applyTo: (ENEMY_SUB_MEMBER1) {
+ 					screenCollision: 1
+ 					moveTo: (ENEMY_MAIN_PLAYER)
+ 					addXPosition: -100000
+ 				} endApply: 
+ 			} endIf: 
  		} endIf: 
--		ifVarOfObjectTrue: (ENEMY_SUB_MEMBER2), var(PlayerDamage) {
--			applyTo: (ENEMY_SUB_MEMBER2) {
--				screenCollision: 1
--				moveTo: (ENEMY_MAIN_PLAYER)
--				addXPosition: -100000
--			} endApply: 
-+		ifBeginAliveEnemyPlayer: 2 {
-+			ifVarOfObjectTrue: (ENEMY_SUB_MEMBER2), var(PlayerDamage) {
-+				applyTo: (ENEMY_SUB_MEMBER2) {
-+					screenCollision: 1
-+					moveTo: (ENEMY_MAIN_PLAYER)
-+					addXPosition: -100000
-+				} endApply: 
-+			} endIf: 
+ 		ifBeginAliveEnemyPlayer: 2 {
+ 			ifVarOfObjectTrue: (ENEMY_SUB_MEMBER2), var(PlayerDamage) {
+ 				applyTo: (ENEMY_SUB_MEMBER2) {
+ 					screenCollision: 1
+ 					moveTo: (ENEMY_MAIN_PLAYER)
+ 					addXPosition: -100000
+ 				} endApply: 
+ 			} endIf: 
  		} endIf: 
  	} endIf: 
  	gotoLabelIfOperation: s32'finishloop', (IS_LESS), var(act1), int(9)

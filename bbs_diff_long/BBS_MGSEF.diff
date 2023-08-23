@@ -1,6 +1,6 @@
---- 1.31/BBS_MGSEF.bbs	2023-05-23 14:16:15.203780311 +0200
-+++ 1.32/BBS_MGSEF.bbs	2023-05-23 14:14:50.730331948 +0200
-@@ -1,3996 +1,3996 @@
+--- 1.32/BBS_MGSEF.bbs	2023-05-24 20:54:48.948034292 +0200
++++ 1.33/BBS_MGSEF.bbs	2023-08-23 04:23:04.219941141 +0200
+@@ -1,3996 +1,3997 @@
  beginState: s32'dmy' {
  	sprite: s32'null', 1
  } endState: 
@@ -968,13 +968,16 @@
  		linkObjectStop: (PLAYER)
  		addZPosition: 150000
  	} endUpon: 
- 	sprite: s32'null', 3
+-	sprite: s32'null', 3
++	sprite: s32'null', 2
  	linkParticle: s32'mgs208_kidan_throw'
  	setScale: 300
  	cmnSfx: s32'ARC_BTL_CMN_Kidan_Chrg'
- 	sprite: s32'null', 3
+-	sprite: s32'null', 3
++	sprite: s32'null', 2
  	setScale: 500
- 	sprite: s32'null', 5
+-	sprite: s32'null', 5
++	sprite: s32'null', 2
  	setScale: 700
  	linkParticle: s32'mgs208_kidan00'
  	sprite: s32'null', 3
@@ -1073,6 +1076,7 @@
  	upon: (IMMEDIATE) {
  		normalAttack: 
  		callSubroutine: s32'Kidan_6D_Init'
++		airHitstun: 40
  		flipDirection: 
  		upon: (Z_REVERSAL) {
  			clearRegisteredUponCode: (Z_REVERSAL)
@@ -2311,8 +2315,7 @@
  		attackXKnockback: 5000
  		attackYKnockback: 10000
  		wallBounceCount: 0
--		airHitstun: 27
-+		airHitstun: 33
+ 		airHitstun: 33
  		attackYSuctionBaseObject: (PREVIOUS), (ZERO), -200000, 50000, 100, 0
  		atkRange: 50000000, -341500, 0, 0
  		atkSousaiSevereCheck: 1
@@ -2342,8 +2345,7 @@
  		checkCurrentStateName: (PLAYER), s32'AssistAttack2'
  		if: var(Result) {
  			damage: 200
--			airHitstun: 27
-+			airHitstun: 37
+ 			airHitstun: 37
  		} endIf: 
  		linkObjectStop: (PARENT)
  		linkObjectPosition: (PARENT)

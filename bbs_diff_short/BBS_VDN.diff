@@ -1,26 +1,129 @@
-2900c2900
-< 	sprite: s32'vdn231_00', 2
+2047a2048
+> 	enableWhiffCancel: 1
+2059,2078c2060,2077
+< 	if: var(act0) {
+< 		callSubroutine: s32'cmn_NandemoEnableStand'
+< 		enableVanish: 1
+< 		whiffCancelOptionBufferTime: s32'NmlAtk5A', 7
+< 		whiffCancelOptionBufferTime: s32'NmlAtk5B', 7
+< 		whiffCancelOptionBufferTime: s32'NmlAtk6B', 7
+< 		whiffCancelOptionBufferTime: s32'NmlAtk5C', 7
+< 		whiffCancelOptionBufferTime: s32'NmlAtk5D', 7
+< 		whiffCancelOptionBufferTime: s32'NmlAtk6C', 7
+< 		whiffCancelOptionBufferTime: s32'NmlAtk2A', 7
+< 		whiffCancelOptionBufferTime: s32'NmlAtk2B', 7
+< 		whiffCancelOptionBufferTime: s32'NmlAtk2C', 7
+< 		whiffCancelOptionBufferTime: s32'NmlAtk2D', 7
+< 		whiffCancelOptionBufferTime: s32'CmnActMikiwameMove', 7
+< 		whiffCancelOptionBufferTime: s32'CmnActHomingDash', 7
+< 		whiffCancelOptionBufferTime: s32'CmnActRushStart', 7
+< 		whiffCancelOptionBufferTime: s32'CmnActSparkingBurst', 7
+< 		whiffCancelOptionBufferTime: s32'Dodge', 7
+< 		senkoInputSpecial: 7
+< 	} endIf: 
 ---
-> 	sprite: s32'vdn231_00', 1
-2906c2906
-< 	sprite: s32'vdn231_03', 2
+> 	callSubroutine: s32'cmn_NandemoEnableStand'
+> 	enableVanish: 1
+> 	whiffCancelOptionBufferTime: s32'NmlAtk5A', 7
+> 	whiffCancelOptionBufferTime: s32'NmlAtk5B', 7
+> 	whiffCancelOptionBufferTime: s32'NmlAtk6B', 7
+> 	whiffCancelOptionBufferTime: s32'NmlAtk5C', 7
+> 	whiffCancelOptionBufferTime: s32'NmlAtk5D', 7
+> 	whiffCancelOptionBufferTime: s32'NmlAtk6C', 7
+> 	whiffCancelOptionBufferTime: s32'NmlAtk2A', 7
+> 	whiffCancelOptionBufferTime: s32'NmlAtk2B', 7
+> 	whiffCancelOptionBufferTime: s32'NmlAtk2C', 7
+> 	whiffCancelOptionBufferTime: s32'NmlAtk2D', 7
+> 	whiffCancelOptionBufferTime: s32'CmnActMikiwameMove', 7
+> 	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 7
+> 	whiffCancelOptionBufferTime: s32'CmnActRushStart', 7
+> 	whiffCancelOptionBufferTime: s32'CmnActSparkingBurst', 7
+> 	whiffCancelOptionBufferTime: s32'Dodge', 7
+> 	senkoInputSpecial: 7
+2510a2510
+> 		groundKnockbackEffect: (FORCE_STAND)
+2560a2561
+> 		attackWhiffCrouch: 1
+3902,3903c3903,3904
+< 	sprite: s32'vdn037_01', 3
+< 	sprite: s32'vdn037_00', 3
 ---
-> 	sprite: s32'vdn231_03', 1
-3303,3306c3303,3306
-< 	sprite: s32'vdn205_09', 3
-< 	sprite: s32'vdn205_10', 3
-< 	sprite: s32'vdn205_11', 3
-< 	sprite: s32'vdn205_12', 3
+> 	sprite: s32'vdn037_01', 2
+> 	sprite: s32'vdn037_00', 1
+3965,3966c3966,3967
+< 	sprite: s32'vdn037_01', 3
+< 	sprite: s32'vdn037_00', 3
 ---
-> 	sprite: s32'vdn205_09', 2
-> 	sprite: s32'vdn205_10', 2
-> 	sprite: s32'vdn205_11', 2
-> 	sprite: s32'vdn205_12', 2
-5547a5548,5550
-> 					ifOperation: (IS_LESS_OR_EQUAL), var(EnemyFrontDistance), int(-1000) {
-> 						percentageXSpeed: 50
+> 	sprite: s32'vdn037_01', 2
+> 	sprite: s32'vdn037_00', 1
+4029,4030c4030,4031
+< 	sprite: s32'vdn037_01', 3
+< 	sprite: s32'vdn037_00', 3
+---
+> 	sprite: s32'vdn037_01', 2
+> 	sprite: s32'vdn037_00', 1
+6578a6580,6585
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'Jrush'
+> 			addGatlingOption: s32'Jrush_VChain'
+> 			whiffCancelOptionBufferTime: s32'Jrush', 40
+> 			whiffCancelOptionBufferTime: s32'Jrush_VChain', 40
+> 		} endIf: 
+6621a6629,6634
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Jrush'
+> 		addGatlingOption: s32'Jrush_VChain'
+> 		whiffCancelOptionBufferTime: s32'Jrush', 40
+> 		whiffCancelOptionBufferTime: s32'Jrush_VChain', 40
+> 	} endIf: 
+6732a6746,6750
+> 		if: var(CmnCharaReg7) {
+> 			addWhiffCancelOption: s32'Jrush'
+> 			whiffCancelOptionBufferTime: s32'Jrush', 40
+> 			enableWhiffCancel: 1
+> 		} endIf: 
+6924a6943,6951
+> 				if: var(EnemyInHitstun) {
+> 					checkLastStateName: s32'Rstorm'
+> 					if: var(Result) {
+> 						attackXKnockback: 1000
+> 						attackYKnockback: 1000
+> 						airKnockbackEffect: (AIR_FACE_UP)
+> 						atkHitPositionType: 4, 200000, -150000
 > 					} endIf: 
-6807c6810
-< 	sprite: s32'vdn061_04', 7
----
-> 	sprite: s32'vdn061_04', 2
+> 				} endIf: 
+6928a6956,6967
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'Rstorm'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 				setXSpeed: 0
+> 				setYSpeed: -10000
+> 			} endIf: 
+> 			checkLastStateName: s32'Gsaiyaman'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 		} endIf: 
+6933a6973
+> 	landingAutoAction: 0
+6944a6985
+> 	clearRegisteredUponCode: (TOUCH_GROUND)
+7000a7042,7051
+> 	if: var(EnemyInHitstun) {
+> 		checkLastStateName: s32'Rstorm'
+> 		if: var(Result) {
+> 			superFreeze: 7, 100, 0, 10
+> 			setXSpeed: 10000
+> 			setYSpeed: 45000
+> 			setGravity: 5000
+> 			landingAutoAction: 0
+> 		} endIf: 
+> 	} endIf: 
+7030a7082,7087
+> 	if: var(EnemyInHitstun) {
+> 		checkLastStateName: s32'Rstorm'
+> 		if: var(Result) {
+> 			setYSpeed: -50000
+> 		} endIf: 
+> 	} endIf: 

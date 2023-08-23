@@ -1,6 +1,6 @@
---- 1.31/BBS_MGS.bbs	2023-05-23 14:16:15.061777877 +0200
-+++ 1.32/BBS_MGS.bbs	2023-05-23 14:14:50.613329942 +0200
-@@ -1,11540 +1,11550 @@
+--- 1.32/BBS_MGS.bbs	2023-05-24 20:54:48.806031950 +0200
++++ 1.33/BBS_MGS.bbs	2023-08-23 04:23:04.108939249 +0200
+@@ -1,11550 +1,11669 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'mgs'
  	createObject: s32'MGS_Aura_Eff', (CENTER)
@@ -1220,7 +1220,7 @@
  			} endIf: 
  		} endIf: 
  	} endUpon: 
- 	upon: 99 {
+ 	upon: (ATTACK_HIT_PLAYER_DODGE) {
  		ifNot: var(act0) {
  			copyVar: var(act0), int(1)
  		} endIf: 
@@ -3446,8 +3446,8 @@
  	sprite: s32'mgs206_00', 3
  	sprite: s32'mgs206_01', 1
  	throwInvulnerableForTime: 0
- 	upon: 99 {
- 		clearRegisteredUponCode: 99
+ 	upon: (ATTACK_HIT_PLAYER_DODGE) {
+ 		clearRegisteredUponCode: (ATTACK_HIT_PLAYER_DODGE)
  		superArmorGrabInvul: 1
  		exMutekiGuardImpossible: 1
  		superArmorOverdriveGuard: 1
@@ -3873,7 +3873,8 @@
  		damage: 200
  		hitstop: 3
  		airHitstun: 40
- 		attackXKnockback: -4000
+-		attackXKnockback: -4000
++		attackXKnockback: -12000
  		attackYKnockback: 27000
  		attackGravity: 1500
  		guardPushback: 280
@@ -3884,6 +3885,7 @@
  		atkFrontDirection: 3
  		enemyHitstopAddition: 5, 0, 0
  		atkRange: 0, 0, 400000, 0
++		attackClashLevel: 1
  		enableGatlings: 0
  		enableSpecialCancel: 0
  		addGatlingOption: s32'NmlAtk5C'
@@ -3917,11 +3919,14 @@
  			} endUpon: 
  		} endUpon: 
  	} endUpon: 
- 	sprite: s32'mgs208_00', 3
+-	sprite: s32'mgs208_00', 3
++	sprite: s32'mgs208_00', 2
  	createObject: s32'MGS208_kidan01_Eff', (EX_POINT_0)
- 	sprite: s32'mgs208_01', 3
+-	sprite: s32'mgs208_01', 3
++	sprite: s32'mgs208_01', 1
  	atkZReversal: 1
- 	sprite: s32'mgs208_02', 5
+-	sprite: s32'mgs208_02', 5
++	sprite: s32'mgs208_02', 2
  	voiceLine: s16'vxxx108'
  	sprite: s32'mgs208_03ex00', 1
  	enableHitbox: 
@@ -5593,6 +5598,12 @@
  	xSpeedPerFrame: 100
  	resetSpeed: 1
  	setXSpeed: 25000
++	checkInput: (INPUT_4)
++	if: var(Result) {
++		flipDirection: 
++		ctrlDirectionVsTarget: 
++		setXSpeed: 25000
++	} endIf: 
  	setYSpeed: 49500
  	setGravity: 5500
  	copyVar: var(obj0), int(1)
@@ -5632,7 +5643,14 @@
  } endSubroutine: 
  
  beginSubroutine: s32'Kankaku_Jump2' {
- 	setXSpeed: 25000
+-	setXSpeed: 25000
++	setXSpeed: 35000
++	checkInput: (INPUT_4)
++	if: var(Result) {
++		flipDirection: 
++		ctrlDirectionVsTarget: 
++		setXSpeed: 35000
++	} endIf: 
  	setYSpeed: 49500
  	setGravity: 5500
  	xSpeedPerFrame: 100
@@ -5668,7 +5686,14 @@
  } endSubroutine: 
  
  beginSubroutine: s32'Kankaku_Jump3' {
- 	setXSpeed: 25000
+-	setXSpeed: 25000
++	setXSpeed: 45000
++	checkInput: (INPUT_4)
++	if: var(Result) {
++		flipDirection: 
++		ctrlDirectionVsTarget: 
++		setXSpeed: 45000
++	} endIf: 
  	setYSpeed: 49500
  	setGravity: 5500
  	xSpeedPerFrame: 100
@@ -5755,7 +5780,7 @@
  	} endIf: 
  	spriteEnd: 
  	ifOperation: (IS_LESS_OR_EQUAL), var(EnemyFrontDistance), int(0) {
- 		percentageXSpeed: 10
+-		percentageXSpeed: 10
  	} endIf: 
  	ifNot: var(act3) {
  		addWhiffCancelOption: s32'Hasei_A_Auto'
@@ -6434,8 +6459,10 @@
  	sprite: s32'mgs404_00', 1
  	faceOpponent: 
  	setNoCollision: 1
- 	setXSpeed: 80000
- 	xSpeedPerFrame: 75
+-	setXSpeed: 80000
+-	xSpeedPerFrame: 75
++	setXSpeed: 160000
++	xSpeedPerFrame: 85
  	ifOperation: (IS_NOT_EQUAL), var(obj1), int(2) {
  		spriteOverrideFrame: s32'mgs401_08'
  	} endIf: 
@@ -6445,9 +6472,11 @@
  	ifOperation: (IS_EQUAL), var(obj0), int(2) {
  		spriteOverrideFrame: s32'mgs401_26'
  	} endIf: 
++	effectForDashStart: 104, 1, 0
  	sprite: s32'mgs404_01', 1
  	sprite: s32'mgs404_02', 1
  	sprite: s32'mgs404_03', 1
++	dashStopEffect: 100, 1, 1
  	sprite: s32'mgs404_04', 1
  	xSpeedPerFrame: 60
  	characterSfx: s32'ARC_BTL_MGS_Kankaku_B'
@@ -7040,8 +7069,8 @@
  		atkIgnoreCaution: 1
  		faceOpponent: 
  		doNotBeginCancel: 1
-+		enableGatlings: 1
-+		addGatlingOption: s32'CmnActHomingDash'
+ 		enableGatlings: 1
+ 		addGatlingOption: s32'CmnActHomingDash'
  		ifOperation: (IS_EQUAL), var(obj1), int(3) {
  			createParticle: s32'cmn_Warp', (CENTER)
  		} endIf: 
@@ -7296,8 +7325,8 @@
  	upon: (IMMEDIATE) {
  		atkIgnoreCaution: 1
  		copyVar: var(plr0), int(0)
-+		enableGatlings: 1
-+		addGatlingOption: s32'CmnActHomingDash'
+ 		enableGatlings: 1
+ 		addGatlingOption: s32'CmnActHomingDash'
  	} endUpon: 
  	sprite: s32'mgs010_00', 1
  	facePose: (ANGRY)
@@ -7427,8 +7456,8 @@
  	upon: (IMMEDIATE) {
  		atkIgnoreCaution: 1
  		copyVar: var(plr0), int(0)
-+		enableGatlings: 1
-+		addGatlingOption: s32'CmnActHomingDash'
+ 		enableGatlings: 1
+ 		addGatlingOption: s32'CmnActHomingDash'
  	} endUpon: 
  	sprite: s32'mgs038_00', 3
  	facePose: (ANGRY)
@@ -7558,8 +7587,8 @@
  	upon: (IMMEDIATE) {
  		atkIgnoreCaution: 1
  		copyVar: var(plr0), int(0)
-+		enableGatlings: 1
-+		addGatlingOption: s32'CmnActHomingDash'
+ 		enableGatlings: 1
+ 		addGatlingOption: s32'CmnActHomingDash'
  	} endUpon: 
  	sprite: s32'mgs010_00', 1
  	facePose: (ANGRY)
@@ -7707,8 +7736,8 @@
  	upon: (IMMEDIATE) {
  		atkIgnoreCaution: 1
  		copyVar: var(plr0), int(0)
-+		enableGatlings: 1
-+		addGatlingOption: s32'CmnActHomingDash'
+ 		enableGatlings: 1
+ 		addGatlingOption: s32'CmnActHomingDash'
  	} endUpon: 
  	sprite: s32'mgs026_00', 1
  	facePose: (ANGRY)
@@ -8160,6 +8189,12 @@
  	copyVar: var(act3), int(0)
  	copyVar: var(act5), int(1)
  	enableSuperArmor: 0
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'Issen'
++		addGatlingOption: s32'AirIssen'
++		whiffCancelOptionBufferTime: s32'Issen', 40
++		whiffCancelOptionBufferTime: s32'AirIssen', 40
++	} endIf: 
  	sprite: s32'mgs430_14', 1
  	if: var(EnemyInHitstun) {
  		if: var(IN_BATTLE) {
@@ -8367,6 +8402,12 @@
  	copyVar: var(act3), int(0)
  	copyVar: var(act5), int(1)
  	enableSuperArmor: 0
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'Issen'
++		addGatlingOption: s32'AirIssen'
++		whiffCancelOptionBufferTime: s32'Issen', 40
++		whiffCancelOptionBufferTime: s32'AirIssen', 40
++	} endIf: 
  	sprite: s32'mgs430_14', 1
  	if: var(EnemyInHitstun) {
  		if: var(IN_BATTLE) {
@@ -8640,6 +8681,12 @@
  	deactivateObjectByName: s32'MGS403_PointLight01_Eff'
  	cameraShake: s32'ShakeTateYoko', 1500, 0, 40, 10
  	sprite: s32'mgs430_28', 2
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'Issen'
++		addGatlingOption: s32'AirIssen'
++		whiffCancelOptionBufferTime: s32'Issen', 40
++		whiffCancelOptionBufferTime: s32'AirIssen', 40
++	} endIf: 
  	sprite: s32'mgs430_29', 2
  	sprite: s32'mgs430_27', 2
  	sprite: s32'mgs430_28', 2
@@ -9194,6 +9241,12 @@
  	deactivateObjectByName: s32'MGS403_PointLight01_Eff'
  	setGravity: 3000
  	removeLandingRecovery: 
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'Issen'
++		addGatlingOption: s32'AirIssen'
++		whiffCancelOptionBufferTime: s32'Issen', 80
++		whiffCancelOptionBufferTime: s32'AirIssen', 80
++	} endIf: 
  	sprite: s32'mgs431_32', 3
  	sprite: s32'mgs431_30', 3
  	sprite: s32'mgs431_33', 3
@@ -9287,6 +9340,24 @@
  	upon: (IMMEDIATE) {
  		playerActionInitializeByCategory: 20, 1
  		callSubroutine: s32'Issen_Init'
++		if: var(EnemyInHitstun) {
++			checkLastStateName: s32'Touki'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'AirTouki'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'Touki_Exe'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'Mitibiki_Exe'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++		} endIf: 
  	} endUpon: 
  	sprite: s32'mgs432_00', 4
  	sprite: s32'mgs432_01', 3
@@ -9334,6 +9405,7 @@
  			setYPosition: 50000
  		} endIf: 
  		createParticle: s32'cmn_Warp', (CENTER)
++		faceOpponent: 
  	} endIf: 
  	displayModel: 1
  	setNoCollision: 1
@@ -9450,11 +9522,50 @@
  	upon: (IMMEDIATE) {
  		copyVar: var(act0), int(1)
  		callSubroutine: s32'Issen_Init'
++		if: var(EnemyInHitstun) {
++			checkLastStateName: s32'Touki'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'AirTouki'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'Touki_Exe'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'Mitibiki_Exe'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++		} endIf: 
  	} endUpon: 
  	sprite: s32'mgs432_46', 4
  	resetSpeed: 1
- 	sprite: s32'mgs432_47', 4
+-	sprite: s32'mgs432_47', 4
++	sprite: s32'mgs432_47', 3
++	sprite: s32'mgs432_47', 1
++	ifOperation: (IS_GREATER_OR_EQUAL), var(EnemyDistanceY), int(200000) {
++		copyVar: var(act3), int(1)
++		spriteAddTime: 20
++		displayModel: 0
++		setNoCollision: 0
++		createParticle: s32'cmn_Warp', (CENTER)
++		cmnSfx: s32'ARC_BTL_CMN_TLP_Short'
++		sendSignalName: (STACK6), s32'MGS_Aura_Delete', 0
++		setYSpeed: 80000
++		ySpeedPerFrame: 110
++		upon: (IDLING) {
++			ifOperation: (IS_LESS_OR_EQUAL), var(EnemyDiffY), int(200000) {
++				clearRegisteredUponCode: (IDLING)
++				jumpToLabel: s32'start'
++			} endIf: 
++		} endUpon: 
++	} endIf: 
++	label: s32'start'
  	sprite: s32'mgs432_48', 1
++	clearRegisteredUponCode: (IDLING)
  	superFreeze: 4, 119, 70, 70
  	upon: (SUPERFREEZE) {
  		clearRegisteredUponCode: (SUPERFREEZE)
@@ -9464,6 +9575,24 @@
  	} endUpon: 
  	createObject: s32'MGS432_aura00_Eff', (ZERO)
  	sendSignalName: (STACK6), s32'MGS_Aura_Delete', 0
++	if: var(act3) {
++		faceOpponent: 
++		copyVarFromObject: (SELF), var(PosY), (ENEMY), var(PosY)
++		ifVarOfObjectOperation: (IS_GREATER), (ENEMY_MAIN_PLAYER), var(SpeedY), int(0) {
++			addYPosition: 150000
++		} endIf: 
++		else:  {
++			addYPosition: -100000
++		} endElse: 
++		ifOperation: (IS_LESS_OR_EQUAL), var(PosY), int(50000) {
++			setYPosition: 50000
++		} endIf: 
++		createParticle: s32'cmn_Warp', (CENTER)
++		faceOpponent: 
++	} endIf: 
++	displayModel: 1
++	setNoCollision: 1
++	resetSpeed: 1
  	sprite: s32'keep', 14
  	forceRandomVoice: s16'vxxx241', 100, s16'vxxx245', 100, s16'', 0, s16'', 0
  	characterSfx: s32'ARC_BTL_MGS_Issen_Start'

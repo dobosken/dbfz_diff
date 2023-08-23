@@ -1,6 +1,6 @@
---- 1.31/BBS_PCN.bbs	2023-05-23 14:16:16.421801196 +0200
-+++ 1.32/BBS_PCN.bbs	2023-05-23 14:14:51.873351546 +0200
-@@ -1,8336 +1,8337 @@
+--- 1.32/BBS_PCN.bbs	2023-05-24 20:54:50.235055520 +0200
++++ 1.33/BBS_PCN.bbs	2023-08-23 04:23:05.352960448 +0200
+@@ -1,8337 +1,8352 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'pcn'
  } endSubroutine: 
@@ -1653,8 +1653,7 @@
  	sprite: s32'pcn022_05', 1
  	sprite: s32'pcn022_05', 1
  	copyVar: var(act6), int(500000)
--	callSubroutine: s32'cmnAssist_Pos'
-+	callSubroutine: s32'cmnAssist_Pos_Away'
+ 	callSubroutine: s32'cmnAssist_Pos_Away'
  	label: s32'downloop'
  	sprite: s32'pcn022_05', 3
  	sprite: s32'pcn022_06', 3
@@ -1669,14 +1668,10 @@
  	sprite: s32'pcn402_02', 1
  	sprite: s32'pcn402_03', 1
  	characterSfx: s32'ARC_BTL_PCN_Madengeki_Basa'
--	sprite: s32'pcn402_04', 2
--	sprite: s32'pcn402_05', 2
--	sprite: s32'pcn402_06', 3
--	sprite: s32'pcn402_07', 2
-+	sprite: s32'pcn402_04', 1
-+	sprite: s32'pcn402_05', 1
-+	sprite: s32'pcn402_06', 1
-+	sprite: s32'pcn402_07', 1
+ 	sprite: s32'pcn402_04', 1
+ 	sprite: s32'pcn402_05', 1
+ 	sprite: s32'pcn402_06', 1
+ 	sprite: s32'pcn402_07', 1
  	sprite: s32'pcn402_08', 2
  	characterSfx: s32'ARC_BTL_PCN_Madengeki_Fire'
  	sprite: s32'pcn407_09', 2
@@ -2416,8 +2411,7 @@
  	sprite: s32'pcn201_02', 2
  	attackVoice: 0, -1
  	sprite: s32'pcn201_03', 2
--	setXSpeed: 60000
-+	setXSpeed: 120000
+ 	setXSpeed: 120000
  	cmnSfx: s32'ARC_BTL_CMN_Furi_Hiji'
  	effectForLanding: 100, 1, 0
  	sprite: s32'pcn201_04', 3
@@ -2456,8 +2450,7 @@
  	attackVoice: 2, 255
  	sprite: s32'pcn202_02', 2
  	effectForDashStart: 100, 1, 0
--	setXSpeed: 50000
-+	setXSpeed: 80000
+ 	setXSpeed: 80000
  	sprite: s32'pcn202_03', 1
  	sprite: s32'pcn202_04', 1
  	sprite: s32'pcn202_05', 1
@@ -2845,7 +2838,11 @@
  	sprite: s32'pcn205_00', 2
  	sprite: s32'pcn205_01', 3
  	randomVoiceLine2: s16'vxxx106', 100, s16'vxxx107', 100, s16'vxxx605', 100, s16'', 0
- 	sprite: s32'pcn205_02', 3
+-	sprite: s32'pcn205_02', 3
++	sprite: s32'pcn205_02', 1
++	sprite: s32'pcn205_02', 2
++	callSubroutine: s32'cmn_MutekiArmor'
++	noGuardEffect: 0
  	sprite: s32'pcn205_03', 3
  	sprite: s32'pcn205_04', 7
  	spriteEnd: 
@@ -2873,6 +2870,7 @@
  	sprite: s32'pcn205_07', 3
  	copyVar: var(obj1), int(0)
  	recoveryState: 
++	enableSuperArmor: 0
  	sprite: s32'pcn205_08', 1
  	sprite: s32'pcn205_09', 1
  	sprite: s32'pcn205_10', 1
@@ -3480,12 +3478,9 @@
  	recoveryState: 
  	sprite: s32'pcn407_13', 3
  	sprite: s32'pcn407_14', 3
--	sprite: s32'pcn407_15', 3
--	sprite: s32'pcn407_16', 3
--	sprite: s32'pcn407_17', 3
-+	sprite: s32'pcn407_15', 2
-+	sprite: s32'pcn407_16', 2
-+	sprite: s32'pcn407_17', 2
+ 	sprite: s32'pcn407_15', 2
+ 	sprite: s32'pcn407_16', 2
+ 	sprite: s32'pcn407_17', 2
  } endState: 
  
  beginState: s32'NmlAtk3D' {
@@ -3609,16 +3604,12 @@
  	upon: (IMMEDIATE) {
  		callSubroutine: s32'cmnAtkLevel_3_AtkInit'
  		callSubroutine: s32'cmn_AirAtkHosei'
--		groundKnockbackEffect: (AIR_FACE_UP)
--		airKnockbackEffect: (AIR_FACE_UP)
-+		groundKnockbackEffect: (KirimomiSide)
-+		airKnockbackEffect: (KirimomiSide)
+ 		groundKnockbackEffect: (KirimomiSide)
+ 		airKnockbackEffect: (KirimomiSide)
  		damage: 750
--		attackXKnockback: 70000
--		attackYKnockback: 20000
-+		attackXKnockback: 10000
-+		attackYKnockback: 22000
-+		airHitstun: 22
+ 		attackXKnockback: 10000
+ 		attackYKnockback: 22000
+ 		airHitstun: 22
  		attackFinishBlowback: 1
  		enableJumpCancel: 1
  		addGatlingOption: s32'NmlAtkAir2C'
@@ -3773,12 +3764,19 @@
  	setGravity: 100
  	sprite: s32'pcn265_01', 3
  	randomVoiceLine2: s16'vxxx106', 100, s16'vxxx107', 100, s16'vxxx605', 100, s16'', 0
++	spriteOverrideTime: 2, var(EnemyInHitstun)
  	sprite: s32'pcn265_02', 3
++	spriteOverrideTime: 2, var(EnemyInHitstun)
  	sprite: s32'pcn265_03', 3
- 	sprite: s32'pcn265_04', 5
+-	sprite: s32'pcn265_04', 5
++	spriteOverrideTime: 2, var(EnemyInHitstun)
++	sprite: s32'pcn265_04', 3
++	spriteOverrideTime: 2, var(EnemyInHitstun)
  	spriteEnd: 
- 	gotoLabelIfOperation: s32'atk', (IS_LESS_OR_EQUAL), var(act0), int(14)
- 	sprite: s32'pcn265_04', 10
+-	gotoLabelIfOperation: s32'atk', (IS_LESS_OR_EQUAL), var(act0), int(14)
+-	sprite: s32'pcn265_04', 10
++	gotoLabelIfOperation: s32'atk', (IS_LESS_OR_EQUAL), var(act0), int(10)
++	sprite: s32'pcn265_04', 5
  	percentageYSpeed: 10
  	sprite: s32'pcn265_04', 1
  	copyVar: var(obj3), int(1)
@@ -4148,8 +4146,7 @@
  		warp: (ENEMY_MAIN_PLAYER), (CENTER), 400000, 150000, 5
  	} endIf: 
  	else:  {
--		warp: (SELF), (PLAYER_LAND), -150000, 220000, 5
-+		warp: (ENEMY_MAIN_PLAYER), (CENTER), 550000, 150000, 5
+ 		warp: (ENEMY_MAIN_PLAYER), (CENTER), 550000, 150000, 5
  	} endElse: 
  	setNoCollision: 0
  	displayModel: 0
@@ -4291,8 +4288,7 @@
  	screenAdditionalWidth: -1
  	ignorePushback: 1
  	setNoCollision: 0
--	ifOperation: (IS_LESS_OR_EQUAL), var(EnemyFrontDistance), int(800000) {
-+	ifOperation: (IS_LESS_OR_EQUAL), var(EnemyFrontDistance), int(2000000) {
+ 	ifOperation: (IS_LESS_OR_EQUAL), var(EnemyFrontDistance), int(2000000) {
  		copyVar: var(act1), int(1)
  		warp: (ENEMY_MAIN_PLAYER), (CENTER), -50000, 100000, 5
  	} endIf: 
@@ -6293,6 +6289,10 @@
  	sprite: s32'pcn430_22', 3
  	sprite: s32'pcn430_23', 3
  	recoveryState: 
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'Gekiretukoudan'
++		enableGatlings: 1
++	} endIf: 
  	sprite: s32'pcn430_24', 3
  	sprite: s32'pcn430_22', 3
  	darkenBackground: 0
@@ -6356,6 +6356,9 @@
  			stopBankSE: 0, 10
  			stopBankSE: 1, 30
  		} endUpon: 
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'Gekiretukoudan'
++		} endIf: 
  		tensionUsage: 10000
  	} endUpon: 
  	sprite: s32'pcn431_00', 2

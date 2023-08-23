@@ -1,6 +1,6 @@
---- 1.31/BBS_ESTEF.bbs	2023-05-23 14:16:10.964707629 +0200
-+++ 1.32/BBS_ESTEF.bbs	2023-05-23 14:14:46.759263861 +0200
-@@ -1,4334 +1,4343 @@
+--- 1.32/BBS_ESTEF.bbs	2023-05-24 20:54:44.456960218 +0200
++++ 1.33/BBS_ESTEF.bbs	2023-08-23 04:23:00.086870712 +0200
+@@ -1,4343 +1,4362 @@
  beginState: s32'dmy' {
  	sprite: s32'null', 1
  } endState: 
@@ -738,8 +738,7 @@
  		airKnockbackEffect: (AIR_STRONG)
  		attackXKnockback: 90000
  		attackYKnockback: 15000
--		airHitstun: 33
-+		airHitstun: 38
+ 		airHitstun: 38
  		blockstun: 22
  		atkShotIgnoreZReversal: 1
  		wallBounceXVelocityPercent: 0
@@ -1257,14 +1256,14 @@
  	sprite: s32'air5d', 600
  	worldOutToEliminate: 1
  	setSpeedByCurrentAngle: 50000, 0
-+	checkInputFromParent: (INPUT_ANY_UP)
-+	if: var(Result) {
-+		setSpeedByCurrentAngle: 20000, 0
-+	} endIf: 
-+	checkInputFromParent: (INPUT_ANY_DOWN)
-+	if: var(Result) {
-+		setSpeedByCurrentAngle: 95000, 0
-+	} endIf: 
+ 	checkInputFromParent: (INPUT_ANY_UP)
+ 	if: var(Result) {
+ 		setSpeedByCurrentAngle: 20000, 0
+ 	} endIf: 
+ 	checkInputFromParent: (INPUT_ANY_DOWN)
+ 	if: var(Result) {
+ 		setSpeedByCurrentAngle: 95000, 0
+ 	} endIf: 
  	createObject: s32'est265_nokosi_Eff', (ZERO)
  	spriteEnd: 
  	label: s32'Koware'
@@ -2160,11 +2159,13 @@
  		hitstop: 2
  		enemyHitstopAddition: 0, 5, 5
  		attackXKnockback: 40000
- 		attackYKnockback: 45000
+-		attackYKnockback: 45000
++		attackYKnockback: 55000
  		airHitstun: 45
  		guardPushback: 120
  		groundKnockbackEffect: (SPIN)
  		airKnockbackEffect: (SPIN)
++		autoHitSignalSending: 1
  		atkHitCommonBankSE: 16, s32'ARC_BTL_CMN_Hit_BeamLoop_LP', 0
  		atkGuardCommonBankSE: 17, s32'ARC_BTL_CMN_Grd_BeamLoop_LP', 0
  		linkObjectPosition: (PARENT)
@@ -2213,6 +2214,20 @@
  	enableHitbox: 
  	enemyHitstopAddition: 0, 10, 10
  	airHitstun: 35
++	ifVarOfObjectOperation: (IS_LESS_OR_EQUAL), (PLAYER), var(EnemyDiffY), int(-10000) {
++		attackXKnockback: 30000
++		attackYKnockback: -65000
++		groundBounceCount: 1
++		groundBounceYVelocity: 30000
++		groundKnockbackEffect: (AIR_STRONG)
++		airKnockbackEffect: (AIR_STRONG)
++	} endIf: 
++	else:  {
++		ifVarOfObjectOperation: (IS_LESS_OR_EQUAL), (PLAYER), var(EnemyDiffY), int(150000) {
++			attackXKnockback: 60000
++			attackYKnockback: 15000
++		} endIf: 
++	} endElse: 
  	linkParticle: s32''
  	createObject: s32'est431_SphereAuraEnd_Eff', (ZERO)
  	linkObjectPosition: (NULL)
@@ -2860,9 +2875,8 @@
  		if: var(Result) {
  			damage: 800
  			airHitstun: 40
--			attackXKnockback: 15000
-+			attackXKnockback: 10000
-+			attackYKnockback: 35000
+ 			attackXKnockback: 10000
+ 			attackYKnockback: 35000
  			hitstop: 15
  			callSubroutine: s32'cmn_AssistHosei'
  			copyVar: var(act3), int(1)
@@ -3879,6 +3893,10 @@
  	clearRegisteredUponCode: (IDLING)
  	resetSpeed: 1
  	ignoreFinishStop: 1
++	checkCurrentStateName: (PLAYER), s32'Groar'
++	if: var(Result) {
++		ignoreWorldStopByAll: 1
++	} endIf: 
  	attackXKnockback: 1000
  	attackYKnockback: 1000
  	sprite: s32'blaster_end0', 4

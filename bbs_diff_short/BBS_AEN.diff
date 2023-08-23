@@ -1,114 +1,269 @@
-3886,3887c3886,3894
-< 		setEX_POINT_F: (PLAYER_LAND), -250000, 250000
-< 		createObject: s32'17_REnergyDan', (EX_POINT_F)
+2586c2586
+< 	xSpeedPerFrame: 75
 ---
-> 		checkInput: (INPUT_HOLD_KI)
+> 	xSpeedPerFrame: 85
+2606a2607
+> 		guardPushback: 50
+3780,3781c3781,3805
+< 		ifOperation: (IS_LESS), var(EnemyFrontDistance), int(0) {
+< 			setEX_POINT_F: (PLAYER_LAND), 0, 0
+---
+> 		checkInput: (INPUT_HOLD_L)
 > 		if: var(Result) {
-> 			setEX_POINT_F: (ZERO), 150000, -150000
-> 			createObject: s32'17_barrier', (EX_POINT_F)
-> 		} endIf: 
-> 		else:  {
-> 			setEX_POINT_F: (PLAYER_LAND), -250000, 250000
-> 			createObject: s32'17_REnergyDan', (EX_POINT_F)
-> 		} endElse: 
-3891,3892c3898,3906
-< 		setEX_POINT_F: (ZERO), 150000, -150000
-< 		createObject: s32'17_barrier', (EX_POINT_F)
+> 			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(-50000) {
+> 				setEX_POINT_F: (PLAYER_LAND), 0, 0
+> 			} endIf: 
+> 			else:  {
+> 				ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
+> 					setEX_POINT_F: (ENEMY_LAND), -200000, 0
+> 				} endIf: 
+> 				else:  {
+> 					setEX_POINT_F: (PLAYER_LAND), 400000, 0
+> 				} endElse: 
+> 			} endElse: 
+> 			if: var(EnemyInHitstun) {
+> 				ifVarOfObjectTrue: (ENEMY_MAIN_PLAYER), var(IsAir) {
+> 					setArg_objectParameters: int(1), int(0)
+> 					ifOperation: (IS_LESS), var(EnemyFrontDistance), int(400000) {
+> 						setEX_POINT_F: (ENEMY_LAND), 0, 0
+> 					} endIf: 
+> 					else:  {
+> 						setEX_POINT_F: (PLAYER_LAND), 400000, 0
+> 					} endElse: 
+> 				} endIf: 
+> 			} endIf: 
+> 			createObjectWithArg: s32'17_senkyuutai', (EX_POINT_F)
+3784,3785c3808,3809
+< 			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
+< 				setEX_POINT_F: (ENEMY_LAND), -200000, 0
 ---
-> 		checkInput: (INPUT_HOLD_KI)
+> 			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(0) {
+> 				setEX_POINT_F: (PLAYER_LAND), 0, 0
+3788c3812,3817
+< 				setEX_POINT_F: (PLAYER_LAND), 400000, 0
+---
+> 				ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
+> 					setEX_POINT_F: (ENEMY_LAND), -200000, 0
+> 				} endIf: 
+> 				else:  {
+> 					setEX_POINT_F: (PLAYER_LAND), 400000, 0
+> 				} endElse: 
+3789a3819
+> 			createObject: s32'17_middlekick', (EX_POINT_F)
+3791d3820
+< 		createObject: s32'17_middlekick', (EX_POINT_F)
+3795,3796c3824,3842
+< 		ifOperation: (IS_LESS), var(EnemyFrontDistance), int(0) {
+< 			setEX_POINT_F: (PLAYER_LAND), 0, 200000
+---
+> 		checkInput: (INPUT_HOLD_M)
 > 		if: var(Result) {
-> 			setEX_POINT_F: (PLAYER_LAND), -250000, 250000
-> 			createObject: s32'17_REnergyDan', (EX_POINT_F)
-> 		} endIf: 
-> 		else:  {
-> 			setEX_POINT_F: (ZERO), 150000, -150000
-> 			createObject: s32'17_barrier', (EX_POINT_F)
+> 			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(-50000) {
+> 				setEX_POINT_F: (CENTER), 0, 150000
+> 			} endIf: 
+> 			else:  {
+> 				ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
+> 					setEX_POINT_F: (ENEMY_CENTER), -300000, 850000
+> 				} endIf: 
+> 				else:  {
+> 					setEX_POINT_F: (PLAYER_LAND), 400000, 850000
+> 				} endElse: 
+> 			} endElse: 
+> 			if: var(EnemyInHitstun) {
+> 				ifVarOfObjectTrue: (ENEMY_MAIN_PLAYER), var(IsAir) {
+> 					setArg_objectParameters: int(1), int(0)
+> 				} endIf: 
+> 			} endIf: 
+> 			createObjectWithArg: s32'17_DSHammer', (EX_POINT_F)
+3799,3800c3845,3846
+< 			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
+< 				setEX_POINT_F: (ENEMY_LAND), -300000, 200000
+---
+> 			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(0) {
+> 				setEX_POINT_F: (PLAYER_LAND), 0, 200000
+3803c3849,3854
+< 				setEX_POINT_F: (PLAYER_LAND), 400000, 200000
+---
+> 				ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
+> 					setEX_POINT_F: (ENEMY_LAND), -300000, 200000
+> 				} endIf: 
+> 				else:  {
+> 					setEX_POINT_F: (PLAYER_LAND), 400000, 200000
+> 				} endElse: 
+3804a3856
+> 			createObject: s32'17_OneTwoThree', (EX_POINT_F)
+3806d3857
+< 		createObject: s32'17_OneTwoThree', (EX_POINT_F)
+3825,3826c3876,3889
+< 		ifOperation: (IS_LESS), var(EnemyFrontDistance), int(-50000) {
+< 			setEX_POINT_F: (PLAYER_LAND), 0, 0
+---
+> 		checkInput: (INPUT_HOLD_L)
+> 		if: var(Result) {
+> 			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(0) {
+> 				setEX_POINT_F: (PLAYER_LAND), 0, 0
+> 			} endIf: 
+> 			else:  {
+> 				ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
+> 					setEX_POINT_F: (ENEMY_LAND), -200000, 0
+> 				} endIf: 
+> 				else:  {
+> 					setEX_POINT_F: (PLAYER_LAND), 400000, 0
+> 				} endElse: 
+> 			} endElse: 
+> 			createObject: s32'17_middlekick', (EX_POINT_F)
+3829,3830c3892,3893
+< 			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
+< 				setEX_POINT_F: (ENEMY_LAND), -200000, 0
+---
+> 			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(-50000) {
+> 				setEX_POINT_F: (PLAYER_LAND), 0, 0
+3833,3840c3896,3897
+< 				setEX_POINT_F: (PLAYER_LAND), 400000, 0
+< 			} endElse: 
+< 		} endElse: 
+< 		if: var(EnemyInHitstun) {
+< 			ifVarOfObjectTrue: (ENEMY_MAIN_PLAYER), var(IsAir) {
+< 				setArg_objectParameters: int(1), int(0)
+< 				ifOperation: (IS_LESS), var(EnemyFrontDistance), int(400000) {
+< 					setEX_POINT_F: (ENEMY_LAND), 0, 0
+---
+> 				ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
+> 					setEX_POINT_F: (ENEMY_LAND), -200000, 0
+3844a3902,3912
+> 			} endElse: 
+> 			if: var(EnemyInHitstun) {
+> 				ifVarOfObjectTrue: (ENEMY_MAIN_PLAYER), var(IsAir) {
+> 					setArg_objectParameters: int(1), int(0)
+> 					ifOperation: (IS_LESS), var(EnemyFrontDistance), int(400000) {
+> 						setEX_POINT_F: (ENEMY_LAND), 0, 0
+> 					} endIf: 
+> 					else:  {
+> 						setEX_POINT_F: (PLAYER_LAND), 400000, 0
+> 					} endElse: 
+> 				} endIf: 
+3846,3847c3914,3915
+< 		} endIf: 
+< 		createObjectWithArg: s32'17_senkyuutai', (EX_POINT_F)
+---
+> 			createObjectWithArg: s32'17_senkyuutai', (EX_POINT_F)
 > 		} endElse: 
-4008,4013c4022,4027
-< 	sprite: s32'aen402_10', 2
-< 	sprite: s32'aen402_11', 2
-< 	sprite: s32'aen402_12', 2
-< 	sprite: s32'aen402_13', 2
-< 	sprite: s32'aen402_14', 2
-< 	sprite: s32'aen402_15', 2
+3851,3852c3919,3932
+< 		ifOperation: (IS_LESS), var(EnemyFrontDistance), int(-50000) {
+< 			setEX_POINT_F: (CENTER), 0, 150000
 ---
-> 	sprite: s32'aen402_10', 1
-> 	sprite: s32'aen402_11', 1
-> 	sprite: s32'aen402_12', 1
-> 	sprite: s32'aen402_13', 1
-> 	sprite: s32'aen402_14', 1
-> 	sprite: s32'aen402_15', 1
-4043,4045c4057,4059
-< 	sprite: s32'aen402_13', 2
-< 	sprite: s32'aen402_14', 2
-< 	sprite: s32'aen402_15', 2
+> 		checkInput: (INPUT_HOLD_M)
+> 		if: var(Result) {
+> 			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(0) {
+> 				setEX_POINT_F: (PLAYER_LAND), 0, 200000
+> 			} endIf: 
+> 			else:  {
+> 				ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
+> 					setEX_POINT_F: (ENEMY_LAND), -300000, 200000
+> 				} endIf: 
+> 				else:  {
+> 					setEX_POINT_F: (PLAYER_LAND), 400000, 200000
+> 				} endElse: 
+> 			} endElse: 
+> 			createObject: s32'17_OneTwoThree', (EX_POINT_F)
+3855,3856c3935,3936
+< 			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
+< 				setEX_POINT_F: (ENEMY_CENTER), -300000, 150000
 ---
-> 	sprite: s32'aen402_13', 1
-> 	sprite: s32'aen402_14', 1
-> 	sprite: s32'aen402_15', 1
-4158,4161c4172,4175
-< 	sprite: s32'aen403_10', 2
-< 	sprite: s32'aen403_11', 2
-< 	sprite: s32'aen403_12', 2
-< 	sprite: s32'aen403_13', 2
+> 			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(-50000) {
+> 				setEX_POINT_F: (CENTER), 0, 150000
+3859c3939,3944
+< 				setEX_POINT_F: (PLAYER_LAND), 400000, 150000
 ---
-> 	sprite: s32'aen403_10', 1
-> 	sprite: s32'aen403_11', 1
-> 	sprite: s32'aen403_12', 1
-> 	sprite: s32'aen403_13', 1
-4171,4172c4185,4186
-< 	sprite: s32'aen403_14', 2
-< 	sprite: s32'aen403_15', 2
+> 				ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
+> 					setEX_POINT_F: (ENEMY_CENTER), -300000, 150000
+> 				} endIf: 
+> 				else:  {
+> 					setEX_POINT_F: (PLAYER_LAND), 400000, 150000
+> 				} endElse: 
+3861,3864c3946,3949
+< 		} endElse: 
+< 		if: var(EnemyInHitstun) {
+< 			ifVarOfObjectTrue: (ENEMY_MAIN_PLAYER), var(IsAir) {
+< 				setArg_objectParameters: int(1), int(0)
 ---
-> 	sprite: s32'aen403_14', 1
-> 	sprite: s32'aen403_15', 1
-4205c4219
-< 	sprite: s32'aen403_13', 2
+> 			if: var(EnemyInHitstun) {
+> 				ifVarOfObjectTrue: (ENEMY_MAIN_PLAYER), var(IsAir) {
+> 					setArg_objectParameters: int(1), int(0)
+> 				} endIf: 
+3866,3867c3951,3952
+< 		} endIf: 
+< 		createObjectWithArg: s32'17_DSHammer', (EX_POINT_F)
 ---
-> 	sprite: s32'aen403_13', 1
-4215,4216c4229,4230
-< 	sprite: s32'aen403_14', 2
-< 	sprite: s32'aen403_15', 2
+> 			createObjectWithArg: s32'17_DSHammer', (EX_POINT_F)
+> 		} endElse: 
+4851a4937,4940
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'AccelDance_Air'
+> 		whiffCancelOptionBufferTime: s32'AccelDance_Air', 30
+> 	} endIf: 
+4876a4966,4969
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'AccelDance_Air'
+> 		whiffCancelOptionBufferTime: s32'AccelDance_Air', 30
+> 	} endIf: 
+4915a5009,5012
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'AccelDance_Air'
+> 		whiffCancelOptionBufferTime: s32'AccelDance_Air', 30
+> 	} endIf: 
+4922,4950c5019
+< sprite: s32'aen232_06', 1
+< createObject: s32'cmn_Windpressure_Tate', (CENTER)
+< applyTo: (PREVIOUS) {
+< 	setAngle: -20000
+< 	addYPosition: 245000
+< 	addXPosition: 160000
+< 	} endApply: 
+< 	resetSpeed: 1
+< 	setXSpeed: 35000
+< 	xSpeedPerFrame: 90
+< 	setYSpeed: 50000
+< 	objectGravity: 
+< 	enableHitbox: 
+< 	callSubroutine: s32'cmnRendaChain_Clear_Idling'
+< 	sprite: s32'aen232_07', 1
+< 	sprite: s32'aen232_08', 1
+< 	ySpeedPerFrame: 75
+< 	sprite: s32'aen232_09', 1
+< 	setGravity: 1000
+< 	recoveryState: 
+< 	headInvul: 0
+< 	sprite: s32'aen232_10', 1
+< 	sprite: s32'aen232_11', 1
+< 	sprite: s32'aen232_12', 4
+< 	ySpeedPerFrame: 100
+< 	sprite: s32'aen232_13', 4
+< 	xSpeedPerFrame: 80
+< 	objectGravity: 
+< 	beginSubroutine: s32'AccelDance_default' {
 ---
-> 	sprite: s32'aen403_14', 1
-> 	sprite: s32'aen403_15', 1
-4242c4256,4259
-< 	sprite: s32'aen402_11', 2
+> beginSubroutine: s32'AccelDance_default' {
+5634c5703
+< 	sprite: s32'aen022_00', 8
 ---
-> 	sprite: s32'aen402_11', 1
-> 	sprite: s32'aen402_11', 1
-> 	enableWhiffCancel: 1
-> 	addWhiffCancelOption: s32'NmlAtk5D'
-4422a4440,4454
-> 	enableWhiffCancel: 1
-> 	addWhiffCancelOption: s32'EnergyWave'
-> 	addWhiffCancelOption: s32'AccelDance'
-> 	addWhiffCancelOption: s32'EnergyWave_Chain'
-> 	addWhiffCancelOption: s32'AccelDance_Chain'
-> 	addWhiffCancelOption: s32'GrappleBack_A'
-> 	addWhiffCancelOption: s32'GrappleBack_B'
-> 	addWhiffCancelOption: s32'GrappleBack_C'
-> 	addWhiffCancelOption: s32'Call17_214A'
-> 	addWhiffCancelOption: s32'Call17_214B'
-> 	addWhiffCancelOption: s32'Call17_214C'
-> 	addWhiffCancelOption: s32'Call17_214C_Hasei'
-> 	addWhiffCancelOption: s32'kienzan'
-> 	addWhiffCancelOption: s32'Call17_214D'
-> 	addWhiffCancelOption: s32'Call17_Air214D'
-4430a4463
-> 		enableWhiffCancel: 0
-4490a4524,4533
-> 	enableWhiffCancel: 1
-> 	addWhiffCancelOption: s32'EnergyWave'
-> 	addWhiffCancelOption: s32'AccelDance_Air'
-> 	addWhiffCancelOption: s32'EnergyWave_Chain'
-> 	addWhiffCancelOption: s32'AccelDance_Air_Chain'
-> 	addWhiffCancelOption: s32'Call17_Air214A'
-> 	addWhiffCancelOption: s32'Call17_Air214B'
-> 	addWhiffCancelOption: s32'Call17_Air214C'
-> 	addWhiffCancelOption: s32'Call17_Air214C_Hasei'
-> 	addWhiffCancelOption: s32'Call17_Air214D'
-4498a4542
-> 		enableWhiffCancel: 0
-4520d4563
-< 		superFreeze: 3, 119, 20, 20
+> 	sprite: s32'aen022_00', 4
+5636a5706,5723
+> 	checkLastStateName: s32'EnergyWave'
+> 	if: var(Result) {
+> 		createParticle: s32'cmn_Warp', (CENTER)
+> 		setNoCollision: 0
+> 		displayModel: 0
+> 	} endIf: 
+> 	sprite: s32'aen022_00', 1
+> 	checkLastStateName: s32'EnergyWave'
+> 	if: var(Result) {
+> 		warp: (ENEMY_MAIN_PLAYER), (ZERO), 300000, 25000, 1
+> 	} endIf: 
+> 	sprite: s32'aen022_00', 3
+> 	checkLastStateName: s32'EnergyWave'
+> 	if: var(Result) {
+> 		resetSpeed: 1
+> 		setNoCollision: 1
+> 		displayModel: 1
+> 	} endIf: 

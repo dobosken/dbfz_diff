@@ -1,6 +1,6 @@
---- 1.31/BBS_GKN.bbs	2023-05-23 14:16:12.701737412 +0200
-+++ 1.32/BBS_GKN.bbs	2023-05-23 14:14:48.363291363 +0200
-@@ -1,10157 +1,10154 @@
+--- 1.32/BBS_GKN.bbs	2023-05-24 20:54:46.236989577 +0200
++++ 1.33/BBS_GKN.bbs	2023-08-23 04:23:01.799899902 +0200
+@@ -1,10154 +1,10200 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'gkn'
  } endSubroutine: 
@@ -2454,16 +2454,20 @@
  		attackGravity: 1400
  		addGatlingOption: s32'NmlAtk2D'
  	} endUpon: 
- 	sprite: s32'gkn201_00', 2
+-	sprite: s32'gkn201_00', 2
++	sprite: s32'gkn201_00', 1
  	faceAnimation: 20
  	mouthPose: (SHOW_TEETH)
- 	sprite: s32'gkn201_01', 2
+-	sprite: s32'gkn201_01', 2
++	sprite: s32'gkn201_01', 1
  	sprite: s32'gkn201_02', 2
  	attackVoice: 1, -1
- 	sprite: s32'gkn201_03', 3
+-	sprite: s32'gkn201_03', 3
++	sprite: s32'gkn201_03', 2
  	effectForDashStart: 104, 1, 0
  	resetSpeed: 1
- 	setXSpeed: 110000
+-	setXSpeed: 110000
++	setXSpeed: 150000
  	xSpeedPerFrame: 80
  	cmnSfx: s32'ARC_BTL_CMN_Furi_Hook'
  	sprite: s32'gkn201_04', 1
@@ -3110,7 +3114,8 @@
  						airKnockbackEffect: (AIR_STRONG)
  						wallBounceCount: 0
  						groundBounceCount: 1
- 						groundBounceYVelocity: 13000
+-						groundBounceYVelocity: 13000
++						groundBounceYVelocity: 18000
  						groundBounceYVelocityPercent: 100
  						slidingKnockdownDuration: 30
  						atkHitPositionType: 4, 100000, -150000
@@ -4626,6 +4631,9 @@
  	sprite: s32'gkn407_09', 2
  	sprite: s32'gkn407_10', 1
  	forceRandomVoice: s16'vxxx604', 100, s16'vxxx210', 100, s16'', 0, s16'', 0
++	if: var(EnemyInHitstun) {
++		superFreeze: 3, 100, 0, 10
++	} endIf: 
  	sprite: s32'gkn407_11', 2
  	sprite: s32'gkn407_12', 2
  	faceAnimation: 32
@@ -5396,6 +5404,12 @@
  		removeWhiffCancelOption: s32'Kaioken_5D'
  		removeWhiffCancelOption: s32'Kaioken_2D'
  	} endIf: 
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'S_Genkidama'
++		addGatlingOption: s32'AirS_Genkidama'
++		whiffCancelOptionBufferTime: s32'S_Genkidama', 40
++		whiffCancelOptionBufferTime: s32'AirS_Genkidama', 40
++	} endIf: 
  } endSubroutine: 
  
  beginSubroutine: s32'Kaioken_HaseiStart' {
@@ -5792,16 +5806,14 @@
  		minimalDamagePercent: 18
  		damageScalingOverride: 1000
  		hitstop: 13
--		enemyHitstopAddition: -3, -3, -3
-+		enemyHitstopAddition: 11, -3, -3
+ 		enemyHitstopAddition: 11, -3, -3
  		groundKnockbackEffect: (AIR_FACE_DOWN)
  		airKnockbackEffect: (AIR_FACE_DOWN)
  		attackXKnockback: 30000
  		attackYKnockback: -40000
  		guardPushback: 200
  		airHitstun: 60
--		blockstun: 20
-+		blockstun: 25
+ 		blockstun: 25
  		groundBounceYVelocityPercent: 100
  		groundBounceCount: 1
  		atkShakeCamera: s32'ShakeTate', 600, 0, 25, 10
@@ -5913,12 +5925,9 @@
  	sprite: s32'gkn430_27', 3
  	recoveryState: 
  	sprite: s32'gkn430_28', 3
--	sprite: s32'gkn430_29', 3
--	sprite: s32'gkn430_37', 3
--	sprite: s32'gkn430_38', 3
-+	sprite: s32'gkn430_29', 2
-+	sprite: s32'gkn430_37', 2
-+	sprite: s32'gkn430_38', 2
+ 	sprite: s32'gkn430_29', 2
+ 	sprite: s32'gkn430_37', 2
+ 	sprite: s32'gkn430_38', 2
  } endState: 
  
  beginState: s32'Kaioken_2A' {
@@ -5929,8 +5938,7 @@
  		callSubroutine: s32'cmn_KuzushiHosei'
  		damageScalingOverride: 1000
  		hitstop: 13
--		enemyHitstopAddition: -3, -3, -3
-+		enemyHitstopAddition: -3, 3, 3
+ 		enemyHitstopAddition: -3, 3, 3
  		groundKnockbackEffect: (AIR_FACE_DOWN)
  		airKnockbackEffect: (AIR_FACE_DOWN)
  		attackXKnockback: 30000
@@ -6010,13 +6018,10 @@
  	sprite: s32'gkn101_04', 1
  	sprite: s32'gkn101_05', 1
  	sprite: s32'gkn101_06', 1
--	sprite: s32'gkn101_07', 1
  	sprite: s32'gkn101_00', 1
--	sprite: s32'gkn101_01', 1
  	sprite: s32'gkn101_02', 1
  	sprite: s32'gkn101_03', 1
  	sprite: s32'gkn101_04', 1
--	sprite: s32'gkn262_00', 1
  	sprite: s32'gkn262_01', 1
  	sprite: s32'gkn262_02', 1
  	sprite: s32'gkn262_03', 1
@@ -6572,18 +6577,12 @@
  	hideAllButSelf: 0
  	sprite: s32'gkn401_01', 3
  	sprite: s32'gkn401_02', 3
--	sprite: s32'gkn401_03', 3
--	sprite: s32'gkn401_04', 3
--	sprite: s32'gkn401_02', 3
--	sprite: s32'gkn401_03', 3
--	sprite: s32'gkn401_04', 3
--	sprite: s32'gkn401_02', 3
-+	sprite: s32'gkn401_03', 2
-+	sprite: s32'gkn401_04', 2
-+	sprite: s32'gkn401_02', 2
-+	sprite: s32'gkn401_03', 2
-+	sprite: s32'gkn401_04', 2
-+	sprite: s32'gkn401_02', 2
+ 	sprite: s32'gkn401_03', 2
+ 	sprite: s32'gkn401_04', 2
+ 	sprite: s32'gkn401_02', 2
+ 	sprite: s32'gkn401_03', 2
+ 	sprite: s32'gkn401_04', 2
+ 	sprite: s32'gkn401_02', 2
  	characterSfx: s32'ARC_BTL_GKN_Kaioken_5C'
  	sprite: s32'gkn401_05', 2
  	mouthPose: (OPEN)
@@ -6786,6 +6785,12 @@
  			callSubroutine: s32'cmnUltimate_CameraCombo'
  			jumpToLabel: s32'hit'
  		} endUpon: 
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'S_Genkidama'
++			addGatlingOption: s32'AirS_Genkidama'
++			whiffCancelOptionBufferTime: s32'S_Genkidama', 40
++			whiffCancelOptionBufferTime: s32'AirS_Genkidama', 40
++		} endIf: 
  	} endUpon: 
  	sprite: s32'gkn037_00', 1
  	faceAnimation: 32
@@ -6891,6 +6896,7 @@
  		addWhiffCancelOption: s32'K20_Kamehameha'
  	} endElse: 
  	sprite: s32'gkn263_10', 2
++	enableGatlings: 0
  	enableWhiffCancel: 0
  	characterSfx: s32'ARC_BTL_GKN_Kaioken_AB_1'
  	forceRandomVoice: s16'vxxx218', 100, s16'', 0, s16'', 0, s16'', 0
@@ -7114,6 +7120,12 @@
  			addGatlingOption: s32'K20_Kamehameha'
  			enableGatlings: 1
  			copyVar: var(obj4), int(1)
++			if: var(CmnCharaReg7) {
++				addGatlingOption: s32'S_Genkidama'
++				addGatlingOption: s32'AirS_Genkidama'
++				whiffCancelOptionBufferTime: s32'S_Genkidama', 40
++				whiffCancelOptionBufferTime: s32'AirS_Genkidama', 40
++			} endIf: 
  		} endUpon: 
  	} endElse: 
  	sprite: s32'gkn101_07', 1
@@ -7864,6 +7876,12 @@
  	sprite: s32'gkn429_07', 3
  	sprite: s32'gkn429_05', 3
  	recoveryState: 
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'S_Genkidama'
++		addGatlingOption: s32'AirS_Genkidama'
++		whiffCancelOptionBufferTime: s32'S_Genkidama', 40
++		whiffCancelOptionBufferTime: s32'AirS_Genkidama', 40
++	} endIf: 
  	sprite: s32'gkn429_06', 3
  	sprite: s32'gkn429_07', 3
  	sprite: s32'gkn429_08', 3
@@ -8008,6 +8026,15 @@
  			copyVar: var(act2), int(1)
  			enableSuperArmor: 1
  		} endUpon: 
++		callSubroutine: s32'Kaioken_End'
++		callSubroutine: s32'Kaioken_AuraOff'
++		deactivateObjectByName: s32'424_AuraEff00'
++		deactivateObjectByName: s32'424_AuraEff01'
++		deactivateObjectByName: s32'424_TossinAuraEff'
++		deactivateObjectByName: s32'K20_Kamehameha_aura'
++		if: var(EnemyInHitstun) {
++			superFreeze: 7, 100, 0, 30
++		} endIf: 
  	} endUpon: 
  	sprite: s32'gkn037_00', 2
  	faceAnimation: 32
@@ -8159,6 +8186,15 @@
  			copyVar: var(act2), int(1)
  			enableSuperArmor: 1
  		} endUpon: 
++		callSubroutine: s32'Kaioken_End'
++		callSubroutine: s32'Kaioken_AuraOff'
++		deactivateObjectByName: s32'424_AuraEff00'
++		deactivateObjectByName: s32'424_AuraEff01'
++		deactivateObjectByName: s32'424_TossinAuraEff'
++		deactivateObjectByName: s32'K20_Kamehameha_aura'
++		if: var(EnemyInHitstun) {
++			superFreeze: 7, 100, 0, 30
++		} endIf: 
  	} endUpon: 
  	sprite: s32'gkn038_00', 2
  	faceAnimation: 32

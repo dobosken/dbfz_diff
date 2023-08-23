@@ -1,5 +1,27 @@
-1278c1278,1279
-< 	setXSpeed: 45000
----
-> 	setXSpeed: 75000
-> 	changeWeight: 500
+929a930,933
+> 	checkCurrentStateName: (PLAYER), s32'Call17_Air214A'
+> 	if: var(Result) {
+> 		spriteAddTime: 6
+> 	} endIf: 
+1036a1041,1044
+> 		checkCurrentStateName: (PLAYER), s32'Call17_214A'
+> 		if: var(Result) {
+> 			blockstun: 12
+> 		} endIf: 
+1118a1127,1137
+> 	upon: (ATTACK_COLLISION) {
+> 		copyVar: var(act7), int(1)
+> 	} endUpon: 
+> 	upon: (IDLING) {
+> 		if: var(act7) {
+> 			checkCurrentStateName: (PLAYER), s32'Call17_214A'
+> 			if: var(Result) {
+> 				copyVarFromObject: (PLAYER), var(act7), (PLAYER), int(1)
+> 			} endIf: 
+> 		} endIf: 
+> 	} endUpon: 
+1466a1486,1489
+> 			checkCurrentStateName: (PLAYER), s32'Call17_214B'
+> 			if: var(Result) {
+> 				addYPosition: 450000
+> 			} endIf: 

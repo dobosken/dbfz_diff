@@ -1,106 +1,64 @@
-3616a3617
-> 	setProjectileDurability: 1
-3689a3691
-> 	setProjectileDurability: 1
-4232a4235
-> 	setProjectileDurability: 1
-4294a4298
-> 	setProjectileDurability: 1
-6330,6331c6334,6335
-< 	damage: 196
-< 	minimalDamagePercent: 36
+2736c2736
+< 	sprite: s32'top204_13', 6
 ---
-> 	damage: 194
-> 	minimalDamagePercent: 27
-6448c6452
-< 	damage: 1495
+> 	sprite: s32'top204_13', 5
+2741,2742c2741,2742
+< 	sprite: s32'top204_14', 6
+< 	sprite: s32'top204_15', 6
 ---
-> 	damage: 1386
-7013,7018c7017,7024
-< 	ifVarOfObjectTrue: (ENEMY_SUB_MEMBER1), var(PlayerDamage) {
-< 		applyTo: (ENEMY_SUB_MEMBER1) {
-< 			screenCollision: 0
-< 			setYPosition: 1
-< 			resetSpeed: 1
-< 		} endApply: 
+> 	sprite: s32'top204_14', 5
+> 	sprite: s32'top204_15', 5
+3338a3339,3341
+> 						enableSpecialCancel: 1
+> 						addGatlingOption: s32'CmnActHomingDash'
+> 						enableGatlings: 1
+4893a4897,4899
+> 	enableWhiffCancel: 1
+> 	addWhiffCancelOption: s32'CmnActHomingDash'
+> 	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 10
+4902,4907c4908,4913
+< 	sprite: s32'top403_11', 2
+< 	sprite: s32'top403_12', 2
+< 	sprite: s32'top403_13', 2
+< 	sprite: s32'top403_14', 2
+< 	sprite: s32'top403_15', 2
+< 	sprite: s32'top403_16', 2
 ---
-> 	ifBeginAliveEnemyPlayer: 1 {
-> 		ifVarOfObjectTrue: (ENEMY_SUB_MEMBER1), var(PlayerDamage) {
-> 			applyTo: (ENEMY_SUB_MEMBER1) {
-> 				screenCollision: 0
-> 				setYPosition: 1
-> 				resetSpeed: 1
-> 			} endApply: 
+> 	sprite: s32'top403_11', 3
+> 	sprite: s32'top403_12', 3
+> 	sprite: s32'top403_13', 3
+> 	sprite: s32'top403_14', 3
+> 	sprite: s32'top403_15', 3
+> 	sprite: s32'top403_16', 3
+5004a5011,5013
+> 	enableWhiffCancel: 1
+> 	addWhiffCancelOption: s32'CmnActHomingDash'
+> 	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 10
+5361a5371,5376
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'ARush'
+> 			addGatlingOption: s32'EFullCourse'
+> 			whiffCancelOptionBufferTime: s32'ARush', 40
+> 			whiffCancelOptionBufferTime: s32'EFullCourse', 40
 > 		} endIf: 
-7020,7025c7026,7033
-< 	ifVarOfObjectTrue: (ENEMY_SUB_MEMBER2), var(PlayerDamage) {
-< 		applyTo: (ENEMY_SUB_MEMBER2) {
-< 			screenCollision: 0
-< 			setYPosition: 1
-< 			resetSpeed: 1
-< 		} endApply: 
----
-> 	ifBeginAliveEnemyPlayer: 2 {
-> 		ifVarOfObjectTrue: (ENEMY_SUB_MEMBER2), var(PlayerDamage) {
-> 			applyTo: (ENEMY_SUB_MEMBER2) {
-> 				screenCollision: 0
-> 				setYPosition: 1
-> 				resetSpeed: 1
-> 			} endApply: 
+5670a5686,5691
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'ARush'
+> 		addGatlingOption: s32'EFullCourse'
+> 		whiffCancelOptionBufferTime: s32'ARush', 40
+> 		whiffCancelOptionBufferTime: s32'EFullCourse', 40
+> 	} endIf: 
+5685a5707,5712
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'ARush'
+> 			addGatlingOption: s32'EFullCourse'
+> 			whiffCancelOptionBufferTime: s32'ARush', 40
+> 			whiffCancelOptionBufferTime: s32'EFullCourse', 40
 > 		} endIf: 
-7031,7034c7039,7044
-< 	ifVarOfObjectTrue: (ENEMY_SUB_MEMBER1), var(PlayerDamage) {
-< 		applyTo: (ENEMY_SUB_MEMBER1) {
-< 			moveTo: (ENEMY_MAIN_PLAYER)
-< 		} endApply: 
----
-> 	ifBeginAliveEnemyPlayer: 1 {
-> 		ifVarOfObjectTrue: (ENEMY_SUB_MEMBER1), var(PlayerDamage) {
-> 			applyTo: (ENEMY_SUB_MEMBER1) {
-> 				moveTo: (ENEMY_MAIN_PLAYER)
-> 			} endApply: 
+5813a5841,5846
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'ARush'
+> 			addGatlingOption: s32'EFullCourse'
+> 			whiffCancelOptionBufferTime: s32'ARush', 40
+> 			whiffCancelOptionBufferTime: s32'EFullCourse', 40
 > 		} endIf: 
-7036,7039c7046,7051
-< 	ifVarOfObjectTrue: (ENEMY_SUB_MEMBER2), var(PlayerDamage) {
-< 		applyTo: (ENEMY_SUB_MEMBER2) {
-< 			moveTo: (ENEMY_MAIN_PLAYER)
-< 		} endApply: 
----
-> 	ifBeginAliveEnemyPlayer: 2 {
-> 		ifVarOfObjectTrue: (ENEMY_SUB_MEMBER2), var(PlayerDamage) {
-> 			applyTo: (ENEMY_SUB_MEMBER2) {
-> 				moveTo: (ENEMY_MAIN_PLAYER)
-> 			} endApply: 
-> 		} endIf: 
-7074,7079c7086,7093
-< 		ifVarOfObjectTrue: (ENEMY_SUB_MEMBER1), var(PlayerDamage) {
-< 			applyTo: (ENEMY_SUB_MEMBER1) {
-< 				screenCollision: 1
-< 				moveTo: (ENEMY_MAIN_PLAYER)
-< 				addXPosition: -100000
-< 			} endApply: 
----
-> 		ifBeginAliveEnemyPlayer: 1 {
-> 			ifVarOfObjectTrue: (ENEMY_SUB_MEMBER1), var(PlayerDamage) {
-> 				applyTo: (ENEMY_SUB_MEMBER1) {
-> 					screenCollision: 1
-> 					moveTo: (ENEMY_MAIN_PLAYER)
-> 					addXPosition: -100000
-> 				} endApply: 
-> 			} endIf: 
-7081,7086c7095,7102
-< 		ifVarOfObjectTrue: (ENEMY_SUB_MEMBER2), var(PlayerDamage) {
-< 			applyTo: (ENEMY_SUB_MEMBER2) {
-< 				screenCollision: 1
-< 				moveTo: (ENEMY_MAIN_PLAYER)
-< 				addXPosition: -100000
-< 			} endApply: 
----
-> 		ifBeginAliveEnemyPlayer: 2 {
-> 			ifVarOfObjectTrue: (ENEMY_SUB_MEMBER2), var(PlayerDamage) {
-> 				applyTo: (ENEMY_SUB_MEMBER2) {
-> 					screenCollision: 1
-> 					moveTo: (ENEMY_MAIN_PLAYER)
-> 					addXPosition: -100000
-> 				} endApply: 
-> 			} endIf: 

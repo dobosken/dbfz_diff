@@ -1,8 +1,33 @@
-1263c1263
-< 		airHitstun: 28
----
-> 		airHitstun: 35
-1796c1796
-< 		minimalDamagePercent: 30
----
-> 		minimalDamagePercent: 60
+550a551,554
+> 				checkCurrentStateName: (PLAYER), s32'NmlAtkAir2D'
+> 				if: var(Result) {
+> 					copyVarFromObject: (PLAYER), var(act7), (PLAYER), int(1)
+> 				} endIf: 
+566a571,577
+> 	checkCurrentStateName: (PLAYER), s32'NmlAtkAir2D'
+> 	if: var(Result) {
+> 		setXSpeed: 80000
+> 		setYSpeed: -30000
+> 		xSpeedPerFrame: 98
+> 		ySpeedPerFrame: 102
+> 	} endIf: 
+1644a1656,1657
+> 	createObject: s32'Extinction_fall', (ZERO)
+> 	sendSignal: (PREVIOUS), (SIGNAL8)
+1674a1688,1693
+> 	sprite: s32'null', 6
+> 	createObject: s32'Extinction_fall', (ZERO)
+> 	sendSignal: (PREVIOUS), (SIGNAL1)
+> 	sprite: s32'null', 6
+> 	createObject: s32'Extinction_fall', (ZERO)
+> 	sendSignal: (PREVIOUS), (SIGNAL3)
+1731a1751
+> 		jumpToStateInObject: (SELF_SUB_MEMBER2), s32'AT8'
+1773a1794,1800
+> 	enableHitbox: 
+> 	label: s32'AT8'
+> 	sprite: s32'extinctionfall', 600
+> 	setXSpeed: 10000
+> 	addXPosition: 100000
+> 	setYPosition: 7000000
+> 	setYSpeed: -320000

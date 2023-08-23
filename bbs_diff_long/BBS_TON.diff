@@ -1,6 +1,6 @@
---- 1.31/BBS_TON.bbs	2023-05-23 14:16:17.197814501 +0200
-+++ 1.32/BBS_TON.bbs	2023-05-23 14:14:52.640364698 +0200
-@@ -1,11145 +1,11153 @@
+--- 1.32/BBS_TON.bbs	2023-05-24 20:54:51.119070101 +0200
++++ 1.33/BBS_TON.bbs	2023-08-23 04:23:06.105973279 +0200
+@@ -1,11153 +1,11199 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'ton'
  	ifBeginCharaID: s16'toz' {
@@ -1159,12 +1159,12 @@
  		moveInput: (INPUT_214)
  		moveInput: (INPUT_PRESS_L)
  		moveInput: (INPUT_PRESS_M)
- 		moveInput: (INPUT_BOOLEAN_OR)
- 		moveInput: (INPUT_214)
- 		moveInput: (INPUT_PRESS_H)
- 		moveInput: (INPUT_PRESS_KI)
+-		moveInput: (INPUT_BOOLEAN_OR)
+-		moveInput: (INPUT_214)
+-		moveInput: (INPUT_PRESS_H)
+-		moveInput: (INPUT_PRESS_KI)
  		addMoveCondition: (THREE)
- 		addMoveCondition: (RED_ROMAN_CANCEL)
+ 		addMoveCondition: (plr5_false)
  		skillEstAtkBox: -1500, -400, 1500, 400
  		skillEstLevelLimit: 60
  		skillEstPoint: 50
@@ -1178,12 +1178,12 @@
  		moveInput: (INPUT_ANY_BACK)
  		moveInput: (INPUT_HOLD_L)
  		moveInput: (INPUT_HOLD_M)
- 		moveInput: (INPUT_BOOLEAN_OR)
- 		moveInput: (INPUT_ANY_BACK)
- 		moveInput: (INPUT_HOLD_H)
- 		moveInput: (INPUT_HOLD_KI)
+-		moveInput: (INPUT_BOOLEAN_OR)
+-		moveInput: (INPUT_ANY_BACK)
+-		moveInput: (INPUT_HOLD_H)
+-		moveInput: (INPUT_HOLD_KI)
  		addMoveCondition: (THREE)
- 		addMoveCondition: (RED_ROMAN_CANCEL)
+ 		addMoveCondition: (plr5_false)
  		isFollowupMove: 1
  		moveAlias: s32'Hungry'
  	} endMove: 
@@ -1230,7 +1230,7 @@
  		moveInput: (INPUT_PRESS_H)
  		moveInput: (INPUT_PRESS_KI)
  		addMoveCondition: (THREE)
- 		addMoveCondition: 121
+ 		addMoveCondition: (plr5_true)
  		moveAlias: s32'Fullcourse'
  		skillEstAtkBox: -1500, -400, 1500, 400
  		skillEstLevelLimit: 60
@@ -1250,7 +1250,7 @@
  		moveInput: (INPUT_HOLD_H)
  		moveInput: (INPUT_HOLD_KI)
  		addMoveCondition: (THREE)
- 		addMoveCondition: 121
+ 		addMoveCondition: (plr5_true)
  		isFollowupMove: 1
  		moveAlias: s32'Fullcourse'
  	} endMove: 
@@ -1261,7 +1261,12 @@
  		moveInput: (INPUT_PRESS_H)
  		moveInput: (INPUT_PRESS_KI)
  		addMoveCondition: (THREE)
- 		addMoveCondition: 122
+-		addMoveCondition: (plr6_true)
++		addMoveCondition: (plr0_true)
++		addMoveCondition: (plr1_true)
++		addMoveCondition: (plr2_true)
++		addMoveCondition: (plr3_true)
++		addMoveCondition: (plr5_false)
  		skillEstLevelLimit: 60
  		skillEstPoint: 50
  		cpuBigDamage: 
@@ -1269,6 +1274,21 @@
  		cpuIsThrow: 
  		skillEstInterval: 900
  	} endMove: 
++	addMove: s32'Dangertime_Chain' {
++		moveType: (OVERDRIVE)
++		characterState: (STANDING)
++		moveInput: (INPUT_ANY_BACK)
++		moveInput: (INPUT_HOLD_H)
++		moveInput: (INPUT_HOLD_KI)
++		addMoveCondition: (THREE)
++		addMoveCondition: (plr0_true)
++		addMoveCondition: (plr1_true)
++		addMoveCondition: (plr2_true)
++		addMoveCondition: (plr3_true)
++		addMoveCondition: (plr5_false)
++		isFollowupMove: 1
++		moveAlias: s32'Dangertime'
++	} endMove: 
  	addMove: s32'AssistAttack' {
  		moveType: 34
  		characterState: (STANDING_OR_AIRBORNE)
@@ -1451,6 +1471,7 @@
  	registerMove: s32'Hungry'
  	registerMove: s32'Hungry_Chain'
  	registerMove: s32'Dangertime'
++	registerMove: s32'Dangertime_Chain'
  	registerMove: s32'Fullcourse_Land'
  	registerMove: s32'Fullcourse_Land_Chain'
  	registerMove: s32'Fullcourse'
@@ -3316,6 +3337,7 @@
  		callSubroutine: s32'cmnNmlAtk5A2nd_Init'
  		addGatlingOption: s32'NmlAtk3B'
  		addGatlingOption: s32'NmlAtk2D'
++		groundKnockbackEffect: (FORCE_STAND)
  		upon: (ON_ATTACK_HIT_PLAYER_GUARD) {
  			percentageXSpeed: 50
  		} endUpon: 
@@ -3327,7 +3349,8 @@
  	sprite: s32'ton201_02', 2
  	attackVoice: 1, -1
  	sprite: s32'ton201_03', 2
- 	setXSpeed: 50000
+-	setXSpeed: 50000
++	setXSpeed: 100000
  	cmnSfx: s32'ARC_BTL_CMN_Furi_Hook'
  	sprite: s32'ton201_04', 2
  	effectForLanding: 100, 1, 0
@@ -3362,9 +3385,13 @@
  	} endUpon: 
  	sprite: s32'ton202_00', 2
  	facePose: (ANGRY)
- 	sprite: s32'ton202_01', 2
+-	sprite: s32'ton202_01', 2
++	sprite: s32'ton202_01', 1
++	sprite: s32'ton202_01', 1
++	headInvul: 1
  	sprite: s32'ton202_02', 2
- 	setXSpeed: 90000
+-	setXSpeed: 90000
++	setXSpeed: 140000
  	xSpeedPerFrame: 75
  	attackVoice: 2, -1
  	sprite: s32'ton202_03', 2
@@ -3379,6 +3406,7 @@
  	callSubroutine: s32'cmnRendaChain_Clear_Idling'
  	sprite: s32'ton202_07', 2
  	sprite: s32'ton202_08', 2
++	headInvul: 0
  	recoveryState: 
  	sprite: s32'ton202_09', 3
  	sprite: s32'ton202_10', 3
@@ -3879,6 +3907,7 @@
  		attackYKnockback: 25000
  		addGatlingOption: s32'NmlAtkAir2C'
  		addGatlingOption: s32'NmlAtkAir5D'
++		enableJumpCancel: 1
  		if: var(IsSparking) {
  			enableJumpCancel: 1
  			addGatlingOption: s32'CmnFAirDash'
@@ -4103,21 +4132,15 @@
  	sprite: s32'ton403_11', 2
  	label: s32'end'
  	sprite: s32'ton403_12', 3
--	sprite: s32'ton403_13', 3
--	sprite: s32'ton403_14', 1
--	sprite: s32'ton403_14', 2
  	enableWhiffCancel: 1
  	addWhiffCancelOption: s32'CmnActHomingDash'
  	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 10
--	sprite: s32'ton403_12', 3
  	sprite: s32'ton403_13', 3
--	sprite: s32'ton403_14', 3
--	sprite: s32'ton403_12', 3
-+	sprite: s32'ton403_14', 2
-+	sprite: s32'ton403_12', 2
-+	sprite: s32'ton403_13', 2
-+	sprite: s32'ton403_14', 2
-+	sprite: s32'ton403_12', 2
+ 	sprite: s32'ton403_14', 2
+ 	sprite: s32'ton403_12', 2
+ 	sprite: s32'ton403_13', 2
+ 	sprite: s32'ton403_14', 2
+ 	sprite: s32'ton403_12', 2
  	sprite: s32'ton403_15', 2
  	mouthPose: (SHOW_TEETH)
  	recoveryState: 
@@ -4330,19 +4353,14 @@
  	} endElse: 
  	sprite: s32'ton403_11', 2
  	label: s32'end'
--	sprite: s32'ton403_12', 3
--	sprite: s32'ton403_13', 3
--	sprite: s32'ton403_14', 3
--	sprite: s32'ton403_12', 3
--	spriteOverrideTime: 1, var(act0)
-+	sprite: s32'ton403_12', 1
+ 	sprite: s32'ton403_12', 1
  	enableWhiffCancel: 1
  	addWhiffCancelOption: s32'CmnActHomingDash'
  	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 15
-+	sprite: s32'ton403_13', 2
-+	sprite: s32'ton403_14', 2
-+	sprite: s32'ton403_12', 2
-+	spriteOverrideTime: 1, var(act0)
+ 	sprite: s32'ton403_13', 2
+ 	sprite: s32'ton403_14', 2
+ 	sprite: s32'ton403_12', 2
+ 	spriteOverrideTime: 1, var(act0)
  	sprite: s32'ton403_15', 2
  	mouthPose: (SHOW_TEETH)
  	recoveryState: 
@@ -4491,6 +4509,8 @@
  			addWhiffCancelOption: s32'AirPhotonwave_Chain'
  			addWhiffCancelOption: s32'Hungry'
  			addWhiffCancelOption: s32'Hungry_Chain'
++			addWhiffCancelOption: s32'Dangertime'
++			addWhiffCancelOption: s32'Dangertime_Chain'
  			addWhiffCancelOption: s32'Fullcourse'
  			addWhiffCancelOption: s32'Fullcourse_Chain'
  			if: var(plr5) {
@@ -6507,7 +6527,7 @@
  	triggerUponInObject: s32'Kamehameha_Core', (SIGNAL0)
  	callSubroutine: s32'AddFlexChain214D'
  	senkoInputSpecial: 20
-+	enableSpecialCancel: 1
+ 	enableSpecialCancel: 1
  	sprite: s32'ton404_18', 3
  	mouthPose: (SHOW_TEETH)
  	stopBankSE: 16, 20
@@ -6569,9 +6589,9 @@
  beginState: s32'MultiEnergyShot' {
  	upon: (IMMEDIATE) {
  		callSubroutine: s32'Absorb_Init'
-+		enableSpecialCancel: 1
-+		addGatlingOption: s32'CmnFAirDash'
-+		addGatlingOption: s32'CmnActFAirDash2Button'
+ 		enableSpecialCancel: 1
+ 		addGatlingOption: s32'CmnFAirDash'
+ 		addGatlingOption: s32'CmnActFAirDash2Button'
  	} endUpon: 
  	gotoLabelIfTrue: s32'hasei', var(act4)
  	sprite: s32'ton010_00', 1
@@ -6837,15 +6857,11 @@
  	sprite: s32'ton205_08', 3
  	sprite: s32'ton205_08', 1
  	enableWhiffCancel: 0
--	sprite: s32'ton205_09', 4
--	sprite: s32'ton205_10', 4
--	sprite: s32'ton205_11', 4
-+	sprite: s32'ton205_09', 2
-+	sprite: s32'ton205_10', 2
-+	sprite: s32'ton205_11', 2
+ 	sprite: s32'ton205_09', 2
+ 	sprite: s32'ton205_10', 2
+ 	sprite: s32'ton205_11', 2
  	mouthPose: (SHOW_TEETH)
--	sprite: s32'ton205_12', 3
-+	sprite: s32'ton205_12', 1
+ 	sprite: s32'ton205_12', 1
  } endState: 
  
  beginState: s32'AirKamehameha' {
@@ -6934,7 +6950,7 @@
  	triggerUponInObject: s32'Kamehameha_Core', (SIGNAL0)
  	callSubroutine: s32'AddFlexChain214D'
  	senkoInputSpecial: 20
-+	enableSpecialCancel: 1
+ 	enableSpecialCancel: 1
  	sprite: s32'ton404_18ex', 3
  	mouthPose: (SHOW_TEETH)
  	stopBankSE: 16, 20
@@ -7000,9 +7016,9 @@
  beginState: s32'AirMultiEnergyShot' {
  	upon: (IMMEDIATE) {
  		callSubroutine: s32'Absorb_Init'
-+		enableSpecialCancel: 1
-+		addGatlingOption: s32'CmnFAirDash'
-+		addGatlingOption: s32'CmnActFAirDash2Button'
+ 		enableSpecialCancel: 1
+ 		addGatlingOption: s32'CmnFAirDash'
+ 		addGatlingOption: s32'CmnActFAirDash2Button'
  	} endUpon: 
  	gotoLabelIfTrue: s32'hasei', var(act4)
  	sprite: s32'ton405_00', 4
@@ -7284,7 +7300,6 @@
  	setXSpeed: -5000
  	setYSpeed: 17000
  	pushCollisionHeightLow: 268435455
--	landingRecovery: 6, 1
  	deactivateObjectByName: s32'ton408_kidan_throw'
  	if: var(act6) {
  		setArg_objectParameters: int(0), int(1)
@@ -7306,30 +7321,23 @@
  	enableWhiffCancel: 0
  	sprite: s32'ton233_14', 3
  	sprite: s32'ton233_15', 3
--	sprite: s32'ton022_02', 3
--	sprite: s32'ton022_03', 2
--	sprite: s32'ton022_04', 2
--	sprite: s32'ton022_05', 2
-+	sprite: s32'ton022_02', 1
-+	sprite: s32'ton022_03', 1
-+	sprite: s32'ton022_04', 1
-+	sprite: s32'ton022_05', 1
+ 	sprite: s32'ton022_02', 1
+ 	sprite: s32'ton022_03', 1
+ 	sprite: s32'ton022_04', 1
+ 	sprite: s32'ton022_05', 1
  	spriteEnd: 
  	exitState: 
  	label: s32'landing'
--	sprite: s32'ton037_02', 4
-+	sprite: s32'ton037_02', 2
+ 	sprite: s32'ton037_02', 2
  	enableWhiffCancel: 0
--	sprite: s32'ton037_01', 3
--	sprite: s32'ton037_00', 3
-+	sprite: s32'ton037_01', 1
-+	sprite: s32'ton037_00', 1
+ 	sprite: s32'ton037_01', 1
+ 	sprite: s32'ton037_00', 1
  } endState: 
  
  beginState: s32'Taiyoken' {
  	upon: (IMMEDIATE) {
  		callSubroutine: s32'Absorb_Init'
-+		headInvul: 1
+ 		headInvul: 1
  		upon: (SIGNAL_NAME) {
  			checkSignalName: s32'TON_Taiyouken'
  			if: var(Result) {
@@ -7595,6 +7603,8 @@
  			addWhiffCancelOption: s32'AirPhotonwave_Chain'
  			addWhiffCancelOption: s32'Hungry'
  			addWhiffCancelOption: s32'Hungry_Chain'
++			addWhiffCancelOption: s32'Dangertime'
++			addWhiffCancelOption: s32'Dangertime_Chain'
  			addWhiffCancelOption: s32'Fullcourse'
  			addWhiffCancelOption: s32'Fullcourse_Chain'
  			if: var(plr5) {
@@ -7719,7 +7729,7 @@
  beginState: s32'AirTaiyoken' {
  	upon: (IMMEDIATE) {
  		callSubroutine: s32'Absorb_Init'
-+		headInvul: 1
+ 		headInvul: 1
  		upon: (SIGNAL_NAME) {
  			checkSignalName: s32'TON_Taiyouken'
  			if: var(Result) {
@@ -8015,6 +8025,8 @@
  			addWhiffCancelOption: s32'AirPhotonwave_Chain'
  			addWhiffCancelOption: s32'Hungry'
  			addWhiffCancelOption: s32'Hungry_Chain'
++			addWhiffCancelOption: s32'Dangertime'
++			addWhiffCancelOption: s32'Dangertime_Chain'
  			addWhiffCancelOption: s32'Fullcourse'
  			addWhiffCancelOption: s32'Fullcourse_Chain'
  			if: var(plr5) {
@@ -8305,6 +8317,12 @@
  	sprite: s32'ton430_21', 3
  	sprite: s32'ton430_22', 3
  	sprite: s32'ton430_23', 3
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'Hungry'
++		addGatlingOption: s32'Fullcourse'
++		whiffCancelOptionBufferTime: s32'Hungry', 40
++		whiffCancelOptionBufferTime: s32'Fullcourse', 40
++	} endIf: 
  	sprite: s32'ton430_21', 3
  	sprite: s32'ton430_22', 3
  	sprite: s32'ton430_23', 3
@@ -8431,6 +8449,12 @@
  	sprite: s32'ton430_21', 3
  	sprite: s32'ton430_22', 3
  	sprite: s32'ton430_23', 3
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'Hungry'
++		addGatlingOption: s32'Fullcourse'
++		whiffCancelOptionBufferTime: s32'Hungry', 40
++		whiffCancelOptionBufferTime: s32'Fullcourse', 40
++	} endIf: 
  	sprite: s32'ton430_21', 3
  	sprite: s32'ton430_22', 3
  	sprite: s32'ton430_23', 3
@@ -9408,7 +9432,19 @@
  	deactivateObjectByName: s32'ton_432_charge'
  	createObject: s32'ton_432_charge_dust02', (ZERO)
  	createObject: s32'ton_432_charge02', (ZERO)
- 	forceRandomVoice: s16'vxxx615', 100, s16'', 0, s16'', 0, s16'', 0
+-	forceRandomVoice: s16'vxxx615', 100, s16'', 0, s16'', 0, s16'', 0
++	if: var(plr6) {
++		forceRandomVoice: s16'vxxx615', 100, s16'', 0, s16'', 0, s16'', 0
++	} endIf: 
++	else:  {
++		forceRandomVoice: s16'vxxx215', 100, s16'', 0, s16'', 0, s16'', 0
++		ifOperation: (MOD_EQUALS_0), var(TrainingValue), int(2) {
++			copyVar: var(plr0), int(0)
++			copyVar: var(plr1), int(0)
++			copyVar: var(plr2), int(0)
++			copyVar: var(plr3), int(0)
++		} endIf: 
++	} endElse: 
  	stopBankSE: 0, 30
  	privateBankSE: 1, s32'ARC_BTL_TOA_Dangertime_Fire', 100
  	sprite: s32'ton432_16', 2

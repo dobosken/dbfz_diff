@@ -1,42 +1,237 @@
-716a717
-> 		maxChainIntoSelf: 1
-5888,5892c5889,5893
-< 	sprite: s32'mtn205_04', 3
-< 	sprite: s32'mtn205_05', 3
-< 	sprite: s32'mtn205_06', 3
-< 	sprite: s32'mtn205_04', 3
-< 	sprite: s32'mtn205_05', 3
+702a703,711
+> 	addMove: s32'AirAssaultA' {
+> 		moveType: (SPECIAL)
+> 		characterState: (AIRBORNE)
+> 		moveInput: (INPUT_2)
+> 		moveInput: (INPUT_PRESS_L)
+> 		skillEstAtkBox: -300, -100, 300, 200
+> 		skillEstTagXNearPanashi: 
+> 		skillEstTagCombo: 
+> 	} endMove: 
+813a823,836
+> 	addMove: s32'SSKamehameha_Chain' {
+> 		moveType: (OVERDRIVE)
+> 		characterState: (STANDING_OR_AIRBORNE)
+> 		moveInput: (INPUT_214)
+> 		moveInput: (INPUT_PRESS_L)
+> 		moveInput: (INPUT_PRESS_M)
+> 		moveInput: (INPUT_BOOLEAN_OR)
+> 		moveInput: (INPUT_214)
+> 		moveInput: (INPUT_PRESS_H)
+> 		moveInput: (INPUT_PRESS_KI)
+> 		addMoveCondition: (THREE)
+> 		isFollowupMove: 1
+> 		moveAlias: s32'SSKamehameha'
+> 	} endMove: 
+991a1015
+> 	registerMove: s32'AirAssaultA'
+1038a1063
+> 	registerMove: s32'SSKamehameha_Chain'
+6124a6150
+> 	callSubroutine: s32'cmn_NandemoEnableAir'
+6708a6735
+> 		addWhiffCancelOption: s32'NmlAtk2D'
+6716c6743,6747
+< 	xSpeedPerFrame: 95
 ---
-> 	sprite: s32'mtn205_04', 2
-> 	sprite: s32'mtn205_05', 2
-> 	sprite: s32'mtn205_06', 2
-> 	sprite: s32'mtn205_04', 2
-> 	sprite: s32'mtn205_05', 2
-7428d7428
-< 	attackFinishBlowback: 1
-8643a8644
-> 		enableSpecialCancel: 1
-9120c9121
-< 	sprite: s32'mtn404_10', 5
+> 	checkInput: (INPUT_ANY_FORWARD)
+> 	if: var(Result) {
+> 		setXSpeed: 40000
+> 	} endIf: 
+> 	xSpeedPerFrame: 98
+6924,6925c6955,7074
+< 	sprite: s32'mtn264_12', 4
+< 	sprite: s32'mtn264_13', 3
 ---
-> 	sprite: s32'mtn404_10', 2
-9122c9123
-< 	sprite: s32'mtn404_11', 5
+> 	sprite: s32'mtn264_12', 3
+> 	sprite: s32'mtn264_13', 2
+> 	sprite: s32'mtn264_14', 2
+> } endState: 
+> 
+> beginState: s32'AirAssaultA' {
+> 	upon: (IMMEDIATE) {
+> 		callSubroutine: s32'cmnAtkLevel_2_AtkInit'
+> 		damage: 800
+> 		callSubroutine: s32'cmn_KuzushiHosei'
+> 		groundKnockbackEffect: (FORCE_CROUCH)
+> 		airKnockbackEffect: (AIR_FACE_UP)
+> 		attackXKnockback: 20000
+> 		attackYKnockback: -100000
+> 		guardPushback: 150
+> 		groundHitstun: 22
+> 		airHitstun: 30
+> 		atkRange: 50000000, 0, 0, 0
+> 		attackGuardtype: (MID)
+> 		damageSoundEffect: s32'ARC_BTL_CMN_Hit_Large-A'
+> 		guardSoundEffect: s32'ARC_BTL_CMN_Guard_Large'
+> 		atkShakeCamera: s32'ShakeTate', 500, 0, 15, 0
+> 		groundBounceCount: 1
+> 		groundBounceYVelocity: 10000
+> 		upon: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE) {
+> 			clearRegisteredUponCode: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE)
+> 			setXSpeed: 20000
+> 			setYSpeed: -100000
+> 			xSpeedPerFrame: 100
+> 			ySpeedPerFrame: 100
+> 			setGravity: 4000
+> 			copyVar: var(act0), int(1)
+> 		} endUpon: 
+> 		upon: (ON_ATTACK_COLLISION_MAIN_PLAYER) {
+> 			clearRegisteredUponCode: (ON_ATTACK_COLLISION_MAIN_PLAYER)
+> 			pushCollisionHeightLow: 110000
+> 			ifVarOfObjectTrue: (ENEMY_MAIN_PLAYER), var(CmnCharaReg6) {
+> 				ifOperation: (IS_GREATER_OR_EQUAL), var(PosY), int(222000) {
+> 					setYPosition: 222000
+> 				} endIf: 
+> 			} endIf: 
+> 		} endUpon: 
+> 		jumpToStateInObject: (PARENT), s32'landing'
+> 	} endUpon: 
+> 	sprite: s32'mtn264_00', 1
+> 	resetSpeed: 1
+> 	setXSpeed: 5000
+> 	setYSpeed: 5000
+> 	sprite: s32'mtn264_01', 1
+> 	sprite: s32'mtn264_02', 1
+> 	faceAnimation: 504
+> 	sprite: s32'mtn264_03', 2
+> 	attackVoice: 1, 0
+> 	sprite: s32'mtn264_04', 2
+> 	commonBankSE: 0, s32'ARC_BTL_CMN_PC_AirDash', 100
+> 	sprite: s32'mtn264_05', 1
+> 	pushCollisionHeightLow: 40000
+> 	sprite: s32'mtn264_06ex00', 1
+> 	enableHitbox: 
+> 	createObject: s32'mtn264_Line_Eff', (CENTER)
+> 	sprite: s32'mtn264_06', 1
+> 	faceAnimation: 503
+> 	mouthPose: (CLOSED)
+> 	setXSpeed: 30000
+> 	setYSpeed: -80000
+> 	objectGravity: 
+> 	if: var(act0) {
+> 		setXSpeed: 20000
+> 		setYSpeed: -100000
+> 		xSpeedPerFrame: 100
+> 		ySpeedPerFrame: 100
+> 		setGravity: 4000
+> 	} endIf: 
+> 	sprite: s32'mtn264_07', 2
+> 	mouthPose: (SHOW_TEETH)
+> 	sprite: s32'mtn264_08', 2
+> 	mouthPose: 2
+> 	label: s32'loop'
+> 	sprite: s32'mtn264_06', 2
+> 	mouthPose: 3
+> 	sprite: s32'mtn264_07', 2
+> 	mouthPose: (CLOSED)
+> 	sprite: s32'mtn264_08', 2
+> 	mouthPose: (SHOW_TEETH)
+> 	sprite: s32'mtn264_06', 2
+> 	mouthPose: 2
+> 	sprite: s32'mtn264_07', 2
+> 	mouthPose: 3
+> 	sprite: s32'mtn264_08', 2
+> 	mouthPose: (CLOSED)
+> 	sprite: s32'mtn264_06', 2
+> 	mouthPose: (SHOW_TEETH)
+> 	sprite: s32'mtn264_07', 2
+> 	mouthPose: 2
+> 	sprite: s32'mtn264_08', 2
+> 	mouthPose: 3
+> 	sprite: s32'mtn264_06', 2
+> 	mouthPose: (CLOSED)
+> 	sprite: s32'mtn264_07', 2
+> 	mouthPose: (SHOW_TEETH)
+> 	sprite: s32'mtn264_08', 2
+> 	mouthPose: 2
+> 	spriteEnd: 
+> 	gotoLabelIfOperation: s32'loop', (IS_LESS_OR_EQUAL), var(LoopCount), int(300)
+> 	exitState: 
+> 	label: s32'landing'
+> 	sprite: s32'mtn264_09', 1
+> 	resetSpeed: 1
+> 	senkoInputUltimate: 10
+> 	recoveryState: 
+> 	deactivateObjectByName: s32'mtn264_Line_Eff'
+> 	stopBankSE: 0, 20
+> 	sprite: s32'mtn264_10', 3
+> 	setXSpeed: 25000
+> 	xSpeedPerFrame: 80
+> 	sprite: s32'mtn264_11', 4
+> 	facePose: (NORMAL)
+> 	mouthPose: (CLOSED)
+> 	sprite: s32'mtn264_12', 3
+> 	sprite: s32'mtn264_13', 2
+9278,9280c9427,9429
+< 	sprite: s32'mtn430_00', 3
+< 	sprite: s32'mtn430_01', 3
+< 	sprite: s32'mtn430_02', 3
 ---
-> 	sprite: s32'mtn404_11', 3
-9124c9125
-< 	sprite: s32'mtn404_12', 5
----
-> 	sprite: s32'mtn404_12', 3
-9126c9127
-< 	sprite: s32'mtn404_13', 5
----
-> 	sprite: s32'mtn404_13', 3
-9128c9129
-< 	sprite: s32'mtn404_14', 5
----
-> 	sprite: s32'mtn404_14', 3
-9130c9131
-< 	sprite: s32'mtn404_15', 3
----
-> 	sprite: s32'mtn404_15', 2
+> 	sprite: s32'mtn430_00', 1
+> 	sprite: s32'mtn430_01', 1
+> 	sprite: s32'mtn430_02', 1
+9362a9512,9515
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'SSKamehameha'
+> 		whiffCancelOptionBufferTime: s32'SSKamehameha', 40
+> 	} endIf: 
+9803a9957,9960
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'SSKamehameha'
+> 		whiffCancelOptionBufferTime: s32'SSKamehameha', 60
+> 	} endIf: 
+9989a10147,10150
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'SSKamehameha'
+> 		whiffCancelOptionBufferTime: s32'SSKamehameha', 40
+> 	} endIf: 
+9990a10152
+> 	enableGatlings: 0
+10238a10401,10405
+> 	if: var(CmnCharaReg7) {
+> 		enableWhiffCancel: 1
+> 		addWhiffCancelOption: s32'SSKamehameha'
+> 		whiffCancelOptionBufferTime: s32'SSKamehameha', 80
+> 	} endIf: 
+10239a10407
+> 	enableWhiffCancel: 0
+10414a10583,10586
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'SSKamehameha_Chain'
+> 		whiffCancelOptionBufferTime: s32'SSKamehameha_Chain', 80
+> 	} endIf: 
+10415a10588
+> 	enableGatlings: 0
+10460a10634,10641
+> 		checkLastStateName: s32'Roshi_Exe'
+> 		if: var(Result) {
+> 			copyVar: var(act0), var(obj3)
+> 		} endIf: 
+> 		checkLastStateName: s32'Roshi_Exe_Add'
+> 		if: var(Result) {
+> 			copyVar: var(act0), var(obj3)
+> 		} endIf: 
+10465a10647,10664
+> 	if: var(IsLand) {
+> 		gotoLabel: s32'start'
+> 	} endIf: 
+> 	sprite: s32'mtn038_00', 300
+> 	enableSuperArmor: 1
+> 	resetSpeed: 1
+> 	displayModel: 0
+> 	setNoCollision: 0
+> 	createParticle: s32'cmn_Warp', (CENTER)
+> 	cmnSfx: s32'ARC_BTL_CMN_TLP_Short'
+> 	setYSpeed: -80000
+> 	ySpeedPerFrame: 110
+> 	upon: (TOUCH_GROUND) {
+> 		clearRegisteredUponCode: (TOUCH_GROUND)
+> 		jumpToLabel: s32'start'
+> 	} endUpon: 
+> 	spriteEnd: 
+> 	label: s32'start'
+10471a10671,10673
+> 	clearRegisteredUponCode: (IDLING)
+> 	displayModel: 1
+> 	setNoCollision: 1

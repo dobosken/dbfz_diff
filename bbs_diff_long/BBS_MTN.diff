@@ -1,6 +1,6 @@
---- 1.31/BBS_MTN.bbs	2023-05-23 14:16:15.347782781 +0200
-+++ 1.32/BBS_MTN.bbs	2023-05-23 14:14:50.871334366 +0200
-@@ -1,12325 +1,12326 @@
+--- 1.32/BBS_MTN.bbs	2023-05-24 20:54:49.096036733 +0200
++++ 1.33/BBS_MTN.bbs	2023-08-23 04:23:04.347943322 +0200
+@@ -1,12326 +1,12528 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'mtn'
  } endSubroutine: 
@@ -703,6 +703,15 @@
  		skillEstTagXNearPanashi: 
  		skillEstLevelLimit: 60
  	} endMove: 
++	addMove: s32'AirAssaultA' {
++		moveType: (SPECIAL)
++		characterState: (AIRBORNE)
++		moveInput: (INPUT_2)
++		moveInput: (INPUT_PRESS_L)
++		skillEstAtkBox: -300, -100, 300, 200
++		skillEstTagXNearPanashi: 
++		skillEstTagCombo: 
++	} endMove: 
  	addMove: s32'AirAssault' {
  		moveType: (SPECIAL)
  		characterState: (AIRBORNE)
@@ -717,7 +726,7 @@
  		characterState: (STANDING)
  		moveInput: (INPUT_236)
  		moveInput: (INPUT_PRESS_KI)
-+		maxChainIntoSelf: 1
+ 		maxChainIntoSelf: 1
  		skillEstAtkBox: -1900, -300, 1900, 300
  		skillEstTagXFarPanashi: 
  		skillEstTagShot: 
@@ -814,6 +823,20 @@
  		skillEstInterval: 900
  		skillEstLevelLimit: 60
  	} endMove: 
++	addMove: s32'SSKamehameha_Chain' {
++		moveType: (OVERDRIVE)
++		characterState: (STANDING_OR_AIRBORNE)
++		moveInput: (INPUT_214)
++		moveInput: (INPUT_PRESS_L)
++		moveInput: (INPUT_PRESS_M)
++		moveInput: (INPUT_BOOLEAN_OR)
++		moveInput: (INPUT_214)
++		moveInput: (INPUT_PRESS_H)
++		moveInput: (INPUT_PRESS_KI)
++		addMoveCondition: (THREE)
++		isFollowupMove: 1
++		moveAlias: s32'SSKamehameha'
++	} endMove: 
  	addMove: s32'AssistAttack' {
  		moveType: 34
  		characterState: (STANDING_OR_AIRBORNE)
@@ -992,6 +1015,7 @@
  	registerMove: s32'Tobi22B'
  	registerMove: s32'Tobi22C'
  	registerMove: s32'Yoiko'
++	registerMove: s32'AirAssaultA'
  	registerMove: s32'AirAssault'
  	registerMove: s32'Keiken_A'
  	registerMove: s32'Keiken_B'
@@ -1039,6 +1063,7 @@
  	registerMove: s32'Roshi'
  	registerMove: s32'Roshi_Exe_Add'
  	registerMove: s32'SSKamehameha'
++	registerMove: s32'SSKamehameha_Chain'
  	registerMove: s32'CmnActSparkingBurst'
  	registerMove: s32'RequestChangeMember1'
  	registerMove: s32'RequestChangeMember2'
@@ -3601,8 +3626,8 @@
  			triggerUponInObject: s32'MTN_Homing_Ue_Core', (SIGNAL0)
  			jumpToLabel: s32'homing_end'
  		} endUpon: 
- 		upon: (ON_ATTACK_HIT_PLAYER_ARMOR) {
- 			clearRegisteredUponCode: (ON_ATTACK_HIT_PLAYER_ARMOR)
+ 		upon: (ATTACK_HIT_PLAYER_ARMOR) {
+ 			clearRegisteredUponCode: (ATTACK_HIT_PLAYER_ARMOR)
  			hitstop: 15
  			callSubroutine: s32'cmn_NandemoEnableAir'
  			faceOpponent: 
@@ -4103,8 +4128,8 @@
  			triggerUponInObject: s32'MTN_Homing_Yoko_Core', (SIGNAL0)
  			jumpToLabel: s32'homing_brake'
  		} endUpon: 
- 		upon: (ON_ATTACK_HIT_PLAYER_ARMOR) {
- 			clearRegisteredUponCode: (ON_ATTACK_HIT_PLAYER_ARMOR)
+ 		upon: (ATTACK_HIT_PLAYER_ARMOR) {
+ 			clearRegisteredUponCode: (ATTACK_HIT_PLAYER_ARMOR)
  			homingDashInit: 6, 20000, 90000, 300, 1500, 80, 80, 1
  			hitstop: 15
  			faceOpponent: 
@@ -4371,8 +4396,8 @@
  			triggerUponInObject: s32'MTN_Homing_Yoko_Core', (SIGNAL0)
  			jumpToLabel: s32'homing_brake'
  		} endUpon: 
- 		upon: (ON_ATTACK_HIT_PLAYER_ARMOR) {
- 			clearRegisteredUponCode: (ON_ATTACK_HIT_PLAYER_ARMOR)
+ 		upon: (ATTACK_HIT_PLAYER_ARMOR) {
+ 			clearRegisteredUponCode: (ATTACK_HIT_PLAYER_ARMOR)
  			homingDashInit: 6, 20000, 90000, 300, 1500, 80, 80, 1
  			hitstop: 15
  			if: var(act4) {
@@ -4625,8 +4650,8 @@
  			triggerUponInObject: s32'MTN_Homing_Yoko_Core', (SIGNAL0)
  			jumpToLabel: s32'homing_brake'
  		} endUpon: 
- 		upon: (ON_ATTACK_HIT_PLAYER_ARMOR) {
- 			clearRegisteredUponCode: (ON_ATTACK_HIT_PLAYER_ARMOR)
+ 		upon: (ATTACK_HIT_PLAYER_ARMOR) {
+ 			clearRegisteredUponCode: (ATTACK_HIT_PLAYER_ARMOR)
  			homingDashInit: 6, 20000, 90000, 300, 1500, 80, 80, 1
  			hitstop: 15
  			faceOpponent: 
@@ -5889,16 +5914,11 @@
  	sprite: s32'mtn205_01', 3
  	sprite: s32'mtn205_02', 3
  	sprite: s32'mtn205_03', 2
--	sprite: s32'mtn205_04', 3
--	sprite: s32'mtn205_05', 3
--	sprite: s32'mtn205_06', 3
--	sprite: s32'mtn205_04', 3
--	sprite: s32'mtn205_05', 3
-+	sprite: s32'mtn205_04', 2
-+	sprite: s32'mtn205_05', 2
-+	sprite: s32'mtn205_06', 2
-+	sprite: s32'mtn205_04', 2
-+	sprite: s32'mtn205_05', 2
+ 	sprite: s32'mtn205_04', 2
+ 	sprite: s32'mtn205_05', 2
+ 	sprite: s32'mtn205_06', 2
+ 	sprite: s32'mtn205_04', 2
+ 	sprite: s32'mtn205_05', 2
  	sprite: s32'mtn205_06', 3
  	effectForDashStart: 125, 1, 0
  	setXSpeed: 5000
@@ -6130,6 +6150,7 @@
  	mouthPose: 2
  	sprite: s32'mtn101_01', 2
  	mouthPose: 3
++	callSubroutine: s32'cmn_NandemoEnableAir'
  	sprite: s32'mtn101_00', 2
  	mouthPose: (CLOSED)
  	addYSpeed: -50000
@@ -6714,6 +6735,7 @@
  		addWhiffCancelOption: s32'NmlAtk6C'
  		addWhiffCancelOption: s32'NmlAtk3C'
  		addWhiffCancelOption: s32'NmlAtk5D'
++		addWhiffCancelOption: s32'NmlAtk2D'
  		addWhiffCancelOption: s32'NmlAtk6D'
  	} endUpon: 
  	sprite: s32'mtn038_04', 3
@@ -6721,7 +6743,12 @@
  	superArmorKiBlastInvul: 1
  	sprite: s32'mtn101_00', 2
  	setXSpeed: -40000
- 	xSpeedPerFrame: 95
+-	xSpeedPerFrame: 95
++	checkInput: (INPUT_ANY_FORWARD)
++	if: var(Result) {
++		setXSpeed: 40000
++	} endIf: 
++	xSpeedPerFrame: 98
  	setYSpeed: 60000
  	setGravity: 6000
  	upon: (TOUCH_GROUND) {
@@ -6929,8 +6956,128 @@
  	sprite: s32'mtn264_11', 4
  	facePose: (NORMAL)
  	mouthPose: (CLOSED)
- 	sprite: s32'mtn264_12', 4
- 	sprite: s32'mtn264_13', 3
+-	sprite: s32'mtn264_12', 4
+-	sprite: s32'mtn264_13', 3
++	sprite: s32'mtn264_12', 3
++	sprite: s32'mtn264_13', 2
++	sprite: s32'mtn264_14', 2
++} endState: 
++
++beginState: s32'AirAssaultA' {
++	upon: (IMMEDIATE) {
++		callSubroutine: s32'cmnAtkLevel_2_AtkInit'
++		damage: 800
++		callSubroutine: s32'cmn_KuzushiHosei'
++		groundKnockbackEffect: (FORCE_CROUCH)
++		airKnockbackEffect: (AIR_FACE_UP)
++		attackXKnockback: 20000
++		attackYKnockback: -100000
++		guardPushback: 150
++		groundHitstun: 22
++		airHitstun: 30
++		atkRange: 50000000, 0, 0, 0
++		attackGuardtype: (MID)
++		damageSoundEffect: s32'ARC_BTL_CMN_Hit_Large-A'
++		guardSoundEffect: s32'ARC_BTL_CMN_Guard_Large'
++		atkShakeCamera: s32'ShakeTate', 500, 0, 15, 0
++		groundBounceCount: 1
++		groundBounceYVelocity: 10000
++		upon: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE) {
++			clearRegisteredUponCode: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE)
++			setXSpeed: 20000
++			setYSpeed: -100000
++			xSpeedPerFrame: 100
++			ySpeedPerFrame: 100
++			setGravity: 4000
++			copyVar: var(act0), int(1)
++		} endUpon: 
++		upon: (ON_ATTACK_COLLISION_MAIN_PLAYER) {
++			clearRegisteredUponCode: (ON_ATTACK_COLLISION_MAIN_PLAYER)
++			pushCollisionHeightLow: 110000
++			ifVarOfObjectTrue: (ENEMY_MAIN_PLAYER), var(CmnCharaReg6) {
++				ifOperation: (IS_GREATER_OR_EQUAL), var(PosY), int(222000) {
++					setYPosition: 222000
++				} endIf: 
++			} endIf: 
++		} endUpon: 
++		jumpToStateInObject: (PARENT), s32'landing'
++	} endUpon: 
++	sprite: s32'mtn264_00', 1
++	resetSpeed: 1
++	setXSpeed: 5000
++	setYSpeed: 5000
++	sprite: s32'mtn264_01', 1
++	sprite: s32'mtn264_02', 1
++	faceAnimation: 504
++	sprite: s32'mtn264_03', 2
++	attackVoice: 1, 0
++	sprite: s32'mtn264_04', 2
++	commonBankSE: 0, s32'ARC_BTL_CMN_PC_AirDash', 100
++	sprite: s32'mtn264_05', 1
++	pushCollisionHeightLow: 40000
++	sprite: s32'mtn264_06ex00', 1
++	enableHitbox: 
++	createObject: s32'mtn264_Line_Eff', (CENTER)
++	sprite: s32'mtn264_06', 1
++	faceAnimation: 503
++	mouthPose: (CLOSED)
++	setXSpeed: 30000
++	setYSpeed: -80000
++	objectGravity: 
++	if: var(act0) {
++		setXSpeed: 20000
++		setYSpeed: -100000
++		xSpeedPerFrame: 100
++		ySpeedPerFrame: 100
++		setGravity: 4000
++	} endIf: 
++	sprite: s32'mtn264_07', 2
++	mouthPose: (SHOW_TEETH)
++	sprite: s32'mtn264_08', 2
++	mouthPose: 2
++	label: s32'loop'
++	sprite: s32'mtn264_06', 2
++	mouthPose: 3
++	sprite: s32'mtn264_07', 2
++	mouthPose: (CLOSED)
++	sprite: s32'mtn264_08', 2
++	mouthPose: (SHOW_TEETH)
++	sprite: s32'mtn264_06', 2
++	mouthPose: 2
++	sprite: s32'mtn264_07', 2
++	mouthPose: 3
++	sprite: s32'mtn264_08', 2
++	mouthPose: (CLOSED)
++	sprite: s32'mtn264_06', 2
++	mouthPose: (SHOW_TEETH)
++	sprite: s32'mtn264_07', 2
++	mouthPose: 2
++	sprite: s32'mtn264_08', 2
++	mouthPose: 3
++	sprite: s32'mtn264_06', 2
++	mouthPose: (CLOSED)
++	sprite: s32'mtn264_07', 2
++	mouthPose: (SHOW_TEETH)
++	sprite: s32'mtn264_08', 2
++	mouthPose: 2
++	spriteEnd: 
++	gotoLabelIfOperation: s32'loop', (IS_LESS_OR_EQUAL), var(LoopCount), int(300)
++	exitState: 
++	label: s32'landing'
++	sprite: s32'mtn264_09', 1
++	resetSpeed: 1
++	senkoInputUltimate: 10
++	recoveryState: 
++	deactivateObjectByName: s32'mtn264_Line_Eff'
++	stopBankSE: 0, 20
++	sprite: s32'mtn264_10', 3
++	setXSpeed: 25000
++	xSpeedPerFrame: 80
++	sprite: s32'mtn264_11', 4
++	facePose: (NORMAL)
++	mouthPose: (CLOSED)
++	sprite: s32'mtn264_12', 3
++	sprite: s32'mtn264_13', 2
  	sprite: s32'mtn264_14', 2
  } endState: 
  
@@ -6968,16 +7115,16 @@
  	} endUpon: 
  	upon: (ON_ATTACK_HIT_PLAYER_GUARD) {
  		clearRegisteredUponCode: (ON_ATTACK_HIT_PLAYER_GUARD)
- 		clearRegisteredUponCode: (ON_ATTACK_HIT_PLAYER_ARMOR)
+ 		clearRegisteredUponCode: (ATTACK_HIT_PLAYER_ARMOR)
  		clearRegisteredUponCode: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE_PRE_CTRL)
  		jumpToLabel: s32'guard'
  		screenAdditionalWidth: -1
  		ignorePushback: 1
  		setNoCollision: 0
  	} endUpon: 
- 	upon: (ON_ATTACK_HIT_PLAYER_ARMOR) {
+ 	upon: (ATTACK_HIT_PLAYER_ARMOR) {
  		clearRegisteredUponCode: (ON_ATTACK_HIT_PLAYER_GUARD)
- 		clearRegisteredUponCode: (ON_ATTACK_HIT_PLAYER_ARMOR)
+ 		clearRegisteredUponCode: (ATTACK_HIT_PLAYER_ARMOR)
  		clearRegisteredUponCode: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE_PRE_CTRL)
  		jumpToLabel: s32'guard'
  		screenAdditionalWidth: -1
@@ -7434,7 +7581,6 @@
  	atkDirectionReverse: 1
  	atkShakeCamera: s32'ShakeYoko', 400, 0, 20, 5
  	atkHitPositionType: 4, -250000, 10000
--	attackFinishBlowback: 1
  	noHitstunScaling: 0
  	damageScalingOverride: 500
  	attackKillType: (CAN_KILL)
@@ -8650,7 +8796,7 @@
  beginState: s32'Kamehameha_MTN' {
  	upon: (IMMEDIATE) {
  		atkIgnoreCaution: 1
-+		enableSpecialCancel: 1
+ 		enableSpecialCancel: 1
  		upon: (SIGNAL3) {
  			setHitStop: 10
  		} endUpon: 
@@ -9127,23 +9273,17 @@
  	whiffCancelOptionBufferTime: s32'CmnActMikiwameMove', 10
  	enableSparkCancel: 1
  	enableVanish: 1
--	sprite: s32'mtn404_10', 5
-+	sprite: s32'mtn404_10', 2
+ 	sprite: s32'mtn404_10', 2
  	mouthPose: (SHOW_TEETH)
--	sprite: s32'mtn404_11', 5
-+	sprite: s32'mtn404_11', 3
+ 	sprite: s32'mtn404_11', 3
  	mouthPose: 2
--	sprite: s32'mtn404_12', 5
-+	sprite: s32'mtn404_12', 3
+ 	sprite: s32'mtn404_12', 3
  	mouthPose: 3
--	sprite: s32'mtn404_13', 5
-+	sprite: s32'mtn404_13', 3
+ 	sprite: s32'mtn404_13', 3
  	facePose: (NORMAL)
--	sprite: s32'mtn404_14', 5
-+	sprite: s32'mtn404_14', 3
+ 	sprite: s32'mtn404_14', 3
  	addPositionX: -40000
--	sprite: s32'mtn404_15', 3
-+	sprite: s32'mtn404_15', 2
+ 	sprite: s32'mtn404_15', 2
  	addPositionX: -40000
  } endState: 
  
@@ -9290,9 +9430,12 @@
  		} endUpon: 
  		tensionUsage: 10000
  	} endUpon: 
- 	sprite: s32'mtn430_00', 3
- 	sprite: s32'mtn430_01', 3
- 	sprite: s32'mtn430_02', 3
+-	sprite: s32'mtn430_00', 3
+-	sprite: s32'mtn430_01', 3
+-	sprite: s32'mtn430_02', 3
++	sprite: s32'mtn430_00', 1
++	sprite: s32'mtn430_01', 1
++	sprite: s32'mtn430_02', 1
  	sprite: s32'mtn430_03', 1
  	faceAnimation: 512
  	superFreeze: 3, 119, 60, 60
@@ -9375,6 +9518,10 @@
  	deactivateObjectByName: s32'mtn430_FootAuraGroup_Eff'
  	deactivateObjectByName: s32'mtn430_BodyGroundLight_Eff'
  	sprite: s32'mtn430_49', 4
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'SSKamehameha'
++		whiffCancelOptionBufferTime: s32'SSKamehameha', 40
++	} endIf: 
  	sprite: s32'mtn430_50', 4
  	sprite: s32'mtn430_40', 6
  	recoveryState: 
@@ -9816,6 +9963,10 @@
  	deactivateObjectByName: s32'mtn430_Finish_MTN'
  	darkenBackground: 0
  	sprite: s32'mtn430_40', 6
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'SSKamehameha'
++		whiffCancelOptionBufferTime: s32'SSKamehameha', 60
++	} endIf: 
  	sprite: s32'mtn430_41', 6
  	sprite: s32'mtn430_42', 6
  	sprite: s32'mtn430_43', 6
@@ -10002,7 +10153,12 @@
  	sprite: s32'mtf431_53', 1
  	triggerUponInObject: s32'mtn431_Strike00_Eff', (SIGNAL1)
  	sprite: s32'mtf431_54', 1
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'SSKamehameha'
++		whiffCancelOptionBufferTime: s32'SSKamehameha', 40
++	} endIf: 
  	sprite: s32'mtf431_55', 2
++	enableGatlings: 0
  	sprite: s32'mtf431_56', 8
  	sprite: s32'mtf431_57', 3
  	sprite: s32'mtf431_58', 3
@@ -10251,7 +10407,13 @@
  	createObject: s32'mtn431_Finish_Eff', (ZERO)
  	sprite: s32'mtf431_48', 4
  	mouthPose: (OPEN)
++	if: var(CmnCharaReg7) {
++		enableWhiffCancel: 1
++		addWhiffCancelOption: s32'SSKamehameha'
++		whiffCancelOptionBufferTime: s32'SSKamehameha', 80
++	} endIf: 
  	sprite: s32'mtf431_49', 4
++	enableWhiffCancel: 0
  	mouthPose: (CLOSED)
  	sprite: s32'mtf431_50', 4
  	mouthPose: (SHOW_TEETH)
@@ -10427,7 +10589,12 @@
  	cameraShake: s32'ShakeTate', 2000, 0, 33, 10
  	sprite: s32'mtf433_37', 3
  	sprite: s32'mtf433_38', 3
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'SSKamehameha_Chain'
++		whiffCancelOptionBufferTime: s32'SSKamehameha_Chain', 80
++	} endIf: 
  	sprite: s32'mtf433_39', 3
++	enableGatlings: 0
  	sprite: s32'mtn022_02', 2
  	callSubroutine: s32'FullPower_OFF'
  	recoveryState: 
@@ -10473,17 +10640,46 @@
  		if: var(Result) {
  			copyVar: var(act0), var(obj3)
  		} endIf: 
++		checkLastStateName: s32'Roshi_Exe'
++		if: var(Result) {
++			copyVar: var(act0), var(obj3)
++		} endIf: 
++		checkLastStateName: s32'Roshi_Exe_Add'
++		if: var(Result) {
++			copyVar: var(act0), var(obj3)
++		} endIf: 
  		if: var(act0) {
  			callSubroutine: s32'FullPower_ON'
  		} endIf: 
  		tensionUsage: 30000
  	} endUpon: 
++	if: var(IsLand) {
++		gotoLabel: s32'start'
++	} endIf: 
++	sprite: s32'mtn038_00', 300
++	enableSuperArmor: 1
++	resetSpeed: 1
++	displayModel: 0
++	setNoCollision: 0
++	createParticle: s32'cmn_Warp', (CENTER)
++	cmnSfx: s32'ARC_BTL_CMN_TLP_Short'
++	setYSpeed: -80000
++	ySpeedPerFrame: 110
++	upon: (TOUCH_GROUND) {
++		clearRegisteredUponCode: (TOUCH_GROUND)
++		jumpToLabel: s32'start'
++	} endUpon: 
++	spriteEnd: 
++	label: s32'start'
  	sprite: s32'mtn432_00', 4
  	if: var(act0) {
  		spriteOverrideFrame: s32'mtf432_02'
  	} endIf: 
  	faceAnimation: 30
  	enableSuperArmor: 1
++	clearRegisteredUponCode: (IDLING)
++	displayModel: 1
++	setNoCollision: 1
  	sprite: s32'mtn432_01', 4
  	if: var(act0) {
  		spriteOverrideFrame: s32'mtf432_03'

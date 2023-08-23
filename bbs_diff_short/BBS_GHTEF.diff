@@ -1,9 +1,6 @@
-531a532
-> 			guardPushback: 100
-603c604,607
-< 			enemyHitstopAddition: 0, 5, 5
+1071c1071
+< 			airHitstun: 30
 ---
-> 			enemyHitstopAddition: 0, 10, 10
-> 			attackXKnockback: 2000
-> 			attackYKnockback: 20000
-> 			guardPushback: 50
+> 			airHitstun: 50
+1073a1074
+> 			attackGravity: 3000

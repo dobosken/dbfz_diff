@@ -1,4 +1,110 @@
-4675c4675
-< 		minimalDamagePercent: 31
+241a242,253
+> 	addMove: s32'NmlAtkAir2D' {
+> 		moveType: (NORMAL)
+> 		characterState: (AIRBORNE)
+> 		moveInput: (INPUT_ANY_DOWN)
+> 		moveInput: (INPUT_PRESS_KI)
+> 		maxChainIntoSelf: 1
+> 		skillForceDisableFlag: 1073741824
+> 		skillEstAtkBox: -380, -300, 380, 100
+> 		skillEstLevelLimit: 30
+> 		skillEstTagXFarPanashi: 
+> 		skillEstTagShot: 
+> 	} endMove: 
+576a589
+> 	registerMove: s32'NmlAtkAir2D'
+2723a2737
+> 		addGatlingOption: s32'NmlAtkAir2D'
+2772a2787
+> 		addGatlingOption: s32'NmlAtkAir2D'
+2930a2946
+> 		addGatlingOption: s32'NmlAtkAir2D'
+2965a2982
+> 		addGatlingOption: s32'NmlAtkAir2D'
+3015a3033
+> 		addGatlingOption: s32'NmlAtkAir2D'
+3046a3065,3103
+> beginState: s32'NmlAtkAir2D' {
+> 	upon: (IMMEDIATE) {
+> 		callSubroutine: s32'cmnNmlAtkAir5D_Init'
+> 		addGatlingOption: s32'NmlAtkAir5B'
+> 		addGatlingOption: s32'NmlAtkAir5D'
+> 	} endUpon: 
+> 	sprite: s32'buk038_00', 1
+> 	facePose: (STRESSED)
+> 	mouthPose: (OPEN)
+> 	sprite: s32'buk038_01', 1
+> 	sprite: s32'buk038_02', 1
+> 	sprite: s32'buk038_03', 1
+> 	resetSpeed: 1
+> 	randomVoiceLine2: s16'vxxx106', 100, s16'vxxx107', 100, s16'', 0, s16'', 0
+> 	sprite: s32'buk038_04', 2
+> 	sprite: s32'buk233_04', 2
+> 	addXPosition: 30000
+> 	setXSpeed: 15000
+> 	setYSpeed: 15000
+> 	objectGravity: 
+> 	landingRecovery: 7, 1
+> 	createObject: s32'kidan_start', (EX_POINT_0)
+> 	sprite: s32'buk233_05', 3
+> 	sprite: s32'buk233_06', 1
+> 	sprite: s32'buk233_07', 1
+> 	sprite: s32'buk233_08', 3
+> 	createObject: s32'buk233_eff', (ZERO)
+> 	createObject: s32'crouchkidan', (EX_POINT_0)
+> 	ifVarOfObjectTrue: (ENEMY_MAIN_PLAYER), var(IsLand) {
+> 		sendSignal: (PREVIOUS), (SIGNAL0)
+> 	} endIf: 
+> 	commonSetSE: s32'KidanFire', 0, 100
+> 	sprite: s32'buk233_09', 4
+> 	sprite: s32'buk233_10', 3
+> 	sprite: s32'buk233_11', 3
+> 	sprite: s32'buk233_12', 3
+> 	sprite: s32'buk233_13', 3
+> } endState: 
+> 
+4343c4400
+< 	airHitstun: 30
 ---
-> 		minimalDamagePercent: 35
+> 	airHitstun: 40
+4381a4439
+> 	callSubroutine: s32'cmn_NandemoEnableStand'
+4567a4626,4628
+> 		guardPushback: 150
+> 		enemyHitstopAddition: 5, 0, 0
+> 		blockstun: 20
+4574a4636,4639
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'EarthBreak'
+> 			addGatlingOption: s32'AirEarthBreak'
+> 		} endIf: 
+4580c4645,4647
+< 	sprite: s32'buk430_01', 2
+---
+> 	sprite: s32'buk430_01', 1
+> 	sprite: s32'buk430_01', 1
+> 	enableSuperArmor: 1
+4824a4892,4896
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'EarthBreak'
+> 		addGatlingOption: s32'AirEarthBreak'
+> 		senkoInputUltimate: 30
+> 	} endIf: 
+4884a4957,4963
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'Pearlflash'
+> 			if: var(Result) {
+> 				faceOpponent: 
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 		} endIf: 
+4986a5066,5072
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'Pearlflash'
+> 			if: var(Result) {
+> 				faceOpponent: 
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 		} endIf: 
+5279a5366
+> 	deactivateObjectByName: s32'Extinction_fall'

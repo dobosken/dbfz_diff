@@ -1,6 +1,6 @@
---- 1.31/BBS_CLF.bbs	2023-05-23 14:16:10.102692849 +0200
-+++ 1.32/BBS_CLF.bbs	2023-05-23 14:14:45.908249269 +0200
-@@ -1,8454 +1,8457 @@
+--- 1.32/BBS_CLF.bbs	2023-05-24 20:54:43.624946495 +0200
++++ 1.33/BBS_CLF.bbs	2023-08-23 04:22:59.326857761 +0200
+@@ -1,8457 +1,8514 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'clf'
  } endSubroutine: 
@@ -2404,6 +2404,8 @@
  		atkFrontDirection: 0
  		canGrab: 1
  		jumpToStateOnHit: s32'NmlAtk5A3rd_Exe'
++		enemyHitstopAddition: 6, 0, 0
++		blockstun: 18
  		if: var(IsSparking) {
  			enableJumpCancel: 1
  		} endIf: 
@@ -2448,10 +2450,13 @@
  	enableHitbox: 
  	callSubroutine: s32'cmnRendaChain_Clear_Idling'
  	sprite: s32'clf202_08', 2
- 	sprite: s32'clf202_09', 2
+-	sprite: s32'clf202_09', 2
++	sprite: s32'clf202_09', 4
  	recoveryState: 
- 	sprite: s32'clf202_10', 2
- 	sprite: s32'clf202_11', 2
+-	sprite: s32'clf202_10', 2
+-	sprite: s32'clf202_11', 2
++	sprite: s32'clf202_10', 4
++	sprite: s32'clf202_11', 4
  	sprite: s32'clf202_12', 2
  	sprite: s32'clf202_13', 2
  	sprite: s32'clf202_14', 2
@@ -2815,8 +2820,8 @@
  	upon: (IMMEDIATE) {
  		callSubroutine: s32'cmnNmlAtk5C_AtkInit'
  		callSubroutine: s32'cmnNmlAtk5C_Init'
-+		blockstun: 18
-+		enemyHitstopAddition: 3, 0, 0
+ 		blockstun: 18
+ 		enemyHitstopAddition: 3, 0, 0
  		canGrab: 1
  		jumpToStateOnHit: s32'NmlAtk5CExe'
  		upon: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE_PRE_CTRL) {
@@ -3063,8 +3068,7 @@
  					groundBounceCount: 1
  					groundBounceYVelocityPercent: 80
  					wallBounceCount: 0
--					airHitstun: 40
-+					airHitstun: 50
+ 					airHitstun: 50
  					upon: (ON_PLAYER_AFTER_EXECUTE_DAMAGE) {
  						clearRegisteredUponCode: (ON_PLAYER_AFTER_EXECUTE_DAMAGE)
  						ifBeginAliveEnemyPlayer: 0 {
@@ -3456,6 +3460,8 @@
  								slidingKnockdownDuration: 35
  								groundKnockbackEffect: (AIR_FACE_UP)
  								atkFrontDirection: 0
++								groundBounceCount: 1
++								groundBounceYVelocity: 10000
  								upon: (ON_PLAYER_AFTER_EXECUTE_DAMAGE) {
  									clearRegisteredUponCode: (ON_PLAYER_AFTER_EXECUTE_DAMAGE)
  									ifBeginAliveEnemyPlayer: 0 {
@@ -3527,6 +3533,7 @@
  		attackGuardtype: (MID)
  		attackFinishBlowback: 1
  		addGatlingOption: s32'NmlAtkAir5D'
++		enableJumpCancel: 1
  		if: var(IsSparking) {
  			enableJumpCancel: 1
  			addGatlingOption: s32'CmnFAirDash'
@@ -3806,13 +3813,10 @@
  	} endUpon: 
  	sprite: s32'clf010_00', 2
  	facePose: (ANGRY)
--	sprite: s32'clf010_01', 2
-+	sprite: s32'clf010_01', 1
+ 	sprite: s32'clf010_01', 1
  	sprite: s32'clf021_00', 2
--	setXSpeed: -30000
--	setYSpeed: 70000
-+	setXSpeed: -65000
-+	setYSpeed: 80000
+ 	setXSpeed: -65000
+ 	setYSpeed: 80000
  	xSpeedPerFrame: 95
  	ySpeedPerFrame: 95
  	objectGravity: 
@@ -3826,14 +3830,12 @@
  	sprite: s32'clf400_03', 2
  	sprite: s32'clf400_04', 3
  	sprite: s32'clf400_05', 3
--	sprite: s32'clf400_06', 3
-+	sprite: s32'clf400_06', 2
-+	enableSuperArmor: 0
+ 	sprite: s32'clf400_06', 2
+ 	enableSuperArmor: 0
  	privateBankSE: 0, s32'ARC_BTL_CLF_DeathChsr_Atk_B', 100
  	sprite: s32'clf400_07', 2
  	sprite: s32'clf400_08', 1
--	setXSpeed: 78000
-+	setXSpeed: 118000
+ 	setXSpeed: 118000
  	setYSpeed: -55000
  	xSpeedPerFrame: 105
  	ySpeedPerFrame: 105
@@ -4293,7 +4295,8 @@
  		attackXKnockback: 15000
  		attackYKnockback: -30000
  		airHitstun: 60
- 		slidingKnockdownDuration: 35
+-		slidingKnockdownDuration: 35
++		slidingKnockdownDuration: 45
  		atkShakeCamera: s32'ShakeTate', 100, 0, 25, 5
  		atkHitCommonSEReset: s32'ARC_BTL_CMN_Hit_Midle-A'
  		guardSoundEffect: s32''
@@ -4306,7 +4309,8 @@
  		tensionGainOnConnect: 0
  		attackXKnockback: 15000
  		attackYKnockback: -20000
- 		slidingKnockdownDuration: 20
+-		slidingKnockdownDuration: 20
++		slidingKnockdownDuration: 30
  		disableHitstop: 1
  		dontAddComboCount: 1
  		disableHitsparks: 1
@@ -4458,7 +4462,8 @@
  							superFreeze: 0, 100, 25, 25
  						} endIf: 
  					} endUpon: 
- 					slidingKnockdownDuration: 30
+-					slidingKnockdownDuration: 30
++					slidingKnockdownDuration: 40
  				} endIf: 
  			} endIf: 
  		} endIf: 
@@ -5685,14 +5690,18 @@
  	sprite: s32'clf404_02', 2
  	forceRandomVoice: s16'vxxx207', 100, s16'vxxx208', 100, s16'', 0, s16'', 0
  	characterSfx: s32'ARC_BTL_CLF_DeathShaker_Act'
++	spriteOverrideTime: 1, var(EnemyInHitstun)
  	sprite: s32'clf404_03', 2
  	resetSpeed: 1
++	spriteOverrideTime: 1, var(EnemyInHitstun)
  	sprite: s32'clf404_04', 2
--	sprite: s32'clf404_05', 4
-+	sprite: s32'clf404_05', 2
++	spriteOverrideTime: 1, var(EnemyInHitstun)
+ 	sprite: s32'clf404_05', 2
++	spriteOverrideTime: 1, var(EnemyInHitstun)
  	sprite: s32'clf404_06', 2
--	sprite: s32'clf404_07', 4
-+	sprite: s32'clf404_07', 2
++	spriteOverrideTime: 1, var(EnemyInHitstun)
+ 	sprite: s32'clf404_07', 2
++	spriteOverrideTime: 1, var(EnemyInHitstun)
  	sprite: s32'clf404_08', 6
  	facePose: (ANGRY)
  	createObject: s32'Deathshaker_Atk', (PLAYER_LAND)
@@ -5766,16 +5775,13 @@
  			stopBankSE: 19, 30
  		} endUpon: 
  	} endUpon: 
--	sprite: s32'clf430_00', 3
-+	sprite: s32'clf430_00', 1
+ 	sprite: s32'clf430_00', 1
  	facePose: (STRESSED)
  	resetSpeed: 1
  	sprite: s32'clf430_01', 1
--	sprite: s32'clf430_01', 2
-+	sprite: s32'clf430_01', 1
+ 	sprite: s32'clf430_01', 1
  	characterSfx: s32'ARC_BTL_CLF_DeathCrshr_Basa'
--	sprite: s32'clf430_02', 3
-+	sprite: s32'clf430_02', 2
+ 	sprite: s32'clf430_02', 2
  	sprite: s32'clf430_03', 3
  	createObject: s32'clf430_FirstCutLineEff', (CENTER)
  	superFreeze: 3, 119, 51, 51
@@ -5853,6 +5859,14 @@
  	sprite: s32'clf430_61', 6
  	sprite: s32'clf430_62', 4
  	deactivateObjectByName: s32'clf430_SpeedLine'
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'ASnova'
++		addGatlingOption: s32'ASnova_atemi'
++		addGatlingOption: s32'LandASnova'
++		whiffCancelOptionBufferTime: s32'ASnova', 40
++		whiffCancelOptionBufferTime: s32'ASnova_atemi', 40
++		whiffCancelOptionBufferTime: s32'LandASnova', 40
++	} endIf: 
  	sprite: s32'clf430_63', 7
  	sprite: s32'clf430_64', 5
  	recoveryState: 
@@ -6102,7 +6116,8 @@
  	sprite: s32'clf430_45', 2
  	enemyGrabbedFrame: 27
  	setGripPosition: (EX_POINT_0), (ABDOMINAL), 2
- 	sprite: s32'clf430_46', 32
+-	sprite: s32'clf430_46', 32
++	sprite: s32'clf430_46', 2
  	triggerUponInObject: s32'clf430_ganban', (SIGNAL0)
  	enemyGrabbedFrame: 27
  	setGripPosition: (EX_POINT_0), (ABDOMINAL), 2
@@ -6127,6 +6142,15 @@
  	cameraTargetSelf: 0
  	ctrlDirectionVsTarget: 
  	enableMemberChangeUltimate: 1
++	sprite: s32'clf430_46', 30
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'ASnova'
++		addGatlingOption: s32'ASnova_atemi'
++		addGatlingOption: s32'LandASnova'
++		whiffCancelOptionBufferTime: s32'ASnova', 40
++		whiffCancelOptionBufferTime: s32'ASnova_atemi', 40
++		whiffCancelOptionBufferTime: s32'LandASnova', 40
++	} endIf: 
  	sprite: s32'clf430_47', 3
  	sprite: s32'clf430_48', 3
  	sprite: s32'clf430_49', 3
@@ -6258,6 +6282,14 @@
  	setYSpeed: 20000
  	objectGravity: 
  	sprite: s32'clf431_24', 3
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'ASnova'
++		addGatlingOption: s32'ASnova_atemi'
++		addGatlingOption: s32'LandASnova'
++		whiffCancelOptionBufferTime: s32'ASnova', 40
++		whiffCancelOptionBufferTime: s32'ASnova_atemi', 40
++		whiffCancelOptionBufferTime: s32'LandASnova', 40
++	} endIf: 
  	sprite: s32'clf431_25', 3
  	sprite: s32'clf022_02', 3
  	sprite: s32'clf022_03', 2
@@ -6386,11 +6418,21 @@
  	dontAddComboCount: 1
  	atkHitPositionType: 4, 200000, 0
  	atkShakeCamera: s32'ShakeTate', 0, 0, 0, 0
- 	sprite: s32'clf431_23', 7
+-	sprite: s32'clf431_23', 7
++	sprite: s32'clf431_23', 1
  	setXSpeed: -15000
  	setYSpeed: 35000
  	objectGravity: 
  	landingRecovery: 3, 1
++	sprite: s32'clf431_23', 6
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'ASnova'
++		addGatlingOption: s32'ASnova_atemi'
++		addGatlingOption: s32'LandASnova'
++		whiffCancelOptionBufferTime: s32'ASnova', 40
++		whiffCancelOptionBufferTime: s32'ASnova_atemi', 40
++		whiffCancelOptionBufferTime: s32'LandASnova', 40
++	} endIf: 
  	sprite: s32'clf431_24', 7
  	sprite: s32'clf431_25', 5
  	sprite: s32'clf022_02', 5
@@ -6417,6 +6459,18 @@
  		attackWhiffCrouch: 1
  		atkShakeCamera: s32'ShakeTate', 2000, 0, 5, 0
  		tensionUsage: 30000
++		if: var(EnemyInHitstun) {
++			checkLastStateName: s32'Deathclasher_Exe'
++			if: var(Result) {
++				faceOpponent: 
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'Deathfall_Exe'
++			if: var(Result) {
++				faceOpponent: 
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++		} endIf: 
  	} endUpon: 
  	sprite: s32'clf432_00', 3
  	facePose: (ANGRY)

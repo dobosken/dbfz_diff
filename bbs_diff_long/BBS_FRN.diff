@@ -1,6 +1,6 @@
---- 1.31/BBS_FRN.bbs	2023-05-23 14:16:11.094709858 +0200
-+++ 1.32/BBS_FRN.bbs	2023-05-23 14:14:46.882265970 +0200
-@@ -1,7622 +1,7622 @@
+--- 1.32/BBS_FRN.bbs	2023-05-24 20:54:44.580962263 +0200
++++ 1.33/BBS_FRN.bbs	2023-08-23 04:23:00.273873898 +0200
+@@ -1,7622 +1,7643 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'frn'
  } endSubroutine: 
@@ -1903,8 +1903,7 @@
  	} endUpon: 
  	sprite: s32'frn022_06', 1
  	sprite: s32'frn022_06', 1
--	copyVar: var(act6), int(800000)
-+	copyVar: var(act6), int(1100000)
+ 	copyVar: var(act6), int(1100000)
  	callSubroutine: s32'cmnAssist_Pos'
  	ifNot: var(EnemyInHitstun) {
  		ifOperation: (IS_LESS_OR_EQUAL), var(EnemyFrontDistance), int(700000) {
@@ -2669,15 +2668,12 @@
  		copyVar: var(act5), int(1)
  		callSubroutine: s32'GoldenFrieza_Chain'
  	} endUpon: 
--	sprite: s32'frn202_00', 4
-+	sprite: s32'frn202_00', 3
+ 	sprite: s32'frn202_00', 3
  	facePose: 4
--	sprite: s32'frn202_01', 4
-+	sprite: s32'frn202_01', 2
+ 	sprite: s32'frn202_01', 2
  	voiceLine: s16'vxxx105'
  	cmnSfx: s32'ARC_BTL_CMN_Furi_Hiji'
--	sprite: s32'frn202_02', 4
-+	sprite: s32'frn202_02', 2
+ 	sprite: s32'frn202_02', 2
  	sprite: s32'frn202_03', 3
  	copyVar: var(act1), int(1)
  	createObject: s32'frn202_mazzle', (EX_POINT_0)
@@ -2823,8 +2819,7 @@
  	commonBankSE: 0, s32'ARC_BTL_CMN_JetDashStart', 100
  	sprite: s32'frn203_03', 3
  	setXSpeed: 45000
--	xSpeedPerFrame: 105
-+	xSpeedPerFrame: 110
+ 	xSpeedPerFrame: 110
  	effectForDashStart: 126, 1, 0
  	sprite: s32'frn203_04', 3
  	copyVar: var(act0), int(1)
@@ -4123,9 +4118,12 @@
  	sprite: s32'frn400_11', 4
  	sprite: s32'frn400_09', 4
  	spriteOverrideTime: 2, var(act1)
- 	sprite: s32'frn400_12', 3
- 	sprite: s32'frn400_13', 3
- 	sprite: s32'frn400_14', 3
+-	sprite: s32'frn400_12', 3
+-	sprite: s32'frn400_13', 3
+-	sprite: s32'frn400_14', 3
++	sprite: s32'frn400_12', 2
++	sprite: s32'frn400_13', 2
++	sprite: s32'frn400_14', 2
  } endState: 
  
  beginState: s32'DeathWave_B' {
@@ -4136,12 +4134,16 @@
  	facePose: (STRESSED)
  	mouthPose: (OPEN)
  	sprite: s32'frn400_01', 2
- 	sprite: s32'frn400_02', 3
+-	sprite: s32'frn400_02', 3
++	sprite: s32'frn400_02', 2
  	characterSfx: s32'ARC_BTL_FRN_DtRtzn_Bishi'
  	forceRandomVoice: s16'vxxx200', 100, s16'vxxx201', 100, s16'', 0, s16'', 0
- 	sprite: s32'frn400_03', 3
- 	sprite: s32'frn400_04', 4
- 	sprite: s32'frn400_05', 3
+-	sprite: s32'frn400_03', 3
+-	sprite: s32'frn400_04', 4
+-	sprite: s32'frn400_05', 3
++	sprite: s32'frn400_03', 2
++	sprite: s32'frn400_04', 3
++	sprite: s32'frn400_05', 2
  	sprite: s32'frn400_06', 2
  	createObject: s32'DeathWave_shot', (EX_POINT_1)
  	createObject: s32'DeathWave_action', (ZERO)
@@ -4170,8 +4172,10 @@
  	characterSfx: s32'ARC_BTL_FRN_DtRtzn_Bishi'
  	forceRandomVoice: s16'vxxx200', 100, s16'vxxx201', 100, s16'', 0, s16'', 0
  	sprite: s32'frn400_03', 2
- 	sprite: s32'frn400_04', 3
- 	sprite: s32'frn400_05', 2
+-	sprite: s32'frn400_04', 3
+-	sprite: s32'frn400_05', 2
++	sprite: s32'frn400_04', 2
++	sprite: s32'frn400_05', 1
  	sprite: s32'frn400_06', 2
  	createObject: s32'DeathWave_C_shot1', (EX_POINT_0)
  	createObject: s32'DeathWave_action', (ZERO)
@@ -4183,9 +4187,12 @@
  	sprite: s32'frn400_11', 4
  	sprite: s32'frn400_09', 4
  	spriteOverrideTime: 2, var(act1)
- 	sprite: s32'frn400_12', 3
- 	sprite: s32'frn400_13', 3
- 	sprite: s32'frn400_14', 3
+-	sprite: s32'frn400_12', 3
+-	sprite: s32'frn400_13', 3
+-	sprite: s32'frn400_14', 3
++	sprite: s32'frn400_12', 2
++	sprite: s32'frn400_13', 2
++	sprite: s32'frn400_14', 2
  } endState: 
  
  beginState: s32'DieThisTime' {
@@ -4591,10 +4598,11 @@
  	facePose: (STRESSED)
  	mouthPose: (OPEN)
  	sprite: s32'frn403_01', 1
- 	sprite: s32'frn403_01', 2
+-	sprite: s32'frn403_01', 2
  	characterSfx: s32'ARC_BTL_FRN_DthScr_Basa'
  	randomVoice: s16'vxxx206', 100, s16'vxxx207', 100, s16'', 0, s16'', 0
- 	sprite: s32'frn403_02', 2
+-	sprite: s32'frn403_02', 2
++	sprite: s32'frn403_02', 1
  	sprite: s32'frn403_03', 1
  	sprite: s32'frn403_04', 1
  	characterSfx: s32'ARC_BTL_FRN_DthScr_Born'
@@ -4700,7 +4708,8 @@
  	setXSpeed: -8000
  	xSpeedPerFrame: 80
  	setYSpeed: 15000
- 	objectGravity: 
+-	objectGravity: 
++	setGravity: 3000
  	jumpToStateInObject: (PARENT), s32'landing'
  	sprite: s32'frn267_07', 3
  	recoveryState: 
@@ -4730,6 +4739,11 @@
  beginState: s32'DeathBall' {
  	upon: (IMMEDIATE) {
  		playerActionInitializeByCategory: 20, 1
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'NovaStrike'
++			addGatlingOption: s32'AirNovaStrike'
++			addGatlingOption: s32'GoldenFrieza'
++		} endIf: 
  		tensionUsage: 10000
  	} endUpon: 
  	sprite: s32'frn010_00', 2
@@ -4861,6 +4875,11 @@
  
  beginState: s32'DeathBall_CD' {
  	upon: (IMMEDIATE) {
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'NovaStrike'
++			addGatlingOption: s32'AirNovaStrike'
++			addGatlingOption: s32'GoldenFrieza'
++		} endIf: 
  		tensionUsage: 10000
  	} endUpon: 
  	sprite: s32'frn010_00', 2
@@ -4993,6 +5012,11 @@
  beginState: s32'AirDeathBall' {
  	upon: (IMMEDIATE) {
  		skillFinishToDownLoop: 1
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'NovaStrike'
++			addGatlingOption: s32'AirNovaStrike'
++			addGatlingOption: s32'GoldenFrieza'
++		} endIf: 
  		tensionUsage: 10000
  	} endUpon: 
  	sprite: s32'frn430_00', 3
@@ -5117,6 +5141,11 @@
  beginState: s32'AirDeathBall_CD' {
  	upon: (IMMEDIATE) {
  		skillFinishToDownLoop: 1
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'NovaStrike'
++			addGatlingOption: s32'AirNovaStrike'
++			addGatlingOption: s32'GoldenFrieza'
++		} endIf: 
  		tensionUsage: 10000
  	} endUpon: 
  	sprite: s32'frn430_00', 3
@@ -5422,7 +5451,10 @@
  		atkHitPositionType: 3, 0, 10
  		atkFrontDirection: 0
  		atkHead: 0
- 		atkRange: 50000000, -100000, 400000, -50000000
+-		atkRange: 50000000, -100000, 400000, -50000000
++		ifNot: var(EnemyInHitstun) {
++			atkRange: 50000000, -100000, 400000, -50000000
++		} endIf: 
  		atkSousaiOnlyCommand: 1
  		atkDamageToRecovery: 1
  		disableOpponentRecovery: 0
@@ -5982,7 +6014,8 @@
  			forceRandomVoice: s16'vsln001', 100, s16'vsln002', 100, s16'vsln003', 100, s16'', 0
  		} endUpon: 
  	} endUpon: 
- 	sprite: s32'frn070_00', 4
+-	sprite: s32'frn070_00', 4
++	sprite: s32'frn070_00', 2
  	faceAnimation: 80
  	mouthPose: (SHOW_TEETH)
  	resetSpeed: 1
@@ -5992,8 +6025,10 @@
  	createParticle: s32'frn_433_GFend', (ZERO)
  	forceRandomVoice: s16'vxxx016', 100, s16'vxxx017', 100, s16'vxxx019', 100, s16'', 0
  	characterSfx: s32'ARC_BTL_FRN_GoldenF_End'
- 	sprite: s32'frn070_01', 5
- 	sprite: s32'frn070_02', 46
+-	sprite: s32'frn070_01', 5
+-	sprite: s32'frn070_02', 46
++	sprite: s32'frn070_01', 2
++	sprite: s32'frn070_02', 16
  	setCrouch: 1
  	enableSuperArmor: 0
  	upon: (IDLING) {

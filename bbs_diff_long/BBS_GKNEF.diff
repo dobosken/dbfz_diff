@@ -1,6 +1,6 @@
---- 1.31/BBS_GKNEF.bbs	2023-05-23 14:16:12.834739692 +0200
-+++ 1.32/BBS_GKNEF.bbs	2023-05-23 14:14:48.488293506 +0200
-@@ -1,4870 +1,4876 @@
+--- 1.32/BBS_GKNEF.bbs	2023-05-24 20:54:46.364991688 +0200
++++ 1.33/BBS_GKNEF.bbs	2023-08-23 04:23:01.910901794 +0200
+@@ -1,4876 +1,4878 @@
  beginState: s32'dmy' {
  	sprite: s32'null', 1
  } endState: 
@@ -817,11 +817,9 @@
  		airKnockbackEffect: (AIR_STRONG)
  		attackXKnockback: 90000
  		attackYKnockback: 15000
--		airHitstun: 30
-+		airHitstun: 45
+ 		airHitstun: 45
  		blockstun: 22
--		wallBounceXVelocityPercent: 0
-+		wallBounceXVelocityPercent: 10
+ 		wallBounceXVelocityPercent: 10
  		atkTargetPlayerHitOnly: s32'GKN_Kamehameha_Atk', 1
  		atkRange: 50000000, -410000, 0, 0
  		checkCurrentStateName: (PLAYER), s32'Kamehameha_GKN'
@@ -937,12 +935,12 @@
  			ifOperation: (IS_LESS_OR_EQUAL), var(PosY), int(400000) {
  				effectForLandBreak: 2, 1000, 0, 0
  			} endIf: 
-+			checkCurrentStateName: (PLAYER), s32'AssistAttack3'
-+			ifNot: var(Result) {
-+				ifOperation: (IS_GREATER_OR_EQUAL), var(LoopCount), int(4) {
-+					enemyHitstopAddition: 0, 14, 14
-+				} endIf: 
-+			} endIf: 
+ 			checkCurrentStateName: (PLAYER), s32'AssistAttack3'
+ 			ifNot: var(Result) {
+ 				ifOperation: (IS_GREATER_OR_EQUAL), var(LoopCount), int(4) {
+ 					enemyHitstopAddition: 0, 14, 14
+ 				} endIf: 
+ 			} endIf: 
  		} endUpon: 
  		upon: (BEFORE_EXIT) {
  			if: var(act1) {
@@ -1702,6 +1700,8 @@
  		atkFrontDirection: 0
  		atkIgnoreCaution: 1
  		autoHitSignalSending: 1
++		hitstop: 9
++		attackOTG: 1
  		atkHitCommonSEReset: s32'dammyname'
  		guardSoundEffect: s32''
  		guardSoundEffect: s32'ARC_BTL_CMN_Hit_kidan'
@@ -1793,8 +1793,8 @@
  				} endIf: 
  			} endIf: 
  		} endUpon: 
- 		upon: (ON_ATTACK_HIT_PLAYER_ARMOR) {
- 			clearRegisteredUponCode: (ON_ATTACK_HIT_PLAYER_ARMOR)
+ 		upon: (ATTACK_HIT_PLAYER_ARMOR) {
+ 			clearRegisteredUponCode: (ATTACK_HIT_PLAYER_ARMOR)
  			requestDestroy: (SELF)
  		} endUpon: 
  		upon: (ON_ATTACK_COLLISION_SOUSAI) {
@@ -2471,7 +2471,7 @@
  beginState: s32'426Eff' {
  	upon: (IMMEDIATE) {
  		linkParticle: s32'gkn_426_Mazzle'
- 		linkObjectPosition: (PARENT)
+-		linkObjectPosition: (PARENT)
  	} endUpon: 
  	sprite: s32'null', 30
  	spriteEnd: 
@@ -2514,6 +2514,7 @@
  		atkWallBoundWaitTime: 9
  		attackFinishBlowback: 1
  		atkYogore: 0
++		autoHitSignalSending: 1
  		atkHitCommonSEReset: s32'ARC_BTL_CMN_Hit_Large-A'
  		guardSoundEffect: s32''
  		guardSoundEffect: s32'ARC_BTL_CMN_Guard_Beam'
@@ -2572,6 +2573,7 @@
  		guardPushback: 250
  		airHitstun: 50
  		atkYogore: 0
++		autoHitSignalSending: 1
  		atkHitCommonSEReset: s32'ARC_BTL_CMN_Hit_Large-A'
  		guardSoundEffect: s32''
  		guardSoundEffect: s32'ARC_BTL_CMN_Guard_Beam'
@@ -2617,7 +2619,7 @@
  beginState: s32'427Eff' {
  	upon: (IMMEDIATE) {
  		linkParticle: s32'gkn_427_Mazzle'
- 		linkObjectPosition: (PARENT)
+-		linkObjectPosition: (PARENT)
  	} endUpon: 
  	sprite: s32'null', 30
  	spriteEnd: 
@@ -3750,10 +3752,14 @@
  		} endUpon: 
  	} endUpon: 
  	sprite: s32's_genkidama', 2
- 	setXSpeed: 6000
- 	setYSpeed: -8400
- 	xSpeedPerFrame: 101
- 	ySpeedPerFrame: 101
+-	setXSpeed: 6000
+-	setYSpeed: -8400
+-	xSpeedPerFrame: 101
+-	ySpeedPerFrame: 101
++	setXSpeed: 7500
++	setYSpeed: -10500
++	xSpeedPerFrame: 104
++	ySpeedPerFrame: 105
  	enableHitbox: 
  	label: s32'loop'
  	sprite: s32's_genkidama', 2

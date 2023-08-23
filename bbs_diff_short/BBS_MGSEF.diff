@@ -1,8 +1,14 @@
-2311c2311
-< 		airHitstun: 27
+968c968
+< 	sprite: s32'null', 3
 ---
-> 		airHitstun: 33
-2341c2341
-< 			airHitstun: 27
+> 	sprite: s32'null', 2
+972c972
+< 	sprite: s32'null', 3
 ---
-> 			airHitstun: 37
+> 	sprite: s32'null', 2
+974c974
+< 	sprite: s32'null', 5
+---
+> 	sprite: s32'null', 2
+1072a1073
+> 		airHitstun: 40

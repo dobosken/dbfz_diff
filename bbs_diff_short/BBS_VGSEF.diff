@@ -1,4 +1,7 @@
-197a198
-> 		damageScalingOverride: 1000
-557a559
-> 		damageScalingOverride: 1000
+191,192c191
+< 		attackYKnockback: 0
+< 		attackGravity: 4000
+---
+> 		attackYKnockback: 24000
+548a548
+> 		airHitstun: 24

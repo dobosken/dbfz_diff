@@ -1,0 +1,99 @@
+2284c2284,2286
+< 			copyVar: var(plr0), int(1)
+---
+> 			ifOperation: (IS_LESS), var(plr0), int(3) {
+> 				modifyVar: (ADD), var(plr0), int(1)
+> 			} endIf: 
+3007c3009
+< 	sprite: s32'avp200_06', 3
+---
+> 	sprite: s32'avp200_06', 1
+3081c3083
+< 	setXSpeed: 30000
+---
+> 	setXSpeed: 50000
+3104c3106
+< 	xSpeedPerFrame: 90
+---
+> 	xSpeedPerFrame: 98
+3111a3114
+> 	setXSpeed: 5000
+3146c3149
+< 	sprite: s32'avp230_07', 3
+---
+> 	sprite: s32'avp230_07', 2
+3148c3151
+< 	sprite: s32'avp230_08', 3
+---
+> 	sprite: s32'avp230_08', 2
+3161c3164
+< 	sprite: s32'avp230_07', 3
+---
+> 	sprite: s32'avp230_07', 2
+3163c3166
+< 	sprite: s32'avp230_08', 3
+---
+> 	sprite: s32'avp230_08', 2
+3210c3213
+< 	sprite: s32'avp231_00', 3
+---
+> 	sprite: s32'avp231_00', 2
+3213c3216
+< 	sprite: s32'avp231_01', 2
+---
+> 	sprite: s32'avp231_01', 1
+6049a6053
+> 	clearRegisteredUponCode: (IDLING)
+6198c6202,6204
+< 	copyVar: var(plr0), int(0)
+---
+> 	ifOperation: (IS_GREATER_OR_EQUAL), var(plr0), int(1) {
+> 		modifyVar: (SUB), var(plr0), int(1)
+> 	} endIf: 
+6280c6286,6288
+< 	copyVar: var(plr0), int(0)
+---
+> 	ifOperation: (IS_GREATER_OR_EQUAL), var(plr0), int(1) {
+> 		modifyVar: (SUB), var(plr0), int(1)
+> 	} endIf: 
+6873a6882,6887
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Bakuretsuzan'
+> 		addGatlingOption: s32'AirBakuretsuzan'
+> 		whiffCancelOptionBufferTime: s32'Bakuretsuzan', 40
+> 		whiffCancelOptionBufferTime: s32'AirBakuretsuzan', 40
+> 	} endIf: 
+7056a7071,7076
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'Bakuretsuzan'
+> 			addGatlingOption: s32'AirBakuretsuzan'
+> 			whiffCancelOptionBufferTime: s32'Bakuretsuzan', 40
+> 			whiffCancelOptionBufferTime: s32'AirBakuretsuzan', 40
+> 		} endIf: 
+7068a7089
+> 					enableGatlings: 0
+7399a7421,7426
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Bakuretsuzan'
+> 		addGatlingOption: s32'AirBakuretsuzan'
+> 		whiffCancelOptionBufferTime: s32'Bakuretsuzan', 40
+> 		whiffCancelOptionBufferTime: s32'AirBakuretsuzan', 40
+> 	} endIf: 
+7400a7428
+> 	enableGatlings: 0
+7599a7628,7633
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Bakuretsuzan'
+> 		addGatlingOption: s32'AirBakuretsuzan'
+> 		whiffCancelOptionBufferTime: s32'Bakuretsuzan', 40
+> 		whiffCancelOptionBufferTime: s32'AirBakuretsuzan', 40
+> 	} endIf: 
+7600a7635
+> 	enableGatlings: 0
+7799a7835,7840
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Bakuretsuzan'
+> 		addGatlingOption: s32'AirBakuretsuzan'
+> 		whiffCancelOptionBufferTime: s32'Bakuretsuzan', 40
+> 		whiffCancelOptionBufferTime: s32'AirBakuretsuzan', 40
+> 	} endIf: 

@@ -1,6 +1,6 @@
---- 1.31/BBS_GBREF.bbs	2023-05-23 14:16:11.499716803 +0200
-+++ 1.32/BBS_GBREF.bbs	2023-05-23 14:14:47.238272074 +0200
-@@ -1,3673 +1,3673 @@
+--- 1.32/BBS_GBREF.bbs	2023-05-24 20:54:45.010969355 +0200
++++ 1.33/BBS_GBREF.bbs	2023-08-23 04:23:00.612879675 +0200
+@@ -1,3673 +1,3674 @@
  beginState: s32'dmy' {
  	sprite: s32'null', 1
  } endState: 
@@ -819,8 +819,7 @@
  		attackYKnockback: 10000
  		attackYSuction: 1, 15000, 300000, 100, 0
  		wallBounceCount: 0
--		airHitstun: 25
-+		airHitstun: 35
+ 		airHitstun: 35
  		atkRange: 50000000, -335000, 0, 0
  		checkCurrentStateName: (PLAYER), s32'Shinbaku_BKamehameha'
  		if: var(Result) {
@@ -1154,9 +1153,12 @@
  	sprite: s32'zmn404_04', 2
  	sprite: s32'zmn404_05', 2
  	sprite: s32'zmn404_06', 2
- 	sprite: s32'zmn404_07', 2
- 	sprite: s32'zmn404_08', 2
- 	sprite: s32'zmn404_09', 2
+-	sprite: s32'zmn404_07', 2
+-	sprite: s32'zmn404_08', 2
+-	sprite: s32'zmn404_09', 2
++	sprite: s32'zmn404_07', 1
++	sprite: s32'zmn404_08', 1
++	sprite: s32'zmn404_09', 1
  	sprite: s32'zmn404_10', 3
  	enableHitbox: 
  	sprite: s32'zmn404_15', 2
@@ -1759,6 +1761,7 @@
  		setScale: 1300
  		damageSoundEffect: s32'ARC_BTL_CMN_Hit_Beam'
  		guardSoundEffect: s32'ARC_BTL_CMN_Guard_Beam'
++		autoHitSignalSending: 1
  		setWallCollision: 1
  		ignoreWorldStopByFriend: 1
  		setActionTimeMax: 600

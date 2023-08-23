@@ -1,6 +1,6 @@
---- 1.31/BBS_VGB.bbs	2023-05-23 14:16:18.643839294 +0200
-+++ 1.32/BBS_VGB.bbs	2023-05-23 14:14:53.629381655 +0200
-@@ -1,8621 +1,8627 @@
+--- 1.32/BBS_VGB.bbs	2023-05-24 20:54:52.287089366 +0200
++++ 1.33/BBS_VGB.bbs	2023-08-23 04:23:07.136990848 +0200
+@@ -1,8627 +1,8655 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'vgb'
  } endSubroutine: 
@@ -469,7 +469,7 @@
  		characterState: (STANDING)
  		moveInput: (INPUT_236)
  		moveInput: (INPUT_PRESS_KI)
-+		maxChainIntoSelf: 1
+ 		maxChainIntoSelf: 1
  		skillEstAtkBox: -1500, -400, 1500, 400
  		skillEstLevelLimit: 30
  		skillEstTagXFarPanashi: 
@@ -482,7 +482,7 @@
  		characterState: (AIRBORNE)
  		moveInput: (INPUT_236)
  		moveInput: (INPUT_PRESS_KI)
-+		maxChainIntoSelf: 1
+ 		maxChainIntoSelf: 1
  		skillEstAtkBox: -1500, -400, 1500, 400
  		skillEstLevelLimit: 30
  		skillEstTagXFarPanashi: 
@@ -1632,8 +1632,7 @@
  		airKnockbackEffect: (AIR_FACE_UP)
  		groundBounceCount: 1
  		groundBounceGravity: 10000
--		groundBounceYVelocity: 40000
-+		groundBounceYVelocity: 35000
+ 		groundBounceYVelocity: 35000
  		groundBounceYVelocityPercent: 100
  		guardPushback: 150
  		atkShakeCamera: s32'ShakeYoko', 500, 1, 15, 0
@@ -2421,8 +2420,7 @@
  	attackVoice: 0, -1
  	sprite: s32'vgb201_01', 2
  	effectForLanding: 100, 1, 0
--	setXSpeed: 45000
-+	setXSpeed: 95000
+ 	setXSpeed: 95000
  	cmnSfx: s32'ARC_BTL_CMN_Furi_Hook'
  	sprite: s32'vgb201_02', 3
  	xSpeedPerFrame: 65
@@ -3403,7 +3401,8 @@
  	mouthPose: (OPEN)
  	sprite: s32'vgb400_01', 1
  	sprite: s32'vgb400_01', 1
- 	setXSpeed: 35000
+-	setXSpeed: 35000
++	setXSpeed: 45000
  	setYSpeed: 1000
  	autoAirTurn: 1
  	privateBankSE: 0, s32'ARC_BTL_VGB_SprDshKck_Start', 100
@@ -3418,14 +3417,16 @@
  	} endUpon: 
  	sprite: s32'vgb400_02', 2
  	sprite: s32'vgb400_03', 2
- 	setXSpeed: 45000
+-	setXSpeed: 45000
++	setXSpeed: 60000
  	setYSpeed: 0
  	xSpeedPerFrame: 108
  	sprite: s32'vgb400_03', 2
  	label: s32'kick'
  	sprite: s32'vgb400_02', 2
  	clearRegisteredUponCode: (IDLING)
- 	setXSpeed: 60000
+-	setXSpeed: 60000
++	setXSpeed: 85000
  	setYSpeed: 0
  	setYPosition: 3000
  	sprite: s32'vgb400_03', 2
@@ -4955,6 +4956,9 @@
  	resetSpeed: 1
  	atkZReversal: 1
  	sprite: s32'vgb010_01', 1
++	enableSuperArmor: 1
++	callSubroutine: s32'cmn_MutekiArmor'
++	noGuardEffect: 0
  	sprite: s32'vgb010_01', 2
  	privateBankSE: 19, s32'ARC_BTL_VGB_ThirtyPoints_C', 100
  	if: var(obj6) {
@@ -4995,6 +4999,7 @@
  	recoveryState: 
  	pushCollisionHeightLow: 268435455
  	clearRegisteredUponCode: (IDLING)
++	enableSuperArmor: 0
  	sprite: s32'vgb403_23', 3
  	sprite: s32'vgb403_24', 3
  	atkZReversal: 0
@@ -5159,6 +5164,9 @@
  	else:  {
  		forceRandomVoice: s16'vxxx205', 100, s16'', 0, s16'', 0, s16'', 0
  	} endElse: 
++	enableSuperArmor: 1
++	callSubroutine: s32'cmn_MutekiArmor'
++	noGuardEffect: 0
  	sprite: s32'vgb403_01', 3
  	setXSpeed: 15000
  	setYSpeed: 25000
@@ -5184,6 +5192,7 @@
  	ySpeedPerFrame: 80
  	setGravity: 500
  	sprite: s32'vgb403_22', 1
++	enableSuperArmor: 0
  	recoveryState: 
  	sprite: s32'vgb403_23', 3
  	sprite: s32'vgb403_24', 3
@@ -5552,8 +5561,9 @@
  	upon: (SIGNAL6) {
  		clearRegisteredUponCode: (SIGNAL6)
  		enableVanish: 1
-+		enableSpecialCancel: 1
-+		senkoInputSpecial: 10
+ 		enableSpecialCancel: 1
+-		senkoInputSpecial: 10
++		senkoInputSpecial: 20
  	} endUpon: 
  	mouthPose: (OPEN)
  	clearRegisteredUponCode: (SIGNAL1)
@@ -5747,8 +5757,9 @@
  	sprite: s32'vgb405_10', 6
  	upon: (SIGNAL6) {
  		enableVanish: 1
-+		enableSpecialCancel: 1
-+		senkoInputSpecial: 10
+ 		enableSpecialCancel: 1
+-		senkoInputSpecial: 10
++		senkoInputSpecial: 20
  	} endUpon: 
  	mouthPose: (OPEN)
  	clearRegisteredUponCode: (SIGNAL1)
@@ -5973,6 +5984,7 @@
  					if: var(act1) {
  						setYSpeed: 0
  						enableMemberChangeUltimate: 0
++						enableGatlings: 0
  						applyAttackLockWithStateName: s32'NiagaraDrop'
  						cameraMotion: -129250, 309432, 34231, 2866, 6140, 0, 72, 5, 55, 5, 1
  						hitstop: 0
@@ -6049,6 +6061,12 @@
  		} endUpon: 
  		finishCameraRequest: s32'FinishCamera_NiagaraDrop'
  		tensionUsage: 10000
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'FinalFlash'
++			addGatlingOption: s32'AirFinalFlash'
++			whiffCancelOptionBufferTime: s32'FinalFlash', 30
++			whiffCancelOptionBufferTime: s32'AirFinalFlash', 30
++		} endIf: 
  	} endUpon: 
  	sprite: s32'vgb430_00', 3
  	facePose: (ANGRY)
@@ -6317,6 +6335,7 @@
  	atkShakeCamera: s32'ShakeTate', 2000, 1, 45, 10
  	addWindPowerOffset: 0, 0, 0, 1000, 0, 35, 30
  	destructionCollision: 0, 0, 0, 10000
++	atkHitPositionType: 4, 10000, -150000
  	atkHitCommonSEReset: s32'ARC_BTL_CMN_Hit_XLarge'
  	upon: (ON_PLAYER_AFTER_EXECUTE_DAMAGE) {
  		clearRegisteredUponCode: (ON_PLAYER_AFTER_EXECUTE_DAMAGE)
@@ -6329,6 +6348,7 @@
  	} endUpon: 
  	sprite: s32'vgb430_41', 3
  	darkenBackground: 0
++	enableGatlings: 1
  	sprite: s32'vgb430_42', 3
  	setXSpeed: -18000
  	setYSpeed: 15000
@@ -6478,6 +6498,10 @@
  	stopBankSE: 0, 20
  	stopBankSE: 16, 20
  	stopBankSE: 17, 20
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'FinalFlash'
++		whiffCancelOptionBufferTime: s32'FinalFlash', 40
++	} endIf: 
  	sprite: s32'vgb431_11', 3
  	sprite: s32'vgb431_12', 3
  	sprite: s32'vgb431_10', 3
@@ -6601,6 +6625,13 @@
  			stopBankSE: 16, 20
  			stopBankSE: 17, 20
  		} endUpon: 
++		if: var(EnemyInHitstun) {
++			checkLastStateName: s32'NiagaraDrop'
++			if: var(Result) {
++				faceOpponent: 
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++		} endIf: 
  	} endUpon: 
  	sprite: s32'vgb432_00', 2
  	enableSuperArmor: 1

@@ -1,6 +1,6 @@
---- 1.31/BBS_NHY.bbs	2023-05-23 14:16:15.632787667 +0200
-+++ 1.32/BBS_NHY.bbs	2023-05-23 14:14:51.123338687 +0200
-@@ -1,12381 +1,12381 @@
+--- 1.32/BBS_NHY.bbs	2023-05-24 20:54:49.378041385 +0200
++++ 1.33/BBS_NHY.bbs	2023-08-23 04:23:04.583947344 +0200
+@@ -1,12381 +1,12499 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'nhy'
  } endSubroutine: 
@@ -542,7 +542,9 @@
  	addMove: s32'SDBreaker' {
  		moveType: (OVERDRIVE)
  		characterState: (STANDING)
- 		moveInput: (INPUT_HOLD_ANY_OF_LMHS)
+-		moveInput: (INPUT_HOLD_ANY_OF_LMHS)
++		moveInput: (INPUT_HOLD_L)
++		moveInput: (INPUT_HOLD_M)
  		addMoveCondition: (ONE)
  		isFollowupMove: 1
  		skillEstPoint: 0
@@ -602,6 +604,19 @@
  		addMoveCondition: (THREE)
  		skillEstPoint: 0
  	} endMove: 
++	addMove: s32'M_explosion_Chain' {
++		moveType: (OVERDRIVE)
++		characterState: (STANDING_OR_AIRBORNE)
++		moveInput: (INPUT_214)
++		moveInput: (INPUT_PRESS_L)
++		moveInput: (INPUT_PRESS_M)
++		moveInput: (INPUT_BOOLEAN_OR)
++		moveInput: (INPUT_214)
++		moveInput: (INPUT_PRESS_H)
++		moveInput: (INPUT_PRESS_KI)
++		addMoveCondition: (THREE)
++		moveAlias: s32'M_explosion'
++	} endMove: 
  	addMove: s32'Kyukyoku_Kamehameha' {
  		moveType: (OVERDRIVE)
  		characterState: (STANDING)
@@ -887,6 +902,7 @@
  	registerMove: s32'BBkamehameha'
  	registerMove: s32'AirBBkamehameha'
  	registerMove: s32'M_explosion'
++	registerMove: s32'M_explosion_Chain'
  	registerMove: s32'Kyukyoku_Kamehameha'
  	registerMove: s32'CmnActSparkingBurst'
  	registerMove: s32'RequestChangeMember1'
@@ -2846,8 +2862,10 @@
  	sprite: s32'nhy202_00', 2
  	facePose: (STRESSED)
  	mouthPose: (SHOW_TEETH)
- 	sprite: s32'nhy202_01', 2
- 	sprite: s32'nhy202_02', 2
+-	sprite: s32'nhy202_01', 2
+-	sprite: s32'nhy202_02', 2
++	sprite: s32'nhy202_01', 1
++	sprite: s32'nhy202_02', 1
  	sprite: s32'nhy202_03', 2
  	sprite: s32'nhy202_04', 2
  	cmnSfx: s32'ARC_BTL_CMN_GK_Jump'
@@ -3407,7 +3425,7 @@
  	sprite: s32'nhy232_04', 1
  	sprite: s32'nhy232_05', 1
  	characterSfx: s32'ARC_BTL_NHY_Atk2C_Attack'
-+	landingRecovery: 7, 1
+ 	landingRecovery: 7, 1
  	sprite: s32'nhy232_06', 1
  	sprite: s32'nhy232_07', 2
  	setXSpeed: 45000
@@ -4844,7 +4862,6 @@
  	groundBounceCount: 0
  	applyAttackLockWithStateName: s32''
  	atkHitPositionType: 4, -300000, 100000
--	attackFinishBlowback: 1
  	atkFrontDirection: 0
  	atkDirectionReverse: 1
  	atkShakeCamera: s32'ShakeYoko', 900, 0, 23, 5
@@ -8221,6 +8238,7 @@
  	airHitstun: 40
  	guardPushback: 100
  	enemyHitstopAddition: 4, 0, 0
++	blockstun: 22
  	groundBounceCount: 1
  	groundBounceYVelocity: 13000
  	groundBounceGravity: 10000
@@ -8238,6 +8256,9 @@
  		enableVanish: 1
  		enableSparkCancel: 1
  	} endUpon: 
++	upon: (ON_ATTACK_HIT_PLAYER_GUARD) {
++		cameraShake: s32'ShakeTate', 400, 0, 25, 10
++	} endUpon: 
  	upon: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE) {
  		clearRegisteredUponCode: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE)
  		setXSpeed: 35000
@@ -8321,11 +8342,13 @@
  		hitstop: 0
  		tensionGainOnConnect: 0
  		attackXKnockback: 5000
- 		attackYKnockback: 10000
+-		attackYKnockback: 10000
++		attackYKnockback: 20000
  		slidingKnockdownDuration: 15
  		groundKnockbackEffect: (FORCE_STANDLOW)
  		groundHitstun: 22
- 		airHitstun: 22
+-		airHitstun: 22
++		airHitstun: 32
  		guardPushback: 70
  		disableHitsparks: 1
  		dontAddComboCount: 1
@@ -8640,6 +8663,12 @@
  	recoveryState: 
  	sprite: s32'nhy430_36', 5
  	xSpeedPerFrame: 80
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'M_explosion'
++		addGatlingOption: s32'M_explosion_Chain'
++		whiffCancelOptionBufferTime: s32'M_explosion', 40
++		whiffCancelOptionBufferTime: s32'M_explosion_Chain', 40
++	} endIf: 
  	sprite: s32'nhy430_37', 5
  	sprite: s32'nhy430_38', 5
  	sprite: s32'nhy430_39', 3
@@ -8833,7 +8862,15 @@
  	sprite: s32'nhy430_103', 1
  	createObject: s32'MultikidanEnd_EX', (ENEMY_CENTER)
  	sprite: s32'nhy430_104', 1
++	if: var(CmnCharaReg7) {
++		enableWhiffCancel: 1
++		addWhiffCancelOption: s32'M_explosion'
++		addWhiffCancelOption: s32'M_explosion_Chain'
++		whiffCancelOptionBufferTime: s32'M_explosion', 80
++		whiffCancelOptionBufferTime: s32'M_explosion_Chain', 80
++	} endIf: 
  	sprite: s32'nhy430_105', 1
++	enableWhiffCancel: 0
  	sprite: s32'nhy430_106', 1
  	sprite: s32'nhy430_107', 1
  	sprite: s32'nhy430_108', 1
@@ -8987,12 +9024,22 @@
  	sprite: s32'nhy430_91', 3
  	resetSpeed: 1
  	sprite: s32'nhy430_92', 4
- 	sprite: s32'nhy430_93', 4
+-	sprite: s32'nhy430_93', 4
++	sprite: s32'nhy430_93', 1
  	createObject: s32'Soulpunisher_explosion', (ENEMY_CENTER)
  	triggerUponInObject: s32'nhy430_Explosion_Eff', (SIGNAL0)
  	triggerUponInObject: s32'nhy430_BlackSmoke_Eff', (SIGNAL0)
  	deactivateObjectByName: s32'nhy430_Light2_Eff'
++	sprite: s32'nhy430_93', 3
++	if: var(CmnCharaReg7) {
++		enableWhiffCancel: 1
++		addWhiffCancelOption: s32'M_explosion'
++		addWhiffCancelOption: s32'M_explosion_Chain'
++		whiffCancelOptionBufferTime: s32'M_explosion', 80
++		whiffCancelOptionBufferTime: s32'M_explosion_Chain', 80
++	} endIf: 
  	sprite: s32'nhy430_94', 4
++	enableWhiffCancel: 0
  	sprite: s32'nhy430_91', 4
  	sprite: s32'nhy430_92', 4
  	sprite: s32'nhy430_93', 4
@@ -9112,6 +9159,12 @@
  	ySpeedPerFrame: 100
  	objectGravity: 
  	sprite: s32'nhy432_48', 3
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'M_explosion'
++		addGatlingOption: s32'M_explosion_Chain'
++		whiffCancelOptionBufferTime: s32'M_explosion', 40
++		whiffCancelOptionBufferTime: s32'M_explosion_Chain', 40
++	} endIf: 
  	sprite: s32'nhy432_49', 3
  	xSpeedPerFrame: 100
  	sprite: s32'nhy432_50', 3
@@ -9357,7 +9410,14 @@
  	triggerUponInObject: s32'nhy432_beam01_Eff', (SIGNAL0)
  	sprite: s32'nhy432_49', 3
  	sprite: s32'nhy432_50', 3
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'M_explosion'
++		addGatlingOption: s32'M_explosion_Chain'
++		whiffCancelOptionBufferTime: s32'M_explosion', 80
++		whiffCancelOptionBufferTime: s32'M_explosion_Chain', 80
++	} endIf: 
  	sprite: s32'nhy432_51', 3
++	enableGatlings: 0
  	sprite: s32'nhy432_52', 3
  	sprite: s32'nhy432_53', 3
  	cameraTargetEnemy: 0
@@ -9391,6 +9451,12 @@
  		} endUpon: 
  		finishCameraRequest: s32'FinishCamera_BBkamehameha'
  		tensionUsage: 10000
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'M_explosion'
++			addGatlingOption: s32'M_explosion_Chain'
++			whiffCancelOptionBufferTime: s32'M_explosion', 40
++			whiffCancelOptionBufferTime: s32'M_explosion_Chain', 40
++		} endIf: 
  	} endUpon: 
  	sprite: s32'nhy431_00', 3
  	facePose: (STRESSED)
@@ -9567,6 +9633,12 @@
  		} endUpon: 
  		finishCameraRequest: s32'FinishCamera_BBkamehameha'
  		tensionUsage: 10000
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'M_explosion'
++			addGatlingOption: s32'M_explosion_Chain'
++			whiffCancelOptionBufferTime: s32'M_explosion', 40
++			whiffCancelOptionBufferTime: s32'M_explosion_Chain', 40
++		} endIf: 
  	} endUpon: 
  	sprite: s32'nhy431_28', 3
  	facePose: (STRESSED)
@@ -9795,9 +9867,60 @@
  		} endUpon: 
  		enableGatlings: 0
  		tensionUsage: 30000
++		if: var(EnemyInHitstun) {
++			checkLastStateName: s32'GodPunisher'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'GodPunisher_Exe'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'SDBreaker'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'SBlaster'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'SBlaster_Exe'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'BBkamehameha'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'AirBBkamehameha'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++		} endIf: 
  	} endUpon: 
++	if: var(IsLand) {
++		gotoLabel: s32'start'
++	} endIf: 
++	sprite: s32'nhy038_00', 300
++	enableSuperArmor: 1
++	resetSpeed: 1
++	displayModel: 0
++	setNoCollision: 0
++	createParticle: s32'cmn_Warp', (CENTER)
++	cmnSfx: s32'ARC_BTL_CMN_TLP_Short'
++	setYSpeed: -80000
++	ySpeedPerFrame: 110
++	upon: (TOUCH_GROUND) {
++		clearRegisteredUponCode: (TOUCH_GROUND)
++		jumpToLabel: s32'start'
++	} endUpon: 
++	spriteEnd: 
++	label: s32'start'
  	sprite: s32'nhy000_24', 3
  	enableSuperArmor: 1
++	clearRegisteredUponCode: (IDLING)
++	displayModel: 1
++	setNoCollision: 1
  	sprite: s32'nhy000_00', 3
  	sprite: s32'nhy434_00', 3
  	faceAnimation: 504

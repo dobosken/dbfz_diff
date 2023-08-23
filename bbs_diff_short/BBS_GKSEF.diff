@@ -1,4 +1,10 @@
-690c690
-< 		airHitstun: 25
+1575c1575
+< 			attackYKnockback: 35000
 ---
-> 		airHitstun: 35
+> 			attackYKnockback: 20000
+1580a1581,1585
+> 			checkCurrentStateName: (PLAYER), s32'S_AirKamehameha'
+> 			if: var(Result) {
+> 				attackYKnockback: 10000
+> 				airHitstun: 30
+> 			} endIf: 

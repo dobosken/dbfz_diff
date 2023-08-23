@@ -1,6 +1,6 @@
---- 1.31/BBS_KRNEF.bbs	2023-05-23 14:16:14.908775254 +0200
-+++ 1.32/BBS_KRNEF.bbs	2023-05-23 14:14:50.481327679 +0200
-@@ -1,3403 +1,3412 @@
+--- 1.32/BBS_KRNEF.bbs	2023-05-24 20:54:48.649029360 +0200
++++ 1.33/BBS_KRNEF.bbs	2023-08-23 04:23:03.958936693 +0200
+@@ -1,3412 +1,3414 @@
  beginState: s32'dmy' {
  	sprite: s32'null', 1
  } endState: 
@@ -572,7 +572,7 @@
  			effectForLandBreak: 0, 1000, 0, 0
  			deactivateObject: (SELF)
  		} endUpon: 
- 		upon: (ON_ATTACK_HIT_PLAYER_ARMOR) {
+ 		upon: (ATTACK_HIT_PLAYER_ARMOR) {
  			createObject: s32'cmn_kidan_end', (ZERO)
  			requestDestroy: (SELF)
  		} endUpon: 
@@ -796,23 +796,21 @@
  		screenCollision: 1
  		pushCollisionWidth: 155000
  		pushCollisionHeight: 220000
-+		setNoCollision: 1
+ 		setNoCollision: 1
  		setActionTimeMax: 60
  		linkModelSelfTeam: s32'KRN', s32''
  		mutekiForce: 0
--		screenAdditionalWidth: -1
--		ignorePushback: 1
--		setNoCollision: 0
-+		checkInput: (INPUT_ANY_FORWARD)
-+		if: var(Result) {
-+			screenAdditionalWidth: -1
-+			ignorePushback: 1
-+			setNoCollision: 0
-+			checkCurrentStateName: (PARENT), s32'Zanzou_C'
-+			if: var(Result) {
-+				copyVarFromObject: (PARENT), var(act6), (SELF), int(1)
-+			} endIf: 
-+		} endIf: 
++		enableSuperArmor: 1
+ 		checkInput: (INPUT_ANY_FORWARD)
+ 		if: var(Result) {
+ 			screenAdditionalWidth: -1
+ 			ignorePushback: 1
+ 			setNoCollision: 0
+ 			checkCurrentStateName: (PARENT), s32'Zanzou_C'
+ 			if: var(Result) {
+ 				copyVarFromObject: (PARENT), var(act6), (SELF), int(1)
+ 			} endIf: 
+ 		} endIf: 
  		kowareAssari: 1
  		initializeDestroy: 
  		numberOfHits: 1
@@ -1001,6 +999,7 @@
  		pushCollisionHeightLow: -70000
  		setNoCollision: 1
  		mutekiForce: 0
++		enableSuperArmor: 1
  		landingHeight: 0
  		floorCollision: 1
  		kowareAssari: 1
@@ -1849,8 +1848,7 @@
  		attackYKnockback: 13000
  		attackYSuction: 1, 15000, 300000, 100, 0
  		wallBounceCount: 0
--		airHitstun: 25
-+		airHitstun: 33
+ 		airHitstun: 33
  		atkRange: 50000000, -290000, 0, 0
  		ifVarOfObjectTrue: (PLAYER), var(IsAir) {
  			atkRange: 50000000, -400000, 0, 0
@@ -1859,7 +1857,7 @@
  		checkCurrentStateName: (PLAYER), s32'AssistAttack2'
  		if: var(Result) {
  			damage: 200
-+			airHitstun: 40
+ 			airHitstun: 40
  			callSubroutine: s32'cmn_AssistHosei'
  		} endIf: 
  		atkSousaiSevereCheck: 1

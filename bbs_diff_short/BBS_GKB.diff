@@ -1,0 +1,95 @@
+432c432
+< 		characterState: (STANDING)
+---
+> 		characterState: (STANDING_OR_AIRBORNE)
+2431a2432
+> 	atkZReversal: 1
+2451a2453
+> 	atkZReversal: 0
+3623c3625
+< 	groundKnockbackEffect: (AIR_STRONG)
+---
+> 	groundKnockbackEffect: (GROUND_DEFAULT)
+3626c3628,3629
+< 	enemyHitstopAddition: 0, 5, 5
+---
+> 	enemyHitstopAddition: 0, 6, 6
+> 	guardPushback: 50
+3743c3746
+< 	groundKnockbackEffect: (AIR_STRONG)
+---
+> 	groundKnockbackEffect: (GROUND_DEFAULT)
+3746c3749,3750
+< 	enemyHitstopAddition: 0, 5, 5
+---
+> 	enemyHitstopAddition: 0, 6, 6
+> 	guardPushback: 50
+3748a3753,3757
+> 	blockstun: 21
+> 	upon: (ON_ATTACK_HIT_PLAYER_GUARD) {
+> 		hitstop: 21
+> 		cameraShake: s32'ShakeTate', 400, 0, 25, 10
+> 	} endUpon: 
+4929a4939,4941
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'Kaiohken'
+> 		} endIf: 
+5162a5175,5177
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'Kaiohken'
+> 		} endIf: 
+5429a5445,5470
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'Quick_Kamehameha'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 			checkLastStateName: s32'AirQuick_Kamehameha'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 		} endIf: 
+> 	} endUpon: 
+> 	if: var(IsLand) {
+> 		gotoLabel: s32'start'
+> 	} endIf: 
+> 	sprite: s32'gkb038_00', 300
+> 	enableSuperArmor: 1
+> 	resetSpeed: 1
+> 	displayModel: 0
+> 	setNoCollision: 0
+> 	createParticle: s32'cmn_Warp', (CENTER)
+> 	cmnSfx: s32'ARC_BTL_CMN_TLP_Short'
+> 	setYSpeed: -80000
+> 	ySpeedPerFrame: 110
+> 	upon: (TOUCH_GROUND) {
+> 		clearRegisteredUponCode: (TOUCH_GROUND)
+> 		jumpToLabel: s32'start'
+5430a5472,5473
+> 	spriteEnd: 
+> 	label: s32'start'
+5435a5479,5481
+> 	clearRegisteredUponCode: (IDLING)
+> 	displayModel: 1
+> 	setNoCollision: 1
+5508a5555,5564
+> 	if: var(EnemyInHitstun) {
+> 		checkLastStateName: s32'Quick_Kamehameha'
+> 		if: var(Result) {
+> 			superFreeze: 7, 100, 0, 20
+> 		} endIf: 
+> 		checkLastStateName: s32'AirQuick_Kamehameha'
+> 		if: var(Result) {
+> 			superFreeze: 7, 100, 0, 20
+> 		} endIf: 
+> 	} endIf: 
+5511c5567
+< 	setXSpeed: 110000
+---
+> 	setXSpeed: 130000
+5530c5586
+< 	xSpeedPerFrame: 85
+---
+> 	xSpeedPerFrame: 95
+5531a5588
+> 	xSpeedPerFrame: 85

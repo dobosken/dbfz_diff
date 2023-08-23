@@ -1,6 +1,6 @@
---- 1.31/BBS_GTL.bbs	2023-05-23 14:16:13.500751111 +0200
-+++ 1.32/BBS_GTL.bbs	2023-05-23 14:14:49.120304343 +0200
-@@ -1,7999 +1,8003 @@
+--- 1.32/BBS_GTL.bbs	2023-05-24 20:54:47.067003267 +0200
++++ 1.33/BBS_GTL.bbs	2023-08-23 04:23:02.575913126 +0200
+@@ -1,8003 +1,8034 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'gtl'
  } endSubroutine: 
@@ -179,7 +179,8 @@
  		moveType: (NORMAL)
  		characterState: (AIRBORNE)
  		moveInput: (INPUT_PRESS_KI)
- 		maxChainIntoSelf: 1
+-		maxChainIntoSelf: 1
++		maxChainIntoSelf: 2
  		skillForceDisableFlag: 1073741824
  		skillEstAtkBox: -600, -25, 250, 280
  		skillEstLevelLimit: 30
@@ -368,7 +369,7 @@
  		characterState: (AIRBORNE)
  		moveInput: (INPUT_214)
  		moveInput: (INPUT_PRESS_KI)
-+		maxChainIntoSelf: 1
+ 		maxChainIntoSelf: 1
  		skillEstAtkBox: -1300, 80, 340, 250
  		skillEstLevelLimit: 30
  		skillEstTagShot: 
@@ -1726,6 +1727,10 @@
  	sprite: s32'gtl404_01', 3
  	sprite: s32'gtl404_02', 3
  	setYSpeed: 1000
++	checkInputFromParent: (INPUT_ANY_UP)
++	if: var(Result) {
++		addYSpeed: 30000
++	} endIf: 
  	characterSfx: s32'ARC_BTL_GTL_Rvngsht_MiniJump'
  	sprite: s32'gtl404_03', 2
  	sprite: s32'gtl404_04', 2
@@ -2373,8 +2378,7 @@
  	enableHitbox: 
  	callSubroutine: s32'cmnRendaChain_Clear_Idling'
  	sprite: s32'gtl201_05', 2
--	whiffCancelOptionBufferTime: s32'NmlAtk5A3rd', 8
-+	whiffCancelOptionBufferTime: s32'NmlAtk5A3rd', 7
+ 	whiffCancelOptionBufferTime: s32'NmlAtk5A3rd', 7
  	recoveryState: 
  	sprite: s32'gtl201_06', 2
  	sprite: s32'gtl201_07', 2
@@ -2760,8 +2764,13 @@
  	faceAnimation: 80
  	mouthPose: 2
  	sprite: s32'gtl232_01', 1
- 	setXSpeed: 35000
- 	xSpeedPerFrame: 85
+-	setXSpeed: 35000
+-	xSpeedPerFrame: 85
++	checkInput: (INPUT_ANY_FORWARD)
++	if: var(Result) {
++		setXSpeed: 35000
++		xSpeedPerFrame: 85
++	} endIf: 
  	sprite: s32'gtl232_01', 2
  	attackVoice: 2, -1
  	sprite: s32'gtl232_02', 4
@@ -3071,6 +3080,8 @@
  	sprite: s32'gtl265_06', 3
  	percentageXSpeed: 70
  	sprite: s32'gtl265_07', 3
++	enableWhiffCancel: 1
++	addWhiffCancelOption: s32'NmlAtkAir5D'
  	sprite: s32'gtl265_08', 3
  	sprite: s32'gtl265_09', 3
  	sprite: s32'gtl265_10', 3
@@ -3088,6 +3099,8 @@
  	percentageXSpeed: 70
  	sprite: s32'gtl265_12', 3
  	sprite: s32'gtl265_13', 3
++	enableWhiffCancel: 1
++	addWhiffCancelOption: s32'NmlAtkAir5D'
  	sprite: s32'gtl265_14', 3
  	sprite: s32'gtl265_15', 3
  } endState: 
@@ -5236,6 +5249,16 @@
  		triggerUponInObject: s32'Gdonut_Atk', (SIGNAL2)
  		copyVar: var(act0), int(1)
  	} endIf: 
++	checkInput: (INPUT_ANY_BACK)
++	if: var(Result) {
++		triggerUponInObject: s32'Gdonut_Atk', (SIGNAL3)
++		copyVar: var(act0), int(1)
++	} endIf: 
++	checkInput: (INPUT_ANY_FORWARD)
++	if: var(Result) {
++		triggerUponInObject: s32'Gdonut_Atk', (SIGNAL4)
++		copyVar: var(act0), int(1)
++	} endIf: 
  	sprite: s32'gtl402_15', 6
  	sprite: s32'gtl402_16', 3
  	mouthPose: (SHOW_TEETH)
@@ -5332,6 +5355,12 @@
  	if: var(act7) {
  		setYSpeed: 9000
  	} endIf: 
++	checkInput: (INPUT_ANY_UP)
++	if: var(Result) {
++		ifOperation: (IS_LESS_OR_EQUAL), var(PosY), int(4500000) {
++			addYSpeed: 20000
++		} endIf: 
++	} endIf: 
  	characterSfx: s32'ARC_BTL_GTL_Rvngsht_MiniJump'
  	sprite: s32'gtl404_03', 2
  	sprite: s32'gtl404_04', 2
@@ -5452,7 +5481,7 @@
  beginState: s32'DeathMissile' {
  	upon: (IMMEDIATE) {
  		atkIgnoreCaution: 1
-+		enableSpecialCancel: 1
+-		enableSpecialCancel: 1
  		upon: (BEFORE_EXIT) {
  			stopBankSE: 0, 30
  		} endUpon: 
@@ -5461,10 +5490,10 @@
  	faceAnimation: 22
  	mouthPose: (OPEN)
  	resetSpeed: 1
--	sprite: s32'gtl265_01', 2
-+	sprite: s32'gtl265_01', 1
-+	sprite: s32'gtl265_01', 1
-+	enableVanish: 1
+ 	sprite: s32'gtl265_01', 1
+ 	sprite: s32'gtl265_01', 1
+ 	enableVanish: 1
++	enableSpecialCancel: 1
  	sprite: s32'gtl265_02', 2
  	mouthPose: (CLOSED)
  	landingAutoAction: 0
@@ -5525,6 +5554,10 @@
  		atkIgnoreCaution: 1
  		enableMemberChangeUltimate: 0
  		tensionUsage: 10000
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'VolleyBall'
++			whiffCancelOptionBufferTime: s32'VolleyBall', 40
++		} endIf: 
  		finishCameraRequest: s32'FinishCamera_SGKA'
  	} endUpon: 
  	sprite: s32'gtl000_00', 4

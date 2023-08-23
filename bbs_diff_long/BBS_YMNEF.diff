@@ -1,6 +1,6 @@
---- 1.31/BBS_YMNEF.bbs	2023-05-23 14:16:19.776858721 +0200
-+++ 1.32/BBS_YMNEF.bbs	2023-05-23 14:14:54.704400087 +0200
-@@ -1,1957 +1,1957 @@
+--- 1.32/BBS_YMNEF.bbs	2023-05-24 20:54:53.784114057 +0200
++++ 1.33/BBS_YMNEF.bbs	2023-08-23 04:23:08.254009883 +0200
+@@ -1,1957 +1,1960 @@
  beginState: s32'dmy' {
  	sprite: s32'null', 1
  } endState: 
@@ -84,7 +84,8 @@
  	sprite: s32'kidan', 600
  	setColorAlpha: 255
  	worldOutToEliminate: 1
- 	setSpeedByCurrentAngle: 70000, 0
+-	setSpeedByCurrentAngle: 70000, 0
++	setSpeedByCurrentAngle: 40000, 0
  	label: s32'Koware'
  	sprite: s32'null', 10
  	resetSpeed: 1
@@ -98,11 +99,17 @@
  		callSubroutine: s32'cmn5DKidan_AtkInit'
  		callSubroutine: s32'cmnKidan_Init'
  		damage: 600
- 		groundKnockbackEffect: (AIR_FACE_UP)
- 		airKnockbackEffect: (AIR_FACE_UP)
- 		attackXKnockback: 20000
+-		groundKnockbackEffect: (AIR_FACE_UP)
+-		airKnockbackEffect: (AIR_FACE_UP)
+-		attackXKnockback: 20000
++		groundKnockbackEffect: (SPIN)
++		airKnockbackEffect: (SPIN)
++		attackXKnockback: 40000
  		attackYKnockback: 20000
  		attackDamageEffect: 4, s32'cmn_BomHit'
++		airHitstun: 28
++		enemyHitstopAddition: 0, 3, 3
++		wallBounceCount: 1
  		xSpeedPerFrame: 102
  		linkParticle: s32'cmn_kidan'
  		upon: (ATTACK_COLLISION_PLAYER) {
@@ -123,7 +130,8 @@
  	sprite: s32'kidan', 600
  	setColorAlpha: 255
  	worldOutToEliminate: 1
- 	setSpeedByCurrentAngle: 70000, 0
+-	setSpeedByCurrentAngle: 70000, 0
++	setSpeedByCurrentAngle: 100000, 0
  	label: s32'Koware'
  	sprite: s32'null', 10
  	resetSpeed: 1
@@ -768,8 +776,7 @@
  		attackYKnockback: 10000
  		attackYSuction: 1, 15000, 300000, 100, 0
  		wallBounceCount: 0
--		airHitstun: 25
-+		airHitstun: 35
+ 		airHitstun: 35
  		atkRange: 50000000, -375000, 0, 0
  		atkSousaiSevereCheck: 1
  		atkEffectBeamSousai: 1

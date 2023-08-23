@@ -1,0 +1,12 @@
+557c557
+< 		attackYKnockback: 35000
+---
+> 		attackYKnockback: 42000
+559c559
+< 		airHitstun: 40
+---
+> 		airHitstun: 50
+1208c1208
+< 		blockstun: 20
+---
+> 		blockstun: 24

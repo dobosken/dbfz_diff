@@ -1,38 +1,42 @@
-875c875
-< 	setXSpeed: 75000
----
-> 	setXSpeed: 95000
-880,881c880,881
-< 		ifOperation: (IS_GREATER), var(SpeedX), int(90000) {
-< 			setXSpeed: 85000
----
-> 		ifOperation: (IS_GREATER), var(SpeedX), int(120000) {
-> 			setXSpeed: 120000
-913c913,919
-< 		percentageXSpeed: 30
----
-> 		if: var(ObjectParameter2) {
-> 			percentageXSpeed: 30
+361a362,388
+> 	checkInput: (INPUT_HOLD_KI)
+> 	if: var(Result) {
+> 		checkCurrentStateName: (PLAYER), s32'NmlAtk5D'
+> 		if: var(Result) {
+> 			spriteAddTime: 30
 > 		} endIf: 
-> 		else:  {
-> 			setNoCollision: 0
-> 			setWallCollision: 0
-> 		} endElse: 
-925c931
-< 	xSpeedPerFrame: 50
+> 		checkCurrentStateName: (PLAYER), s32'NmlAtkAir5D'
+> 		if: var(Result) {
+> 			spriteAddTime: 30
+> 		} endIf: 
+> 		checkCurrentStateName: (PLAYER), s32'Comehere_GinyuForce'
+> 		if: var(Result) {
+> 			spriteAddTime: 30
+> 		} endIf: 
+> 		checkCurrentStateName: (PLAYER), s32'AirComehere_GinyuForce'
+> 		if: var(Result) {
+> 			spriteAddTime: 30
+> 		} endIf: 
+> 		checkCurrentStateName: (PLAYER), s32'Comehere_GinyuForce_214'
+> 		if: var(Result) {
+> 			spriteAddTime: 30
+> 		} endIf: 
+> 		checkCurrentStateName: (PLAYER), s32'AirComehere_GinyuForce_214'
+> 		if: var(Result) {
+> 			spriteAddTime: 30
+> 		} endIf: 
+> 	} endIf: 
+3568,3569c3595,3596
+< 			attackYKnockback: 45000
+< 			attackGravity: 2500
 ---
-> 	xSpeedPerFrame: 80
-3530c3536
-< 		attackYKnockback: 40000
----
-> 		attackYKnockback: 30000
-3547,3548c3553,3554
-< 			damage: 2500
-< 			minimalDamagePercent: 44
----
-> 			damage: 2000
-> 			minimalDamagePercent: 40
-3609c3615
-< 				damage: 2500
----
-> 				damage: 2000
+> 			attackYKnockback: 25000
+> 			attackGravity: 1300
+3903a3931,3937
+> 			if: var(Result) {
+> 				atkNoHitCombo: 0
+> 			} endIf: 
+> 			else:  {
+> 				atkNoHitCombo: 1
+> 			} endElse: 
+> 			checkLastAttackHitStateName: (ENEMY_MAIN_PLAYER), s32'PEnergyWave_Shot'

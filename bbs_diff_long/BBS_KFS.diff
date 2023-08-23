@@ -1,6 +1,6 @@
---- 1.31/BBS_KFS.bbs	2023-05-23 14:16:14.532768807 +0200
-+++ 1.32/BBS_KFS.bbs	2023-05-23 14:14:50.103321198 +0200
-@@ -1,7190 +1,7196 @@
+--- 1.32/BBS_KFS.bbs	2023-05-24 20:54:48.267023060 +0200
++++ 1.33/BBS_KFS.bbs	2023-08-23 04:23:03.607930712 +0200
+@@ -1,7196 +1,7267 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'kfs'
  } endSubroutine: 
@@ -382,6 +382,20 @@
  		skillEstTagSukidarake: 
  		skillEstInterval: 1200
  	} endMove: 
++	addMove: s32'GBurst_Chain' {
++		moveType: (OVERDRIVE)
++		characterState: (STANDING_OR_AIRBORNE)
++		moveInput: (INPUT_214)
++		moveInput: (INPUT_PRESS_L)
++		moveInput: (INPUT_PRESS_M)
++		moveInput: (INPUT_BOOLEAN_OR)
++		moveInput: (INPUT_214)
++		moveInput: (INPUT_PRESS_H)
++		moveInput: (INPUT_PRESS_KI)
++		addMoveCondition: (THREE)
++		isFollowupMove: 1
++		moveAlias: s32'GBurst'
++	} endMove: 
  	addMove: s32'RC_KidanRenda' {
  		addMoveCondition: (LAND)
  		skillEstAtkBox: -1900, -300, 1900, 300
@@ -539,6 +553,7 @@
  	registerMove: s32'AirHBall'
  	registerMove: s32'GChase'
  	registerMove: s32'GBurst'
++	registerMove: s32'GBurst_Chain'
  	registerMove: s32'GRay'
  	registerMove: s32'CmnActSparkingBurst'
  	registerMove: s32'RequestChangeMember1'
@@ -2290,7 +2305,8 @@
  	checkLastStateName: s32'NmlAtk5A'
  	ifNot: var(Result) {
  		setXSpeed: 80000
- 		xSpeedPerFrame: 50
+-		xSpeedPerFrame: 50
++		xSpeedPerFrame: 70
  		setArg_scale: int(600)
  		createParticleWithArg: s32'bg_undersmoke00', (BACK_1_BODY)
  	} endIf: 
@@ -2721,10 +2737,8 @@
  	sprite: s32'kfs203_18', 3
  	sprite: s32'kfs203_19', 3
  	sprite: s32'kfs203_20', 3
--	sprite: s32'kfs203_21', 3
--	sprite: s32'kfs203_22', 3
-+	sprite: s32'kfs203_21', 2
-+	sprite: s32'kfs203_22', 2
+ 	sprite: s32'kfs203_21', 2
+ 	sprite: s32'kfs203_22', 2
  } endState: 
  
  beginState: s32'NmlAtk2B' {
@@ -2950,15 +2964,13 @@
  			enableJumpCancel: 1
  		} endIf: 
  	} endUpon: 
--	sprite: s32'kfs206_00', 3
-+	sprite: s32'kfs206_00', 2
+ 	sprite: s32'kfs206_00', 2
  	facePose: (STRESSED)
  	mouthPose: (OPEN)
  	sprite: s32'kfs206_01', 2
  	sprite: s32'kfs206_02', 2
  	attackVoice: 1, -1
--	sprite: s32'kfs206_03', 3
-+	sprite: s32'kfs206_03', 2
+ 	sprite: s32'kfs206_03', 2
  	cmnSfx: s32'ARC_BTL_CMN_Crouch_Basa'
  	sprite: s32'kfs206_04', 2
  	sprite: s32'kfs206_05', 3
@@ -3144,12 +3156,10 @@
  			} endIf: 
  		} endUpon: 
  	} endUpon: 
--	sprite: s32'kfs262_00', 2
-+	sprite: s32'kfs262_00', 1
+ 	sprite: s32'kfs262_00', 1
  	facePose: (STRESSED)
  	mouthPose: (OPEN)
--	sprite: s32'kfs262_01', 2
-+	sprite: s32'kfs262_01', 1
+ 	sprite: s32'kfs262_01', 1
  	sprite: s32'kfs262_02', 2
  	attackVoice: 2, 100
  	sprite: s32'kfs262_03', 2
@@ -3359,6 +3369,11 @@
  	} endUpon: 
  	sprite: s32'kfs401_10', 2
  	sprite: s32'kfs401_11', 2
++	enableWhiffCancel: 1
++	addWhiffCancelOption: s32'CmnActHomingDash'
++	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 10
++	addWhiffCancelOption: s32'SpecialMove'
++	whiffCancelOptionBufferTime: s32'SpecialMove', 10
  	sprite: s32'kfs401_12', 2
  	spriteEnd: 
  	label: s32'loop'
@@ -3381,15 +3396,13 @@
  	clearRegisteredUponCode: (SIGNAL0)
  	clearRegisteredUponCode: (SIGNAL2)
  	clearRegisteredUponCode: (IDLING)
--	sprite: s32'kfs401_15', 2
--	sprite: s32'kfs401_16', 2
- 	enableWhiffCancel: 1
- 	addWhiffCancelOption: s32'CmnActHomingDash'
- 	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 10
-+	addWhiffCancelOption: s32'SpecialMove'
-+	whiffCancelOptionBufferTime: s32'SpecialMove', 10
-+	sprite: s32'kfs401_15', 2
-+	sprite: s32'kfs401_16', 2
+-	enableWhiffCancel: 1
+-	addWhiffCancelOption: s32'CmnActHomingDash'
+-	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 10
+-	addWhiffCancelOption: s32'SpecialMove'
+-	whiffCancelOptionBufferTime: s32'SpecialMove', 10
+ 	sprite: s32'kfs401_15', 2
+ 	sprite: s32'kfs401_16', 2
  	sprite: s32'kfs401_17', 2
  	sprite: s32'kfs401_18', 2
  	sprite: s32'kfs401_19', 4
@@ -3462,12 +3475,13 @@
  		} endIf: 
  	} endUpon: 
  	sprite: s32'kfs401_10', 2
- 	sprite: s32'kfs401_11', 2
+-	sprite: s32'kfs401_11', 2
  	enableWhiffCancel: 1
  	addWhiffCancelOption: s32'CmnActHomingDash'
  	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 10
-+	addWhiffCancelOption: s32'SpecialMove'
-+	whiffCancelOptionBufferTime: s32'SpecialMove', 10
+ 	addWhiffCancelOption: s32'SpecialMove'
+ 	whiffCancelOptionBufferTime: s32'SpecialMove', 10
++	sprite: s32'kfs401_11', 2
  	sprite: s32'kfs401_12', 2
  	spriteEnd: 
  	label: s32'loop'
@@ -3579,12 +3593,13 @@
  	sprite: s32'kfs402_18', 2
  	createObject: s32'FBall_C_Shot2', (EX_POINT_0)
  	createObject: s32'kfs_kidan_smoke', (PLAYER_LAND)
- 	sprite: s32'kfs402_19', 2
+-	sprite: s32'kfs402_19', 2
  	enableWhiffCancel: 1
  	addWhiffCancelOption: s32'CmnActHomingDash'
  	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 10
-+	addWhiffCancelOption: s32'SpecialMove'
-+	whiffCancelOptionBufferTime: s32'SpecialMove', 10
+ 	addWhiffCancelOption: s32'SpecialMove'
+ 	whiffCancelOptionBufferTime: s32'SpecialMove', 10
++	sprite: s32'kfs402_19', 2
  	sprite: s32'kfs402_20', 2
  	sprite: s32'kfs402_21', 2
  	sprite: s32'kfs402_22', 2
@@ -4274,6 +4289,11 @@
  	deactivateObjectByName: s32'GBreaker_Barrier'
  	callSubroutine: s32'cmn_ShotMutekiArmor_End'
  	clearRegisteredUponCode: (IDLING)
++	enableWhiffCancel: 1
++	addWhiffCancelOption: s32'CmnActHomingDash'
++	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 20
++	addWhiffCancelOption: s32'SpecialMove'
++	whiffCancelOptionBufferTime: s32'SpecialMove', 20
  	sprite: s32'kfs405_32', 3
  	sprite: s32'kfs405_33', 3
  	sprite: s32'kfs405_34', 3
@@ -4385,6 +4405,11 @@
  	deactivateObjectByName: s32'GBreaker_Barrier'
  	callSubroutine: s32'cmn_ShotMutekiArmor_End'
  	clearRegisteredUponCode: (IDLING)
++	enableWhiffCancel: 1
++	addWhiffCancelOption: s32'CmnActHomingDash'
++	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 20
++	addWhiffCancelOption: s32'AirSpecialMove'
++	whiffCancelOptionBufferTime: s32'AirSpecialMove', 20
  	sprite: s32'kfs405_32', 3
  	sprite: s32'kfs405_33', 3
  	sprite: s32'kfs405_34', 3
@@ -4488,6 +4513,13 @@
  	sprite: s32'kfs405_25', 2
  	sprite: s32'kfs405_26', 2
  	sprite: s32'kfs405_27', 2
++	enableWhiffCancel: 1
++	addWhiffCancelOption: s32'CmnActHomingDash'
++	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 20
++	addWhiffCancelOption: s32'SpecialMove'
++	whiffCancelOptionBufferTime: s32'SpecialMove', 30
++	addWhiffCancelOption: s32'AirSpecialMove'
++	whiffCancelOptionBufferTime: s32'AirSpecialMove', 30
  	sprite: s32'kfs405_28', 3
  	xSpeedPerFrame: 100
  	setGravity: 3000
@@ -4534,6 +4566,12 @@
  		} endUpon: 
  		setRandom: var(obj5), int(0), int(1)
  		tensionUsage: 10000
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'GBurst'
++			addGatlingOption: s32'GBurst_Chain'
++			whiffCancelOptionBufferTime: s32'GBurst', 40
++			whiffCancelOptionBufferTime: s32'GBurst_Chain', 40
++		} endIf: 
  	} endUpon: 
  	sprite: s32'kfs000_00', 4
  	sprite: s32'kfs430_00', 4
@@ -4681,6 +4719,12 @@
  			} endIf: 
  		} endUpon: 
  		tensionUsage: 10000
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'GBurst'
++			addGatlingOption: s32'GBurst_Chain'
++			whiffCancelOptionBufferTime: s32'GBurst', 40
++			whiffCancelOptionBufferTime: s32'GBurst_Chain', 40
++		} endIf: 
  	} endUpon: 
  	sprite: s32'kfs038_00', 1
  	resetSpeed: 1
@@ -4993,10 +5037,14 @@
  	sprite: s32'kfs431_40', 3
  	sprite: s32'kfs431_38', 3
  	sprite: s32'kfs431_39', 3
- 	sprite: s32'kfs431_40', 3
- 	sprite: s32'kfs431_38', 3
- 	sprite: s32'kfs431_39', 3
- 	sprite: s32'kfs431_40', 3
+-	sprite: s32'kfs431_40', 3
+-	sprite: s32'kfs431_38', 3
+-	sprite: s32'kfs431_39', 3
+-	sprite: s32'kfs431_40', 3
++	sprite: s32'kfs431_40', 2
++	sprite: s32'kfs431_38', 2
++	sprite: s32'kfs431_39', 2
++	sprite: s32'kfs431_40', 2
  	sprite: s32'kfs431_41', 2
  	sprite: s32'kfs431_42', 2
  	sprite: s32'kfs431_43', 2
@@ -5211,6 +5259,12 @@
  		createObject: s32'kfs432_landing', (PLAYER_LAND)
  	} endIf: 
  	sprite: s32'kfs432_15', 3
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'GBurst'
++		addGatlingOption: s32'GBurst_Chain'
++		whiffCancelOptionBufferTime: s32'GBurst', 40
++		whiffCancelOptionBufferTime: s32'GBurst_Chain', 40
++	} endIf: 
  	sprite: s32'kfs432_16', 3
  	sprite: s32'kfs432_14', 3
  	forceRandomVoice: s16'vxxx223', 100, s16'', 0, s16'', 0, s16'', 0
@@ -5259,9 +5313,30 @@
  			stopBankSE: 17, 20
  		} endUpon: 
  	} endUpon: 
++	if: var(IsLand) {
++		gotoLabel: s32'start'
++	} endIf: 
++	sprite: s32'kfs038_00', 300
++	enableSuperArmor: 1
++	resetSpeed: 1
++	displayModel: 0
++	setNoCollision: 0
++	createParticle: s32'cmn_Warp', (CENTER)
++	cmnSfx: s32'ARC_BTL_CMN_TLP_Short'
++	setYSpeed: -80000
++	ySpeedPerFrame: 110
++	upon: (TOUCH_GROUND) {
++		clearRegisteredUponCode: (TOUCH_GROUND)
++		jumpToLabel: s32'start'
++	} endUpon: 
++	spriteEnd: 
++	label: s32'start'
  	sprite: s32'kfs010_00', 3
  	enableSuperArmor: 1
  	spriteOverrideTime: 1, var(EnemyInHitstun)
++	clearRegisteredUponCode: (IDLING)
++	displayModel: 1
++	setNoCollision: 1
  	sprite: s32'kfs433_00', 4
  	faceAnimation: 502
  	spriteOverrideTime: 2, var(EnemyInHitstun)

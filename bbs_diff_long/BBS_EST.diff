@@ -1,6 +1,6 @@
---- 1.31/BBS_EST.bbs	2023-05-23 14:16:10.826705263 +0200
-+++ 1.32/BBS_EST.bbs	2023-05-23 14:14:46.630261649 +0200
-@@ -1,10381 +1,10381 @@
+--- 1.32/BBS_EST.bbs	2023-05-24 20:54:44.330958139 +0200
++++ 1.33/BBS_EST.bbs	2023-08-23 04:22:59.974868803 +0200
+@@ -1,10381 +1,10499 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'est'
  } endSubroutine: 
@@ -476,9 +476,9 @@
  		characterState: (STANDING_OR_AIRBORNE)
  		moveInput: (INPUT_PRESS_L)
  		moveInput: (INPUT_PRESS_M)
- 		moveInput: (INPUT_BOOLEAN_OR)
- 		moveInput: (INPUT_PRESS_H)
- 		moveInput: (INPUT_PRESS_KI)
+-		moveInput: (INPUT_BOOLEAN_OR)
+-		moveInput: (INPUT_PRESS_H)
+-		moveInput: (INPUT_PRESS_KI)
  		isFollowupMove: 1
  		addMoveCondition: (ONE)
  		skillEstPoint: 0
@@ -516,6 +516,20 @@
  		skillEstInterval: 1200
  		skillEstLevelLimit: 60
  	} endMove: 
++	addMove: s32'Groar_Chain' {
++		moveType: (OVERDRIVE)
++		characterState: (STANDING_OR_AIRBORNE)
++		moveInput: (INPUT_214)
++		moveInput: (INPUT_PRESS_L)
++		moveInput: (INPUT_PRESS_M)
++		moveInput: (INPUT_BOOLEAN_OR)
++		moveInput: (INPUT_214)
++		moveInput: (INPUT_PRESS_H)
++		moveInput: (INPUT_PRESS_KI)
++		addMoveCondition: (THREE)
++		isFollowupMove: 1
++		moveAlias: s32'Groar'
++	} endMove: 
  	addMove: s32'RC_KidanRenda' {
  		addMoveCondition: (LAND)
  		skillEstAtkBox: -1500, -250, 500, 250
@@ -708,6 +722,7 @@
  	registerMove: s32'Omega'
  	registerMove: s32'Blaster'
  	registerMove: s32'Groar'
++	registerMove: s32'Groar_Chain'
  	registerMove: s32'CmnActSparkingBurst'
  	registerMove: s32'RequestChangeMember1'
  	registerMove: s32'RequestChangeMember2'
@@ -3372,7 +3387,8 @@
  	pushCollisionWidth: 300000
  	if: var(act0) {
  		damage: 1150
- 		addXSpeed: 30000
+-		addXSpeed: 30000
++		addXSpeed: 100000
  	} endIf: 
  	enableHitbox: 
  	callSubroutine: s32'cmnRendaChain_Clear_Idling'
@@ -3428,8 +3444,10 @@
  			deactivateObjectByName: s32'est206_Smoke_Eff'
  		} endUpon: 
  	} endUpon: 
- 	sprite: s32'est206_00', 3
- 	sprite: s32'est206_01', 2
+-	sprite: s32'est206_00', 3
+-	sprite: s32'est206_01', 2
++	sprite: s32'est206_00', 2
++	sprite: s32'est206_01', 1
  	sprite: s32'est206_02', 2
  	sprite: s32'est206_03', 2
  	sprite: s32'est206_04', 2
@@ -4547,30 +4565,20 @@
  	sprite: s32'est265_14', 2
  	sprite: s32'est265_15', 2
  	sprite: s32'est265_16', 3
--	sprite: s32'est265_17', 3
--	sprite: s32'est265_18', 3
--	sprite: s32'est265_19', 3
--	sprite: s32'est265_20', 3
-+	sprite: s32'est265_17', 2
-+	sprite: s32'est265_18', 2
-+	sprite: s32'est265_19', 2
-+	sprite: s32'est265_20', 2
+ 	sprite: s32'est265_17', 2
+ 	sprite: s32'est265_18', 2
+ 	sprite: s32'est265_19', 2
+ 	sprite: s32'est265_20', 2
  	resetSpeed: 1
  	ySpeedPerFrame: 100
  	objectGravity: 
  	mouthPose: (SHOW_TEETH)
--	sprite: s32'est265_17', 3
--	sprite: s32'est265_18', 3
--	sprite: s32'est265_21', 3
--	sprite: s32'est265_22', 3
--	sprite: s32'est265_23', 3
--	sprite: s32'est265_24', 3
-+	sprite: s32'est265_17', 2
-+	sprite: s32'est265_18', 2
-+	sprite: s32'est265_21', 2
-+	sprite: s32'est265_22', 2
-+	sprite: s32'est265_23', 2
-+	sprite: s32'est265_24', 2
+ 	sprite: s32'est265_17', 2
+ 	sprite: s32'est265_18', 2
+ 	sprite: s32'est265_21', 2
+ 	sprite: s32'est265_22', 2
+ 	sprite: s32'est265_23', 2
+ 	sprite: s32'est265_24', 2
  } endState: 
  
  beginSubroutine: s32'Earth_Atk_Init' {
@@ -5325,7 +5333,8 @@
  	voiceLine: s16'vxxx202'
  	sprite: s32'est404_05', 2
  	mouthPose: (OPEN)
- 	setXSpeed: 30000
+-	setXSpeed: 30000
++	setXSpeed: 60000
  	xSpeedPerFrame: 90
  	effectForLanding: 100, 1, 0
  	upon: (IDLING) {
@@ -6631,7 +6640,8 @@
  	sprite: s32'est405_02', 5
  	voiceLine: s16'vxxx202'
  	sprite: s32'est405_03', 3
- 	setXSpeed: 30000
+-	setXSpeed: 30000
++	setXSpeed: 60000
  	xSpeedPerFrame: 90
  	effectForLanding: 100, 1, 0
  	cmnSfx: s32'ARC_BTL_CMN_Furi_SyagamiKeri'
@@ -7221,6 +7231,13 @@
  	xSpeedPerFrame: 90
  	createParticle: s32'bg_dashbrake_default', (FRONT_1_BODY)
  	copyVar: var(act1), int(1)
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'Groar'
++		addGatlingOption: s32'Groar_Chain'
++		whiffCancelOptionBufferTime: s32'Groar', 40
++		whiffCancelOptionBufferTime: s32'Groar_Chain', 40
++		ctrlDirectionVsTarget: 
++	} endIf: 
  	sprite: s32'est434_45', 6
  	sprite: s32'est434_46', 8
  	sprite: s32'est434_47', 6
@@ -7330,7 +7347,8 @@
  	upon: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE) {
  		enableMemberChangeUltimate: 1
  		hitstop: 0
- 		enemyHitstopAddition: 0, 18, 18
+-		enemyHitstopAddition: 0, 18, 18
++		enemyHitstopAddition: 0, 23, 23
  		cameraMotion: -136716, 348887, 124709, 455, 6215, 0, 54, 1, 18, 10, 1
  		upon: (ON_PLAYER_AFTER_EXECUTE_DAMAGE) {
  			clearRegisteredUponCode: (ON_PLAYER_AFTER_EXECUTE_DAMAGE)
@@ -7365,7 +7383,8 @@
  	sprite: s32'est434_40', 3
  	sprite: s32'est434_41', 3
  	sprite: s32'est434_42', 3
- 	sprite: s32'est434_43', 4
+-	sprite: s32'est434_43', 4
++	sprite: s32'est434_43', 1
  	xSpeedPerFrame: 100
  	if: var(obj0) {
  		setDefaultMeshSet: s32'ESH'
@@ -7376,6 +7395,14 @@
  	changeDefaultMeshSet: 
  	effectForLanding: 100, 1, 0
  	setNoCollision: 1
++	sprite: s32'est434_43', 3
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'Groar'
++		addGatlingOption: s32'Groar_Chain'
++		whiffCancelOptionBufferTime: s32'Groar', 80
++		whiffCancelOptionBufferTime: s32'Groar_Chain', 80
++		ctrlDirectionVsTarget: 
++	} endIf: 
  	sprite: s32'est434_44', 5
  	xSpeedPerFrame: 90
  	createParticle: s32'bg_dashbrake_default', (FRONT_1_BODY)
@@ -7448,6 +7475,7 @@
  			ifNot: var(IsMainPlayerSelf) {
  				stopBankSE: 20, 60
  			} endIf: 
++			ctrlDirectionVsTarget: 
  		} endUpon: 
  		upon: (RECEIVE_ATTACK) {
  			clearRegisteredUponCode: (RECEIVE_ATTACK)
@@ -7473,6 +7501,12 @@
  		landingAutoAction: 0
  		landingAutoSpeedReset: 0
  		landingAutoEffect: 0
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'Groar'
++			addGatlingOption: s32'Groar_Chain'
++			whiffCancelOptionBufferTime: s32'Groar', 40
++			whiffCancelOptionBufferTime: s32'Groar_Chain', 40
++		} endIf: 
  	} endUpon: 
  	checkLastStateName: s32'Gimpact'
  	gotoLabelIfTrue: s32'chain', var(Result)
@@ -8208,6 +8242,12 @@
  	stopBankSE: 1, 60
  	sprite: s32'est431_29', 3
  	objectGravity: 
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'Groar'
++		addGatlingOption: s32'Groar_Chain'
++		whiffCancelOptionBufferTime: s32'Groar', 40
++		whiffCancelOptionBufferTime: s32'Groar_Chain', 40
++	} endIf: 
  	sprite: s32'est431_30', 3
  	mouthPose: (SHOW_TEETH)
  	sprite: s32'est431_31', 3
@@ -8399,7 +8439,8 @@
  	sprite: s32'est432_35', 2
  	sprite: s32'est432_36', 2
  	sprite: s32'est432_37', 2
- 	sprite: s32'est432_38', 3
+-	sprite: s32'est432_38', 3
++	sprite: s32'est432_38', 2
  	if: var(obj0) {
  		setDefaultMeshSet: s32'ESH'
  	} endIf: 
@@ -8409,7 +8450,15 @@
  	changeDefaultMeshSet: 
  	triggerUponInObject: s32'est432_aura01_Eff', (SIGNAL2)
  	mouthPose: (SHOW_TEETH)
++	sprite: s32'est432_38', 1
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'Groar'
++		addGatlingOption: s32'Groar_Chain'
++		whiffCancelOptionBufferTime: s32'Groar', 40
++		whiffCancelOptionBufferTime: s32'Groar_Chain', 40
++	} endIf: 
  	sprite: s32'est432_39', 3
++	enableGatlings: 0
  	sprite: s32'est432_40', 3
  	sprite: s32'est432_41', 3
  	sprite: s32'est432_42', 3
@@ -8443,6 +8492,10 @@
  		callSubroutine: s32'cmnAtkLevel_4_AtkInit'
  		damage: 801
  		minimalDamagePercent: 35
++		if: var(obj0) {
++			damage: 810
++			minimalDamagePercent: 64
++		} endIf: 
  		applyAttackLockWithStateName: s32'Groar'
  		atkDamageToRecovery: 1
  		atkSousaiOnlyCommand: 1
@@ -8493,10 +8546,54 @@
  			changeDefaultMeshSet: 
  		} endUpon: 
  		tensionUsage: 30000
++		faceOpponent: 
++		if: var(EnemyInHitstun) {
++			checkLastStateName: s32'Gcharge'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'GchargeExe'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'Gimpact'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'Omega'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'Blaster'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++		} endIf: 
++	} endUpon: 
++	if: var(IsLand) {
++		gotoLabel: s32'start'
++	} endIf: 
++	sprite: s32'est038_00', 300
++	enableSuperArmor: 1
++	resetSpeed: 1
++	displayModel: 0
++	setNoCollision: 0
++	createParticle: s32'cmn_Warp', (CENTER)
++	cmnSfx: s32'ARC_BTL_CMN_TLP_Short'
++	setYSpeed: -80000
++	ySpeedPerFrame: 110
++	upon: (TOUCH_GROUND) {
++		clearRegisteredUponCode: (TOUCH_GROUND)
++		jumpToLabel: s32'start'
  	} endUpon: 
++	spriteEnd: 
++	label: s32'start'
  	sprite: s32'est433_00', 3
  	facePose: (ANGRY)
  	enableSuperArmor: 1
++	clearRegisteredUponCode: (IDLING)
++	displayModel: 1
++	setNoCollision: 1
  	sprite: s32'est433_01', 3
  	sprite: s32'est433_02', 3
  	sprite: s32'est433_03', 1
@@ -8545,6 +8642,28 @@
  	sprite: s32'est433_20', 3
  	characterSfx: s32'ARC_BTL_EST_Atk5C_Dash'
  	sprite: s32'est433_21', 3
++	if: var(EnemyInHitstun) {
++		checkLastStateName: s32'Gcharge'
++		if: var(Result) {
++			superFreeze: 7, 100, 0, 10
++		} endIf: 
++		checkLastStateName: s32'GchargeExe'
++		if: var(Result) {
++			superFreeze: 7, 100, 0, 10
++		} endIf: 
++		checkLastStateName: s32'Gimpact'
++		if: var(Result) {
++			superFreeze: 7, 100, 0, 10
++		} endIf: 
++		checkLastStateName: s32'Omega'
++		if: var(Result) {
++			superFreeze: 7, 100, 0, 10
++		} endIf: 
++		checkLastStateName: s32'Blaster'
++		if: var(Result) {
++			superFreeze: 7, 100, 0, 10
++		} endIf: 
++	} endIf: 
  	sprite: s32'est433_22', 2
  	createObject: s32'est433_strike01_Eff', (ZERO)
  	sprite: s32'est433_23', 3

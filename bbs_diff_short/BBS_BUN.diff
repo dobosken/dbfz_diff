@@ -1,36 +1,61 @@
-4522,4527c4522,4527
-< 	sprite: s32'bun402_21', 3
-< 	sprite: s32'bun402_22', 3
-< 	sprite: s32'bun402_23', 3
-< 	sprite: s32'bun402_24', 3
-< 	sprite: s32'bun402_25', 3
-< 	sprite: s32'bun402_26', 3
+2151c2151
+< 	sprite: s32'bun201_02', 3
 ---
-> 	sprite: s32'bun402_21', 1
-> 	sprite: s32'bun402_22', 2
-> 	sprite: s32'bun402_23', 2
-> 	sprite: s32'bun402_24', 2
-> 	sprite: s32'bun402_25', 2
-> 	sprite: s32'bun402_26', 1
-4575,4576c4575,4576
-< 	sprite: s32'bun402_33', 2
-< 	sprite: s32'bun402_34', 3
+> 	sprite: s32'bun201_02', 2
+2153c2153
+< 	setXSpeed: 30000
 ---
-> 	sprite: s32'bun402_33', 1
-> 	sprite: s32'bun402_34', 1
-4578,4580c4578,4580
-< 	sprite: s32'bun402_35', 3
-< 	sprite: s32'bun402_36', 3
-< 	sprite: s32'bun402_37', 3
+> 	setXSpeed: 60000
+2155c2155
+< 	sprite: s32'bun201_03', 2
 ---
-> 	sprite: s32'bun402_35', 2
-> 	sprite: s32'bun402_36', 2
-> 	sprite: s32'bun402_37', 2
-4584c4584
-< 	sprite: s32'bun402_38', 3
+> 	sprite: s32'bun201_03', 1
+2192c2192
+< 	setXSpeed: 80000
 ---
-> 	sprite: s32'bun402_38', 2
-4653a4654
-> 	enableSuperArmor: 1
-5068a5070
-> 		displayModel: 1
+> 	setXSpeed: 120000
+2792c2792
+< 	sprite: s32'bun262_02', 2
+---
+> 	sprite: s32'bun262_02', 1
+2794c2794
+< 	sprite: s32'bun262_03', 2
+---
+> 	sprite: s32'bun262_03', 1
+2798c2798
+< 	sprite: s32'bun262_06', 2
+---
+> 	sprite: s32'bun262_06', 1
+3097a3098
+> 	blockstun: 19
+3098a3100,3103
+> 	checkCurrentStateName: (SELF), s32'AirMountdive_A'
+> 	if: var(Result) {
+> 		blockstun: 21
+> 	} endIf: 
+3100a3106
+> 		blockstun: 21
+3104a3111
+> 		blockstun: 21
+4607,4610c4614,4617
+< 	sprite: s32'bun403_04', 2
+< 	sprite: s32'bun403_05', 2
+< 	sprite: s32'bun403_06', 2
+< 	sprite: s32'bun403_07', 2
+---
+> 	sprite: s32'bun403_04', 1
+> 	sprite: s32'bun403_05', 1
+> 	sprite: s32'bun403_06', 1
+> 	sprite: s32'bun403_07', 1
+4733a4741,4744
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Okashi'
+> 		whiffCancelOptionBufferTime: s32'Okashi', 40
+> 	} endIf: 
+4771a4783,4788
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'Kiraida'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 		} endIf: 

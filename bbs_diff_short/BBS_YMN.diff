@@ -1,13 +1,50 @@
-1651c1651
-< 	hitstop: 6
+3220a3221
+> 		airHitstun: 22
+3430a3432,3433
+> 		addWhiffCancelOption: s32'RFK_mae'
+> 		addWhiffCancelOption: s32'RFK_ushiro'
+3596a3600,3601
+> 	addGatlingOption: s32'CmnActRushStart'
+> 	whiffCancelOptionBufferTime: s32'CmnActRushStart', 10
+3625a3631,3632
+> 		addWhiffCancelOption: s32'RFK_mae'
+> 		addWhiffCancelOption: s32'RFK_ushiro'
+3677a3685,3686
+> 				removeWhiffCancelOption: s32'RFK_mae'
+> 				removeWhiffCancelOption: s32'RFK_ushiro'
+3710a3720,3721
+> 	addWhiffCancelOption: s32'RFK_mae'
+> 	addWhiffCancelOption: s32'RFK_ushiro'
+3849a3861,3862
+> 	addGatlingOption: s32'CmnActRushStart'
+> 	whiffCancelOptionBufferTime: s32'CmnActRushStart', 10
+3896c3909
+< 	sprite: s32'ymn400_00', 2
 ---
-> 	hitstop: 11
-2742a2743,2744
-> 	enableSuperArmor: 1
-> 	superArmorLoseLow: 0
-2749a2752
-> 	enableSuperArmor: 0
-2871a2875
-> 	enableSuperArmor: 1
-2890a2895
-> 	enableSuperArmor: 0
+> 	sprite: s32'ymn400_00', 1
+3909c3922
+< 	sprite: s32'ymn400_05', 2
+---
+> 	sprite: s32'ymn400_05', 1
+3911c3924
+< 	setXSpeed: 50000
+---
+> 	setXSpeed: 105000
+3913a3927
+> 	setXSpeed: 50000
+4490a4505,4506
+> 	addGatlingOption: s32'CmnActRushStart'
+> 	whiffCancelOptionBufferTime: s32'CmnActRushStart', 10
+4677a4694,4695
+> 	addGatlingOption: s32'CmnActRushStart'
+> 	whiffCancelOptionBufferTime: s32'CmnActRushStart', 10
+4752a4771,4772
+> 		addWhiffCancelOption: s32'CmnActRushStart'
+> 		whiffCancelOptionBufferTime: s32'CmnActRushStart', 10
+4795a4816,4817
+> 		addWhiffCancelOption: s32'CmnActRushStart'
+> 		whiffCancelOptionBufferTime: s32'CmnActRushStart', 10
+6112a6135,6137
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'Sin_RFK'
+> 		} endIf: 

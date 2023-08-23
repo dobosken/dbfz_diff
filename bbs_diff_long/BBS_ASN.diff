@@ -1,6 +1,6 @@
---- 1.31/BBS_ASN.bbs	2023-05-23 14:16:08.042657528 +0200
-+++ 1.32/BBS_ASN.bbs	2023-05-23 14:14:43.900214840 +0200
-@@ -1,7882 +1,7882 @@
+--- 1.32/BBS_ASN.bbs	2023-05-24 20:54:41.506911561 +0200
++++ 1.33/BBS_ASN.bbs	2023-08-23 04:22:57.439825605 +0200
+@@ -1,7882 +1,7908 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'asn'
  } endSubroutine: 
@@ -2890,6 +2890,12 @@
  	sprite: s32'asn260_06', 2
  	sprite: s32'asn260_07', 2
  	sprite: s32'asn260_08', 2
++	sprite: s32'asn260_06', 2
++	sprite: s32'asn260_07', 2
++	sprite: s32'asn260_08', 2
++	sprite: s32'asn260_06', 2
++	sprite: s32'asn260_07', 2
++	sprite: s32'asn260_08', 2
  	sprite: s32'asn260_09', 4
  	recoveryState: 
  	sprite: s32'asn260_10', 4
@@ -3347,8 +3353,7 @@
  	mouthPose: (OPEN)
  	resetSpeed: 1
  	characterSfx: s32'ARC_BTL_ASN_Dynamite_Basa'
--	sprite: s32'asn400_01', 2
-+	sprite: s32'asn400_01', 1
+ 	sprite: s32'asn400_01', 1
  	sprite: s32'asn400_02', 2
  	sprite: s32'asn400_03', 2
  	sprite: s32'asn400_04', 2
@@ -3465,8 +3470,7 @@
  	effectForDashStart: 104, 1, 0
  	createParticle: s32'cmn_air_dash', (EX_POINT_0)
  	createObject: s32'402_Smoke_Eff', (ZERO)
--	setXSpeed: 80000
-+	setXSpeed: 110000
+ 	setXSpeed: 110000
  	sprite: s32'asn400_44', 2
  	sprite: s32'asn400_45', 4
  	sprite: s32'asn400_46', 3
@@ -4098,8 +4102,7 @@
  	voiceLine: s16'vxxx204'
  	createObject: s32'402_Smoke_Eff', (ZERO)
  	createObject: s32'402C_Line_Eff', (ZERO)
--	setXSpeed: 80000
-+	setXSpeed: 100000
+ 	setXSpeed: 100000
  	privateBankSE: 0, s32'ARC_BTL_ASN_FPBom_Jump', 100
  	pushCollisionHeight: 300000
  	callSubroutine: s32'FlyingPowerBom_HomingDash236'
@@ -4208,9 +4211,11 @@
  	resetSpeed: 1
  	sprite: s32'asn401_01', 1
  	headInvul: 1
- 	sprite: s32'asn401_02', 2
+-	sprite: s32'asn401_02', 2
++	sprite: s32'asn401_02', 1
  	voiceLine: s16'vxxx204'
- 	sprite: s32'asn401_02', 4
+-	sprite: s32'asn401_02', 4
++	sprite: s32'asn401_02', 1
  	privateBankSE: 0, s32'ARC_BTL_ASN_FPBom_Jump', 100
  	sprite: s32'asn401_03', 2
  	createObject: s32'401B_Line_Eff', (ZERO)
@@ -4415,7 +4420,8 @@
  	resetSpeed: 1
  	sprite: s32'asn401_06', 1
  	headInvul: 1
- 	sprite: s32'asn401_07', 6
+-	sprite: s32'asn401_07', 6
++	sprite: s32'asn401_07', 2
  	privateBankSE: 0, s32'ARC_BTL_ASN_FPBom_Jump', 100
  	sprite: s32'asn401_03', 2
  	voiceLine: s16'vxxx204'
@@ -4470,15 +4476,17 @@
  		callSubroutine: s32'cmnSpecialAttackExInit'
  		copyVar: var(plr0), int(1)
  	} endUpon: 
- 	sprite: s32'asn401_06', 3
+-	sprite: s32'asn401_06', 3
++	sprite: s32'asn401_06', 2
  	facePose: (ANGRY)
  	mouthPose: (OPEN)
  	resetSpeed: 1
  	sprite: s32'asn401_07', 1
- 	headInvul: 1
- 	sprite: s32'asn401_07', 2
+-	headInvul: 1
+-	sprite: s32'asn401_07', 2
  	privateBankSE: 0, s32'ARC_BTL_ASN_FPBom_Jump', 100
  	sprite: s32'asn401_03', 1
++	headInvul: 1
  	voiceLine: s16'vxxx204'
  	createObject: s32'401B_Line_Eff', (ZERO)
  	addYPosition: 50000
@@ -5172,6 +5180,12 @@
  	deactivateObjectByName: s32'hellsflash_shadow'
  	stopBankSE: 16, 20
  	stopBankSE: 17, 20
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'HellsFlash_Lv3'
++		whiffCancelOptionBufferTime: s32'HellsFlash_Lv3', 30
++		addGatlingOption: s32'DontUse_Lastpower'
++		whiffCancelOptionBufferTime: s32'DontUse_Lastpower', 30
++	} endIf: 
  	sprite: s32'asn430_15', 2
  	sprite: s32'asn430_16', 2
  	mouthPose: (CLOSED)
@@ -5226,6 +5240,12 @@
  	stopBankSE: 16, 20
  	stopBankSE: 17, 20
  	mouthPose: (CLOSED)
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'HellsFlash_Lv3'
++		whiffCancelOptionBufferTime: s32'HellsFlash_Lv3', 30
++		addGatlingOption: s32'DontUse_Lastpower'
++		whiffCancelOptionBufferTime: s32'DontUse_Lastpower', 30
++	} endIf: 
  	sprite: s32'asn430_18', 1
  	sprite: s32'asn430_19', 1
  	sprite: s32'asn430_20', 2
@@ -5346,18 +5366,27 @@
  	sprite: s32'asn430_48', 2
  	sprite: s32'asn430_49', 2
  	sprite: s32'asn430_50', 2
- 	sprite: s32'asn430_51', 3
+-	sprite: s32'asn430_51', 3
++	sprite: s32'asn430_51', 1
  	characterSfx: s32'ARC_BTL_ASN_HellsFlash_End'
- 	sprite: s32'asn430_52', 3
- 	sprite: s32'asn430_53', 3
- 	sprite: s32'asn430_54', 3
- 	sprite: s32'asn430_55', 4
+-	sprite: s32'asn430_52', 3
+-	sprite: s32'asn430_53', 3
+-	sprite: s32'asn430_54', 3
+-	sprite: s32'asn430_55', 4
++	sprite: s32'asn430_52', 1
++	sprite: s32'asn430_53', 1
++	sprite: s32'asn430_54', 1
++	sprite: s32'asn430_55', 2
  	recoveryState: 
- 	sprite: s32'asn430_56', 5
- 	sprite: s32'asn430_57', 6
+-	sprite: s32'asn430_56', 5
+-	sprite: s32'asn430_57', 6
++	sprite: s32'asn430_56', 2
++	sprite: s32'asn430_57', 2
  	objectGravity: 
- 	sprite: s32'asn430_58', 2
- 	sprite: s32'asn430_59', 2
+-	sprite: s32'asn430_58', 2
+-	sprite: s32'asn430_59', 2
++	sprite: s32'asn430_58', 1
++	sprite: s32'asn430_59', 1
  	spriteEnd: 
  	exitState: 
  	label: s32'sousai'
@@ -5630,7 +5659,8 @@
  	characterSfx: s32'ARC_BTL_ASN_HllsFlshLv3_Shuba'
  	sprite: s32'asn400_08', 3
  	hideAllButSelf: 0
- 	setXSpeed: 5000
+-	setXSpeed: 5000
++	setXSpeed: 75000
  	sprite: s32'asn400_09', 1
  	addPositionX: 25000
  	upon: (IDLING) {
@@ -5645,6 +5675,7 @@
  	clearRegisteredUponCode: (IDLING)
  	enableSuperArmor: 0
  	recoveryState: 
++	xSpeedPerFrame: 60
  	sprite: s32'asn400_11', 2
  	xSpeedPerFrame: 60
  	spriteEnd: 
@@ -6025,7 +6056,7 @@
  		callSubroutine: s32'cmnAtkTemplNageLand'
  		jumpToStateOnHit: s32'DontUse_Lastpower_Exe'
  		atkRange: 400000, 0, 150000, 0
- 		canGrabDuringHitstun: 0
+-		canGrabDuringHitstun: 0
  		atkShakeCamera: s32'ShakeTate', 800, 0, 20, 0
  		atkDamageToRecovery: 1
  		atkYogore: 0
@@ -6038,6 +6069,7 @@
  			stopBankSE: 0, 30
  			extendPushboxX: 0
  		} endUpon: 
++		copyVar: var(plr2), int(0)
  	} endUpon: 
  	sprite: s32'asn432_00', 3
  	facePose: (ANGRY)
@@ -6135,6 +6167,9 @@
  			recoveryState: 
  		} endElse: 
  	} endUpon: 
++	if: var(EnemyInHitstun) {
++		copyVar: var(plr2), int(1)
++	} endIf: 
  	sprite: s32'asn432_20', 2
  	clearRegisteredUponCode: (IDLING)
  	enableSuperArmor: 0
@@ -6155,6 +6190,10 @@
  		initializeForLockExe: 20, 1
  		callSubroutine: s32'cmnAtkLevel_4_AtkInit'
  		damage: 50000
++		if: var(plr2) {
++			damage: 5000
++			minimalDamagePercent: 50
++		} endIf: 
  		groundKnockbackEffect: (KirimomiSide)
  		airKnockbackEffect: (KirimomiSide)
  		attackXKnockback: 50000
@@ -6172,6 +6211,7 @@
  		applyAttackLockWithStateName: s32'CmnNeutral'
  		forceStopAllAssistAttack: 
  		copyVar: var(plr1), int(1)
++		copyVar: var(plr2), int(0)
  		facePose: (STRESSED)
  	} endUpon: 
  	sprite: s32'asn432_19', 3

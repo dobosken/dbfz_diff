@@ -1,36 +1,115 @@
-2721,2722c2721,2722
-< 	sprite: s32'kfs203_21', 3
-< 	sprite: s32'kfs203_22', 3
+381a382,395
+> 	addMove: s32'GBurst_Chain' {
+> 		moveType: (OVERDRIVE)
+> 		characterState: (STANDING_OR_AIRBORNE)
+> 		moveInput: (INPUT_214)
+> 		moveInput: (INPUT_PRESS_L)
+> 		moveInput: (INPUT_PRESS_M)
+> 		moveInput: (INPUT_BOOLEAN_OR)
+> 		moveInput: (INPUT_214)
+> 		moveInput: (INPUT_PRESS_H)
+> 		moveInput: (INPUT_PRESS_KI)
+> 		addMoveCondition: (THREE)
+> 		isFollowupMove: 1
+> 		moveAlias: s32'GBurst'
+> 	} endMove: 
+538a553
+> 	registerMove: s32'GBurst_Chain'
+2290c2305
+< 		xSpeedPerFrame: 50
 ---
-> 	sprite: s32'kfs203_21', 2
-> 	sprite: s32'kfs203_22', 2
-2948c2948
-< 	sprite: s32'kfs206_00', 3
----
-> 	sprite: s32'kfs206_00', 2
-2954c2954
-< 	sprite: s32'kfs206_03', 3
----
-> 	sprite: s32'kfs206_03', 2
-3140c3140
-< 	sprite: s32'kfs262_00', 2
----
-> 	sprite: s32'kfs262_00', 1
-3143c3143
-< 	sprite: s32'kfs262_01', 2
----
-> 	sprite: s32'kfs262_01', 1
-3375,3376d3374
-< 	sprite: s32'kfs401_15', 2
-< 	sprite: s32'kfs401_16', 2
-3379a3378,3381
+> 		xSpeedPerFrame: 70
+3352a3368,3372
+> 	enableWhiffCancel: 1
+> 	addWhiffCancelOption: s32'CmnActHomingDash'
+> 	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 10
 > 	addWhiffCancelOption: s32'SpecialMove'
 > 	whiffCancelOptionBufferTime: s32'SpecialMove', 10
-> 	sprite: s32'kfs401_15', 2
-> 	sprite: s32'kfs401_16', 2
-3455a3458,3459
+3375,3379d3394
+< 	enableWhiffCancel: 1
+< 	addWhiffCancelOption: s32'CmnActHomingDash'
+< 	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 10
+< 	addWhiffCancelOption: s32'SpecialMove'
+< 	whiffCancelOptionBufferTime: s32'SpecialMove', 10
+3454d3468
+< 	sprite: s32'kfs401_11', 2
+3459a3474
+> 	sprite: s32'kfs401_11', 2
+3571d3585
+< 	sprite: s32'kfs402_19', 2
+3576a3591
+> 	sprite: s32'kfs402_19', 2
+4265a4281,4285
+> 	enableWhiffCancel: 1
+> 	addWhiffCancelOption: s32'CmnActHomingDash'
+> 	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 20
 > 	addWhiffCancelOption: s32'SpecialMove'
-> 	whiffCancelOptionBufferTime: s32'SpecialMove', 10
-3570a3575,3576
+> 	whiffCancelOptionBufferTime: s32'SpecialMove', 20
+4376a4397,4401
+> 	enableWhiffCancel: 1
+> 	addWhiffCancelOption: s32'CmnActHomingDash'
+> 	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 20
+> 	addWhiffCancelOption: s32'AirSpecialMove'
+> 	whiffCancelOptionBufferTime: s32'AirSpecialMove', 20
+4479a4505,4511
+> 	enableWhiffCancel: 1
+> 	addWhiffCancelOption: s32'CmnActHomingDash'
+> 	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 20
 > 	addWhiffCancelOption: s32'SpecialMove'
-> 	whiffCancelOptionBufferTime: s32'SpecialMove', 10
+> 	whiffCancelOptionBufferTime: s32'SpecialMove', 30
+> 	addWhiffCancelOption: s32'AirSpecialMove'
+> 	whiffCancelOptionBufferTime: s32'AirSpecialMove', 30
+4525a4558,4563
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'GBurst'
+> 			addGatlingOption: s32'GBurst_Chain'
+> 			whiffCancelOptionBufferTime: s32'GBurst', 40
+> 			whiffCancelOptionBufferTime: s32'GBurst_Chain', 40
+> 		} endIf: 
+4672a4711,4716
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'GBurst'
+> 			addGatlingOption: s32'GBurst_Chain'
+> 			whiffCancelOptionBufferTime: s32'GBurst', 40
+> 			whiffCancelOptionBufferTime: s32'GBurst_Chain', 40
+> 		} endIf: 
+4985,4988c5029,5032
+< 	sprite: s32'kfs431_40', 3
+< 	sprite: s32'kfs431_38', 3
+< 	sprite: s32'kfs431_39', 3
+< 	sprite: s32'kfs431_40', 3
+---
+> 	sprite: s32'kfs431_40', 2
+> 	sprite: s32'kfs431_38', 2
+> 	sprite: s32'kfs431_39', 2
+> 	sprite: s32'kfs431_40', 2
+5202a5247,5252
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'GBurst'
+> 		addGatlingOption: s32'GBurst_Chain'
+> 		whiffCancelOptionBufferTime: s32'GBurst', 40
+> 		whiffCancelOptionBufferTime: s32'GBurst_Chain', 40
+> 	} endIf: 
+5250a5301,5318
+> 	if: var(IsLand) {
+> 		gotoLabel: s32'start'
+> 	} endIf: 
+> 	sprite: s32'kfs038_00', 300
+> 	enableSuperArmor: 1
+> 	resetSpeed: 1
+> 	displayModel: 0
+> 	setNoCollision: 0
+> 	createParticle: s32'cmn_Warp', (CENTER)
+> 	cmnSfx: s32'ARC_BTL_CMN_TLP_Short'
+> 	setYSpeed: -80000
+> 	ySpeedPerFrame: 110
+> 	upon: (TOUCH_GROUND) {
+> 		clearRegisteredUponCode: (TOUCH_GROUND)
+> 		jumpToLabel: s32'start'
+> 	} endUpon: 
+> 	spriteEnd: 
+> 	label: s32'start'
+5253a5322,5324
+> 	clearRegisteredUponCode: (IDLING)
+> 	displayModel: 1
+> 	setNoCollision: 1

@@ -1,19 +1,190 @@
-1512c1512
-< 		airHitstun: 38
+465a466,479
+> 	addMove: s32'SDestroy_Kamehameha_Chain' {
+> 		moveType: (OVERDRIVE)
+> 		characterState: (STANDING_OR_AIRBORNE)
+> 		moveInput: (INPUT_214)
+> 		moveInput: (INPUT_PRESS_L)
+> 		moveInput: (INPUT_PRESS_M)
+> 		moveInput: (INPUT_BOOLEAN_OR)
+> 		moveInput: (INPUT_214)
+> 		moveInput: (INPUT_PRESS_H)
+> 		moveInput: (INPUT_PRESS_KI)
+> 		addMoveCondition: (THREE)
+> 		isFollowupMove: 1
+> 		moveAlias: s32'SDestroy_Kamehameha'
+> 	} endMove: 
+615a630
+> 	registerMove: s32'SDestroy_Kamehameha_Chain'
+2959,2960c2974,2976
+< 	sprite: s32'cen205_01', 2
+< 	sprite: s32'cen205_02', 2
 ---
-> 		airHitstun: 43
-2581c2581
-< 	setXSpeed: 50000
+> 	sprite: s32'cen205_01', 1
+> 	sprite: s32'cen205_02', 1
+> 	sprite: s32'cen205_03', 1
+2962d2977
+< 	sprite: s32'cen205_03', 2
+3082,3085c3097,3100
+< 	sprite: s32'cen233_00', 2
+< 	sprite: s32'cen233_01', 2
+< 	sprite: s32'cen233_02', 2
+< 	sprite: s32'cen233_03', 2
 ---
-> 	setXSpeed: 75000
-3921a3922
+> 	sprite: s32'cen233_00', 1
+> 	sprite: s32'cen233_01', 1
+> 	sprite: s32'cen233_02', 1
+> 	sprite: s32'cen233_03', 1
+3649c3664
+< 	sprite: s32'cen401_02', 2
+---
+> 	sprite: s32'cen401_02', 1
+3651c3666
+< 	sprite: s32'cen401_03', 2
+---
+> 	sprite: s32'cen401_03', 1
+3659a3675,3700
+> 	upon: (IDLING) {
+> 		ifNot: var(act1) {
+> 			checkInput: (INPUT_ANY_FORWARD)
+> 			if: var(Result) {
+> 				ifOperation: (IS_LESS), var(SpeedX), int(75000) {
+> 					addXSpeed: 8000
+> 				} endIf: 
+> 			} endIf: 
+> 		} endIf: 
+> 		checkInput: (INPUT_ANY_BACK)
+> 		if: var(Result) {
+> 			attackXKnockback: 10000
+> 			ifOperation: (IS_GREATER), var(SpeedX), int(10000) {
+> 				addXSpeed: -8000
+> 			} endIf: 
+> 		} endIf: 
+> 		else:  {
+> 			attackXKnockback: 25000
+> 		} endElse: 
+> 		ifOperation: (IS_GREATER_OR_EQUAL), var(SpeedX), int(75000) {
+> 			setXSpeed: 75000
+> 		} endIf: 
+> 		ifOperation: (IS_LESS_OR_EQUAL), var(SpeedX), int(10000) {
+> 			setXSpeed: 10000
+> 		} endIf: 
+> 	} endUpon: 
+3670a3712
+> 	copyVar: var(act1), int(1)
+3678a3721
+> 	clearRegisteredUponCode: (IDLING)
+3735c3778
+< 	} endIf: 
+---
+> 	} endUpon: 
+3823c3866
+< 	} endIf: 
+---
+> 	} endUpon: 
+3919a3963,3968
 > 	faceOpponent: 
-3923c3924
-< 	sprite: s32'cen401_18', 4
----
-> 	sprite: s32'cen401_18', 3
-3999c4000,4001
-< 	sprite: s32'cen401_17', 3
----
+> 	checkInput: (INPUT_ANY_FORWARD)
+> 	if: var(Result) {
+> 		setXSpeed: 180000
+> 		xSpeedPerFrame: 65
+> 	} endIf: 
+3922d3970
+< 	faceOpponent: 
+3997a4046,4051
 > 	faceOpponent: 
-> 	sprite: s32'cen401_17', 2
+> 	checkInput: (INPUT_ANY_FORWARD)
+> 	if: var(Result) {
+> 		setXSpeed: 200000
+> 		xSpeedPerFrame: 75
+> 	} endIf: 
+4000d4053
+< 	faceOpponent: 
+4075,4076c4128,4132
+< 	setXSpeed: 80000
+< 	xSpeedPerFrame: 65
+---
+> 	checkInput: (INPUT_ANY_FORWARD)
+> 	if: var(Result) {
+> 		setXSpeed: 180000
+> 		xSpeedPerFrame: 75
+> 	} endIf: 
+4170,4171d4225
+< 	sprite: s32'cen400_02', 2
+< 	headInvul: 1
+4172a4227
+> 	headInvul: 1
+4388,4389d4442
+< 	headInvul: 1
+< 	sprite: s32'cen400_02', 2
+4390a4444
+> 	headInvul: 1
+4625c4679,4681
+< 	sprite: s32'cen400_02', 3
+---
+> 	sprite: s32'cen400_02', 1
+> 	sprite: s32'cen400_02', 2
+> 	enableSuperArmor: 1
+4641a4698
+> 	enableSuperArmor: 0
+5217a5275
+> 	enableSuperArmor: 1
+5232a5291
+> 	enableSuperArmor: 0
+5852,5854c5911,5913
+< 	sprite: s32'cen406_01', 4
+< 	sprite: s32'cen406_02', 4
+< 	sprite: s32'cen406_03', 14
+---
+> 	sprite: s32'cen406_01', 3
+> 	sprite: s32'cen406_02', 3
+> 	sprite: s32'cen406_03', 12
+5920,5928c5979,5981
+< 	sprite: s32'cen406_26', 2
+< 	sprite: s32'cen406_27', 2
+< 	sprite: s32'cen406_28', 2
+< 	sprite: s32'cen406_26', 2
+< 	sprite: s32'cen406_27', 2
+< 	sprite: s32'cen406_28', 2
+< 	sprite: s32'cen406_29', 3
+< 	sprite: s32'cen406_30', 5
+< 	sprite: s32'cen406_31', 3
+---
+> 	sprite: s32'cen406_29', 2
+> 	sprite: s32'cen406_30', 2
+> 	sprite: s32'cen406_31', 2
+6030a6084,6087
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'SDestroy_Kamehameha_Chain'
+> 		whiffCancelOptionBufferTime: s32'SDestroy_Kamehameha_Chain', 40
+> 	} endIf: 
+6038a6096
+> 	enableGatlings: 0
+6153a6212,6215
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'SDestroy_Kamehameha_Chain'
+> 		whiffCancelOptionBufferTime: s32'SDestroy_Kamehameha_Chain', 40
+> 	} endIf: 
+6161a6224
+> 	enableGatlings: 0
+6187a6251,6268
+> 	if: var(IsLand) {
+> 		gotoLabel: s32'start'
+> 	} endIf: 
+> 	sprite: s32'cen038_00', 300
+> 	enableSuperArmor: 1
+> 	resetSpeed: 1
+> 	displayModel: 0
+> 	setNoCollision: 0
+> 	createParticle: s32'cmn_Warp', (CENTER)
+> 	cmnSfx: s32'ARC_BTL_CMN_TLP_Short'
+> 	setYSpeed: -80000
+> 	ySpeedPerFrame: 110
+> 	upon: (TOUCH_GROUND) {
+> 		clearRegisteredUponCode: (TOUCH_GROUND)
+> 		jumpToLabel: s32'start'
+> 	} endUpon: 
+> 	spriteEnd: 
+> 	label: s32'start'
+6190a6272,6273
+> 	displayModel: 1
+> 	setNoCollision: 1

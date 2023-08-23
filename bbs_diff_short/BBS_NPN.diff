@@ -1,0 +1,20 @@
+2511d2510
+< 		guardPushback: 175
+2516a2516,2517
+> 		guardPushback: -50
+> 		atkHitBackForHit: -350
+3381a3383
+> 	blockstun: 20
+3389c3391
+< 		blockstun: 22
+---
+> 		blockstun: 28
+4269a4272,4275
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'Kapa'
+> 			whiffCancelOptionBufferTime: s32'Kapa', 40
+> 		} endIf: 
+4379a4386,4388
+> 	enableWhiffCancel: 1
+> 	addWhiffCancelOption: s32'CmnActHomingDash'
+> 	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 10

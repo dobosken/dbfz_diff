@@ -1,6 +1,6 @@
---- 1.31/BBS_AENEF.bbs	2023-05-23 14:16:07.902655128 +0200
-+++ 1.32/BBS_AENEF.bbs	2023-05-23 14:14:43.766212542 +0200
-@@ -1,6853 +1,6854 @@
+--- 1.32/BBS_AENEF.bbs	2023-05-24 20:54:41.375909400 +0200
++++ 1.33/BBS_AENEF.bbs	2023-08-23 04:22:57.242822248 +0200
+@@ -1,6854 +1,6877 @@
  beginState: s32'dmy' {
  	sprite: s32'null', 1
  } endState: 
@@ -454,7 +454,7 @@
  	upon: (FRAME_STEP) {
  		multiObjAttackStop: 0
  		setHighPriorityOBJ: 0
- 		calcDistance: 29, 100, 23, 103
+ 		calcDistance: (SELF_MAIN_PLAYER), (ZERO), (SELF), (CENTER)
  		ifOperation: (IS_LESS), var(Result), int(250000) {
  			ifVarOfObjectFalse: (SELF_MAIN_PLAYER), var(PlayerDamage) {
  				multiObjAttackStop: 1
@@ -508,7 +508,7 @@
  	upon: (FRAME_STEP) {
  		multiObjAttackStop: 0
  		setHighPriorityOBJ: 0
- 		calcDistance: 29, 100, 23, 103
+ 		calcDistance: (SELF_MAIN_PLAYER), (ZERO), (SELF), (CENTER)
  		ifOperation: (IS_LESS), var(Result), int(250000) {
  			ifVarOfObjectFalse: (SELF_MAIN_PLAYER), var(PlayerDamage) {
  				multiObjAttackStop: 1
@@ -663,7 +663,7 @@
  	upon: (FRAME_STEP) {
  		multiObjAttackStop: 0
  		setHighPriorityOBJ: 0
- 		calcDistance: 29, 100, 23, 103
+ 		calcDistance: (SELF_MAIN_PLAYER), (ZERO), (SELF), (CENTER)
  		ifOperation: (IS_LESS), var(Result), int(250000) {
  			ifVarOfObjectFalse: (SELF_MAIN_PLAYER), var(PlayerDamage) {
  				multiObjAttackStop: 1
@@ -930,6 +930,10 @@
  	characterSfx: s32'ARC_BTL_AEN_Call17_A_Keri'
  	soundOption_VoiceChannel: 1
  	randomVoice: s16'vavn012', 100, s16'vavn013', 100, s16'vavn018', 100, s16'', 0
++	checkCurrentStateName: (PLAYER), s32'Call17_Air214A'
++	if: var(Result) {
++		spriteAddTime: 6
++	} endIf: 
  	sprite: s32'avn202_02', 2
  	sprite: s32'avn202_03', 2
  	sprite: s32'avn202_04', 8
@@ -1037,6 +1041,10 @@
  		airHitstun: 25
  		atkAngle: 75
  		tensionGainOnConnect: 1200
++		checkCurrentStateName: (PLAYER), s32'Call17_214A'
++		if: var(Result) {
++			blockstun: 12
++		} endIf: 
  		landingHeight: 0
  		jumpToStateInObject: (PARENT), s32'landing1'
  		if: var(ObjectParameter1) {
@@ -1119,6 +1127,17 @@
  	objectGravity: 
  	enableHitbox: 
  	jumpToStateInObject: (PARENT), s32'landing2'
++	upon: (ATTACK_COLLISION) {
++		copyVar: var(act7), int(1)
++	} endUpon: 
++	upon: (IDLING) {
++		if: var(act7) {
++			checkCurrentStateName: (PLAYER), s32'Call17_214A'
++			if: var(Result) {
++				copyVarFromObject: (PLAYER), var(act7), (PLAYER), int(1)
++			} endIf: 
++		} endIf: 
++	} endUpon: 
  	sprite: s32'avn232_07', 1
  	sprite: s32'avn232_08', 1
  	ySpeedPerFrame: 75
@@ -1278,9 +1297,8 @@
  	sprite: s32'avn203_01', 2
  	sprite: s32'avn203_02', 3
  	effectForDashStart: 104, 1, 1
--	setXSpeed: 45000
-+	setXSpeed: 75000
-+	changeWeight: 500
+ 	setXSpeed: 75000
+ 	changeWeight: 500
  	characterSfx: s32'ARC_BTL_AEN_Call17_B_PHK1'
  	sprite: s32'avn203_06', 2
  	percentageXSpeed: 85
@@ -1468,6 +1486,10 @@
  		ifNot: var(ObjectParameter1) {
  			copyVarFromObject: (SELF), var(PosY), (PARENT), var(PosY)
  			addYPosition: 150000
++			checkCurrentStateName: (PLAYER), s32'Call17_214B'
++			if: var(Result) {
++				addYPosition: 450000
++			} endIf: 
  		} endIf: 
  	} endUpon: 
  	sprite: s32'avn022_02', 1

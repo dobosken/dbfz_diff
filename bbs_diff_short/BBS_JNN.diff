@@ -1,0 +1,93 @@
+2773a2774
+> 		attackGuardtype: (LOW)
+2880a2882
+> 	enableSuperArmor: 1
+2886c2888
+< 	setXSpeed: 15000
+---
+> 	setXSpeed: 75000
+3468,3469c3470,3471
+< 	sprite: s32'jnn232_01', 2
+< 	sprite: s32'jnn232_02', 2
+---
+> 	sprite: s32'jnn232_01', 1
+> 	sprite: s32'jnn232_02', 1
+4132a4135
+> 		slidingKnockdownDuration: 15
+6638a6642,6647
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Koshoha'
+> 		addGatlingOption: s32'AirKoshoha'
+> 		whiffCancelOptionBufferTime: s32'Koshoha', 40
+> 		whiffCancelOptionBufferTime: s32'AirKoshoha', 40
+> 	} endIf: 
+6821c6830
+< 	sprite: s32'jnn430_77', 15
+---
+> 	sprite: s32'jnn430_77', 1
+6854a6864,6870
+> 	sprite: s32'jnn430_77', 14
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Koshoha'
+> 		addGatlingOption: s32'AirKoshoha'
+> 		whiffCancelOptionBufferTime: s32'Koshoha', 60
+> 		whiffCancelOptionBufferTime: s32'AirKoshoha', 60
+> 	} endIf: 
+6856a6873
+> 	enableGatlings: 0
+7019a7037,7042
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Koshoha'
+> 		addGatlingOption: s32'AirKoshoha'
+> 		whiffCancelOptionBufferTime: s32'Koshoha', 40
+> 		whiffCancelOptionBufferTime: s32'AirKoshoha', 40
+> 	} endIf: 
+7196c7219
+< 	sprite: s32'jnn430_77', 15
+---
+> 	sprite: s32'jnn430_77', 1
+7229a7253,7259
+> 	sprite: s32'jnn430_77', 14
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Koshoha'
+> 		addGatlingOption: s32'AirKoshoha'
+> 		whiffCancelOptionBufferTime: s32'Koshoha', 60
+> 		whiffCancelOptionBufferTime: s32'AirKoshoha', 60
+> 	} endIf: 
+7231a7262
+> 	enableGatlings: 0
+7376a7408,7413
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Koshoha'
+> 		addGatlingOption: s32'AirKoshoha'
+> 		whiffCancelOptionBufferTime: s32'Koshoha', 40
+> 		whiffCancelOptionBufferTime: s32'AirKoshoha', 40
+> 	} endIf: 
+7603a7641,7646
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Koshoha'
+> 		addGatlingOption: s32'AirKoshoha'
+> 		whiffCancelOptionBufferTime: s32'Koshoha', 60
+> 		whiffCancelOptionBufferTime: s32'AirKoshoha', 60
+> 	} endIf: 
+7615a7659,7664
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Koshoha'
+> 		addGatlingOption: s32'AirKoshoha'
+> 		whiffCancelOptionBufferTime: s32'Koshoha', 60
+> 		whiffCancelOptionBufferTime: s32'AirKoshoha', 60
+> 	} endIf: 
+7630a7680,7685
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'GokushuExe'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 		} endIf: 
+7648a7704,7709
+> 	if: var(EnemyInHitstun) {
+> 		checkLastStateName: s32'GokushuExe'
+> 		if: var(Result) {
+> 			superFreeze: 7, 100, 0, 10
+> 		} endIf: 
+> 	} endIf: 

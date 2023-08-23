@@ -1,0 +1,8 @@
+851c851
+< 		airHitstun: 25
+---
+> 		airHitstun: 31
+1677a1678
+> 		autoHitSignalSending: 1
+2091a2093
+> 		autoHitSignalSending: 1

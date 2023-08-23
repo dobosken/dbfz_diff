@@ -1,72 +1,170 @@
-1473c1473
-< 		attackXKnockback: 35000
+2462c2462
+< 	setXSpeed: 40000
 ---
-> 		attackXKnockback: 15000
-3133d3132
-< 	sprite: s32'bdn400_01', 1
-3143c3142
-< 	sprite: s32'bdn400_08', 2
+> 	setXSpeed: 60000
+3118a3119
+> 		blockstun: 16
+3237,3238c3238,3239
+< 	attackXKnockback: 38000
+< 	attackYKnockback: 30000
 ---
-> 	sprite: s32'bdn400_08', 1
-3323a3323
-> 	setXSpeed: 110000
-3325c3325
-< 	setXSpeed: 10000
+> 	attackXKnockback: 28000
+> 	attackYKnockback: 22000
+3243a3245
+> 	airHitstun: 30
+3264a3267,3268
+> 					attackXKnockback: 38000
+> 					attackYKnockback: 30000
+3431a3436
+> 		blockstun: 16
+3609a3615
+> 	enemyHitstopAddition: 10, 0, 0
+3613c3619,3620
+< 	groundBounceCount: 0
 ---
-> 	setXSpeed: 110000
-3369c3369
-< 	hitstop: 12
+> 	groundBounceCount: 1
+> 	groundBounceYVelocityPercent: 50
+3644c3651
+< 					attackXKnockback: 12000
 ---
-> 	hitstop: 3
-3387a3388,3390
-> 	upon: (ON_ATTACK_HIT_PLAYER_DAMAGE_PRE_CTRL) {
-> 		hitstop: 12
-> 	} endUpon: 
-3445d3447
-< 	sprite: s32'bdn400_20', 1
-3455c3457
-< 	sprite: s32'bdn400_08ex', 2
+> 					attackXKnockback: 5000
+3650c3657
+< 					groundBounceGravity: 20000
 ---
-> 	sprite: s32'bdn400_08ex', 1
-3802c3804
-< 	setXSpeed: 10000
+> 					groundBounceGravity: 5000
+3673,3674c3680,3681
+< 		setXSpeed: -5000
+< 		setYSpeed: 12000
 ---
-> 	setXSpeed: 110000
-3807c3809
-< 	setXSpeed: 100000
+> 		setXSpeed: 10000
+> 		setYSpeed: 6000
+3697c3704
+< 	attackXKnockback: 22000
 ---
-> 	setXSpeed: 110000
-3843c3845
-< 	hitstop: 12
+> 	attackXKnockback: 2000
+3704c3711,3712
+< 	groundBounceCount: 0
 ---
-> 	hitstop: 3
-3862a3865,3867
-> 	upon: (ON_ATTACK_HIT_PLAYER_DAMAGE_PRE_CTRL) {
-> 		hitstop: 12
-> 	} endUpon: 
-4579,4580c4584,4585
-< 	sprite: s32'bdn403_29', 4
-< 	sprite: s32'bdn403_30', 4
+> 	groundBounceCount: 1
+> 	groundBounceYVelocityPercent: 50
+3741c3749
+< 					groundBounceYVelocity: 35000
 ---
-> 	sprite: s32'bdn403_29', 3
-> 	sprite: s32'bdn403_30', 3
-4815c4820
-< 	sprite: s32'bdn430_00', 3
+> 					groundBounceYVelocity: 38000
+4783c4791
+< 				checkInput: (INPUT_ANY_UP)
 ---
-> 	sprite: s32'bdn430_00', 1
-4817d4821
-< 	sprite: s32'bdn430_01', 1
-4818a4823
-> 	sprite: s32'bdn430_02', 1
-4820d4824
-< 	sprite: s32'bdn430_02', 3
-4979c4983
-< 	sprite: s32'bdn431_00', 3
+> 				checkInput: (INPUT_9)
+4789c4797
+< 					checkInput: (INPUT_ANY_DOWN)
 ---
-> 	sprite: s32'bdn431_00', 2
-4982,4983c4986,4987
-< 	sprite: s32'bdn431_01', 3
-< 	sprite: s32'bdn431_02', 3
+> 					checkInput: (INPUT_3)
+4818a4827,4836
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'Revenger'
+> 			addGatlingOption: s32'Revenger_CD'
+> 			addGatlingOption: s32'AirRevenger'
+> 			addGatlingOption: s32'AirRevenger_CD'
+> 			whiffCancelOptionBufferTime: s32'Revenger', 40
+> 			whiffCancelOptionBufferTime: s32'Revenger_CD', 40
+> 			whiffCancelOptionBufferTime: s32'AirRevenger', 40
+> 			whiffCancelOptionBufferTime: s32'AirRevenger_CD', 40
+> 		} endIf: 
+4981a5000,5009
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'Revenger'
+> 			addGatlingOption: s32'Revenger_CD'
+> 			addGatlingOption: s32'AirRevenger'
+> 			addGatlingOption: s32'AirRevenger_CD'
+> 			whiffCancelOptionBufferTime: s32'Revenger', 40
+> 			whiffCancelOptionBufferTime: s32'Revenger_CD', 40
+> 			whiffCancelOptionBufferTime: s32'AirRevenger', 40
+> 			whiffCancelOptionBufferTime: s32'AirRevenger_CD', 40
+> 		} endIf: 
+5341a5370,5379
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Revenger'
+> 		addGatlingOption: s32'Revenger_CD'
+> 		addGatlingOption: s32'AirRevenger'
+> 		addGatlingOption: s32'AirRevenger_CD'
+> 		whiffCancelOptionBufferTime: s32'Revenger', 40
+> 		whiffCancelOptionBufferTime: s32'Revenger_CD', 40
+> 		whiffCancelOptionBufferTime: s32'AirRevenger', 40
+> 		whiffCancelOptionBufferTime: s32'AirRevenger_CD', 40
+> 	} endIf: 
+5356,5358c5394,5397
+< 	sprite: s32'bdn432_28', 4
+< 	sprite: s32'bdn432_29', 4
+< 	sprite: s32'bdn432_30', 4
 ---
-> 	sprite: s32'bdn431_01', 1
-> 	sprite: s32'bdn431_02', 1
+> 	enableGatlings: 0
+> 	sprite: s32'bdn432_28', 3
+> 	sprite: s32'bdn432_29', 3
+> 	sprite: s32'bdn432_30', 2
+5362,5365c5401,5404
+< 	sprite: s32'bdn432_31', 3
+< 	sprite: s32'bdn432_32', 3
+< 	sprite: s32'bdn432_33', 3
+< 	sprite: s32'bdn432_34', 3
+---
+> 	sprite: s32'bdn432_31', 2
+> 	sprite: s32'bdn432_32', 2
+> 	sprite: s32'bdn432_33', 2
+> 	sprite: s32'bdn432_34', 2
+5413a5453,5462
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'Revenger'
+> 			addGatlingOption: s32'Revenger_CD'
+> 			addGatlingOption: s32'AirRevenger'
+> 			addGatlingOption: s32'AirRevenger_CD'
+> 			whiffCancelOptionBufferTime: s32'Revenger', 40
+> 			whiffCancelOptionBufferTime: s32'Revenger_CD', 40
+> 			whiffCancelOptionBufferTime: s32'AirRevenger', 40
+> 			whiffCancelOptionBufferTime: s32'AirRevenger_CD', 40
+> 		} endIf: 
+5612a5662,5671
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Revenger'
+> 		addGatlingOption: s32'Revenger_CD'
+> 		addGatlingOption: s32'AirRevenger'
+> 		addGatlingOption: s32'AirRevenger_CD'
+> 		whiffCancelOptionBufferTime: s32'Revenger', 40
+> 		whiffCancelOptionBufferTime: s32'Revenger_CD', 40
+> 		whiffCancelOptionBufferTime: s32'AirRevenger', 40
+> 		whiffCancelOptionBufferTime: s32'AirRevenger_CD', 40
+> 	} endIf: 
+5625a5685
+> 	enableGatlings: 0
+5691a5752,5761
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'Revenger'
+> 			addGatlingOption: s32'Revenger_CD'
+> 			addGatlingOption: s32'AirRevenger'
+> 			addGatlingOption: s32'AirRevenger_CD'
+> 			whiffCancelOptionBufferTime: s32'Revenger', 40
+> 			whiffCancelOptionBufferTime: s32'Revenger_CD', 40
+> 			whiffCancelOptionBufferTime: s32'AirRevenger', 40
+> 			whiffCancelOptionBufferTime: s32'AirRevenger_CD', 40
+> 		} endIf: 
+5799a5870,5879
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'Riot'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 			checkLastStateName: s32'AirRiot'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 		} endIf: 
+6248a6329,6338
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'Riot'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 			checkLastStateName: s32'AirRiot'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 		} endIf: 

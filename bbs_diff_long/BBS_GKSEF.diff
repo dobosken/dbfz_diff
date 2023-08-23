@@ -1,6 +1,6 @@
---- 1.31/BBS_GKSEF.bbs	2023-05-23 14:16:13.119744579 +0200
-+++ 1.32/BBS_GKSEF.bbs	2023-05-23 14:14:48.748297964 +0200
-@@ -1,4324 +1,4324 @@
+--- 1.32/BBS_GKSEF.bbs	2023-05-24 20:54:46.627996026 +0200
++++ 1.33/BBS_GKSEF.bbs	2023-08-23 04:23:02.145905798 +0200
+@@ -1,4324 +1,4329 @@
  beginState: s32'dmy' {
  	sprite: s32'null', 1
  } endState: 
@@ -690,8 +690,7 @@
  		attackYKnockback: 10000
  		attackYSuction: 1, 15000, 300000, 100, 0
  		wallBounceCount: 0
--		airHitstun: 25
-+		airHitstun: 35
+ 		airHitstun: 35
  		atkRange: 50000000, -410000, 0, 0
  		checkCurrentStateName: (PLAYER), s32'Kamehameha'
  		if: var(Result) {
@@ -1576,12 +1575,18 @@
  		atkAdditionalHitCount: 1
  		unknown719: 1
  		upon: (SIGNAL7) {
- 			attackYKnockback: 35000
+-			attackYKnockback: 35000
++			attackYKnockback: 20000
  			groundKnockbackEffect: (SPIN)
  			airKnockbackEffect: (SPIN)
  			attackYSuction: 0, 0, 0, 0, 0
  			airHitstun: 22
  			enemyHitstopAddition: 0, 8, 8
++			checkCurrentStateName: (PLAYER), s32'S_AirKamehameha'
++			if: var(Result) {
++				attackYKnockback: 10000
++				airHitstun: 30
++			} endIf: 
  			ifVarOfObjectFalse: (PLAYER), var(PlayerDamage) {
  				enableHitbox: 
  			} endIf: 

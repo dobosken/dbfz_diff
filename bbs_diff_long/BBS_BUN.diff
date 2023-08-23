@@ -1,6 +1,6 @@
---- 1.31/BBS_BUN.bbs	2023-05-23 14:16:09.599684225 +0200
-+++ 1.32/BBS_BUN.bbs	2023-05-23 14:14:45.410240730 +0200
-@@ -1,6646 +1,6648 @@
+--- 1.32/BBS_BUN.bbs	2023-05-24 20:54:43.123938231 +0200
++++ 1.33/BBS_BUN.bbs	2023-08-23 04:22:58.882850195 +0200
+@@ -1,6648 +1,6665 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'bun'
  } endSubroutine: 
@@ -2151,11 +2151,14 @@
  	sprite: s32'bun201_00', 1
  	mouthPose: (OPEN)
  	sprite: s32'bun201_01', 2
- 	sprite: s32'bun201_02', 3
+-	sprite: s32'bun201_02', 3
++	sprite: s32'bun201_02', 2
  	attackVoice: 0, -1
- 	setXSpeed: 30000
+-	setXSpeed: 30000
++	setXSpeed: 60000
  	xSpeedPerFrame: 95
- 	sprite: s32'bun201_03', 2
+-	sprite: s32'bun201_03', 2
++	sprite: s32'bun201_03', 1
  	cmnSfx: s32'ARC_BTL_CMN_Furi_Keri'
  	sprite: s32'bun201_04', 2
  	sprite: s32'bun201_05', 2
@@ -2192,7 +2195,8 @@
  	attackVoice: 2, 255
  	cmnSfx: s32'ARC_BTL_CMN_Furi_SyagamiKeri'
  	sprite: s32'bun202_02', 3
- 	setXSpeed: 80000
+-	setXSpeed: 80000
++	setXSpeed: 120000
  	sprite: s32'bun202_05', 2
  	xSpeedPerFrame: 70
  	sprite: s32'bun202_06', 1
@@ -2792,13 +2796,16 @@
  	faceAnimation: 170
  	mouthPose: (OPEN)
  	sprite: s32'bun262_01', 1
- 	sprite: s32'bun262_02', 2
+-	sprite: s32'bun262_02', 2
++	sprite: s32'bun262_02', 1
  	attackVoice: 2, -1
- 	sprite: s32'bun262_03', 2
+-	sprite: s32'bun262_03', 2
++	sprite: s32'bun262_03', 1
  	sprite: s32'bun262_04', 2
  	sprite: s32'bun262_05', 2
  	cmnSfx: s32'ARC_BTL_CMN_Furi_YokoKeri'
- 	sprite: s32'bun262_06', 2
+-	sprite: s32'bun262_06', 2
++	sprite: s32'bun262_06', 1
  	sprite: s32'bun262_07', 1
  	sprite: s32'bun262_08', 1
  	enableHitbox: 
@@ -3098,13 +3105,20 @@
  	atkHead: 1
  	guardPushback: 110
  	atkRange: 50000000, 10000, 0, 0
++	blockstun: 19
  	enableMemberChangeUltimate: 0
++	checkCurrentStateName: (SELF), s32'AirMountdive_A'
++	if: var(Result) {
++		blockstun: 21
++	} endIf: 
  	checkCurrentStateName: (SELF), s32'Mountdive_C'
  	if: var(Result) {
++		blockstun: 21
  		callSubroutine: s32'cmnSpecialAttackEx_ExeInit'
  	} endIf: 
  	checkCurrentStateName: (SELF), s32'AirMountdive_C'
  	if: var(Result) {
++		blockstun: 21
  		callSubroutine: s32'cmnSpecialAttackEx_ExeInit'
  	} endIf: 
  	upon: (ON_ATTACK_COLLISION_MAIN_PLAYER) {
@@ -4522,18 +4536,12 @@
  	sendSignal: (STACK0), (SIGNAL0)
  	sprite: s32'bun402_19', 2
  	sprite: s32'bun402_20', 2
--	sprite: s32'bun402_21', 3
--	sprite: s32'bun402_22', 3
--	sprite: s32'bun402_23', 3
--	sprite: s32'bun402_24', 3
--	sprite: s32'bun402_25', 3
--	sprite: s32'bun402_26', 3
-+	sprite: s32'bun402_21', 1
-+	sprite: s32'bun402_22', 2
-+	sprite: s32'bun402_23', 2
-+	sprite: s32'bun402_24', 2
-+	sprite: s32'bun402_25', 2
-+	sprite: s32'bun402_26', 1
+ 	sprite: s32'bun402_21', 1
+ 	sprite: s32'bun402_22', 2
+ 	sprite: s32'bun402_23', 2
+ 	sprite: s32'bun402_24', 2
+ 	sprite: s32'bun402_25', 2
+ 	sprite: s32'bun402_26', 1
  } endState: 
  
  beginState: s32'AirSweepBreath' {
@@ -4581,22 +4589,16 @@
  	sendSignal: (STACK0), (SIGNAL0)
  	sprite: s32'bun402_32', 2
  	sprite: s32'bun402_30', 2
--	sprite: s32'bun402_33', 2
--	sprite: s32'bun402_34', 3
-+	sprite: s32'bun402_33', 1
-+	sprite: s32'bun402_34', 1
+ 	sprite: s32'bun402_33', 1
+ 	sprite: s32'bun402_34', 1
  	objectGravity: 
--	sprite: s32'bun402_35', 3
--	sprite: s32'bun402_36', 3
--	sprite: s32'bun402_37', 3
-+	sprite: s32'bun402_35', 2
-+	sprite: s32'bun402_36', 2
-+	sprite: s32'bun402_37', 2
+ 	sprite: s32'bun402_35', 2
+ 	sprite: s32'bun402_36', 2
+ 	sprite: s32'bun402_37', 2
  	landingAutoAction: 1
  	landingAutoSpeedReset: 1
  	landingAutoEffect: 1
--	sprite: s32'bun402_38', 3
-+	sprite: s32'bun402_38', 2
+ 	sprite: s32'bun402_38', 2
  	sprite: s32'bun022_00', 2
  	sprite: s32'bun022_01', 2
  } endState: 
@@ -4619,10 +4621,14 @@
  	} endIf: 
  	characterSfx: s32'ARC_BTL_BUN_Fat_Tearing'
  	sprite: s32'bun403_03', 2
- 	sprite: s32'bun403_04', 2
- 	sprite: s32'bun403_05', 2
- 	sprite: s32'bun403_06', 2
- 	sprite: s32'bun403_07', 2
+-	sprite: s32'bun403_04', 2
+-	sprite: s32'bun403_05', 2
+-	sprite: s32'bun403_06', 2
+-	sprite: s32'bun403_07', 2
++	sprite: s32'bun403_04', 1
++	sprite: s32'bun403_05', 1
++	sprite: s32'bun403_06', 1
++	sprite: s32'bun403_07', 1
  	sprite: s32'bun403_09', 2
  	sprite: s32'bun403_10', 2
  	mouthPose: (OPEN)
@@ -4666,7 +4672,7 @@
  	resetSpeed: 1
  	sprite: s32'bun430_01', 2
  	sprite: s32'bun430_02', 1
-+	enableSuperArmor: 1
+ 	enableSuperArmor: 1
  	sprite: s32'bun430_02', 1
  	privateBankSE: 0, s32'ARC_BTL_BUN_Kiraida_ChargeL', 100
  	sprite: s32'bun430_03', 1
@@ -4746,6 +4752,10 @@
  	enableSuperArmor: 0
  	recoveryState: 
  	createObject: s32'Kiraida_Bomber_End', (PLAYER_LAND)
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'Okashi'
++		whiffCancelOptionBufferTime: s32'Okashi', 40
++	} endIf: 
  	sprite: s32'bun430_13', 2
  	sprite: s32'bun430_14', 2
  	sprite: s32'bun430_12', 3
@@ -4784,6 +4794,12 @@
  			} endIf: 
  		} endUpon: 
  		tensionUsage: 30000
++		if: var(EnemyInHitstun) {
++			checkLastStateName: s32'Kiraida'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++		} endIf: 
  	} endUpon: 
  	sprite: s32'bun000_23', 3
  	enableSuperArmor: 1
@@ -5082,7 +5098,7 @@
  	sprite: s32'bun431_41', 200
  	applyTo: (ENEMY_MAIN_PLAYER) {
  		deadAndCalm: 1
-+		displayModel: 1
+ 		displayModel: 1
  	} endApply: 
  	enableDemo: 1
  } endState: 

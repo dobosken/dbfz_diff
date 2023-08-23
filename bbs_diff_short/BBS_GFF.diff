@@ -1,0 +1,84 @@
+37d36
+< 		maxChainIntoSelf: 2
+216c215
+< 		maxChainIntoSelf: 2
+---
+> 		maxChainIntoSelf: 3
+1666a1666,1677
+> 	ifOperation: (IS_GREATER_OR_EQUAL), var(obj1), int(1) {
+> 		addTensionUnscaled: 0, 500
+> 	} endIf: 
+> 	ifOperation: (IS_GREATER_OR_EQUAL), var(obj1), int(2) {
+> 		addTensionUnscaled: 0, 500
+> 	} endIf: 
+> 	ifOperation: (IS_GREATER_OR_EQUAL), var(obj1), int(3) {
+> 		addTensionUnscaled: 0, 500
+> 	} endIf: 
+> 	ifOperation: (IS_GREATER_OR_EQUAL), var(obj1), int(4) {
+> 		addTensionUnscaled: 0, 500
+> 	} endIf: 
+1669a1681,1686
+> 	ifOperation: (IS_GREATER_OR_EQUAL), var(obj1), int(6) {
+> 		addTensionUnscaled: 0, 2500
+> 	} endIf: 
+> 	ifOperation: (IS_GREATER_OR_EQUAL), var(obj1), int(7) {
+> 		addTensionUnscaled: 0, 5000
+> 	} endIf: 
+4490c4507
+< 	sprite: s32'gff401_00', 2
+---
+> 	sprite: s32'gff401_00', 1
+4545c4562
+< 	sprite: s32'gff401_00', 2
+---
+> 	sprite: s32'gff401_00', 1
+4547c4564
+< 	sprite: s32'gff401_01', 2
+---
+> 	sprite: s32'gff401_01', 1
+5215a5233,5235
+> 	enableWhiffCancel: 1
+> 	addWhiffCancelOption: s32'CmnActHomingDash'
+> 	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 30
+5880a5901,5906
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'UBKamehameha'
+> 		addGatlingOption: s32'AirUBKamehameha'
+> 		whiffCancelOptionBufferTime: s32'UBKamehameha', 40
+> 		whiffCancelOptionBufferTime: s32'AirUBKamehameha', 40
+> 	} endIf: 
+5896a5923,5928
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'UBKamehameha'
+> 		addGatlingOption: s32'AirUBKamehameha'
+> 		whiffCancelOptionBufferTime: s32'UBKamehameha', 40
+> 		whiffCancelOptionBufferTime: s32'AirUBKamehameha', 40
+> 	} endIf: 
+6055a6088,6093
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'UBKamehameha'
+> 		addGatlingOption: s32'AirUBKamehameha'
+> 		whiffCancelOptionBufferTime: s32'UBKamehameha', 40
+> 		whiffCancelOptionBufferTime: s32'AirUBKamehameha', 40
+> 	} endIf: 
+6071a6110,6115
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'UBKamehameha'
+> 		addGatlingOption: s32'AirUBKamehameha'
+> 		whiffCancelOptionBufferTime: s32'UBKamehameha', 40
+> 		whiffCancelOptionBufferTime: s32'AirUBKamehameha', 40
+> 	} endIf: 
+6470a6515,6520
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'UBKamehameha'
+> 		addGatlingOption: s32'AirUBKamehameha'
+> 		whiffCancelOptionBufferTime: s32'UBKamehameha', 40
+> 		whiffCancelOptionBufferTime: s32'AirUBKamehameha', 40
+> 	} endIf: 
+6883a6934,6939
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'UBKamehameha'
+> 		addGatlingOption: s32'AirUBKamehameha'
+> 		whiffCancelOptionBufferTime: s32'UBKamehameha', 40
+> 		whiffCancelOptionBufferTime: s32'AirUBKamehameha', 40
+> 	} endIf: 

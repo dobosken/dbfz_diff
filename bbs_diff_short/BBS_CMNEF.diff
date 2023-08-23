@@ -1,30 +1,4 @@
-2995c2995
-< 		initCooldownTimeAssist_C: 15
+1684c1684
+< 		ifOperation: (IS_GREATER_OR_EQUAL), var(FrameCount), int(48) {
 ---
-> 		initCooldownTimeAssist_C: 10
-3011c3011
-< 		initCooldownTimeAssist_C: 15
----
-> 		initCooldownTimeAssist_C: 10
-3012a3013,3033
-> 		ifPlayerCharacter: s16'top' {
-> 			atkTensionRate: 50, 10, 0
-> 		} endIf: 
-> 		ifPlayerCharacter: s16'nhy' {
-> 			atkTensionRate: 50, 10, 0
-> 		} endIf: 
-> 		ifPlayerCharacter: s16'vtb' {
-> 			atkTensionRate: 50, 10, 0
-> 		} endIf: 
-> 		ifPlayerCharacter: s16'gff' {
-> 			atkTensionRate: 75, 10, 0
-> 		} endIf: 
-> 		ifPlayerCharacter: s16'htn' {
-> 			atkTensionRate: 75, 10, 0
-> 		} endIf: 
-> 		ifPlayerCharacter: s16'jnn' {
-> 			atkTensionRate: 75, 10, 0
-> 		} endIf: 
-> 		ifPlayerCharacter: s16'zmb' {
-> 			atkTensionRate: 75, 10, 0
-> 		} endIf: 
+> 		ifOperation: (IS_GREATER_OR_EQUAL), var(FrameCount), int(36) {

@@ -1,24 +1,169 @@
-4547,4550c4547,4550
-< 	sprite: s32'est265_17', 3
-< 	sprite: s32'est265_18', 3
-< 	sprite: s32'est265_19', 3
-< 	sprite: s32'est265_20', 3
+476,478d475
+< 		moveInput: (INPUT_BOOLEAN_OR)
+< 		moveInput: (INPUT_PRESS_H)
+< 		moveInput: (INPUT_PRESS_KI)
+515a513,526
+> 	addMove: s32'Groar_Chain' {
+> 		moveType: (OVERDRIVE)
+> 		characterState: (STANDING_OR_AIRBORNE)
+> 		moveInput: (INPUT_214)
+> 		moveInput: (INPUT_PRESS_L)
+> 		moveInput: (INPUT_PRESS_M)
+> 		moveInput: (INPUT_BOOLEAN_OR)
+> 		moveInput: (INPUT_214)
+> 		moveInput: (INPUT_PRESS_H)
+> 		moveInput: (INPUT_PRESS_KI)
+> 		addMoveCondition: (THREE)
+> 		isFollowupMove: 1
+> 		moveAlias: s32'Groar'
+> 	} endMove: 
+707a719
+> 	registerMove: s32'Groar_Chain'
+3372c3384
+< 		addXSpeed: 30000
 ---
-> 	sprite: s32'est265_17', 2
-> 	sprite: s32'est265_18', 2
-> 	sprite: s32'est265_19', 2
-> 	sprite: s32'est265_20', 2
-4555,4560c4555,4560
-< 	sprite: s32'est265_17', 3
-< 	sprite: s32'est265_18', 3
-< 	sprite: s32'est265_21', 3
-< 	sprite: s32'est265_22', 3
-< 	sprite: s32'est265_23', 3
-< 	sprite: s32'est265_24', 3
+> 		addXSpeed: 100000
+3428,3429c3440,3441
+< 	sprite: s32'est206_00', 3
+< 	sprite: s32'est206_01', 2
 ---
-> 	sprite: s32'est265_17', 2
-> 	sprite: s32'est265_18', 2
-> 	sprite: s32'est265_21', 2
-> 	sprite: s32'est265_22', 2
-> 	sprite: s32'est265_23', 2
-> 	sprite: s32'est265_24', 2
+> 	sprite: s32'est206_00', 2
+> 	sprite: s32'est206_01', 1
+5315c5327
+< 	setXSpeed: 30000
+---
+> 	setXSpeed: 60000
+6621c6633
+< 	setXSpeed: 30000
+---
+> 	setXSpeed: 60000
+7210a7223,7229
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Groar'
+> 		addGatlingOption: s32'Groar_Chain'
+> 		whiffCancelOptionBufferTime: s32'Groar', 40
+> 		whiffCancelOptionBufferTime: s32'Groar_Chain', 40
+> 		ctrlDirectionVsTarget: 
+> 	} endIf: 
+7320c7339
+< 		enemyHitstopAddition: 0, 18, 18
+---
+> 		enemyHitstopAddition: 0, 23, 23
+7355c7374
+< 	sprite: s32'est434_43', 4
+---
+> 	sprite: s32'est434_43', 1
+7365a7385,7392
+> 	sprite: s32'est434_43', 3
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Groar'
+> 		addGatlingOption: s32'Groar_Chain'
+> 		whiffCancelOptionBufferTime: s32'Groar', 80
+> 		whiffCancelOptionBufferTime: s32'Groar_Chain', 80
+> 		ctrlDirectionVsTarget: 
+> 	} endIf: 
+7437a7465
+> 			ctrlDirectionVsTarget: 
+7462a7491,7496
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'Groar'
+> 			addGatlingOption: s32'Groar_Chain'
+> 			whiffCancelOptionBufferTime: s32'Groar', 40
+> 			whiffCancelOptionBufferTime: s32'Groar_Chain', 40
+> 		} endIf: 
+8197a8232,8237
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Groar'
+> 		addGatlingOption: s32'Groar_Chain'
+> 		whiffCancelOptionBufferTime: s32'Groar', 40
+> 		whiffCancelOptionBufferTime: s32'Groar_Chain', 40
+> 	} endIf: 
+8389c8429
+< 	sprite: s32'est432_38', 3
+---
+> 	sprite: s32'est432_38', 2
+8398a8439,8445
+> 	sprite: s32'est432_38', 1
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Groar'
+> 		addGatlingOption: s32'Groar_Chain'
+> 		whiffCancelOptionBufferTime: s32'Groar', 40
+> 		whiffCancelOptionBufferTime: s32'Groar_Chain', 40
+> 	} endIf: 
+8399a8447
+> 	enableGatlings: 0
+8432a8481,8484
+> 		if: var(obj0) {
+> 			damage: 810
+> 			minimalDamagePercent: 64
+> 		} endIf: 
+8482a8535,8573
+> 		faceOpponent: 
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'Gcharge'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 			checkLastStateName: s32'GchargeExe'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 			checkLastStateName: s32'Gimpact'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 			checkLastStateName: s32'Omega'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 			checkLastStateName: s32'Blaster'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 		} endIf: 
+> 	} endUpon: 
+> 	if: var(IsLand) {
+> 		gotoLabel: s32'start'
+> 	} endIf: 
+> 	sprite: s32'est038_00', 300
+> 	enableSuperArmor: 1
+> 	resetSpeed: 1
+> 	displayModel: 0
+> 	setNoCollision: 0
+> 	createParticle: s32'cmn_Warp', (CENTER)
+> 	cmnSfx: s32'ARC_BTL_CMN_TLP_Short'
+> 	setYSpeed: -80000
+> 	ySpeedPerFrame: 110
+> 	upon: (TOUCH_GROUND) {
+> 		clearRegisteredUponCode: (TOUCH_GROUND)
+> 		jumpToLabel: s32'start'
+8483a8575,8576
+> 	spriteEnd: 
+> 	label: s32'start'
+8486a8580,8582
+> 	clearRegisteredUponCode: (IDLING)
+> 	displayModel: 1
+> 	setNoCollision: 1
+8534a8631,8652
+> 	if: var(EnemyInHitstun) {
+> 		checkLastStateName: s32'Gcharge'
+> 		if: var(Result) {
+> 			superFreeze: 7, 100, 0, 10
+> 		} endIf: 
+> 		checkLastStateName: s32'GchargeExe'
+> 		if: var(Result) {
+> 			superFreeze: 7, 100, 0, 10
+> 		} endIf: 
+> 		checkLastStateName: s32'Gimpact'
+> 		if: var(Result) {
+> 			superFreeze: 7, 100, 0, 10
+> 		} endIf: 
+> 		checkLastStateName: s32'Omega'
+> 		if: var(Result) {
+> 			superFreeze: 7, 100, 0, 10
+> 		} endIf: 
+> 		checkLastStateName: s32'Blaster'
+> 		if: var(Result) {
+> 			superFreeze: 7, 100, 0, 10
+> 		} endIf: 
+> 	} endIf: 

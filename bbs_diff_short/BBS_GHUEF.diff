@@ -1,8 +1,6 @@
-435c435
-< 		airHitstun: 25
+849c849
+< 		airHitstun: 34
 ---
-> 		airHitstun: 35
-696c696
-< 		airHitstun: 25
----
-> 		airHitstun: 35
+> 		airHitstun: 40
+851a852
+> 		autoHitSignalSending: 1

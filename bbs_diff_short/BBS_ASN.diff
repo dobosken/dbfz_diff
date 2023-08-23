@@ -1,12 +1,89 @@
-3347c3347
-< 	sprite: s32'asn400_01', 2
+2889a2890,2895
+> 	sprite: s32'asn260_06', 2
+> 	sprite: s32'asn260_07', 2
+> 	sprite: s32'asn260_08', 2
+> 	sprite: s32'asn260_06', 2
+> 	sprite: s32'asn260_07', 2
+> 	sprite: s32'asn260_08', 2
+4205c4211
+< 	sprite: s32'asn401_02', 2
 ---
-> 	sprite: s32'asn400_01', 1
-3464c3464
-< 	setXSpeed: 80000
+> 	sprite: s32'asn401_02', 1
+4207c4213
+< 	sprite: s32'asn401_02', 4
 ---
-> 	setXSpeed: 110000
-4096c4096
-< 	setXSpeed: 80000
+> 	sprite: s32'asn401_02', 1
+4412c4418
+< 	sprite: s32'asn401_07', 6
 ---
-> 	setXSpeed: 100000
+> 	sprite: s32'asn401_07', 2
+4467c4473
+< 	sprite: s32'asn401_06', 3
+---
+> 	sprite: s32'asn401_06', 2
+4472,4473d4477
+< 	headInvul: 1
+< 	sprite: s32'asn401_07', 2
+4475a4480
+> 	headInvul: 1
+5168a5174,5179
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'HellsFlash_Lv3'
+> 		whiffCancelOptionBufferTime: s32'HellsFlash_Lv3', 30
+> 		addGatlingOption: s32'DontUse_Lastpower'
+> 		whiffCancelOptionBufferTime: s32'DontUse_Lastpower', 30
+> 	} endIf: 
+5222a5234,5239
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'HellsFlash_Lv3'
+> 		whiffCancelOptionBufferTime: s32'HellsFlash_Lv3', 30
+> 		addGatlingOption: s32'DontUse_Lastpower'
+> 		whiffCancelOptionBufferTime: s32'DontUse_Lastpower', 30
+> 	} endIf: 
+5343c5360
+< 	sprite: s32'asn430_51', 3
+---
+> 	sprite: s32'asn430_51', 1
+5345,5348c5362,5365
+< 	sprite: s32'asn430_52', 3
+< 	sprite: s32'asn430_53', 3
+< 	sprite: s32'asn430_54', 3
+< 	sprite: s32'asn430_55', 4
+---
+> 	sprite: s32'asn430_52', 1
+> 	sprite: s32'asn430_53', 1
+> 	sprite: s32'asn430_54', 1
+> 	sprite: s32'asn430_55', 2
+5350,5351c5367,5368
+< 	sprite: s32'asn430_56', 5
+< 	sprite: s32'asn430_57', 6
+---
+> 	sprite: s32'asn430_56', 2
+> 	sprite: s32'asn430_57', 2
+5353,5354c5370,5371
+< 	sprite: s32'asn430_58', 2
+< 	sprite: s32'asn430_59', 2
+---
+> 	sprite: s32'asn430_58', 1
+> 	sprite: s32'asn430_59', 1
+5627c5644
+< 	setXSpeed: 5000
+---
+> 	setXSpeed: 75000
+5641a5659
+> 	xSpeedPerFrame: 60
+6022d6039
+< 		canGrabDuringHitstun: 0
+6034a6052
+> 		copyVar: var(plr2), int(0)
+6131a6150,6152
+> 	if: var(EnemyInHitstun) {
+> 		copyVar: var(plr2), int(1)
+> 	} endIf: 
+6151a6173,6176
+> 		if: var(plr2) {
+> 			damage: 5000
+> 			minimalDamagePercent: 50
+> 		} endIf: 
+6168a6194
+> 		copyVar: var(plr2), int(0)

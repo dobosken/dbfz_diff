@@ -1,0 +1,12 @@
+355c355
+< 		hitstop: 6
+---
+> 		hitstop: 9
+714,716c714,716
+< 	attackXKnockback: 40000
+< 	attackYKnockback: 70000
+< 	airHitstun: 40
+---
+> 	attackXKnockback: 70000
+> 	attackYKnockback: 28000
+> 	airHitstun: 45

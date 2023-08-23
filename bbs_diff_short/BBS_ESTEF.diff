@@ -1,18 +1,26 @@
-738c738
-< 		airHitstun: 33
+2159c2159
+< 		attackYKnockback: 45000
 ---
-> 		airHitstun: 38
-1255a1256,1263
-> 	checkInputFromParent: (INPUT_ANY_UP)
-> 	if: var(Result) {
-> 		setSpeedByCurrentAngle: 20000, 0
+> 		attackYKnockback: 55000
+2163a2164
+> 		autoHitSignalSending: 1
+2211a2213,2226
+> 	ifVarOfObjectOperation: (IS_LESS_OR_EQUAL), (PLAYER), var(EnemyDiffY), int(-10000) {
+> 		attackXKnockback: 30000
+> 		attackYKnockback: -65000
+> 		groundBounceCount: 1
+> 		groundBounceYVelocity: 30000
+> 		groundKnockbackEffect: (AIR_STRONG)
+> 		airKnockbackEffect: (AIR_STRONG)
 > 	} endIf: 
-> 	checkInputFromParent: (INPUT_ANY_DOWN)
+> 	else:  {
+> 		ifVarOfObjectOperation: (IS_LESS_OR_EQUAL), (PLAYER), var(EnemyDiffY), int(150000) {
+> 			attackXKnockback: 60000
+> 			attackYKnockback: 15000
+> 		} endIf: 
+> 	} endElse: 
+3876a3892,3895
+> 	checkCurrentStateName: (PLAYER), s32'Groar'
 > 	if: var(Result) {
-> 		setSpeedByCurrentAngle: 95000, 0
+> 		ignoreWorldStopByAll: 1
 > 	} endIf: 
-2851c2859,2860
-< 			attackXKnockback: 15000
----
-> 			attackXKnockback: 10000
-> 			attackYKnockback: 35000

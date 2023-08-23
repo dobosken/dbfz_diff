@@ -1,18 +1,58 @@
-468a469
-> 		maxChainIntoSelf: 1
-480a482
-> 		maxChainIntoSelf: 1
-1630c1632
-< 		groundBounceYVelocity: 40000
+3401c3401
+< 	setXSpeed: 35000
 ---
-> 		groundBounceYVelocity: 35000
-2418c2420
+> 	setXSpeed: 45000
+3416c3416
 < 	setXSpeed: 45000
 ---
-> 	setXSpeed: 95000
-5547a5550,5551
-> 		enableSpecialCancel: 1
-> 		senkoInputSpecial: 10
-5740a5745,5746
-> 		enableSpecialCancel: 1
-> 		senkoInputSpecial: 10
+> 	setXSpeed: 60000
+3423c3423
+< 	setXSpeed: 60000
+---
+> 	setXSpeed: 85000
+4952a4953,4955
+> 	enableSuperArmor: 1
+> 	callSubroutine: s32'cmn_MutekiArmor'
+> 	noGuardEffect: 0
+4992a4996
+> 	enableSuperArmor: 0
+5156a5161,5163
+> 	enableSuperArmor: 1
+> 	callSubroutine: s32'cmn_MutekiArmor'
+> 	noGuardEffect: 0
+5181a5189
+> 	enableSuperArmor: 0
+5551c5559
+< 		senkoInputSpecial: 10
+---
+> 		senkoInputSpecial: 20
+5746c5754
+< 		senkoInputSpecial: 10
+---
+> 		senkoInputSpecial: 20
+5970a5979
+> 						enableGatlings: 0
+6046a6056,6061
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'FinalFlash'
+> 			addGatlingOption: s32'AirFinalFlash'
+> 			whiffCancelOptionBufferTime: s32'FinalFlash', 30
+> 			whiffCancelOptionBufferTime: s32'AirFinalFlash', 30
+> 		} endIf: 
+6314a6330
+> 	atkHitPositionType: 4, 10000, -150000
+6326a6343
+> 	enableGatlings: 1
+6475a6493,6496
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'FinalFlash'
+> 		whiffCancelOptionBufferTime: s32'FinalFlash', 40
+> 	} endIf: 
+6598a6620,6626
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'NiagaraDrop'
+> 			if: var(Result) {
+> 				faceOpponent: 
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 		} endIf: 

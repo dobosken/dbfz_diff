@@ -1,0 +1,46 @@
+3237c3237
+< 	sprite: s32'ghu201_01', 2
+---
+> 	sprite: s32'ghu201_01', 1
+3239c3239
+< 	setXSpeed: 40000
+---
+> 	setXSpeed: 60000
+3240a3241
+> 	effectForDashStart: 104, 1, 0
+3326a3328
+> 	setXSpeed: 15000
+3334c3336
+< 	setXSpeed: 55000
+---
+> 	setXSpeed: 75000
+3340a3343
+> 	xSpeedPerFrame: 50
+3519a3523
+> 		airHitstun: 22
+3555c3559
+< 	sprite: s32'ghu207_11', 3
+---
+> 	sprite: s32'ghu207_11', 2
+3561a3566
+> 		addGatlingOption: s32'NmlAtkAir2D'
+4007a4013,4017
+> 		addWhiffCancelOption: s32'NmlAtkAir5A'
+> 		addWhiffCancelOption: s32'NmlAtkAir5B'
+> 		addWhiffCancelOption: s32'NmlAtkAir5C'
+> 		addWhiffCancelOption: s32'NmlAtkAir2C'
+> 		addWhiffCancelOption: s32'NmlAtkAir5D'
+4029a4040,4042
+> 	ifOperation: (IS_GREATER_OR_EQUAL), var(plr0), int(5) {
+> 		enableWhiffCancel: 1
+> 	} endIf: 
+4039a4053
+> 	enableWhiffCancel: 0
+6482a6497,6499
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'UltimateKamehameha'
+> 		} endIf: 
+6576a6594,6596
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'UltimateKamehameha'
+> 		} endIf: 

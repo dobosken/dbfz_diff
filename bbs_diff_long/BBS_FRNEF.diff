@@ -1,6 +1,6 @@
---- 1.31/BBS_FRNEF.bbs	2023-05-23 14:16:11.213711899 +0200
-+++ 1.32/BBS_FRNEF.bbs	2023-05-23 14:14:46.996267924 +0200
-@@ -1,3571 +1,3584 @@
+--- 1.32/BBS_FRNEF.bbs	2023-05-24 20:54:44.704964308 +0200
++++ 1.33/BBS_FRNEF.bbs	2023-08-23 04:23:00.380875722 +0200
+@@ -1,3584 +1,3586 @@
  beginState: s32'dmy' {
  	sprite: s32'null', 1
  } endState: 
@@ -1251,15 +1251,15 @@
  		initializeDestroy: 
  		numberOfHits: 1
  		destroyOnEnemyGuard: 1
-+		destroyOnPlayerDamage: 1
+ 		destroyOnPlayerDamage: 1
  		upon: (DESTROY) {
  			createObject: s32'eff402_end', (ZERO)
  			characterSfx: s32'ARC_BTL_FRN_DThsTm_Expl'
  			stopBankSE: 19, 20
  			deactivateObject: (SELF)
  		} endUpon: 
- 		upon: (ON_ATTACK_HIT_PLAYER_ARMOR) {
- 			clearRegisteredUponCode: (ON_ATTACK_HIT_PLAYER_ARMOR)
+ 		upon: (ATTACK_HIT_PLAYER_ARMOR) {
+ 			clearRegisteredUponCode: (ATTACK_HIT_PLAYER_ARMOR)
  			requestDestroy: (SELF)
  		} endUpon: 
  	} endUpon: 
@@ -1279,10 +1279,10 @@
  	ifNot: var(act3) {
  		setXSpeed: 50000
  		setYSpeed: -25000
-+		checkInputFromParent: (INPUT_ANY_BACK)
-+		if: var(Result) {
-+			setXSpeed: 15000
-+		} endIf: 
+ 		checkInputFromParent: (INPUT_ANY_BACK)
+ 		if: var(Result) {
+ 			setXSpeed: 15000
+ 		} endIf: 
  	} endIf: 
  	characterSfx: s32'ARC_BTL_FRN_DThsTm_Fire'
  	stopBankSE: 19, 20
@@ -1290,7 +1290,8 @@
  		spriteOverrideFrame: s32'236d0'
  	} endIf: 
  	label: s32'loop'
- 	sprite: s32'236d', 4
+-	sprite: s32'236d', 4
++	sprite: s32'236d', 12
  	ifOperation: (IS_LESS_OR_EQUAL), var(PosY), int(150000) {
  		createParticle: s32'bg_undersmoke00', (FLOOR_CENTER)
  		spriteOverrideTime: 6, var(act5)
@@ -1299,8 +1300,7 @@
  		spriteOverrideFrame: s32'236d0'
  	} endIf: 
  	spriteEnd: 
--	gotoLabelIfOperation: s32'loop', (IS_LESS_OR_EQUAL), var(LoopCount), int(300)
-+	gotoLabelIfOperation: s32'loop', (IS_LESS_OR_EQUAL), var(LoopCount), int(900)
+ 	gotoLabelIfOperation: s32'loop', (IS_LESS_OR_EQUAL), var(LoopCount), int(900)
  } endState: 
  
  beginState: s32'DieThisTime_Shot_Lock' {
@@ -1786,14 +1786,14 @@
  			damage: 800
  			tensionGainOnConnect: 0
  			airHitstun: 30
-+			checkInputFromParent: (INPUT_1)
-+			if: var(Result) {
-+				addXPosition: -450000
-+			} endIf: 
-+			checkInputFromParent: (INPUT_3)
-+			if: var(Result) {
-+				addXPosition: 450000
-+			} endIf: 
+ 			checkInputFromParent: (INPUT_1)
+ 			if: var(Result) {
+ 				addXPosition: -450000
+ 			} endIf: 
+ 			checkInputFromParent: (INPUT_3)
+ 			if: var(Result) {
+ 				addXPosition: 450000
+ 			} endIf: 
  		} endIf: 
  		callSubroutine: s32'cmn_AssistShotHosei'
  		upon: (ATTACK_COLLISION) {
@@ -2253,6 +2253,7 @@
  		attackKillType: (CAN_KILL)
  		atkAngle: 90
  		atkShakeCamera: s32'ShakeTateYoko', 1500, 0, 50, 10
++		autoHitSignalSending: 1
  		upon: (ATTACK_COLLISION_PLAYER) {
  			ifVarOfObjectTrue: (DEFENDER), var(PlayerDamage) {
  				damage: 2600
@@ -2966,13 +2967,17 @@
  		callSubroutine: s32'cmnAtkLevel_4_AtkInit'
  		callSubroutine: s32'cmnUltimateShot_AtkInit'
  		callSubroutine: s32'cmn_MutekiHosei'
- 		damage: 1200
+-		damage: 1200
++		damage: 2400
  		minimalDamagePercent: 70
- 		hitstop: 5
+-		hitstop: 5
++		hitstop: 25
  		groundKnockbackEffect: (CRUMPLE)
  		airKnockbackEffect: (AIR_FACE_UP)
  		attackXKnockback: 1000
- 		attackYKnockback: 1000
+-		attackYKnockback: 1000
++		attackYKnockback: 10000
++		attackGravity: 300
  		airHitstun: 100
  		wallBounceCount: 0
  		slidingKnockdownDuration: 60

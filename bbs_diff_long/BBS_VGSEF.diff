@@ -1,6 +1,6 @@
---- 1.31/BBS_VGSEF.bbs	2023-05-23 14:16:19.266849976 +0200
-+++ 1.32/BBS_VGSEF.bbs	2023-05-23 14:14:54.221391805 +0200
-@@ -1,1916 +1,1918 @@
+--- 1.32/BBS_VGSEF.bbs	2023-05-24 20:54:53.195104342 +0200
++++ 1.33/BBS_VGSEF.bbs	2023-08-23 04:23:07.706000545 +0200
+@@ -1,1918 +1,1918 @@
  beginState: s32'dmy' {
  	sprite: s32'null', 1
  } endState: 
@@ -191,14 +191,15 @@
  		enemyHitstopAddition: -1, 0, 0
  		airKnockbackEffect: (AIR_FACE_DOWN)
  		attackXKnockback: 12500
- 		attackYKnockback: 0
- 		attackGravity: 4000
+-		attackYKnockback: 0
+-		attackGravity: 4000
++		attackYKnockback: 24000
  		slidingKnockdownDuration: 10
  		chipDamagePercent: 30
  		attackDamageEffect: 4, s32'cmn_BomHit'
  		atkShotIgnoreZReversal: 0
  		atkShakeCamera: s32'ShakeYoko', 600, 1, 15, 0
-+		damageScalingOverride: 1000
+ 		damageScalingOverride: 1000
  		xSpeedPerFrame: 102
  		landingHeight: 0
  		autoHitSignalSending: 1
@@ -549,6 +550,7 @@
  		damage: 100
  		tensionGainOnConnect: 200
  		callSubroutine: s32'cmn_AssistShotHosei'
++		airHitstun: 24
  		hitstop: 7
  		enemyHitstopAddition: -3, 0, 0
  		groundKnockbackEffect: (AIR_FACE_UP)
@@ -559,7 +561,7 @@
  		attackDamageEffect: 4, s32'cmn_BomHit'
  		atkShotIgnoreZReversal: 0
  		atkShakeCamera: s32'ShakeYoko', 600, 1, 15, 0
-+		damageScalingOverride: 1000
+ 		damageScalingOverride: 1000
  		checkCurrentStateName: (PLAYER), s32'AssistAttack'
  		if: var(Result) {
  			damage: 130

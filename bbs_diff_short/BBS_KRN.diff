@@ -1,19 +1,104 @@
-4115,4117c4115,4120
-< 	sprite: s32'krn036_02', 3
-< 	sprite: s32'krn036_01', 3
-< 	sprite: s32'krn036_00', 3
+3005,3006c3005,3006
+< 	sprite: s32'krn205_01', 2
+< 	sprite: s32'krn205_02', 2
 ---
-> 	ifNot: var(act6) {
-> 		callSubroutine: s32'cmn_NandemoEnableStand'
-> 	} endIf: 
-> 	sprite: s32'krn036_02', 2
-> 	sprite: s32'krn036_01', 2
-> 	sprite: s32'krn036_00', 2
-5130a5134
-> 	headInvul: 1
-5520,5521d5523
-< 	sprite: s32'krn402_13', 3
-< 	sprite: s32'krn402_14', 3
-5524a5527,5528
-> 	sprite: s32'krn402_13', 3
-> 	sprite: s32'krn402_14', 3
+> 	sprite: s32'krn205_01', 1
+> 	sprite: s32'krn205_02', 1
+3008,3010c3008,3010
+< 	sprite: s32'krn205_03', 2
+< 	sprite: s32'krn205_04', 2
+< 	sprite: s32'krn205_05', 2
+---
+> 	sprite: s32'krn205_03', 1
+> 	sprite: s32'krn205_04', 1
+> 	sprite: s32'krn205_05', 1
+3055,3058c3055,3058
+< 	sprite: s32'krn206_05', 3
+< 	sprite: s32'krn206_08', 3
+< 	sprite: s32'krn206_09', 3
+< 	sprite: s32'krn206_10', 3
+---
+> 	sprite: s32'krn206_05', 2
+> 	sprite: s32'krn206_08', 2
+> 	sprite: s32'krn206_09', 2
+> 	sprite: s32'krn206_10', 2
+3406,3407c3406,3407
+< 	sprite: s32'krn265_01', 2
+< 	sprite: s32'krn265_02', 2
+---
+> 	sprite: s32'krn265_01', 1
+> 	sprite: s32'krn265_02', 1
+3409,3411c3409,3411
+< 	sprite: s32'krn265_03', 2
+< 	sprite: s32'krn265_04', 2
+< 	sprite: s32'krn265_05', 2
+---
+> 	sprite: s32'krn265_03', 1
+> 	sprite: s32'krn265_04', 1
+> 	sprite: s32'krn265_05', 1
+3463c3463
+< 	sprite: s32'krn266_01', 3
+---
+> 	sprite: s32'krn266_01', 2
+3465,3471c3465,3471
+< 	sprite: s32'krn266_02', 2
+< 	sprite: s32'krn266_03', 2
+< 	sprite: s32'krn266_04', 2
+< 	sprite: s32'krn266_05', 2
+< 	sprite: s32'krn266_06', 2
+< 	sprite: s32'krn266_07', 3
+< 	sprite: s32'krn266_08', 2
+---
+> 	sprite: s32'krn266_02', 1
+> 	sprite: s32'krn266_03', 1
+> 	sprite: s32'krn266_04', 1
+> 	sprite: s32'krn266_05', 1
+> 	sprite: s32'krn266_06', 1
+> 	sprite: s32'krn266_07', 1
+> 	sprite: s32'krn266_08', 1
+4011c4011,4013
+< 	sprite: s32'krn400_16', 2
+---
+> 	sprite: s32'krn400_16', 1
+> 	sprite: s32'krn400_16', 1
+> 	enableSuperArmor: 1
+4065a4068
+> 	enableSuperArmor: 0
+4077a4081
+> 	enableSuperArmor: 0
+4117a4122
+> 	enableSuperArmor: 0
+4394c4399,4401
+< 	sprite: s32'krn400_25', 2
+---
+> 	sprite: s32'krn400_25', 1
+> 	sprite: s32'krn400_25', 1
+> 	enableSuperArmor: 1
+4408a4416
+> 	enableSuperArmor: 0
+4420a4429
+> 	enableSuperArmor: 0
+4434a4444
+> 	enableSuperArmor: 0
+4453a4464
+> 	enableSuperArmor: 0
+4474a4486
+> 	enableSuperArmor: 0
+5139d5150
+< 	sprite: s32'krn404_04', 2
+5730a5742
+> 								enableGatlings: 0
+5755a5768,5771
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'KakusanE'
+> 			whiffCancelOptionBufferTime: s32'KakusanE', 40
+> 		} endIf: 
+5915a5932
+> 	enableGatlings: 0
+5936a5954
+> 	enableGatlings: 1
+5943a5962
+> 	enableGatlings: 0
+5961a5981,5982
+> 	enableGatlings: 1
+> 	spriteEnd: 

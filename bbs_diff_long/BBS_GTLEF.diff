@@ -1,6 +1,6 @@
---- 1.31/BBS_GTLEF.bbs	2023-05-23 14:16:13.618753135 +0200
-+++ 1.32/BBS_GTLEF.bbs	2023-05-23 14:14:49.236306332 +0200
-@@ -1,2682 +1,2682 @@
+--- 1.32/BBS_GTLEF.bbs	2023-05-24 20:54:47.198005428 +0200
++++ 1.33/BBS_GTLEF.bbs	2023-08-23 04:23:02.690915086 +0200
+@@ -1,2682 +1,2691 @@
  beginState: s32'dmy' {
  	sprite: s32'null', 1
  } endState: 
@@ -1027,6 +1027,14 @@
  			setYScale: 3000
  			atkRange: 270000, 270000, 370000, -500000
  		} endUpon: 
++		upon: (SIGNAL3) {
++			clearRegisteredUponCode: (SIGNAL3)
++			setXSpeed: -50000
++		} endUpon: 
++		upon: (SIGNAL4) {
++			clearRegisteredUponCode: (SIGNAL4)
++			setXSpeed: 50000
++		} endUpon: 
  	} endUpon: 
  	sprite: s32'null', 8
  	createObject: s32'GTL_GDEffLock', (ZERO)
@@ -1073,8 +1081,9 @@
  			} endIf: 
  		} endIf: 
  		else:  {
- 			setXSpeed: 0
+-			setXSpeed: 0
  			if: var(act5) {
++				setXSpeed: 0
  				setYSpeed: 0
  			} endIf: 
  		} endElse: 
@@ -1324,8 +1333,7 @@
  		attackYKnockback: 10000
  		attackYSuction: 1, 50000, 300000, 100, 0
  		wallBounceCount: 0
--		airHitstun: 25
-+		airHitstun: 35
+ 		airHitstun: 35
  		atkRange: 50000000, -300000, 0, 0
  		atkSousaiSevereCheck: 1
  		atkEffectBeamSousai: 1
@@ -1631,7 +1639,9 @@
  		ifOperation: (IS_EQUAL), var(act0), int(4) {
  			attackYKnockback: 40000
  			slidingKnockdownDuration: 0
- 			enemyHitstopAddition: 0, 10, 10
+-			enemyHitstopAddition: 0, 10, 10
++			enemyHitstopAddition: 0, 15, 15
++			autoHitSignalSending: 1
  		} endIf: 
  	} endUpon: 
  	upon: (SIGNAL2) {

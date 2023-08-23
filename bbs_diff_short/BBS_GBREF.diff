@@ -1,4 +1,10 @@
-819c819
-< 		airHitstun: 25
+1153,1155c1153,1155
+< 	sprite: s32'zmn404_07', 2
+< 	sprite: s32'zmn404_08', 2
+< 	sprite: s32'zmn404_09', 2
 ---
-> 		airHitstun: 35
+> 	sprite: s32'zmn404_07', 1
+> 	sprite: s32'zmn404_08', 1
+> 	sprite: s32'zmn404_09', 1
+1757a1758
+> 		autoHitSignalSending: 1

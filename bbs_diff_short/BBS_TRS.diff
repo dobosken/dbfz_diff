@@ -1,56 +1,221 @@
-1635,1637c1635,1637
-< 	sprite: s32'trs404_01', 2
-< 	sprite: s32'trs404_02', 2
-< 	setXSpeed: 10000
+459c459,471
+< 		moveInput: (INPUT_BOOLEAN_OR)
 ---
-> 	sprite: s32'trs404_01', 1
-> 	sprite: s32'trs404_02', 1
-> 	setXSpeed: 20000
-1641,1642c1641,1642
-< 	sprite: s32'trs404_03', 2
-< 	setXSpeed: 50000
+> 		addMoveCondition: (THREE)
+> 		skillEstAtkBox: -210, -330, 200, 330
+> 		skillEstLevelLimit: 60
+> 		skillEstPoint: 30
+> 		skillEstTagMuteki: 
+> 		cpuIsThrow: 
+> 		cpuBigDamage: 
+> 		skillEstTagCombo: 
+> 		skillEstInterval: 1200
+> 	} endMove: 
+> 	addMove: s32'HeatDomeAttack_CD' {
+> 		moveType: (OVERDRIVE)
+> 		characterState: (STANDING)
+607a620
+> 	registerMove: s32'HeatDomeAttack_CD'
+2570a2584
+> 	enableSuperArmor: 1
+2575a2590
+> 	setXSpeed: 150000
+2578c2593
+< 	setXSpeed: 80000
 ---
-> 	sprite: s32'trs404_03', 1
-> 	setXSpeed: 90000
-1645,1646c1645,1646
-< 	sprite: s32'trs404_04', 2
-< 	sprite: s32'trs404_05', 2
+> 	setXSpeed: 180000
+3008,3009c3023,3024
+< 	sprite: s32'trs205_01', 2
+< 	sprite: s32'trs205_02', 2
 ---
-> 	sprite: s32'trs404_04', 1
-> 	sprite: s32'trs404_05', 1
-2905c2905
-< 	setXSpeed: 50000
+> 	sprite: s32'trs205_01', 1
+> 	sprite: s32'trs205_02', 1
+3011c3026
+< 	sprite: s32'trs205_03', 2
 ---
+> 	sprite: s32'trs205_03', 1
+3533a3549,3554
+> 						attackXKnockback: 150000
+> 						attackYKnockback: 5000
+> 						attackGravity: 1000
+> 						wallBounceCount: 1
+> 						wallBounceXVelocityPercent: 15
+> 						groundBounceUntechTime: -20000
+3541a3563,3568
+> 						attackXKnockback: 150000
+> 						attackYKnockback: 5000
+> 						attackGravity: 1000
+> 						wallBounceCount: 1
+> 						wallBounceXVelocityPercent: 18
+> 						groundBounceUntechTime: -20000
+4750a4778,4780
+> 	addWhiffCancelOption: s32'CmnFAirDash'
+> 	addWhiffCancelOption: s32'CmnBAirDash'
+> 	addWhiffCancelOption: s32'CmnActFAirDash2Button'
+4873d4902
+< 	landingRecovery: 6, 0
+4923d4951
+< 	landingRecovery: 6, 0
+5035a5064,5068
+> 	ifVarOfObjectTrue: (ENEMY_MAIN_PLAYER), var(IsAir) {
+> 		if: var(EnemyInHitstun) {
+> 			addXSpeed: 15000
+> 		} endIf: 
+> 	} endIf: 
+5041d5073
+< 	landingRecovery: 6, 0
+5093d5124
+< 	landingRecovery: 6, 0
+5516a5548,5551
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'HeatDomeAttack'
+> 			addGatlingOption: s32'HeatDomeAttack_CD'
+> 		} endIf: 
+5518c5553
+< 	sprite: s32'trs430_00', 4
+---
+> 	sprite: s32'trs430_00', 2
+5520c5555
+< 	sprite: s32'trs430_01', 4
+---
+> 	sprite: s32'trs430_01', 3
+5628a5664
+> 				enableGatlings: 0
+5684a5721
+> 				enableGatlings: 0
+5779a5817
+> 	blockstun: 20
+5823a5862
+> 		cameraShake: s32'ShakeTate', 500, 0, 10, 0
+5825c5864
+< 	landingRecovery: 10, 1
+---
+> 	landingRecovery: 3, 1
+5831a5871
+> 	setGravity: 3000
+6016a6057
+> 	jumpToStateInObject: (PARENT), s32'landing'
+6062,6063c6103,6104
+< 	groundKnockbackEffect: (AIR_FACE_UP)
+< 	airKnockbackEffect: (AIR_FACE_UP)
+---
+> 	groundKnockbackEffect: (KirimomiSide)
+> 	airKnockbackEffect: (KirimomiSide)
+6065c6106
+< 	attackXKnockback: 50000
+---
+> 	attackXKnockback: 15000
+6080c6121
+< 				slidingKnockdownDuration: 25
+---
+> 				slidingKnockdownDuration: 20
+6082d6122
+< 				spriteAddTime: 20
+6094a6135,6136
+> 	jumpToStateInObject: (PARENT), s32'landing'
+> 	setGravity: 6000
+6108c6150
+< 	sprite: s32'trs037_03', 3
+---
+> 	sprite: s32'trs037_03', 7
+6110c6152,6157
+< 	sprite: s32'trs037_02', 3
+---
+> 	if: var(CmnCharaReg7) {
+> 		enableGatlings: 1
+> 		addGatlingOption: s32'HeatDomeAttack'
+> 		addGatlingOption: s32'HeatDomeAttack_CD'
+> 	} endIf: 
+> 	sprite: s32'trs037_02', 6
+6128a6176,6181
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'BurningAttack'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 		} endIf: 
+6171a6225,6308
+> 	grabOrRelease: 
+> 	shoesSE: 0, 100
+> 	sprite: s32'trs431_05', 2
+> 	disableHitbox: 
+> 	clearRegisteredUponCode: (IDLING)
+> 	sprite: s32'trs431_27', 3
+> 	enableSuperArmor: 0
+> 	sprite: s32'trs431_28', 3
+> 	sprite: s32'trs431_29', 20
+> 	recoveryState: 
+> 	sprite: s32'trs431_30', 3
+> 	sprite: s32'trs431_31', 3
+> 	sprite: s32'trs431_32', 3
+> } endState: 
+> 
+> beginState: s32'HeatDomeAttack_CD' {
+> 	upon: (IMMEDIATE) {
+> 		playerActionInitializeByCategory: 20, 1
+> 		callSubroutine: s32'cmnAtkTemplNageLand'
+> 		jumpToStateOnHit: s32'HeatDomeAttackExe'
+> 		atkRange: 250000, 0, 300000, 0
+> 		atkDamageToRecovery: 1
+> 		atkYogore: 0
+> 		upon: (FRAME_STEP) {
+> 			ifNot: var(IN_BATTLE) {
+> 				recoveryState: 
+> 			} endIf: 
+> 		} endUpon: 
+> 		tensionUsage: 30000
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'BurningAttack'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 			checkLastStateName: s32'BurningAttack_Exe'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 		} endIf: 
+> 	} endUpon: 
+> 	sprite: s32'trs000_00', 2
+> 	enableSuperArmor: 1
+> 	sprite: s32'trs431_00', 1
+> 	facePose: (ANGRY)
+> 	sprite: s32'trs431_00', 5
+> 	forceRandomVoice: s16'vxxx216', 100, s16'', 0, s16'', 0, s16'', 0
+> 	mouthPose: (OPEN)
+> 	sprite: s32'trs431_01', 4
+> 	mouthPose: (CLOSED)
+> 	superFreeze: 4, 119, 27, 27
+> 	upon: (SUPERFREEZE) {
+> 		clearRegisteredUponCode: (SUPERFREEZE)
+> 		darkenBackground: 1
+> 		cameraForceMove: 1
+> 		cameraMotion: 70304, 138270, 66240, 2000, -4500, 0, 75, 5, 17, 5, 1
+> 		callSubroutine: s32'cmn3gaugeWLDSTP'
+> 	} endUpon: 
+> 	sprite: s32'trs431_01', 2
+> 	hideAllButSelf: 1
+> 	createObject: s32'cmn_syutyusen', (ENEMY_CENTER)
+> 	sprite: s32'trs431_02', 6
+> 	mouthPose: 2
+> 	sprite: s32'trs431_03', 5
+> 	mouthPose: (SHOW_TEETH)
+> 	sprite: s32'trs431_03', 7
+> 	mouthPose: 2
+> 	deactivateObjectByName: s32'cmn_syutyusen'
+> 	sprite: s32'trs431_03', 2
+> 	mouthPose: (CLOSED)
+> 	sprite: s32'trs431_03', 1
+> 	hideAllButSelf: 0
+> 	sprite: s32'trs431_03', 2
 > 	setXSpeed: 100000
-3172c3172
-< 	sprite: s32'trs262_00', 3
----
-> 	sprite: s32'trs262_00', 2
-3178c3178
-< 	sprite: s32'trs262_03', 4
----
-> 	sprite: s32'trs262_03', 2
-3599c3599
-< 	setXSpeed: 55000
----
-> 	setXSpeed: 75000
-4134c4134
-< 	setXSpeed: 50000
----
-> 	setXSpeed: 65000
-4136c4136
-< 	sprite: s32'trs400_10', 2
----
-> 	sprite: s32'trs400_10', 1
-4142c4142
-< 	sprite: s32'trs400_17', 2
----
-> 	sprite: s32'trs400_17', 1
-4539,4540c4539,4540
-< 	sprite: s32'trs400_11', 2
-< 	sprite: s32'trs400_15', 2
----
-> 	sprite: s32'trs400_11', 1
-> 	sprite: s32'trs400_15', 1
-5505a5506
-> 	enableSpecials: 1
+> 	floorEffect: 5, 125
+> 	sprite: s32'trs431_04', 4
+> 	setXSpeed: 100000
+> 	characterSfx: s32'ARC_BTL_TRS_HeatDomeCatch'
+> 	upon: (IDLING) {
+> 		ifOperation: (IS_LESS), var(EnemyFrontDistance), int(50000) {
+> 			percentageXSpeed: 50
+> 		} endIf: 
+> 	} endUpon: 
+> 	sprite: s32'trs431_05', 1
+> 	xSpeedPerFrame: 50

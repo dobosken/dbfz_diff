@@ -1,102 +1,72 @@
-1357,1358c1357,1358
-< 		groundKnockbackEffect: (AIR_FACE_UP)
-< 		airKnockbackEffect: (AIR_FACE_UP)
+2384,2385c2384,2385
+< 	sprite: s32'gnn201_12', 4
+< 	sprite: s32'gnn201_13', 3
 ---
-> 		groundKnockbackEffect: (SPIN)
-> 		airKnockbackEffect: (SPIN)
-1363,1364c1363,1364
-< 		airHitstun: 25
-< 		attackXKnockback: 30000
+> 	sprite: s32'gnn201_12', 2
+> 	sprite: s32'gnn201_13', 2
+2538c2538
+< 	sprite: s32'gnn231_08', 5
 ---
-> 		airHitstun: 35
-> 		attackXKnockback: 15000
-1491c1491,1496
-< 			callSubroutine: s32'tokusentai_236D'
+> 	sprite: s32'gnn231_08', 4
+2540c2540
+< 	sprite: s32'gnn231_10', 3
 ---
-> 			ifOperation: (IS_EQUAL), var(plr1), int(2) {
-> 				modifyVar: (ADD), var(plr1), int(1)
-> 			} endIf: 
-> 			else:  {
-> 				callSubroutine: s32'tokusentai_236D'
-> 			} endElse: 
-1497c1502,1507
-< 				callSubroutine: s32'tokusentai_214D'
----
-> 				ifOperation: (IS_EQUAL), var(plr1), int(2) {
-> 					modifyVar: (ADD), var(plr1), int(1)
+> 	sprite: s32'gnn231_10', 2
+2838a2839,2841
+> 		if: var(IsMainPlayerSelf) {
+> 			addTensionUnscaled: 0, 500
+> 		} endIf: 
+3995a3999,4003
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'BodyChange'
+> 			addGatlingOption: s32'SpecialRush'
+> 			addGatlingOption: s32'Karadaga...Ultimate'
+> 		} endIf: 
+4242a4251,4258
+> 		if: var(CmnCharaReg7) {
+> 			if: var(EnemyInHitstun) {
+> 				checkLastStateName: s32'PowerfulEnergyWave'
+> 				if: var(Result) {
+> 					superFreeze: 7, 100, 0, 30
 > 				} endIf: 
-> 				else:  {
-> 					callSubroutine: s32'tokusentai_214D'
-> 				} endElse: 
-1517a1528
-> 	callSubroutine: s32'tokusentai_5D'
-1546a1558
-> 	callSubroutine: s32'tokusentai_236D'
-1576a1589
-> 	callSubroutine: s32'tokusentai_214D'
-2491c2504
-< 	sprite: s32'gnn203_09', 6
----
-> 	sprite: s32'gnn203_09', 5
-2493,2495c2506,2508
-< 	sprite: s32'gnn203_10', 5
-< 	sprite: s32'gnn203_11', 4
-< 	sprite: s32'gnn203_12', 3
----
-> 	sprite: s32'gnn203_10', 4
-> 	sprite: s32'gnn203_11', 3
-> 	sprite: s32'gnn203_12', 2
-2509c2522
-< 	sprite: s32'gnn231_01', 2
----
-> 	sprite: s32'gnn231_01', 1
-2512,2513c2525,2526
-< 	sprite: s32'gnn231_03', 3
-< 	sprite: s32'gnn231_04', 4
----
-> 	sprite: s32'gnn231_03', 2
-> 	sprite: s32'gnn231_04', 2
-2634c2647
-< 					setXSpeed: -15000
----
-> 					setXSpeed: -25000
-2683a2697,2701
-> 			ifOperation: (IS_LESS_OR_EQUAL), var(SpeedX), int(0) {
-> 				applyTo: (PREVIOUS) {
-> 					addXPosition: 300000
-> 				} endApply: 
 > 			} endIf: 
-2684a2703,2707
-> 			ifOperation: (IS_LESS_OR_EQUAL), var(SpeedX), int(0) {
-> 				applyTo: (PREVIOUS) {
-> 					addXPosition: 300000
-> 				} endApply: 
+> 		} endIf: 
+4329c4345
+< 	modifyHPNoDeath: -4000
+---
+> 	modifyHPNoDeath: -6500
+4718c4734
+< 	modifyHPNoDeath: -4000
+---
+> 	modifyHPNoDeath: -6500
+5062a5079,5084
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'PowerfulEnergyWave'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
 > 			} endIf: 
-2694a2718,2728
-> 	enableWhiffCancel: 1
-> 	addWhiffCancelOption: s32'NmlAtk5D'
-> 	addWhiffCancelOption: s32'Comehere_GinyuForce'
-> 	addWhiffCancelOption: s32'Comehere_GinyuForce_214'
-> 	addWhiffCancelOption: s32'Karadaga...'
-> 	addWhiffCancelOption: s32'Karadaga...214'
-> 	addWhiffCancelOption: s32'NmlAtkAir5D'
-> 	addWhiffCancelOption: s32'AirComehere_GinyuForce'
-> 	addWhiffCancelOption: s32'AirComehere_GinyuForce_214'
-> 	addWhiffCancelOption: s32'AirKaradaga...'
-> 	addWhiffCancelOption: s32'AirKaradaga...214'
-2713a2748
-> 	enableWhiffCancel: 0
-3307c3342
-< 	setXSpeed: 90000
----
-> 	setXSpeed: 120000
-3367c3402
-< 	setXSpeed: 90000
----
-> 	setXSpeed: 120000
-3428c3463
-< 	setXSpeed: 90000
----
-> 	setXSpeed: 120000
-4096a4132
-> 		enableSpecialCancel: 1
+> 		} endIf: 
+5104a5127,5132
+> 	if: var(EnemyInHitstun) {
+> 		checkLastStateName: s32'PowerfulEnergyWave'
+> 		if: var(Result) {
+> 			superFreeze: 7, 100, 0, 12
+> 		} endIf: 
+> 	} endIf: 
+5323a5352,5367
+> 	checkInput: (INPUT_HOLD_L)
+> 	if: var(Result) {
+> 		copyVar: var(plr1), int(0)
+> 	} endIf: 
+> 	checkInput: (INPUT_HOLD_M)
+> 	if: var(Result) {
+> 		copyVar: var(plr1), int(1)
+> 	} endIf: 
+> 	checkInput: (INPUT_HOLD_H)
+> 	if: var(Result) {
+> 		copyVar: var(plr1), int(2)
+> 	} endIf: 
+> 	checkInput: (INPUT_HOLD_KI)
+> 	if: var(Result) {
+> 		copyVar: var(plr1), int(3)
+> 	} endIf: 

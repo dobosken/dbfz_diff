@@ -1,0 +1,11 @@
+1041a1042,1047
+> 			ifVarOfObjectTrue: (PLAYER), var(act3) {
+> 				damage: 200
+> 				minimalDamagePercent: 16
+> 				disableOpponentRecovery: 0
+> 				enableMemberChangeUltimate: 0
+> 			} endIf: 
+1431c1437
+< 			applyAttackLockWithStateName: s32'CmnNeutral'
+---
+> 			applyAttackLockWithStateName: s32'GalickGun_VGN_Atk'

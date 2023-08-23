@@ -1,14 +1,51 @@
-367a368
-> 		maxChainIntoSelf: 1
-2372c2373
-< 	whiffCancelOptionBufferTime: s32'NmlAtk5A3rd', 8
+179c179
+< 		maxChainIntoSelf: 1
 ---
-> 	whiffCancelOptionBufferTime: s32'NmlAtk5A3rd', 7
-5449a5451
-> 		enableSpecialCancel: 1
-5458c5460,5462
-< 	sprite: s32'gtl265_01', 2
+> 		maxChainIntoSelf: 2
+1725a1726,1729
+> 	checkInputFromParent: (INPUT_ANY_UP)
+> 	if: var(Result) {
+> 		addYSpeed: 30000
+> 	} endIf: 
+2759,2760c2763,2767
+< 	setXSpeed: 35000
+< 	xSpeedPerFrame: 85
 ---
-> 	sprite: s32'gtl265_01', 1
-> 	sprite: s32'gtl265_01', 1
-> 	enableVanish: 1
+> 	checkInput: (INPUT_ANY_FORWARD)
+> 	if: var(Result) {
+> 		setXSpeed: 35000
+> 		xSpeedPerFrame: 85
+> 	} endIf: 
+3069a3077,3078
+> 	enableWhiffCancel: 1
+> 	addWhiffCancelOption: s32'NmlAtkAir5D'
+3086a3096,3097
+> 	enableWhiffCancel: 1
+> 	addWhiffCancelOption: s32'NmlAtkAir5D'
+5234a5246,5255
+> 	checkInput: (INPUT_ANY_BACK)
+> 	if: var(Result) {
+> 		triggerUponInObject: s32'Gdonut_Atk', (SIGNAL3)
+> 		copyVar: var(act0), int(1)
+> 	} endIf: 
+> 	checkInput: (INPUT_ANY_FORWARD)
+> 	if: var(Result) {
+> 		triggerUponInObject: s32'Gdonut_Atk', (SIGNAL4)
+> 		copyVar: var(act0), int(1)
+> 	} endIf: 
+5330a5352,5357
+> 	checkInput: (INPUT_ANY_UP)
+> 	if: var(Result) {
+> 		ifOperation: (IS_LESS_OR_EQUAL), var(PosY), int(4500000) {
+> 			addYSpeed: 20000
+> 		} endIf: 
+> 	} endIf: 
+5451d5477
+< 		enableSpecialCancel: 1
+5462a5489
+> 	enableSpecialCancel: 1
+5522a5550,5553
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'VolleyBall'
+> 			whiffCancelOptionBufferTime: s32'VolleyBall', 40
+> 		} endIf: 

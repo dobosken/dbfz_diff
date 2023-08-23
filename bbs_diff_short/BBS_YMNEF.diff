@@ -1,4 +1,20 @@
-768c768
-< 		airHitstun: 25
+84c84
+< 	setSpeedByCurrentAngle: 70000, 0
 ---
-> 		airHitstun: 35
+> 	setSpeedByCurrentAngle: 40000, 0
+98,100c98,100
+< 		groundKnockbackEffect: (AIR_FACE_UP)
+< 		airKnockbackEffect: (AIR_FACE_UP)
+< 		attackXKnockback: 20000
+---
+> 		groundKnockbackEffect: (SPIN)
+> 		airKnockbackEffect: (SPIN)
+> 		attackXKnockback: 40000
+102a103,105
+> 		airHitstun: 28
+> 		enemyHitstopAddition: 0, 3, 3
+> 		wallBounceCount: 1
+123c126
+< 	setSpeedByCurrentAngle: 70000, 0
+---
+> 	setSpeedByCurrentAngle: 100000, 0

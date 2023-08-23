@@ -1,15 +1,98 @@
-2404c2404
-< 	setXSpeed: 100000
+3961,3963c3961,3963
+< 	sprite: s32'brs400_14', 4
+< 	sprite: s32'brs400_15', 4
+< 	sprite: s32'brs400_16', 4
 ---
-> 	setXSpeed: 150000
-3204c3204
-< 	airHitstun: 30
+> 	sprite: s32'brs400_14', 3
+> 	sprite: s32'brs400_15', 3
+> 	sprite: s32'brs400_16', 3
+3965,3966c3965,3966
+< 	sprite: s32'brs400_17', 4
+< 	sprite: s32'brs400_18', 3
 ---
-> 	airHitstun: 40
-3285a3286,3289
-> 	checkInput: (INPUT_ANY_FORWARD)
-> 	if: var(Result) {
-> 		addXSpeed: 15000
+> 	sprite: s32'brs400_17', 2
+> 	sprite: s32'brs400_18', 2
+3968c3968
+< 	sprite: s32'brs400_19', 3
+---
+> 	sprite: s32'brs400_19', 2
+4897c4897
+< 		damage: 1500
+---
+> 		damage: 1000
+4901c4901
+< 		attackXKnockback: 60000
+---
+> 		attackXKnockback: 30000
+4904a4905
+> 		airHitstun: 27
+4914a4916,4920
+> 					damage: 1500
+> 					airKnockbackEffect: (KirimomiSide)
+> 					groundKnockbackEffect: (KirimomiSide)
+> 					attackXKnockback: 10000
+> 					attackYKnockback: 45000
+4917c4923
+< 					wallBounceCount: 1
+---
+> 					wallBounceCount: 0
+5089d5094
+< 		callSubroutine: s32'SuperArmor_Special'
+5092c5097
+< 	sprite: s32'brs430_00', 2
+---
+> 	sprite: s32'brs430_00', 1
+5106,5107c5111,5112
+< 	sprite: s32'brs430_01', 3
+< 	sprite: s32'brs430_28', 3
+---
+> 	sprite: s32'brs430_01', 1
+> 	sprite: s32'brs430_28', 1
+5113c5118
+< 	superFreeze: 3, 119, 35, 35
+---
+> 	superFreeze: 3, 119, 35, 37
+5266a5272,5281
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'GmeteorAB'
+> 		addGatlingOption: s32'GmeteorCD'
+> 		addGatlingOption: s32'Air_GmeteorAB'
+> 		addGatlingOption: s32'Air_GmeteorCD'
+> 		whiffCancelOptionBufferTime: s32'GmeteorAB', 60
+> 		whiffCancelOptionBufferTime: s32'GmeteorCD', 40
+> 		whiffCancelOptionBufferTime: s32'Air_GmeteorAB', 60
+> 		whiffCancelOptionBufferTime: s32'Air_GmeteorCD', 40
 > 	} endIf: 
-3291a3296
-> 	setXSpeed: 0
+5322a5338,5347
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'GmeteorAB'
+> 			addGatlingOption: s32'GmeteorCD'
+> 			addGatlingOption: s32'Air_GmeteorAB'
+> 			addGatlingOption: s32'Air_GmeteorCD'
+> 			whiffCancelOptionBufferTime: s32'GmeteorAB', 40
+> 			whiffCancelOptionBufferTime: s32'GmeteorCD', 40
+> 			whiffCancelOptionBufferTime: s32'Air_GmeteorAB', 40
+> 			whiffCancelOptionBufferTime: s32'Air_GmeteorCD', 40
+> 		} endIf: 
+5506a5532,5541
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'Erasercannon'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 			checkLastStateName: s32'Erasercannon_CD'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 		} endIf: 
+5703a5739,5748
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'Erasercannon'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 			checkLastStateName: s32'Erasercannon_CD'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 		} endIf: 

@@ -1,6 +1,6 @@
---- 1.31/BBS_GHT.bbs	2023-05-23 14:16:11.912723884 +0200
-+++ 1.32/BBS_GHT.bbs	2023-05-23 14:14:47.604278349 +0200
-@@ -1,8130 +1,8166 @@
+--- 1.32/BBS_GHT.bbs	2023-05-24 20:54:45.433976332 +0200
++++ 1.33/BBS_GHT.bbs	2023-08-23 04:23:01.030886798 +0200
+@@ -1,8166 +1,8195 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'ght'
  } endSubroutine: 
@@ -1498,8 +1498,7 @@
  		groundKnockbackEffect: (AIR_VERTICAL)
  		attackXKnockback: 15000
  		attackYKnockback: 50000
--		airHitstun: 36
-+		airHitstun: 40
+ 		airHitstun: 40
  		damageSoundEffect: s32'ARC_BTL_CMN_Hit_Large-A'
  		guardSoundEffect: s32'ARC_BTL_CMN_Guard_Large'
  		upon: (BEFORE_EXIT) {
@@ -1658,48 +1657,9 @@
  	sprite: s32'ght233_17', 1
  	sprite: s32'ght233_18', 1
  	sprite: s32'ght233_19', 1
-+	sprite: s32'ght233_07', 1
-+	setXSpeed: 5000
-+	setYSpeed: 12000
-+	objectGravity: 
-+	sprite: s32'ght233_08', 2
-+	createObject: s32'jumpkidan_2D_start', (EX_POINT_0)
-+	sprite: s32'ght233_09', 1
-+	voiceLine: s16'vxxx109'
-+	characterSfx: s32'ARC_BTL_GHT_NmtnKame_Chrg'
-+	landingRecovery: 6, 1
-+	sprite: s32'ght233_10', 1
-+	percentageXSpeed: 60
-+	percentageYSpeed: 50
-+	percentageGravity: 50
-+	sprite: s32'ght233_11', 1
-+	percentageXSpeed: 60
-+	percentageYSpeed: 50
-+	percentageGravity: 50
-+	sprite: s32'ght233_12', 1
-+	percentageYSpeed: 50
-+	percentageGravity: 50
-+	sprite: s32'ght233_13', 2
-+	sprite: s32'ght233_14', 2
-+	cmnSfx: s32'ARC_BTL_CMN_Furi_FuriOroshi'
-+	sprite: s32'ght233_13', 2
-+	sprite: s32'ght233_14', 2
-+	sprite: s32'ght233_15', 3
-+	setGravity: 1200
-+	sprite: s32'ght233_16', 2
-+	createObject: s32'crouchkidan', (EX_POINT_0)
-+	cmnSfx: s32'ARC_BTL_CMN_kidan_Fire1'
-+	sprite: s32'ght233_17', 1
-+	sprite: s32'ght233_18', 1
-+	sprite: s32'ght233_19', 1
- 	sprite: s32'ght233_20', 1
- 	sprite: s32'ght233_21', 1
--	sprite: s32'ght233_07', 2
--	setXSpeed: 30000
--	setYSpeed: 15000
-+	sprite: s32'ght233_07', 5
-+	setXSpeed: 5000
-+	setYSpeed: 20000
+ 	sprite: s32'ght233_07', 1
+ 	setXSpeed: 5000
+ 	setYSpeed: 12000
  	objectGravity: 
  	sprite: s32'ght233_08', 2
  	createObject: s32'jumpkidan_2D_start', (EX_POINT_0)
@@ -1718,12 +1678,47 @@
  	sprite: s32'ght233_12', 1
  	percentageYSpeed: 50
  	percentageGravity: 50
--	sprite: s32'ght233_13', 1
-+	sprite: s32'ght233_13', 2
+ 	sprite: s32'ght233_13', 2
  	sprite: s32'ght233_14', 2
  	cmnSfx: s32'ARC_BTL_CMN_Furi_FuriOroshi'
-+	sprite: s32'ght233_13', 2
-+	sprite: s32'ght233_14', 2
+ 	sprite: s32'ght233_13', 2
+ 	sprite: s32'ght233_14', 2
+ 	sprite: s32'ght233_15', 3
+ 	setGravity: 1200
+ 	sprite: s32'ght233_16', 2
+ 	createObject: s32'crouchkidan', (EX_POINT_0)
+ 	cmnSfx: s32'ARC_BTL_CMN_kidan_Fire1'
+ 	sprite: s32'ght233_17', 1
+ 	sprite: s32'ght233_18', 1
+ 	sprite: s32'ght233_19', 1
+ 	sprite: s32'ght233_20', 1
+ 	sprite: s32'ght233_21', 1
+ 	sprite: s32'ght233_07', 5
+ 	setXSpeed: 5000
+ 	setYSpeed: 20000
+ 	objectGravity: 
+ 	sprite: s32'ght233_08', 2
+ 	createObject: s32'jumpkidan_2D_start', (EX_POINT_0)
+ 	sprite: s32'ght233_09', 1
+ 	voiceLine: s16'vxxx109'
+ 	characterSfx: s32'ARC_BTL_GHT_NmtnKame_Chrg'
+ 	landingRecovery: 6, 1
+ 	sprite: s32'ght233_10', 1
+ 	percentageXSpeed: 60
+ 	percentageYSpeed: 50
+ 	percentageGravity: 50
+ 	sprite: s32'ght233_11', 1
+ 	percentageXSpeed: 60
+ 	percentageYSpeed: 50
+ 	percentageGravity: 50
+ 	sprite: s32'ght233_12', 1
+ 	percentageYSpeed: 50
+ 	percentageGravity: 50
+ 	sprite: s32'ght233_13', 2
+ 	sprite: s32'ght233_14', 2
+ 	cmnSfx: s32'ARC_BTL_CMN_Furi_FuriOroshi'
+ 	sprite: s32'ght233_13', 2
+ 	sprite: s32'ght233_14', 2
  	sprite: s32'ght233_15', 3
  	setGravity: 1200
  	sprite: s32'ght233_16', 3
@@ -2559,12 +2554,17 @@
  		callSubroutine: s32'cmnNmlAtk5A_Init'
  		addGatlingOption: s32'NmlAtk1D'
  		addGatlingOption: s32'NmlAtk2D'
- 		removeGatlingOption: s32'NmlAtk5A'
- 		removeWhiffCancelOption: s32'NmlAtk5A'
+-		removeGatlingOption: s32'NmlAtk5A'
+-		removeWhiffCancelOption: s32'NmlAtk5A'
  	} endUpon: 
++	checkLastStateName: s32'NmlAtk5A'
++	gotoLabelIfTrue: s32'Renda', var(Result)
  	sprite: s32'ght200_00', 1
++	label: s32'Renda'
  	sprite: s32'ght200_01', 2
  	setXSpeed: 30000
++	checkLastStateName: s32'NmlAtk5A'
++	spriteOverrideTime: 3, var(Result)
  	sprite: s32'ght200_02', 1
  	xSpeedPerFrame: 50
  	sprite: s32'ght200_02', 1
@@ -2755,30 +2755,38 @@
  	sprite: s32'ght230_02', 2
  	attackVoice: 0, -1
  	commonSetSE: s32'FuriShort', 0, 100
- 	sprite: s32'ght230_03', 3
+-	sprite: s32'ght230_03', 3
++	sprite: s32'ght230_03', 5
  	enableHitbox: 
++	setXSpeed: 40000
++	xSpeedPerFrame: 70
  	sprite: s32'ght230_03', 2
  	recoveryState: 
  	sprite: s32'ght230_04', 2
  	enableWhiffCancel: 1
  	sprite: s32'ght230_05', 3
- 	sprite: s32'ght230_06', 3
- 	sprite: s32'ght230_07', 3
+-	sprite: s32'ght230_06', 3
+-	sprite: s32'ght230_07', 3
++	sprite: s32'ght230_06', 2
++	sprite: s32'ght230_07', 2
  	exitState: 
  	label: s32'Renda'
  	sprite: s32'ght230_02', 4
  	sprite: s32'ght230_02', 2
  	attackVoice: 0, -1
  	commonSetSE: s32'FuriShort', 0, 100
- 	sprite: s32'ght230_03', 3
+-	sprite: s32'ght230_03', 3
++	sprite: s32'ght230_03', 5
  	enableHitbox: 
  	sprite: s32'ght230_03', 2
  	recoveryState: 
  	sprite: s32'ght230_04', 2
  	enableWhiffCancel: 1
  	sprite: s32'ght230_05', 3
- 	sprite: s32'ght230_06', 3
- 	sprite: s32'ght230_07', 3
+-	sprite: s32'ght230_06', 3
+-	sprite: s32'ght230_07', 3
++	sprite: s32'ght230_06', 2
++	sprite: s32'ght230_07', 2
  } endState: 
  
  beginState: s32'NmlAtk5B' {
@@ -2791,10 +2799,13 @@
  	sprite: s32'ght203_00', 1
  	sprite: s32'ght203_01', 1
  	setXSpeed: 10000
- 	sprite: s32'ght203_02', 2
- 	setXSpeed: 30000
+-	sprite: s32'ght203_02', 2
+-	setXSpeed: 30000
++	sprite: s32'ght203_02', 1
++	setXSpeed: 45000
  	effectForLanding: 100, 1, 0
- 	sprite: s32'ght203_03', 2
+-	sprite: s32'ght203_03', 2
++	sprite: s32'ght203_03', 1
  	attackVoice: 1, -1
  	cmnSfx: s32'ARC_BTL_CMN_Furi_Hook'
  	sprite: s32'ght203_04', 2
@@ -2838,7 +2849,8 @@
  	setEX_POINT_F: (FLOOR_CENTER), 250000, 0
  	effectForDashStart: 130, 1, 0
  	createObject: s32'GHT_2BEff', (ZERO)
- 	setXSpeed: 80000
+-	setXSpeed: 80000
++	setXSpeed: 100000
  	xSpeedPerFrame: 90
  	attackVoice: 1, -1
  	cmnSfx: s32'ARC_BTL_CMN_Furi_SyagamiKeri'
@@ -3214,6 +3226,9 @@
  		callSubroutine: s32'cmnNmlAtkAir5B_Init'
  		addGatlingOption: s32'NmlAtkAir1D'
  		addGatlingOption: s32'NmlAtkAir2D'
++		attackXKnockback: 12000
++		airHitstun: 24
++		airKnockbackEffect: (KirimomiLand)
  	} endUpon: 
  	sprite: s32'ght261_00', 2
  	facePose: (STRESSED)
@@ -3597,6 +3612,7 @@
  	enemyHitstopAddition: 0, -3, -3
  	atkHead: 1
  	atkShakeCamera: s32'ShakeYoko', 300, 0, 20, 0
++	atkEasyGuard: 1
  	damageSoundEffect: s32'ARC_BTL_CMN_Hit_Large-A'
  	guardSoundEffect: s32'ARC_BTL_CMN_Guard_Large'
  	if: var(act0) {
@@ -4012,7 +4028,8 @@
  		clearRegisteredUponCode: (TOUCH_GROUND)
  		jumpToStateInObject: (PARENT), s32'landing'
  	} endUpon: 
- 	sprite: s32'ght401_00', 2
+-	sprite: s32'ght401_00', 2
++	sprite: s32'ght401_00', 1
  	facePose: (ANGRY)
  	sprite: s32'ght401_01', 2
  	createParticle: s32'bg_jump_default', (ZERO)
@@ -4024,9 +4041,11 @@
  	randomVoice: s16'vxxx203', 100, s16'vxxx204', 100, s16'vxxx205', 100, s16'vxxx206', 100
  	sprite: s32'ght401_03', 2
  	sprite: s32'ght401_04', 2
- 	sprite: s32'ght401_05', 2
+-	sprite: s32'ght401_05', 2
++	sprite: s32'ght401_05', 1
  	resetSpeed: 1
- 	setXSpeed: 10000
+-	setXSpeed: 10000
++	setXSpeed: 20000
  	sprite: s32'ght401_06', 2
  	createObject: s32'goren_eff', (ZERO)
  	setXSpeed: 150000
@@ -4701,7 +4720,8 @@
  			} endIf: 
  		} endUpon: 
  	} endUpon: 
- 	sprite: s32'ght401_00', 2
+-	sprite: s32'ght401_00', 2
++	sprite: s32'ght401_00', 1
  	callSubroutine: s32'cmnSpecialAttackExInit'
  	facePose: (ANGRY)
  	mouthPose: (OPEN)
@@ -4715,9 +4735,11 @@
  	randomVoice: s16'vxxx203', 100, s16'vxxx204', 100, s16'vxxx205', 100, s16'vxxx206', 100
  	sprite: s32'ght401_03', 2
  	sprite: s32'ght401_04', 2
- 	sprite: s32'ght401_05', 2
+-	sprite: s32'ght401_05', 2
++	sprite: s32'ght401_05', 1
  	resetSpeed: 1
- 	setXSpeed: 35000
+-	setXSpeed: 35000
++	setXSpeed: 70000
  	sprite: s32'ght401_06', 2
  	createObject: s32'goren_eff', (ZERO)
  	setXSpeed: 150000
@@ -4736,6 +4758,7 @@
  	objectGravity: 
  	triggerUponInObject: s32'goren_eff', (SIGNAL1)
  	sprite: s32'ght401_10', 2
++	setYSpeed: 22000
  	recoveryState: 
  	jumpToStateInObject: (PARENT), s32'landing'
  	sprite: s32'ght401_11', 2
@@ -5864,13 +5887,19 @@
  			stopBankSE: 17, 20
  		} endUpon: 
  		finishCameraRequest: s32'FinishCamera_NKamehameha'
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'Oyako_Kamehameha'
++		} endIf: 
  		tensionUsage: 10000
  	} endUpon: 
  	sprite: s32'ght430_00', 1
  	resetSpeed: 1
  	sprite: s32'ght430_01', 1
- 	sprite: s32'ght430_02', 2
+-	sprite: s32'ght430_02', 2
++	sprite: s32'ght430_02', 1
++	sprite: s32'ght430_02', 1
  	characterSfx: s32'ARC_BTL_GHT_NmtnKame_Basa'
++	enableSuperArmor: 1
  	sprite: s32'ght430_03', 1
  	enableSuperArmor: 1
  	superFreeze: 3, 119, 90, 90
@@ -5946,9 +5975,18 @@
  	stopBankSE: 16, 20
  	stopBankSE: 17, 20
  	sprite: s32'ght430_14', 3
++	enableWhiffCancel: 1
++	addWhiffCancelOption: s32'CmnActHomingDash'
++	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 10
++	sprite: s32'ght430_15', 3
++	sprite: s32'ght430_13', 3
++	sprite: s32'ght430_14', 3
++	sprite: s32'ght430_15', 3
++	sprite: s32'ght430_13', 3
++	sprite: s32'ght430_14', 3
  	sprite: s32'ght430_15', 3
  	sprite: s32'ght430_13', 3
- 	recoveryState: 
+-	recoveryState: 
  	sprite: s32'ght430_14', 3
  	sprite: s32'ght430_15', 3
  	sprite: s32'ght430_16', 3
@@ -6011,6 +6049,12 @@
  		} endUpon: 
  		finishCameraRequest: s32'FinishCamera_O_Kamehameha'
  		tensionUsage: 30000
++		if: var(EnemyInHitstun) {
++			checkLastStateName: s32'Kamehameha'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++		} endIf: 
  	} endUpon: 
  	sprite: s32'ght431_00', 2
  	enableSuperArmor: 1

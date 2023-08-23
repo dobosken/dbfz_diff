@@ -1,6 +1,6 @@
---- 1.31/BBS_NPNEF.bbs	2023-05-23 14:16:16.018794286 +0200
-+++ 1.32/BBS_NPNEF.bbs	2023-05-23 14:14:51.494345048 +0200
-@@ -1,2091 +1,2091 @@
+--- 1.32/BBS_NPNEF.bbs	2023-05-24 20:54:49.821048691 +0200
++++ 1.33/BBS_NPNEF.bbs	2023-08-23 04:23:04.994954347 +0200
+@@ -1,2091 +1,2099 @@
  beginState: s32'dmy' {
  	sprite: s32'null', 1
  } endState: 
@@ -172,6 +172,7 @@
  		hitstop: 6
  		enemyHitstopAddition: 0, 1, 1
  		atkFrontDirection: 0
++		blockstun: 22
  		checkCurrentStateName: (PLAYER), s32'AssistAttack3'
  		if: var(Result) {
  			damage: 400
@@ -789,11 +790,17 @@
  		callSubroutine: s32'cmnSpecialAttackEx_TimeLagShotI'
  	} endIf: 
  	damage: 700
- 	airHitstun: 50
- 	enemyHitstopAddition: 0, 0, 0
+-	airHitstun: 50
+-	enemyHitstopAddition: 0, 0, 0
  	attackXKnockback: 10000
  	attackYKnockback: 30000
  	groundKnockbackEffect: (AIR_DEFAULT)
++	airKnockbackEffect: (AIR_DEFAULT)
++	airHitstun: 65
++	enemyHitstopAddition: 0, 22, 22
++	groundBounceCount: 1
++	groundBounceYVelocity: 20000
++	attackDamageEffect: 4, s32'cmn_slash_s'
  	createObject: s32'saibaiman_claw', (ZERO)
  	sprite: s32'sbn201_06', 5
  	pushCollisionHeightLow: 268435455
@@ -876,8 +883,13 @@
  	attackYKnockback: 22500
  	groundKnockbackEffect: (AIR_FACE_DOWN)
  	airKnockbackEffect: (AIR_FACE_DOWN)
- 	airHitstun: 25
- 	enemyHitstopAddition: 3, 3, 3
+-	airHitstun: 25
+-	enemyHitstopAddition: 3, 3, 3
++	airHitstun: 65
++	enemyHitstopAddition: 3, 8, 8
++	groundBounceCount: 1
++	groundBounceYVelocity: 30000
++	attackDamageEffect: 4, s32'cmn_slash_s'
  	createObject: s32'Sliding', (ZERO)
  	sprite: s32'sbn203_06', 6
  	sprite: s32'sbn203_07', 3
@@ -1269,8 +1281,7 @@
  		cameraShake: s32'ShakeTate', 1800, 0, 30, 10
  		copyVarFromObject: (SELF), var(PosY), (PARENT), var(PosY)
  		addYPosition: -10000
--		airHitstun: 15
-+		airHitstun: 20
+ 		airHitstun: 20
  		checkInput: (INPUT_HOLD_KI)
  		if: var(Result) {
  			addXPosition: 650000
@@ -1279,8 +1290,7 @@
  	else:  {
  		linkParticle: s32'cmn_bomb_g1'
  		cameraShake: s32'ShakeTate', 1800, 0, 30, 10
--		airHitstun: 25
-+		airHitstun: 30
+ 		airHitstun: 30
  		checkInput: (INPUT_HOLD_KI)
  		if: var(Result) {
  			addXPosition: 500000
@@ -1495,7 +1505,8 @@
  		attackYKnockback: 60000
  		airHitstun: 35
  		hitstop: 20
- 		enemyHitstopAddition: 0, 5, 5
+-		enemyHitstopAddition: 0, 5, 5
++		enemyHitstopAddition: 0, 15, 15
  		atkFrontDirection: 0
  		attackDamageEffect: 4, s32'cmn_BomHit'
  		if: var(ObjectParameter1) {

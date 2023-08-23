@@ -1,6 +1,6 @@
---- 1.31/BBS_CMNEF.bbs	2023-05-23 14:16:10.460698988 +0200
-+++ 1.32/BBS_CMNEF.bbs	2023-05-23 14:14:46.273255528 +0200
-@@ -1,5886 +1,5907 @@
+--- 1.32/BBS_CMNEF.bbs	2023-08-16 03:40:57.510775350 +0200
++++ 1.33/BBS_CMNEF.bbs	2023-08-23 04:22:59.653863333 +0200
+@@ -1,5907 +1,5907 @@
  beginState: s32'cmn_Dummy' {
  	sprite: s32'null', 2147483647
  } endState: 
@@ -1684,7 +1684,8 @@
  		ifOperation: (IS_EQUAL), var(FrameCount), int(29) {
  			enableWhiffCancel: 1
  		} endIf: 
- 		ifOperation: (IS_GREATER_OR_EQUAL), var(FrameCount), int(48) {
+-		ifOperation: (IS_GREATER_OR_EQUAL), var(FrameCount), int(48) {
++		ifOperation: (IS_GREATER_OR_EQUAL), var(FrameCount), int(36) {
  			checkInput: (INPUT_HOLD_L)
  			ifNot: var(Result) {
  				checkInput: (INPUT_HOLD_KI)
@@ -2507,8 +2508,8 @@
  			setGravity: 4000
  		} endElse: 
  	} endUpon: 
- 	upon: (ON_ATTACK_HIT_PLAYER_ARMOR) {
- 		clearRegisteredUponCode: (ON_ATTACK_HIT_PLAYER_ARMOR)
+ 	upon: (ATTACK_HIT_PLAYER_ARMOR) {
+ 		clearRegisteredUponCode: (ATTACK_HIT_PLAYER_ARMOR)
  		homingDashInit: 18, 20000, 95000, 300, 1500, 80, 80, 1
  		hitstop: 15
  		if: var(act4) {
@@ -2627,8 +2628,8 @@
  		addYSpeed: 28000
  		setGravity: 4000
  	} endUpon: 
- 	upon: (ON_ATTACK_HIT_PLAYER_ARMOR) {
- 		clearRegisteredUponCode: (ON_ATTACK_HIT_PLAYER_ARMOR)
+ 	upon: (ATTACK_HIT_PLAYER_ARMOR) {
+ 		clearRegisteredUponCode: (ATTACK_HIT_PLAYER_ARMOR)
  		homingDashInit: 6, 20000, 90000, 300, 1500, 80, 80, 1
  		hitstop: 15
  		if: var(act4) {
@@ -2751,8 +2752,8 @@
  			copyVar: var(act7), int(1)
  		} endUpon: 
  	} endUpon: 
- 	upon: (ON_ATTACK_HIT_PLAYER_ARMOR) {
- 		clearRegisteredUponCode: (ON_ATTACK_HIT_PLAYER_ARMOR)
+ 	upon: (ATTACK_HIT_PLAYER_ARMOR) {
+ 		clearRegisteredUponCode: (ATTACK_HIT_PLAYER_ARMOR)
  		homingDashInit: 1, 20000, 90000, 300, 1500, 80, 80, 1
  		hitstop: 15
  		if: var(act4) {
@@ -2889,8 +2890,8 @@
  		setGravity: 4000
  		landingRecovery: 10, 1
  	} endUpon: 
- 	upon: (ON_ATTACK_HIT_PLAYER_ARMOR) {
- 		clearRegisteredUponCode: (ON_ATTACK_HIT_PLAYER_ARMOR)
+ 	upon: (ATTACK_HIT_PLAYER_ARMOR) {
+ 		clearRegisteredUponCode: (ATTACK_HIT_PLAYER_ARMOR)
  		homingDashInit: 6, 20000, 90000, 300, 1500, 80, 80, 1
  		hitstop: 15
  		if: var(act4) {
@@ -2995,8 +2996,7 @@
  		initCooldownTimeUltimateChange: 2
  		initTensionBalanceBack: 10
  		initTensionBalanceGuard: 10
--		initCooldownTimeAssist_C: 15
-+		initCooldownTimeAssist_C: 10
+ 		initCooldownTimeAssist_C: 10
  		initTensionBalanceAtkHit: 2
  		if: var(CmnCharaReg7) {
  			atkAttackRate: 130, 11, 0
@@ -3012,30 +3012,29 @@
  		initCooldownTimeUltimateChange: 2
  		initTensionBalanceBack: 10
  		initTensionBalanceGuard: 10
--		initCooldownTimeAssist_C: 15
-+		initCooldownTimeAssist_C: 10
+ 		initCooldownTimeAssist_C: 10
  		initTensionBalanceAtkHit: 2
-+		ifPlayerCharacter: s16'top' {
-+			atkTensionRate: 50, 10, 0
-+		} endIf: 
-+		ifPlayerCharacter: s16'nhy' {
-+			atkTensionRate: 50, 10, 0
-+		} endIf: 
-+		ifPlayerCharacter: s16'vtb' {
-+			atkTensionRate: 50, 10, 0
-+		} endIf: 
-+		ifPlayerCharacter: s16'gff' {
-+			atkTensionRate: 75, 10, 0
-+		} endIf: 
-+		ifPlayerCharacter: s16'htn' {
-+			atkTensionRate: 75, 10, 0
-+		} endIf: 
-+		ifPlayerCharacter: s16'jnn' {
-+			atkTensionRate: 75, 10, 0
-+		} endIf: 
-+		ifPlayerCharacter: s16'zmb' {
-+			atkTensionRate: 75, 10, 0
-+		} endIf: 
+ 		ifPlayerCharacter: s16'top' {
+ 			atkTensionRate: 50, 10, 0
+ 		} endIf: 
+ 		ifPlayerCharacter: s16'nhy' {
+ 			atkTensionRate: 50, 10, 0
+ 		} endIf: 
+ 		ifPlayerCharacter: s16'vtb' {
+ 			atkTensionRate: 50, 10, 0
+ 		} endIf: 
+ 		ifPlayerCharacter: s16'gff' {
+ 			atkTensionRate: 75, 10, 0
+ 		} endIf: 
+ 		ifPlayerCharacter: s16'htn' {
+ 			atkTensionRate: 75, 10, 0
+ 		} endIf: 
+ 		ifPlayerCharacter: s16'jnn' {
+ 			atkTensionRate: 75, 10, 0
+ 		} endIf: 
+ 		ifPlayerCharacter: s16'zmb' {
+ 			atkTensionRate: 75, 10, 0
+ 		} endIf: 
  		if: var(CmnCharaReg7) {
  			atkAttackRate: 120, 11, 0
  		} endIf: 

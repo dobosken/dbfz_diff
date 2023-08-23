@@ -1,0 +1,66 @@
+3222a3223,3227
+> 		addWhiffCancelOption: s32'Cold_Eye_A'
+> 		addWhiffCancelOption: s32'Cold_Eye_B'
+> 		addWhiffCancelOption: s32'Cold_Eye_C'
+> 		addWhiffCancelOption: s32'SurudoiSakki'
+> 		addWhiffCancelOption: s32'KoroshinoKehai'
+3266a3272,3276
+> 		addWhiffCancelOption: s32'Cold_Eye_A'
+> 		addWhiffCancelOption: s32'Cold_Eye_B'
+> 		addWhiffCancelOption: s32'Cold_Eye_C'
+> 		addWhiffCancelOption: s32'SurudoiSakki'
+> 		addWhiffCancelOption: s32'KoroshinoKehai'
+3326a3337,3341
+> 		addWhiffCancelOption: s32'Cold_Eye_A'
+> 		addWhiffCancelOption: s32'Cold_Eye_B'
+> 		addWhiffCancelOption: s32'Cold_Eye_C'
+> 		addWhiffCancelOption: s32'SurudoiSakki'
+> 		addWhiffCancelOption: s32'KoroshinoKehai'
+4655a4671,4673
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'SeichowoTsuzuketeiru'
+> 		} endIf: 
+4905a4924,4927
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'SeichowoTsuzuketeiru'
+> 		whiffCancelOptionBufferTime: s32'SeichowoTsuzuketeiru', 40
+> 	} endIf: 
+5005a5028,5030
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'SeichowoTsuzuketeiru'
+> 		} endIf: 
+5226c5251
+< 	slidingKnockdownDuration: 15
+---
+> 	slidingKnockdownDuration: 25
+5267a5293,5296
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'SeichowoTsuzuketeiru'
+> 		whiffCancelOptionBufferTime: s32'SeichowoTsuzuketeiru', 40
+> 	} endIf: 
+5302d5330
+< 		enableMemberChangeUltimate: 0
+5329,5335c5357,5366
+< 			ifOperation: (IS_LESS_OR_EQUAL), var(act0), int(6) {
+< 				checkFlag: 4
+< 				if: var(Result) {
+< 					tensionUsage: 10000
+< 					modifyVar: (ADD), var(act0), int(1)
+< 					cameraShake: s32'ShakeTateYoko', 150, 0, 5, 0
+< 					copyVar: var(act1), int(0)
+---
+> 			checkInput: (INPUT_HOLD_KI)
+> 			if: var(Result) {
+> 				ifOperation: (IS_LESS_OR_EQUAL), var(act0), int(6) {
+> 					checkFlag: 4
+> 					if: var(Result) {
+> 						tensionUsage: 10000
+> 						modifyVar: (ADD), var(act0), int(1)
+> 						cameraShake: s32'ShakeTateYoko', 150, 0, 5, 0
+> 						copyVar: var(act1), int(0)
+> 					} endIf: 
+5389a5421,5424
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'SeichowoTsuzuketeiru'
+> 		whiffCancelOptionBufferTime: s32'SeichowoTsuzuketeiru', 20
+> 	} endIf: 

@@ -1,51 +1,34 @@
-1653c1653
-< 	callSubroutine: s32'cmnAssist_Pos'
+2838c2838,2841
+< 	sprite: s32'pcn205_02', 3
 ---
-> 	callSubroutine: s32'cmnAssist_Pos_Away'
-1668,1671c1668,1671
-< 	sprite: s32'pcn402_04', 2
-< 	sprite: s32'pcn402_05', 2
-< 	sprite: s32'pcn402_06', 3
-< 	sprite: s32'pcn402_07', 2
+> 	sprite: s32'pcn205_02', 1
+> 	sprite: s32'pcn205_02', 2
+> 	callSubroutine: s32'cmn_MutekiArmor'
+> 	noGuardEffect: 0
+2865a2869
+> 	enableSuperArmor: 0
+3758a3763
+> 	spriteOverrideTime: 2, var(EnemyInHitstun)
+3759a3765
+> 	spriteOverrideTime: 2, var(EnemyInHitstun)
+3761c3767,3769
+< 	sprite: s32'pcn265_04', 5
 ---
-> 	sprite: s32'pcn402_04', 1
-> 	sprite: s32'pcn402_05', 1
-> 	sprite: s32'pcn402_06', 1
-> 	sprite: s32'pcn402_07', 1
-2411c2411
-< 	setXSpeed: 60000
+> 	spriteOverrideTime: 2, var(EnemyInHitstun)
+> 	sprite: s32'pcn265_04', 3
+> 	spriteOverrideTime: 2, var(EnemyInHitstun)
+3763,3764c3771,3772
+< 	gotoLabelIfOperation: s32'atk', (IS_LESS_OR_EQUAL), var(act0), int(14)
+< 	sprite: s32'pcn265_04', 10
 ---
-> 	setXSpeed: 120000
-2450c2450
-< 	setXSpeed: 50000
----
-> 	setXSpeed: 80000
-3473,3475c3473,3475
-< 	sprite: s32'pcn407_15', 3
-< 	sprite: s32'pcn407_16', 3
-< 	sprite: s32'pcn407_17', 3
----
-> 	sprite: s32'pcn407_15', 2
-> 	sprite: s32'pcn407_16', 2
-> 	sprite: s32'pcn407_17', 2
-3599,3600c3599,3600
-< 		groundKnockbackEffect: (AIR_FACE_UP)
-< 		airKnockbackEffect: (AIR_FACE_UP)
----
-> 		groundKnockbackEffect: (KirimomiSide)
-> 		airKnockbackEffect: (KirimomiSide)
-3602,3603c3602,3604
-< 		attackXKnockback: 70000
-< 		attackYKnockback: 20000
----
-> 		attackXKnockback: 10000
-> 		attackYKnockback: 22000
-> 		airHitstun: 22
-4133c4134
-< 		warp: (SELF), (PLAYER_LAND), -150000, 220000, 5
----
-> 		warp: (ENEMY_MAIN_PLAYER), (CENTER), 550000, 150000, 5
-4275c4276
-< 	ifOperation: (IS_LESS_OR_EQUAL), var(EnemyFrontDistance), int(800000) {
----
-> 	ifOperation: (IS_LESS_OR_EQUAL), var(EnemyFrontDistance), int(2000000) {
+> 	gotoLabelIfOperation: s32'atk', (IS_LESS_OR_EQUAL), var(act0), int(10)
+> 	sprite: s32'pcn265_04', 5
+6276a6285,6288
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Gekiretukoudan'
+> 		enableGatlings: 1
+> 	} endIf: 
+6339a6352,6354
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'Gekiretukoudan'
+> 		} endIf: 

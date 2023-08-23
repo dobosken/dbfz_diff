@@ -1,6 +1,6 @@
---- 1.31/BBS_OSM.bbs	2023-05-23 14:16:16.159796703 +0200
-+++ 1.32/BBS_OSM.bbs	2023-05-23 14:14:51.623347260 +0200
-@@ -1,9793 +1,9793 @@
+--- 1.32/BBS_OSM.bbs	2023-05-24 20:54:49.969051133 +0200
++++ 1.33/BBS_OSM.bbs	2023-08-23 04:23:05.127956614 +0200
+@@ -1,9793 +1,9814 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'osm'
  } endSubroutine: 
@@ -605,7 +605,7 @@
  		moveInput: (INPUT_PRESS_KI)
  		addMoveCondition: (THREE)
  		addMoveCondition: (plr0_false)
- 		disableCancelsIntoMove: 1
+-		disableCancelsIntoMove: 1
  		skillEstAtkBox: -550, -400, 650, 400
  		skillEstTagXNearPanashi: 
  		skillEstTagCombo: 
@@ -2966,10 +2966,8 @@
  	sprite: s32'keep', 2
  	attackVoice: 0, -1
  	cmnSfx: s32'ARC_BTL_CMN_Furi_SyagamiKeri'
--	sprite: s32'osm230_02', 4
--	setXSpeed: 60000
-+	sprite: s32'osm230_02', 2
-+	setXSpeed: 80000
+ 	sprite: s32'osm230_02', 2
+ 	setXSpeed: 80000
  	xSpeedPerFrame: 70
  	setArg_scale: int(600)
  	createParticleWithArg: s32'bg_undersmoke00', (BACK_1_BODY)
@@ -3025,8 +3023,7 @@
  	sprite: s32'osm203_03', 2
  	addPositionX: 20000
  	attackVoice: 1, -1
--	sprite: s32'osm203_04', 5
-+	sprite: s32'osm203_04', 3
+ 	sprite: s32'osm203_04', 3
  	addPositionX: 80000
  	xSpeedPerFrame: 70
  	shoesSE: 6, 100
@@ -3715,12 +3712,16 @@
  			} endIf: 
  		} endUpon: 
  	} endUpon: 
- 	sprite: s32'osm205_00', 2
+-	sprite: s32'osm205_00', 2
++	sprite: s32'osm205_00', 1
  	facePose: (ANGRY)
  	mouthPose: (SHOW_TEETH)
- 	sprite: s32'osm205_01', 2
- 	sprite: s32'osm205_02', 2
- 	sprite: s32'osm205_03', 2
+-	sprite: s32'osm205_01', 2
+-	sprite: s32'osm205_02', 2
+-	sprite: s32'osm205_03', 2
++	sprite: s32'osm205_01', 1
++	sprite: s32'osm205_02', 1
++	sprite: s32'osm205_03', 1
  	randomVoiceLine2: s16'vxxx106', 100, s16'vxxx107', 100, s16'', 0, s16'', 0
  	sprite: s32'osm205_04', 2
  	sprite: s32'osm205_05', 2
@@ -3925,7 +3926,13 @@
  	} endUpon: 
  	sprite: s32'osm404_00', 2
  	mouthPose: (OPEN)
- 	sprite: s32'osm404_01', 2
+-	sprite: s32'osm404_01', 2
++	sprite: s32'osm404_01', 1
++	sprite: s32'osm404_01', 1
++	enableSuperArmor: 1
++	superArmorGrabInvul: 0
++	superArmorBurstGuard: 0
++	superArmorPhysicalGuard: 0
  	sprite: s32'osm404_02', 2
  	setXSpeed: -80000
  	xSpeedPerFrame: 80
@@ -3936,13 +3943,14 @@
  	sprite: s32'osm404_05', 5
  	xSpeedPerFrame: 70
  	sprite: s32'osm404_06', 2
- 	enableSuperArmor: 0
+-	enableSuperArmor: 0
  	sprite: s32'osm404_07', 2
  	cmnSfx: s32'ARC_BTL_CMN_kidan_Fire1'
  	sprite: s32'osm404_08', 2
  	createObject: s32'Kidan_RShot', (EX_POINT_0)
  	createParticle: s32'bg_undersmoke00', (FRONT_1_BODY)
  	sprite: s32'osm404_09', 2
++	enableSuperArmor: 0
  	sprite: s32'osm404_10', 2
  	sprite: s32'osm404_11', 2
  	sprite: s32'osm404_12', 2
@@ -4256,15 +4264,18 @@
  		} endUpon: 
  		landingRecovery: 5, 1
  	} endUpon: 
- 	sprite: s32'osm265_00', 3
+-	sprite: s32'osm265_00', 3
++	sprite: s32'osm265_00', 1
  	mouthPose: (OPEN)
  	resetSpeed: 1
  	ifOperation: (IS_LESS_OR_EQUAL), var(PosY), int(100000) {
  		copyVar: var(act4), int(1)
  		copyVar: var(PosY), int(40000)
  	} endIf: 
- 	sprite: s32'osm265_01', 2
- 	sprite: s32'osm265_02', 2
+-	sprite: s32'osm265_01', 2
+-	sprite: s32'osm265_02', 2
++	sprite: s32'osm265_01', 1
++	sprite: s32'osm265_02', 1
  	randomVoiceLine2: s16'vxxx106', 100, s16'vxxx107', 100, s16'', 0, s16'', 0
  	sprite: s32'osm265_03', 1
  	sprite: s32'osm265_03', 2
@@ -4294,6 +4305,11 @@
  	sendSignalName: (STACK7), s32'Kidan_Air5D', 0
  	createObject: s32'Kidan_Air5D', (EX_POINT_0)
  	putObjectIntoStack: (STACK7), (PREVIOUS)
++	if: var(EnemyInHitstun) {
++		applyTo: (PREVIOUS) {
++			atkRange: 0, 0, -100000, -1000000
++		} endApply: 
++	} endIf: 
  	copyVar: var(act7), int(0)
  	setXSpeed: -10000
  	setYSpeed: 10000
@@ -4321,13 +4337,17 @@
  	xSpeedPerFrame: 100
  	ySpeedPerFrame: 100
  	label: s32'end'
- 	sprite: s32'osm265_09', 3
+-	sprite: s32'osm265_09', 3
++	sprite: s32'osm265_09', 2
  	objectGravity: 
  	xSpeedPerFrame: 100
  	ySpeedPerFrame: 100
- 	sprite: s32'osm265_10', 3
- 	sprite: s32'osm265_11', 3
- 	sprite: s32'osm265_12', 3
+-	sprite: s32'osm265_10', 3
+-	sprite: s32'osm265_11', 3
+-	sprite: s32'osm265_12', 3
++	sprite: s32'osm265_10', 2
++	sprite: s32'osm265_11', 2
++	sprite: s32'osm265_12', 2
  } endState: 
  
  beginSubroutine: s32'Kidan_Delete' {
@@ -6747,6 +6767,12 @@
  			stopBankSE: 17, 20
  			stopBankSE: 0, 20
  		} endUpon: 
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'RDBall'
++			addGatlingOption: s32'AirRDBall'
++			whiffCancelOptionBufferTime: s32'RDBall', 40
++			whiffCancelOptionBufferTime: s32'AirRDBall', 40
++		} endIf: 
  	} endUpon: 
  	sprite: s32'osm037_00', 2
  	sprite: s32'osm037_01', 1
@@ -6956,6 +6982,12 @@
  			stopBankSE: 17, 20
  			stopBankSE: 0, 20
  		} endUpon: 
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'RDBall'
++			addGatlingOption: s32'AirRDBall'
++			whiffCancelOptionBufferTime: s32'RDBall', 40
++			whiffCancelOptionBufferTime: s32'AirRDBall', 40
++		} endIf: 
  	} endUpon: 
  	sprite: s32'osm430_00', 3
  	facePose: (ANGRY)

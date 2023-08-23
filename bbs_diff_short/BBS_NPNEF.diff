@@ -1,8 +1,25 @@
-1269c1269
-< 		airHitstun: 15
+171a172
+> 		blockstun: 22
+789,790d789
+< 	airHitstun: 50
+< 	enemyHitstopAddition: 0, 0, 0
+793a793,798
+> 	airKnockbackEffect: (AIR_DEFAULT)
+> 	airHitstun: 65
+> 	enemyHitstopAddition: 0, 22, 22
+> 	groundBounceCount: 1
+> 	groundBounceYVelocity: 20000
+> 	attackDamageEffect: 4, s32'cmn_slash_s'
+876,877c881,885
+< 	airHitstun: 25
+< 	enemyHitstopAddition: 3, 3, 3
 ---
-> 		airHitstun: 20
-1278c1278
-< 		airHitstun: 25
+> 	airHitstun: 65
+> 	enemyHitstopAddition: 3, 8, 8
+> 	groundBounceCount: 1
+> 	groundBounceYVelocity: 30000
+> 	attackDamageEffect: 4, s32'cmn_slash_s'
+1493c1501
+< 		enemyHitstopAddition: 0, 5, 5
 ---
-> 		airHitstun: 30
+> 		enemyHitstopAddition: 0, 15, 15

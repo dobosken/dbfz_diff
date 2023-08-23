@@ -1,37 +1,218 @@
-2961a2962,2963
-> 	callSubroutine: s32'cmn_ShotMuteki'
-> 	superArmorLoseLow: 0
-2980a2983
-> 	enableSuperArmor: 0
-5950c5953
-< 	sprite: s32'bsn432_26', 3
+437c437
+< 		characterState: (STANDING)
 ---
+> 		characterState: (STANDING_OR_AIRBORNE)
+441c441,452
+< 		moveInput: (INPUT_BOOLEAN_OR)
+---
+> 		addMoveCondition: (THREE)
+> 		skillEstAtkBox: -200, -100, 200, 100
+> 		skillEstLevelLimit: 60
+> 		skillEstPoint: 70
+> 		cpuIsThrow: 
+> 		skillEstInterval: 900
+> 		skillEstTagMuteki: 
+> 		cpuBigDamage: 
+> 	} endMove: 
+> 	addMove: s32'Hakai_CD' {
+> 		moveType: (OVERDRIVE)
+> 		characterState: (STANDING_OR_AIRBORNE)
+711a723
+> 	registerMove: s32'Hakai_CD'
+2584a2597
+> 		addWhiffCancelOption: s32'Hakai_CD'
+2798a2812
+> 	attackGuardtype: (HIGH)
+5146a5161,5164
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'Hakai'
+> 			addGatlingOption: s32'Hakai_CD'
+> 		} endIf: 
+5234a5253
+> 				enableGatlings: 0
+5328a5348
+> 	enableGatlings: 1
+5398a5419,5422
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'Hakai'
+> 			addGatlingOption: s32'Hakai_CD'
+> 		} endIf: 
+5483a5508
+> 						enableGatlings: 0
+5504a5530
+> 					enableGatlings: 0
+5600a5627
+> 	enableGatlings: 1
+5666a5694,5697
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'Hakai'
+> 			addGatlingOption: s32'Hakai_CD'
+> 		} endIf: 
+5748a5780
+> 				enableGatlings: 0
+5844a5877
+> 	enableGatlings: 1
+5915a5949,5978
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'BillsBall'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 			checkLastStateName: s32'AirBillsBallAB'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 			checkLastStateName: s32'AirBillsBallCD'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 		} endIf: 
+> 	} endUpon: 
+> 	if: var(IsLand) {
+> 		gotoLabel: s32'start'
+> 	} endIf: 
+> 	sprite: s32'bsn038_00', 300
+> 	enableSuperArmor: 1
+> 	resetSpeed: 1
+> 	displayModel: 0
+> 	setNoCollision: 0
+> 	createParticle: s32'cmn_Warp', (CENTER)
+> 	cmnSfx: s32'ARC_BTL_CMN_TLP_Short'
+> 	setYSpeed: -80000
+> 	ySpeedPerFrame: 110
+> 	upon: (TOUCH_GROUND) {
+> 		clearRegisteredUponCode: (TOUCH_GROUND)
+> 		jumpToLabel: s32'start'
+5916a5980,5981
+> 	spriteEnd: 
+> 	label: s32'start'
+5920a5986,5990
+> 	clearRegisteredUponCode: (IDLING)
+> 	displayModel: 1
+> 	setNoCollision: 1
+> 	sprite: s32'bsn432_01', 1
+> 	sprite: s32'bsn432_01', 1
+5922c5992,6112
+< 	sprite: s32'bsn432_01', 2
+---
+> 	sprite: s32'bsn432_02', 2
+> 	superFreeze: 4, 119, 77, 77
+> 	upon: (SUPERFREEZE) {
+> 		darkenBackground: 1
+> 		cameraForceMove: 1
+> 		moveCameraEx: (SELF), 91051, 179490, 131401, 640, -4681, 0, 54, 20, 50, 5, 0, 2, 1
+> 		callSubroutine: s32'cmn3gaugeWLDSTP'
+> 	} endUpon: 
+> 	privateBankSE: 1, s32'ARC_BTL_BSN_Hakai_Start', 100
+> 	sprite: s32'bsn432_02', 2
+> 	sprite: s32'bsn432_03', 6
+> 	hideAllButSelf: 1
+> 	sprite: s32'bsn432_04', 6
+> 	createObject: s32'bsn_432_hakai_WindEff', (ZERO)
+> 	sprite: s32'bsn432_05', 6
+> 	sprite: s32'bsn432_06', 3
+> 	sprite: s32'bsn432_07', 3
+> 	sprite: s32'bsn432_08', 48
+> 	forceRandomVoice: s16'vxxx604demo', 100, s16'', 0, s16'', 0, s16'', 0
+> 	sprite: s32'bsn432_10', 2
+> 	hideAllButSelf: 0
+> 	sprite: s32'bsn432_11', 2
+> 	commonSetSE: s32'FuriShort', 0, 100
+> 	stopBankSE: 1, 40
+> 	sprite: s32'bsn432_12', 1
+> 	if: var(IN_BATTLE) {
+> 		enableHitbox: 
+> 	} endIf: 
+> 	sprite: s32'bsn432_12', 2
+> 	recoveryState: 
 > 	sprite: s32'bsn432_26', 2
-5952,5957c5955,5960
-< 	sprite: s32'bsn432_27', 3
-< 	sprite: s32'bsn432_28', 3
-< 	sprite: s32'bsn432_29', 3
-< 	sprite: s32'bsn432_30', 3
-< 	sprite: s32'bsn432_31', 3
-< 	sprite: s32'bsn432_32', 3
----
+> 	enableSuperArmor: 0
 > 	sprite: s32'bsn432_27', 1
 > 	sprite: s32'bsn432_28', 1
 > 	sprite: s32'bsn432_29', 1
 > 	sprite: s32'bsn432_30', 1
 > 	sprite: s32'bsn432_31', 1
 > 	sprite: s32'bsn432_32', 1
-5964,5965c5967,5968
-< 		damage: 4800
-< 		minimalDamagePercent: 38
----
-> 		damage: 5000
-> 		minimalDamagePercent: 40
-6002c6005
-< 						ifVarOfObjectOperation: (IS_LESS_OR_EQUAL), (DEFENDER), var(Health), int(1440) {
----
-> 						ifVarOfObjectOperation: (IS_LESS_OR_EQUAL), (DEFENDER), var(Health), int(1580) {
-6007c6010
-< 						ifVarOfObjectOperation: (IS_LESS_OR_EQUAL), (DEFENDER), var(Health), int(1824) {
----
-> 						ifVarOfObjectOperation: (IS_LESS_OR_EQUAL), (DEFENDER), var(Health), int(2000) {
+> } endState: 
+> 
+> beginState: s32'Hakai_CD' {
+> 	upon: (IMMEDIATE) {
+> 		playerActionInitializeByCategory: 20, 1
+> 		callSubroutine: s32'cmnAtkTemplNageLand'
+> 		jumpToStateOnHit: s32'HakaiExe'
+> 		atkRange: 350000, 0, 350000, 0
+> 		atkDamageToRecovery: 1
+> 		atkYogore: 0
+> 		tensionUsage: 30000
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'BillsBall'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 			checkLastStateName: s32'AirBillsBallAB'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 			checkLastStateName: s32'AirBillsBallCD'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 		} endIf: 
+> 	} endUpon: 
+> 	if: var(IsLand) {
+> 		gotoLabel: s32'start'
+> 	} endIf: 
+> 	sprite: s32'bsn038_00', 300
+> 	enableSuperArmor: 1
+> 	resetSpeed: 1
+> 	displayModel: 0
+> 	setNoCollision: 0
+> 	createParticle: s32'cmn_Warp', (CENTER)
+> 	cmnSfx: s32'ARC_BTL_CMN_TLP_Short'
+> 	setYSpeed: -80000
+> 	ySpeedPerFrame: 110
+> 	upon: (TOUCH_GROUND) {
+> 		clearRegisteredUponCode: (TOUCH_GROUND)
+> 		jumpToLabel: s32'start'
+> 	} endUpon: 
+> 	spriteEnd: 
+> 	label: s32'start'
+> 	sprite: s32'bsn432_00', 3
+> 	faceAnimation: 20
+> 	resetSpeed: 1
+> 	enableSuperArmor: 1
+> 	clearRegisteredUponCode: (IDLING)
+> 	displayModel: 1
+> 	setNoCollision: 1
+> 	sprite: s32'bsn432_01', 1
+> 	displayModel: 0
+> 	createParticle: s32'cmn_Warp', (CENTER)
+> 	cmnSfx: s32'ARC_BTL_CMN_TLP_Short'
+> 	ifOperation: (IS_GREATER_OR_EQUAL), var(EnemyDistanceX), int(600000) {
+> 		copyVar: var(act2), int(1)
+> 	} endIf: 
+> 	ifOperation: (IS_GREATER_OR_EQUAL), var(EnemyDistanceX), int(1000000) {
+> 		copyVar: var(act2), int(0)
+> 		copyVar: var(act3), int(1)
+> 	} endIf: 
+> 	sprite: s32'bsn432_01', 1
+> 	spriteOverrideTime: 7, var(act2)
+> 	spriteOverrideTime: 10, var(act3)
+> 	warp: (ENEMY), (PLAYER_LAND), -250000, 0, 1
+> 	if: var(act2) {
+> 		warp: (ENEMY), (PLAYER_LAND), -250000, 0, 7
+> 	} endIf: 
+> 	if: var(act3) {
+> 		warp: (ENEMY), (PLAYER_LAND), -250000, 0, 10
+> 	} endIf: 
+> 	screenAdditionalWidth: -1
+> 	ignorePushback: 1
+> 	setNoCollision: 0
+> 	sprite: s32'bsn432_01', 1
+> 	spriteOverrideTime: 7, var(act2)
+> 	spriteOverrideTime: 10, var(act3)
+> 	createParticle: s32'cmn_Warp', (CENTER)
+> 	displayModel: 1
+> 	setNoCollision: 1
+> 	faceOpponent: 
+> 	resetSpeed: 1

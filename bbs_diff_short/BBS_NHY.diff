@@ -1,4 +1,157 @@
-3406a3407
-> 	landingRecovery: 7, 1
-4843d4843
-< 	attackFinishBlowback: 1
+542c542,543
+< 		moveInput: (INPUT_HOLD_ANY_OF_LMHS)
+---
+> 		moveInput: (INPUT_HOLD_L)
+> 		moveInput: (INPUT_HOLD_M)
+601a603,615
+> 	addMove: s32'M_explosion_Chain' {
+> 		moveType: (OVERDRIVE)
+> 		characterState: (STANDING_OR_AIRBORNE)
+> 		moveInput: (INPUT_214)
+> 		moveInput: (INPUT_PRESS_L)
+> 		moveInput: (INPUT_PRESS_M)
+> 		moveInput: (INPUT_BOOLEAN_OR)
+> 		moveInput: (INPUT_214)
+> 		moveInput: (INPUT_PRESS_H)
+> 		moveInput: (INPUT_PRESS_KI)
+> 		addMoveCondition: (THREE)
+> 		moveAlias: s32'M_explosion'
+> 	} endMove: 
+886a901
+> 	registerMove: s32'M_explosion_Chain'
+2846,2847c2861,2862
+< 	sprite: s32'nhy202_01', 2
+< 	sprite: s32'nhy202_02', 2
+---
+> 	sprite: s32'nhy202_01', 1
+> 	sprite: s32'nhy202_02', 1
+8219a8235
+> 	blockstun: 22
+8236a8253,8255
+> 	upon: (ON_ATTACK_HIT_PLAYER_GUARD) {
+> 		cameraShake: s32'ShakeTate', 400, 0, 25, 10
+> 	} endUpon: 
+8320c8339
+< 		attackYKnockback: 10000
+---
+> 		attackYKnockback: 20000
+8324c8343
+< 		airHitstun: 22
+---
+> 		airHitstun: 32
+8638a8658,8663
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'M_explosion'
+> 		addGatlingOption: s32'M_explosion_Chain'
+> 		whiffCancelOptionBufferTime: s32'M_explosion', 40
+> 		whiffCancelOptionBufferTime: s32'M_explosion_Chain', 40
+> 	} endIf: 
+8831a8857,8863
+> 	if: var(CmnCharaReg7) {
+> 		enableWhiffCancel: 1
+> 		addWhiffCancelOption: s32'M_explosion'
+> 		addWhiffCancelOption: s32'M_explosion_Chain'
+> 		whiffCancelOptionBufferTime: s32'M_explosion', 80
+> 		whiffCancelOptionBufferTime: s32'M_explosion_Chain', 80
+> 	} endIf: 
+8832a8865
+> 	enableWhiffCancel: 0
+8986c9019
+< 	sprite: s32'nhy430_93', 4
+---
+> 	sprite: s32'nhy430_93', 1
+8990a9024,9031
+> 	sprite: s32'nhy430_93', 3
+> 	if: var(CmnCharaReg7) {
+> 		enableWhiffCancel: 1
+> 		addWhiffCancelOption: s32'M_explosion'
+> 		addWhiffCancelOption: s32'M_explosion_Chain'
+> 		whiffCancelOptionBufferTime: s32'M_explosion', 80
+> 		whiffCancelOptionBufferTime: s32'M_explosion_Chain', 80
+> 	} endIf: 
+8991a9033
+> 	enableWhiffCancel: 0
+9110a9153,9158
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'M_explosion'
+> 		addGatlingOption: s32'M_explosion_Chain'
+> 		whiffCancelOptionBufferTime: s32'M_explosion', 40
+> 		whiffCancelOptionBufferTime: s32'M_explosion_Chain', 40
+> 	} endIf: 
+9355a9404,9409
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'M_explosion'
+> 		addGatlingOption: s32'M_explosion_Chain'
+> 		whiffCancelOptionBufferTime: s32'M_explosion', 80
+> 		whiffCancelOptionBufferTime: s32'M_explosion_Chain', 80
+> 	} endIf: 
+9356a9411
+> 	enableGatlings: 0
+9389a9445,9450
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'M_explosion'
+> 			addGatlingOption: s32'M_explosion_Chain'
+> 			whiffCancelOptionBufferTime: s32'M_explosion', 40
+> 			whiffCancelOptionBufferTime: s32'M_explosion_Chain', 40
+> 		} endIf: 
+9565a9627,9632
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'M_explosion'
+> 			addGatlingOption: s32'M_explosion_Chain'
+> 			whiffCancelOptionBufferTime: s32'M_explosion', 40
+> 			whiffCancelOptionBufferTime: s32'M_explosion_Chain', 40
+> 		} endIf: 
+9793a9861,9890
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'GodPunisher'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 			checkLastStateName: s32'GodPunisher_Exe'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 			checkLastStateName: s32'SDBreaker'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 			checkLastStateName: s32'SBlaster'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 			checkLastStateName: s32'SBlaster_Exe'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 			checkLastStateName: s32'BBkamehameha'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 			checkLastStateName: s32'AirBBkamehameha'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 		} endIf: 
+9794a9892,9909
+> 	if: var(IsLand) {
+> 		gotoLabel: s32'start'
+> 	} endIf: 
+> 	sprite: s32'nhy038_00', 300
+> 	enableSuperArmor: 1
+> 	resetSpeed: 1
+> 	displayModel: 0
+> 	setNoCollision: 0
+> 	createParticle: s32'cmn_Warp', (CENTER)
+> 	cmnSfx: s32'ARC_BTL_CMN_TLP_Short'
+> 	setYSpeed: -80000
+> 	ySpeedPerFrame: 110
+> 	upon: (TOUCH_GROUND) {
+> 		clearRegisteredUponCode: (TOUCH_GROUND)
+> 		jumpToLabel: s32'start'
+> 	} endUpon: 
+> 	spriteEnd: 
+> 	label: s32'start'
+9796a9912,9914
+> 	clearRegisteredUponCode: (IDLING)
+> 	displayModel: 1
+> 	setNoCollision: 1

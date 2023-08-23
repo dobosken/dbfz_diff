@@ -1,6 +1,6 @@
---- 1.31/BBS_CEN.bbs	2023-05-23 14:16:09.846688460 +0200
-+++ 1.32/BBS_CEN.bbs	2023-05-23 14:14:45.652244880 +0200
-@@ -1,7899 +1,7901 @@
+--- 1.32/BBS_CEN.bbs	2023-05-24 20:54:43.375942388 +0200
++++ 1.33/BBS_CEN.bbs	2023-08-23 04:22:59.110854080 +0200
+@@ -1,7901 +1,7984 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'cen'
  } endSubroutine: 
@@ -466,6 +466,20 @@
  		skillEstTagCombo: 
  		skillEstInterval: 1200
  	} endMove: 
++	addMove: s32'SDestroy_Kamehameha_Chain' {
++		moveType: (OVERDRIVE)
++		characterState: (STANDING_OR_AIRBORNE)
++		moveInput: (INPUT_214)
++		moveInput: (INPUT_PRESS_L)
++		moveInput: (INPUT_PRESS_M)
++		moveInput: (INPUT_BOOLEAN_OR)
++		moveInput: (INPUT_214)
++		moveInput: (INPUT_PRESS_H)
++		moveInput: (INPUT_PRESS_KI)
++		addMoveCondition: (THREE)
++		isFollowupMove: 1
++		moveAlias: s32'SDestroy_Kamehameha'
++	} endMove: 
  	addMove: s32'AssistAttack' {
  		moveType: 34
  		characterState: (STANDING_OR_AIRBORNE)
@@ -616,6 +630,7 @@
  	registerMove: s32'EnergyField'
  	registerMove: s32'AirEnergyField'
  	registerMove: s32'SDestroy_Kamehameha'
++	registerMove: s32'SDestroy_Kamehameha_Chain'
  	registerMove: s32'CmnActSparkingBurst'
  	registerMove: s32'RequestChangeMember1'
  	registerMove: s32'RequestChangeMember2'
@@ -1512,8 +1527,7 @@
  		damage: 800
  		attackXKnockback: 120000
  		attackYKnockback: 17734
--		airHitstun: 38
-+		airHitstun: 43
+ 		airHitstun: 43
  		enemyHitstopAddition: 0, -2, -2
  		wallBounceCount: 1
  		wallBounceXVelocityPercent: 30
@@ -2582,8 +2596,7 @@
  	attackVoice: 0, -1
  	sprite: s32'cen203_03', 1
  	effectForLanding: 100, 1, 0
--	setXSpeed: 50000
-+	setXSpeed: 75000
+ 	setXSpeed: 75000
  	sprite: s32'cen203_04', 1
  	cmnSfx: s32'ARC_BTL_CMN_Furi_Keri'
  	sprite: s32'cen203_05', 3
@@ -2961,10 +2974,13 @@
  	sprite: s32'cen205_00', 1
  	facePose: 3
  	mouthPose: (OPEN)
- 	sprite: s32'cen205_01', 2
- 	sprite: s32'cen205_02', 2
+-	sprite: s32'cen205_01', 2
+-	sprite: s32'cen205_02', 2
++	sprite: s32'cen205_01', 1
++	sprite: s32'cen205_02', 1
++	sprite: s32'cen205_03', 1
  	randomVoiceLine2: s16'vxxx106', 100, s16'vxxx107', 100, s16'', 0, s16'', 0
- 	sprite: s32'cen205_03', 2
+-	sprite: s32'cen205_03', 2
  	createObject: s32'5D_beam_start', (EX_POINT_0)
  	sprite: s32'cen205_04', 2
  	sprite: s32'cen205_06', 3
@@ -3084,10 +3100,14 @@
  		landingAutoSpeedReset: 0
  		jumpToStateInObject: (PARENT), s32'Landing'
  	} endUpon: 
- 	sprite: s32'cen233_00', 2
- 	sprite: s32'cen233_01', 2
- 	sprite: s32'cen233_02', 2
- 	sprite: s32'cen233_03', 2
+-	sprite: s32'cen233_00', 2
+-	sprite: s32'cen233_01', 2
+-	sprite: s32'cen233_02', 2
+-	sprite: s32'cen233_03', 2
++	sprite: s32'cen233_00', 1
++	sprite: s32'cen233_01', 1
++	sprite: s32'cen233_02', 1
++	sprite: s32'cen233_03', 1
  	cmnSfx: s32'ARC_BTL_CMN_GK_Jump'
  	sprite: s32'cen233_04', 3
  	createObject: s32'crouchkidan_start', (EX_POINT_0)
@@ -3651,9 +3671,11 @@
  	facePose: (STRESSED)
  	mouthPose: (OPEN)
  	sprite: s32'cen401_01', 1
- 	sprite: s32'cen401_02', 2
+-	sprite: s32'cen401_02', 2
++	sprite: s32'cen401_02', 1
  	voiceLine: s16'vxxx203'
- 	sprite: s32'cen401_03', 2
+-	sprite: s32'cen401_03', 2
++	sprite: s32'cen401_03', 1
  	cmnSfx: s32'ARC_BTL_CMN_Furi_Hiji'
  	sprite: s32'cen401_04', 1
  	pushCollisionHeight: 350000
@@ -3662,6 +3684,32 @@
  	sprite: s32'cen401_05', 1
  	createObject: s32'cen_RollAtkEff', (ZERO)
  	enableHitbox: 
++	upon: (IDLING) {
++		ifNot: var(act1) {
++			checkInput: (INPUT_ANY_FORWARD)
++			if: var(Result) {
++				ifOperation: (IS_LESS), var(SpeedX), int(75000) {
++					addXSpeed: 8000
++				} endIf: 
++			} endIf: 
++		} endIf: 
++		checkInput: (INPUT_ANY_BACK)
++		if: var(Result) {
++			attackXKnockback: 10000
++			ifOperation: (IS_GREATER), var(SpeedX), int(10000) {
++				addXSpeed: -8000
++			} endIf: 
++		} endIf: 
++		else:  {
++			attackXKnockback: 25000
++		} endElse: 
++		ifOperation: (IS_GREATER_OR_EQUAL), var(SpeedX), int(75000) {
++			setXSpeed: 75000
++		} endIf: 
++		ifOperation: (IS_LESS_OR_EQUAL), var(SpeedX), int(10000) {
++			setXSpeed: 10000
++		} endIf: 
++	} endUpon: 
  	sprite: s32'cen401_06', 1
  	sprite: s32'cen401_07', 1
  	enableHitbox: 
@@ -3673,6 +3721,7 @@
  	enableHitbox: 
  	sprite: s32'cen401_12', 1
  	xSpeedPerFrame: 85
++	copyVar: var(act1), int(1)
  	sprite: s32'cen401_15', 1
  	deactivateObjectByName: s32'cen_RollAtkEff'
  	effectForLanding: 104, 1, 1
@@ -3681,6 +3730,7 @@
  	sprite: s32'cen401_17', 2
  	sprite: s32'cen401_18', 4
  	sprite: s32'cen401_19', 3
++	clearRegisteredUponCode: (IDLING)
  	createObject: s32'cen401_AddEff', (ZERO)
  	enableHitbox: 
  	callSubroutine: s32'RollingClash_Last'
@@ -3737,7 +3787,8 @@
  		ifOperation: (IS_LESS_OR_EQUAL), var(SpeedX), int(10000) {
  			setXSpeed: 10000
  		} endIf: 
- 	} endIf: 
+-	} endIf: 
++	} endUpon: 
  	sprite: s32'cen401_06', 1
  	sprite: s32'cen401_07', 1
  	enableHitbox: 
@@ -3825,7 +3876,8 @@
  		ifOperation: (IS_LESS_OR_EQUAL), var(SpeedX), int(10000) {
  			setXSpeed: 10000
  		} endIf: 
- 	} endIf: 
+-	} endIf: 
++	} endUpon: 
  	sprite: s32'cen401_06', 1
  	sprite: s32'cen401_07', 1
  	enableHitbox: 
@@ -3922,12 +3974,17 @@
  	ySpeedPerFrame: 0
  	sprite: s32'cen401_15', 1
  	effectForLanding: 104, 1, 1
++	faceOpponent: 
++	checkInput: (INPUT_ANY_FORWARD)
++	if: var(Result) {
++		setXSpeed: 180000
++		xSpeedPerFrame: 65
++	} endIf: 
  	sprite: s32'cen401_16', 1
  	cmnSfx: s32'ARC_BTL_CMN_Furi_FuriOroshi'
-+	faceOpponent: 
+-	faceOpponent: 
  	sprite: s32'cen401_17', 2
--	sprite: s32'cen401_18', 4
-+	sprite: s32'cen401_18', 3
+ 	sprite: s32'cen401_18', 3
  	pushCollisionHeight: 350000
  	sprite: s32'cen401_19', 3
  	createObject: s32'cen401_AddEff', (ZERO)
@@ -4001,11 +4058,16 @@
  	ySpeedPerFrame: 0
  	sprite: s32'cen401_15', 2
  	effectForLanding: 104, 1, 1
++	faceOpponent: 
++	checkInput: (INPUT_ANY_FORWARD)
++	if: var(Result) {
++		setXSpeed: 200000
++		xSpeedPerFrame: 75
++	} endIf: 
  	sprite: s32'cen401_16', 2
  	cmnSfx: s32'ARC_BTL_CMN_Furi_FuriOroshi'
--	sprite: s32'cen401_17', 3
-+	faceOpponent: 
-+	sprite: s32'cen401_17', 2
+-	faceOpponent: 
+ 	sprite: s32'cen401_17', 2
  	sprite: s32'cen401_18', 4
  	pushCollisionHeight: 350000
  	sprite: s32'cen401_19', 3
@@ -4079,8 +4141,13 @@
  	ySpeedPerFrame: 0
  	sprite: s32'cen401_15', 2
  	effectForLanding: 104, 1, 1
- 	setXSpeed: 80000
- 	xSpeedPerFrame: 65
+-	setXSpeed: 80000
+-	xSpeedPerFrame: 65
++	checkInput: (INPUT_ANY_FORWARD)
++	if: var(Result) {
++		setXSpeed: 180000
++		xSpeedPerFrame: 75
++	} endIf: 
  	sprite: s32'cen401_16', 2
  	cmnSfx: s32'ARC_BTL_CMN_Furi_FuriOroshi'
  	sprite: s32'cen401_17', 2
@@ -4174,9 +4241,10 @@
  	mouthPose: (OPEN)
  	sprite: s32'cen400_01', 1
  	sprite: s32'cen400_02', 1
- 	sprite: s32'cen400_02', 2
- 	headInvul: 1
+-	sprite: s32'cen400_02', 2
+-	headInvul: 1
  	sprite: s32'cen400_03', 1
++	headInvul: 1
  	attackVoice: 1, 255
  	sprite: s32'cen400_04', 1
  	sprite: s32'cen400_05', 2
@@ -4392,9 +4460,10 @@
  	mouthPose: (OPEN)
  	sprite: s32'cen400_01', 1
  	sprite: s32'cen400_01', 1
- 	headInvul: 1
- 	sprite: s32'cen400_02', 2
+-	headInvul: 1
+-	sprite: s32'cen400_02', 2
  	sprite: s32'cen400_03', 1
++	headInvul: 1
  	attackVoice: 1, 255
  	sprite: s32'cen400_04', 1
  	sprite: s32'cen400_05', 2
@@ -4629,7 +4698,10 @@
  	mouthPose: (OPEN)
  	headInvul: 1
  	sprite: s32'cen400_01', 1
- 	sprite: s32'cen400_02', 3
+-	sprite: s32'cen400_02', 3
++	sprite: s32'cen400_02', 1
++	sprite: s32'cen400_02', 2
++	enableSuperArmor: 1
  	sprite: s32'cen400_03', 1
  	attackVoice: 2, 255
  	sprite: s32'cen400_04', 1
@@ -4646,6 +4718,7 @@
  	enableHitbox: 
  	sprite: s32'cen400_08', 3
  	headInvul: 0
++	enableSuperArmor: 0
  	recoveryState: 
  	sprite: s32'cen400_09', 2
  	sprite: s32'cen400_10', 2
@@ -5222,6 +5295,7 @@
  	sprite: s32'cen400_20', 1
  	sprite: s32'cen400_21', 1
  	headInvul: 1
++	enableSuperArmor: 1
  	attackVoice: 2, 255
  	sprite: s32'cen400_22', 1
  	sprite: s32'cen400_23', 1
@@ -5237,6 +5311,7 @@
  	sprite: s32'cen400_08', 3
  	recoveryState: 
  	headInvul: 0
++	enableSuperArmor: 0
  	sprite: s32'cen400_09', 3
  	sprite: s32'cen400_10', 3
  	sprite: s32'cen400_11', 3
@@ -5856,9 +5931,12 @@
  	sprite: s32'cen406_00', 3
  	facePose: 3
  	mouthPose: (OPEN)
- 	sprite: s32'cen406_01', 4
- 	sprite: s32'cen406_02', 4
- 	sprite: s32'cen406_03', 14
+-	sprite: s32'cen406_01', 4
+-	sprite: s32'cen406_02', 4
+-	sprite: s32'cen406_03', 14
++	sprite: s32'cen406_01', 3
++	sprite: s32'cen406_02', 3
++	sprite: s32'cen406_03', 12
  	voiceLine: s16'vxxx210'
  	sprite: s32'cen406_04', 4
  	sprite: s32'cen406_05', 15
@@ -5924,15 +6002,18 @@
  	sprite: s32'cen406_26', 2
  	sprite: s32'cen406_27', 2
  	sprite: s32'cen406_28', 2
- 	sprite: s32'cen406_26', 2
- 	sprite: s32'cen406_27', 2
- 	sprite: s32'cen406_28', 2
- 	sprite: s32'cen406_26', 2
- 	sprite: s32'cen406_27', 2
- 	sprite: s32'cen406_28', 2
- 	sprite: s32'cen406_29', 3
- 	sprite: s32'cen406_30', 5
- 	sprite: s32'cen406_31', 3
+-	sprite: s32'cen406_26', 2
+-	sprite: s32'cen406_27', 2
+-	sprite: s32'cen406_28', 2
+-	sprite: s32'cen406_26', 2
+-	sprite: s32'cen406_27', 2
+-	sprite: s32'cen406_28', 2
+-	sprite: s32'cen406_29', 3
+-	sprite: s32'cen406_30', 5
+-	sprite: s32'cen406_31', 3
++	sprite: s32'cen406_29', 2
++	sprite: s32'cen406_30', 2
++	sprite: s32'cen406_31', 2
  } endState: 
  
  beginState: s32'EnergyField' {
@@ -6035,6 +6116,10 @@
  	enableSuperArmor: 0
  	sprite: s32'cen430_10', 3
  	triggerUponInObject: s32'energyfield_BodyAura', (SIGNAL0)
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'SDestroy_Kamehameha_Chain'
++		whiffCancelOptionBufferTime: s32'SDestroy_Kamehameha_Chain', 40
++	} endIf: 
  	sprite: s32'cen430_08', 3
  	sprite: s32'cen430_09', 3
  	recoveryState: 
@@ -6043,6 +6128,7 @@
  	sprite: s32'cen430_09', 3
  	sprite: s32'cen430_10', 3
  	objectGravity: 
++	enableGatlings: 0
  	sprite: s32'cen430_11', 5
  	sprite: s32'cen430_12', 5
  	sprite: s32'cen430_13', 5
@@ -6158,6 +6244,10 @@
  	enableSuperArmor: 0
  	sprite: s32'cen430_10', 3
  	triggerUponInObject: s32'energyfield_BodyAura', (SIGNAL0)
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'SDestroy_Kamehameha_Chain'
++		whiffCancelOptionBufferTime: s32'SDestroy_Kamehameha_Chain', 40
++	} endIf: 
  	sprite: s32'cen430_08', 3
  	sprite: s32'cen430_09', 3
  	recoveryState: 
@@ -6166,6 +6256,7 @@
  	sprite: s32'cen430_09', 3
  	sprite: s32'cen430_10', 3
  	objectGravity: 
++	enableGatlings: 0
  	sprite: s32'cen430_11', 3
  	sprite: s32'cen430_12', 3
  	sprite: s32'cen430_13', 3
@@ -6192,9 +6283,29 @@
  		} endUpon: 
  		tensionUsage: 30000
  	} endUpon: 
++	if: var(IsLand) {
++		gotoLabel: s32'start'
++	} endIf: 
++	sprite: s32'cen038_00', 300
++	enableSuperArmor: 1
++	resetSpeed: 1
++	displayModel: 0
++	setNoCollision: 0
++	createParticle: s32'cmn_Warp', (CENTER)
++	cmnSfx: s32'ARC_BTL_CMN_TLP_Short'
++	setYSpeed: -80000
++	ySpeedPerFrame: 110
++	upon: (TOUCH_GROUND) {
++		clearRegisteredUponCode: (TOUCH_GROUND)
++		jumpToLabel: s32'start'
++	} endUpon: 
++	spriteEnd: 
++	label: s32'start'
  	sprite: s32'cen000_00', 3
  	enableSuperArmor: 1
  	resetSpeed: 1
++	displayModel: 1
++	setNoCollision: 1
  	sprite: s32'cen431_00', 5
  	facePose: (ANGRY)
  	sprite: s32'cen431_00', 1

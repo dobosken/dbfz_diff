@@ -1,0 +1,49 @@
+2230a2231,2235
+> 	checkLastStateName: s32'NmlAtk5A'
+> 	ifNot: var(Result) {
+> 		setXSpeed: 40000
+> 		xSpeedPerFrame: 80
+> 	} endIf: 
+2265c2270
+< 	xSpeedPerFrame: 70
+---
+> 	xSpeedPerFrame: 75
+2309,2310c2314,2315
+< 	setXSpeed: 150000
+< 	xSpeedPerFrame: 70
+---
+> 	setXSpeed: 200000
+> 	xSpeedPerFrame: 80
+2409a2415,2416
+> 	setXSpeed: 100000
+> 	xSpeedPerFrame: 70
+3858,3860c3865,3867
+< 	sprite: s32'zmb402_13', 3
+< 	sprite: s32'zmb402_14', 3
+< 	sprite: s32'zmb402_15', 3
+---
+> 	sprite: s32'zmb402_13', 1
+> 	sprite: s32'zmb402_14', 1
+> 	sprite: s32'zmb402_15', 1
+4092,4094c4099,4101
+< 	sprite: s32'zmb402_13ex01', 3
+< 	sprite: s32'zmb402_14ex01', 3
+< 	sprite: s32'zmb402_15ex01', 3
+---
+> 	sprite: s32'zmb402_13ex01', 1
+> 	sprite: s32'zmb402_14ex01', 1
+> 	sprite: s32'zmb402_15ex01', 1
+5372a5380,5385
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'Zettainoikazuti'
+> 			addGatlingOption: s32'AirZettainoikazuti'
+> 			whiffCancelOptionBufferTime: s32'Zettainoikazuti', 40
+> 			whiffCancelOptionBufferTime: s32'AirZettainoikazuti', 40
+> 		} endIf: 
+5530a5544,5549
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'Zettainoikazuti'
+> 			addGatlingOption: s32'AirZettainoikazuti'
+> 			whiffCancelOptionBufferTime: s32'Zettainoikazuti', 40
+> 			whiffCancelOptionBufferTime: s32'AirZettainoikazuti', 40
+> 		} endIf: 

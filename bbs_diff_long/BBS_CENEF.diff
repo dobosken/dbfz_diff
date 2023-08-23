@@ -1,6 +1,6 @@
---- 1.31/BBS_CENEF.bbs	2023-05-23 14:16:09.963690466 +0200
-+++ 1.32/BBS_CENEF.bbs	2023-05-23 14:14:45.768246869 +0200
-@@ -1,2346 +1,2347 @@
+--- 1.32/BBS_CENEF.bbs	2023-05-24 20:54:43.497944400 +0200
++++ 1.33/BBS_CENEF.bbs	2023-08-23 04:22:59.210855784 +0200
+@@ -1,2347 +1,2367 @@
  beginState: s32'dmy' {
  	sprite: s32'null', 1
  } endState: 
@@ -714,8 +714,7 @@
  		attackYKnockback: 10000
  		attackYSuction: 1, 5000, 300000, 100, 0
  		wallBounceCount: 0
--		airHitstun: 25
-+		airHitstun: 35
+ 		airHitstun: 35
  		atkRange: 50000000, -350000, 0, 0
  		atkSousaiSevereCheck: 1
  		atkEffectBeamSousai: 1
@@ -729,7 +728,7 @@
  			attackYSuction: 0, 0, 0, 0, 0
  			wallBounceCount: 1
  			wallBounceXVelocityPercent: 0
-+			atkWallBoundWaitTime: 10
+ 			atkWallBoundWaitTime: 10
  			ifVarOfObjectFalse: (PLAYER), var(PlayerDamage) {
  				enableHitbox: 
  			} endIf: 
@@ -1249,8 +1248,7 @@
  		attackXKnockback: 5000
  		attackYKnockback: 10000
  		wallBounceCount: 0
--		airHitstun: 25
-+		airHitstun: 35
+ 		airHitstun: 35
  		attackYSuctionBaseObject: (PREVIOUS), (ZERO), -200000, 50000, 100, 0
  		atkRange: 50000000, -325000, 0, 0
  		atkSousaiSevereCheck: 1
@@ -1285,8 +1283,7 @@
  		checkCurrentStateName: (PLAYER), s32'AssistAttack'
  		if: var(Result) {
  			damage: 200
--			airHitstun: 33
-+			airHitstun: 40
+ 			airHitstun: 40
  		} endIf: 
  		linkObjectStop: (PARENT)
  		linkObjectPosition: (PARENT)
@@ -1526,6 +1523,8 @@
  	sprite: s32'psychokinesisclash', 2
  	atkAngle: 0
  	damage: 800
++	damageScalingOverride: 500
++	atkHoseiTadan: 1
  	attackXKnockback: 60000
  	attackYKnockback: 15000
  	resetAttackGravity: 
@@ -1642,6 +1641,7 @@
  		groundKnockbackEffect: (SPIN)
  		airKnockbackEffect: (SPIN)
  		atkDamageToRecovery: 1
++		autoHitSignalSending: 1
  		atkHitCommonBankSE: 16, s32'ARC_BTL_CMN_Hit_BeamLoop_LP', 0
  		atkGuardCommonBankSE: 17, s32'ARC_BTL_CMN_Grd_BeamLoop_LP', 0
  		linkObjectPosition: (PARENT)
@@ -1694,9 +1694,29 @@
  	sprite: s32'energyfield', 3
  	enableHitbox: 
  	enemyHitstopAddition: 0, 15, 15
- 	airHitstun: 45
- 	attackXKnockback: 20000
- 	attackYKnockback: 60000
+-	airHitstun: 45
+-	attackXKnockback: 20000
+-	attackYKnockback: 60000
++	airHitstun: 40
++	groundKnockbackEffect: (AIR_STRONG)
++	airKnockbackEffect: (AIR_STRONG)
++	attackXKnockback: 120000
++	attackYKnockback: 30000
++	ifVarOfObjectOperation: (IS_GREATER_OR_EQUAL), (ENEMY_MAIN_PLAYER), var(PosY), int(200000) {
++		attackYKnockback: 10000
++	} endIf: 
++	ifVarOfObjectOperation: (IS_GREATER_OR_EQUAL), (ENEMY_MAIN_PLAYER), var(PosY), int(400000) {
++		attackYKnockback: -20000
++	} endIf: 
++	wallBounceCount: 1
++	wallBounceXVelocityPercent: 0
++	checkCurrentStateName: (PLAYER), s32'AirEnergyField'
++	if: var(Result) {
++		attackXKnockback: 50000
++		attackYKnockback: -80000
++		wallBounceCount: 0
++		slidingKnockdownDuration: 20
++	} endIf: 
  	setScale: 2000
  	sprite: s32'null', 30
  	linkParticle: s32'cen_430_bariyaEnd'

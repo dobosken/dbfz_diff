@@ -1,4 +1,18 @@
-995c995
-< 		airHitstun: 25
+201,202c201,202
+< 		attackYKnockback: 20000
+< 		airHitstun: 20
 ---
-> 		airHitstun: 35
+> 		attackYKnockback: 28000
+> 		airHitstun: 27
+526c526
+< 		attackXKnockback: 25000
+---
+> 		attackXKnockback: 13000
+1294c1294
+< 		hitstop: 15
+---
+> 		hitstop: 20
+1298c1298
+< 		attackYKnockback: 40000
+---
+> 		attackYKnockback: 30000

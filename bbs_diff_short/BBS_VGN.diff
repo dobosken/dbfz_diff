@@ -1,0 +1,166 @@
+210c210
+< 		maxChainIntoSelf: 1
+---
+> 		maxChainIntoSelf: 2
+237c237
+< 		move_ShareChain: s32'NmlAtkAir2D'
+---
+> 		maxChainIntoSelf: 1
+247c247
+< 		move_ShareChain: s32'NmlAtkAir2D'
+---
+> 		maxChainIntoSelf: 1
+441a442
+> 		maxChainIntoSelf: 1
+448a450,462
+> 	addMove: s32'GalickGun_VGN_Chain' {
+> 		moveType: (OVERDRIVE)
+> 		characterState: (STANDING)
+> 		moveInput: (INPUT_HOLD_L)
+> 		moveInput: (INPUT_HOLD_M)
+> 		moveInput: (INPUT_BOOLEAN_OR)
+> 		moveInput: (INPUT_HOLD_H)
+> 		moveInput: (INPUT_HOLD_KI)
+> 		addMoveCondition: (ONE)
+> 		isFollowupMove: 1
+> 		move_ShareChain: s32'GalickGun_VGN'
+> 		moveAlias: s32'GalickGun_VGN'
+> 	} endMove: 
+459a474
+> 		move_ShareChain: s32'GalickGun_VGN'
+477a493
+> 		maxChainIntoSelf: 1
+485a502,516
+> 	addMove: s32'GalaxyBreaker_Chain' {
+> 		moveType: (OVERDRIVE)
+> 		characterState: (STANDING_OR_AIRBORNE)
+> 		moveInput: (INPUT_214)
+> 		moveInput: (INPUT_PRESS_L)
+> 		moveInput: (INPUT_PRESS_M)
+> 		moveInput: (INPUT_BOOLEAN_OR)
+> 		moveInput: (INPUT_214)
+> 		moveInput: (INPUT_PRESS_H)
+> 		moveInput: (INPUT_PRESS_KI)
+> 		addMoveCondition: (THREE)
+> 		isFollowupMove: 1
+> 		move_ShareChain: s32'GalaxyBreaker'
+> 		moveAlias: s32'GalaxyBreaker'
+> 	} endMove: 
+633a665
+> 	registerMove: s32'GalickGun_VGN_Chain'
+635a668
+> 	registerMove: s32'GalaxyBreaker_Chain'
+3221a3255,3257
+> 		addWhiffCancelOption: s32'NmlAtkAir1D'
+> 		addWhiffCancelOption: s32'NmlAtkAir2D'
+> 		addWhiffCancelOption: s32'NmlAtkAir3D'
+3241a3278
+> 	enableWhiffCancel: 1
+3256a3294
+> 		addWhiffCancelOption: s32'NmlAtkAir5D'
+3330a3369
+> 	enableWhiffCancel: 1
+3678c3717
+< 	sprite: s32'vgn037_02', 2
+---
+> 	sprite: s32'vgn037_02', 1
+3680,3681c3719,3720
+< 	sprite: s32'vgn037_01', 2
+< 	sprite: s32'vgn037_00', 3
+---
+> 	sprite: s32'vgn037_01', 1
+> 	sprite: s32'vgn037_00', 1
+5887a5927,5933
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'GalaxyBreaker'
+> 			if: var(Result) {
+> 				copyVar: var(act3), int(1)
+> 				enableMemberChangeUltimate: 0
+> 			} endIf: 
+> 		} endIf: 
+5903a5950,5952
+> 		if: var(act3) {
+> 			enableMemberChangeUltimate: 0
+> 		} endIf: 
+6019a6069,6074
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'GalaxyBreaker'
+> 		addGatlingOption: s32'GalaxyBreaker_Chain'
+> 		whiffCancelOptionBufferTime: s32'GalaxyBreaker', 40
+> 		whiffCancelOptionBufferTime: s32'GalaxyBreaker_Chain', 40
+> 	} endIf: 
+6207a6263,6268
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'GalaxyBreaker'
+> 		addGatlingOption: s32'GalaxyBreaker_Chain'
+> 		whiffCancelOptionBufferTime: s32'GalaxyBreaker', 40
+> 		whiffCancelOptionBufferTime: s32'GalaxyBreaker_Chain', 40
+> 	} endIf: 
+6310a6372,6402
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'GalickGun_VGN'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 			checkLastStateName: s32'AirGalickGun_VGN'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 		} endIf: 
+> 	} endUpon: 
+> 	if: var(act1) {
+> 		gotoLabel: s32'ugokenai'
+> 	} endIf: 
+> 	else:  {
+> 		if: var(IsLand) {
+> 			gotoLabel: s32'start'
+> 		} endIf: 
+> 	} endElse: 
+> 	sprite: s32'vgn038_00', 300
+> 	enableSuperArmor: 1
+> 	resetSpeed: 1
+> 	displayModel: 0
+> 	setNoCollision: 0
+> 	createParticle: s32'cmn_Warp', (CENTER)
+> 	cmnSfx: s32'ARC_BTL_CMN_TLP_Short'
+> 	warpSelfDirOffset: (ENEMY_MAIN_PLAYER), (PLAYER_LAND), -100000, 0, 20
+> 	upon: (TOUCH_GROUND) {
+> 		clearRegisteredUponCode: (TOUCH_GROUND)
+> 		resetSpeed: 1
+> 		jumpToLabel: s32'start'
+6312c6404,6405
+< 	gotoLabelIfTrue: s32'ugokenai', var(act1)
+---
+> 	spriteEnd: 
+> 	label: s32'start'
+6316a6410,6412
+> 	clearRegisteredUponCode: (IDLING)
+> 	displayModel: 1
+> 	setNoCollision: 1
+6334,6335c6430,6431
+< 	if: var(act1) {
+< 		if: var(EnemyInHitstun) {
+---
+> 	if: var(EnemyInHitstun) {
+> 		if: var(act1) {
+6339c6435,6447
+< 			superFreeze: 4, 119, 165, 166
+---
+> 			checkLastStateName: s32'GalickGun_VGN'
+> 			if: var(Result) {
+> 				superFreeze: 4, 119, 165, 190
+> 			} endIf: 
+> 			else:  {
+> 				checkLastStateName: s32'AirGalickGun_VGN'
+> 				if: var(Result) {
+> 					superFreeze: 4, 119, 165, 190
+> 				} endIf: 
+> 				else:  {
+> 					superFreeze: 4, 119, 165, 166
+> 				} endElse: 
+> 			} endElse: 
+6468a6577,6578
+> 	addGatlingOption: s32'GalickGun_VGN_Chain'
+> 	whiffCancelOptionBufferTime: s32'GalickGun_VGN_Chain', 10
+6469a6580
+> 	enableGatlings: 0

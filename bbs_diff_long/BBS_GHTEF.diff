@@ -1,6 +1,6 @@
---- 1.31/BBS_GHTEF.bbs	2023-05-23 14:16:12.029725890 +0200
-+++ 1.32/BBS_GHTEF.bbs	2023-05-23 14:14:47.737280630 +0200
-@@ -1,2528 +1,2532 @@
+--- 1.32/BBS_GHTEF.bbs	2023-05-24 20:54:45.567978542 +0200
++++ 1.33/BBS_GHTEF.bbs	2023-08-23 04:23:01.136888604 +0200
+@@ -1,2532 +1,2533 @@
  beginState: s32'dmy' {
  	sprite: s32'null', 1
  } endState: 
@@ -532,7 +532,7 @@
  		if: var(Result) {
  			damage: 200
  			atkHoseiTadan: 0
-+			guardPushback: 100
+ 			guardPushback: 100
  			callSubroutine: s32'cmn_AssistHosei'
  		} endIf: 
  		setZPosition: 0
@@ -553,8 +553,8 @@
  			effectForLandBreak: 1, 1000, 0, 0
  			requestDestroy: (SELF)
  		} endUpon: 
- 		upon: (ON_ATTACK_HIT_PLAYER_ARMOR) {
- 			clearRegisteredUponCode: (ON_ATTACK_HIT_PLAYER_ARMOR)
+ 		upon: (ATTACK_HIT_PLAYER_ARMOR) {
+ 			clearRegisteredUponCode: (ATTACK_HIT_PLAYER_ARMOR)
  			createObject: s32'cmn_kidan_end', (ZERO)
  			requestDestroy: (SELF)
  		} endUpon: 
@@ -604,11 +604,10 @@
  		if: var(Result) {
  			damage: 400
  			atkHoseiTadan: 0
--			enemyHitstopAddition: 0, 5, 5
-+			enemyHitstopAddition: 0, 10, 10
-+			attackXKnockback: 2000
-+			attackYKnockback: 20000
-+			guardPushback: 50
+ 			enemyHitstopAddition: 0, 10, 10
+ 			attackXKnockback: 2000
+ 			attackYKnockback: 20000
+ 			guardPushback: 50
  			callSubroutine: s32'cmn_AssistHosei'
  		} endIf: 
  		autoHitSignalSending: 1
@@ -1072,9 +1071,11 @@
  		unknown719: 1
  		upon: (SIGNAL7) {
  			copyVar: var(act3), int(1)
- 			airHitstun: 30
+-			airHitstun: 30
++			airHitstun: 50
  			attackXKnockback: 45000
  			attackYKnockback: 60000
++			attackGravity: 3000
  			attackXSuction: 0, 0, 0, 0, 0
  			attackYSuction: 0, 0, 0, 0, 0
  			atkRange: 50000000, -255000, 0, 0

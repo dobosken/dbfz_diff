@@ -1,0 +1,2534 @@
+--- 1.32/BBS_TNNEF.bbs	2023-05-24 20:54:50.952067346 +0200
++++ 1.33/BBS_TNNEF.bbs	2023-08-23 04:23:05.984971217 +0200
+@@ -1,2528 +1,2530 @@
+ beginState: s32'dmy' {
+ 	sprite: s32'null', 1
+ } endState: 
+ 
+ beginState: s32'okasi' {
+ 	upon: (IMMEDIATE) {
+ 		callSubroutine: s32'cmn_okasi'
+ 	} endUpon: 
+ 	sprite: s32'null', 2147483647
+ 	linkParticle: s32'tnn_okasi'
+ } endState: 
+ 
+ beginState: s32'czn600cs' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectPosition: (PLAYER)
+ 		linkObjectStop: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		ignoreWorldStopByFriend: 1
+ 		zLine: int(2)
+ 		linkPawnWithAnimation: s32'CZN', s32'CZN600cs'
+ 	} endUpon: 
+ 	sprite: s32'null', 1200
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'tnn_hajiki' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 	} endUpon: 
+ 	sprite: s32'null', 30
+ 	linkParticle: s32'tnn301_hajiki'
+ 	setScale: 400
+ 	addYPosition: 260000
+ 	addXPosition: 160000
+ 	characterSfx: s32'ARC_BTL_TNN_ShotHajiki_Flash'
+ } endState: 
+ 
+ beginState: s32'tnn_hajiki_Smoke' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectStop: (PARENT)
+ 	} endUpon: 
+ 	sprite: s32'null', 180
+ 	linkParticleBG: s32'bg_undersmoke00'
+ } endState: 
+ 
+ beginState: s32'202Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkParticle: s32'tnn202_punch01'
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 	} endUpon: 
+ 	sprite: s32'null', 30
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'202Eff2' {
+ 	upon: (IMMEDIATE) {
+ 		linkParticle: s32'tnn202_punch02'
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 	} endUpon: 
+ 	sprite: s32'null', 30
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'202Eff3' {
+ 	upon: (IMMEDIATE) {
+ 		linkParticle: s32'tnn202_punch03'
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 	} endUpon: 
+ 	sprite: s32'null', 30
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'202Eff4' {
+ 	upon: (IMMEDIATE) {
+ 		linkParticle: s32'tnn202_punch04'
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 	} endUpon: 
+ 	sprite: s32'null', 30
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'kidan_start' {
+ 	upon: (IMMEDIATE) {
+ 		worldOutToEliminate: 1
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		createObject: s32'kidan_start_aura', (ZERO)
+ 		upon: (NO_STOP_IDLING) {
+ 			moveToPosType: (PARENT), (EX_POINT_0)
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'null', 1
+ 	addZPosition: 150000
+ 	sprite: s32'null', 14
+ 	cmnSfx: s32'ARC_BTL_CMN_kidan_Chrg'
+ } endState: 
+ 
+ beginState: s32'jumpkidan_start' {
+ 	upon: (IMMEDIATE) {
+ 		worldOutToEliminate: 1
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		createObject: s32'kidan_start_aura', (ZERO)
+ 		upon: (NO_STOP_IDLING) {
+ 			moveToPosType: (PARENT), (EX_POINT_0)
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'null', 4
+ 	addZPosition: 150000
+ 	sprite: s32'null', 2
+ 	cmnSfx: s32'ARC_BTL_CMN_kidan_Chrg'
+ 	sprite: s32'null', 2
+ 	addZPosition: -270000
+ 	sprite: s32'null', 2
+ 	addZPosition: -50000
+ 	sprite: s32'null', 4
+ 	addZPosition: 30000
+ } endState: 
+ 
+ beginState: s32'kidan_start_aura' {
+ 	upon: (IMMEDIATE) {
+ 		worldOutToEliminate: 1
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		linkParticle: s32'cmn_kidan_throw'
+ 	} endUpon: 
+ 	sprite: s32'null', 10
+ 	setScale: 100
+ 	setScaleSpeed: 60
+ 	sprite: s32'null', 2147483647
+ 	setScale: 700
+ 	setScaleSpeed: 0
+ } endState: 
+ 
+ beginState: s32'kidan_smoke' {
+ 	upon: (IMMEDIATE) {
+ 		addXPosition: -27000
+ 	} endUpon: 
+ 	sprite: s32'null', 1
+ 	createParticle: s32'bg_undersmoke00', (ZERO)
+ } endState: 
+ 
+ beginState: s32'kidan_5D' {
+ 	upon: (IMMEDIATE) {
+ 		normalAttack: 
+ 		callSubroutine: s32'cmnAtkLevel_2_AtkInit'
+ 		callSubroutine: s32'cmn5DKidan_AtkInit'
+ 		callSubroutine: s32'cmnKidan_Init'
+ 		attackDamageEffect: 4, s32'cmn_BomHit'
+ 		xSpeedPerFrame: 102
+ 		linkParticle: s32'cmn_kidan'
+ 		damage: 750
+ 		groundKnockbackEffect: (AIR_FACE_UP)
+ 		airKnockbackEffect: (AIR_FACE_UP)
+ 		attackXKnockback: 20000
+ 		attackYKnockback: 22500
+ 		airHitstun: 24
+ 	} endUpon: 
+ 	sprite: s32'kidan', 1
+ 	enableHitbox: 
+ 	setColorAlpha: 0
+ 	spriteEnd: 
+ 	sprite: s32'kidan', 600
+ 	setColorAlpha: 255
+ 	worldOutToEliminate: 1
+ 	setSpeedByCurrentAngle: 70000, 0
+ 	label: s32'Koware'
+ 	sprite: s32'null', 10
+ 	linkParticle: s32''
+ 	resetSpeed: 1
+ } endState: 
+ 
+ beginState: s32'jumpkidan' {
+ 	upon: (IMMEDIATE) {
+ 		normalAttack: 
+ 		callSubroutine: s32'cmnAtkLevel_2_AtkInit'
+ 		callSubroutine: s32'cmnAir5DKidan_AtkInit'
+ 		callSubroutine: s32'cmnKidan_Init'
+ 		damage: 750
+ 		groundKnockbackEffect: (AIR_FACE_UP)
+ 		airKnockbackEffect: (AIR_FACE_UP)
+ 		attackXKnockback: 5000
+ 		attackYKnockback: 27000
+ 		airHitstun: 25
+ 		attackDamageEffect: 4, s32'cmn_BomHit'
+ 		setAngle: -34000
+ 		xSpeedPerFrame: 102
+ 		ySpeedPerFrame: 102
+ 		setZPosition: 80000
+ 		linkParticle: s32'cmn_kidan'
+ 	} endUpon: 
+ 	sprite: s32'kidan_nanamesita0', 1
+ 	enableHitbox: 
+ 	displayModel: 0
+ 	sprite: s32'kidan_nanamesita', 600
+ 	worldOutToEliminate: 1
+ 	displayModel: 1
+ 	setSpeedByCurrentAngle: 70000, 0
+ 	spriteEnd: 
+ 	label: s32'Koware'
+ 	sprite: s32'null', 10
+ 	linkParticle: s32''
+ 	resetSpeed: 1
+ } endState: 
+ 
+ beginState: s32'402_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkParticle: s32'tnn402_Toss'
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		addYPosition: 480000
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'HaikyukenS' {
+ 	upon: (IMMEDIATE) {
+ 		linkModelSelfTeam: s32'TNN', s32''
+ 		linkObjectStop: (PLAYER)
+ 		setActionTimeMax: 300
+ 		pushCollisionWidth: 155000
+ 		pushCollisionHeight: 260000
+ 		pushCollisionHeightLow: -70000
+ 		upon: (SIGNAL0) {
+ 			clearRegisteredUponCode: (SIGNAL0)
+ 			clearRegisteredUponCode: (NO_STOP_IDLING)
+ 			jumpToLabel: s32'koware'
+ 		} endUpon: 
+ 		upon: (BEFORE_EXIT) {
+ 			createParticle: s32'cmn_Warp', (CENTER)
+ 			characterSfx: s32'ARC_BTL_TNN_Chnryk_CHZ_TLP'
+ 		} endUpon: 
+ 		upon: (NO_STOP_IDLING) {
+ 			checkCurrentStateName: (PLAYER), s32'Haikyuken_TossC'
+ 			ifNot: var(Result) {
+ 				checkCurrentStateName: (PLAYER), s32'Haikyuken_AttackC'
+ 				ifNot: var(Result) {
+ 					deactivateObject: (SELF)
+ 				} endIf: 
+ 			} endIf: 
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'tnn400_06', 2
+ 	facePose: (ANGRY)
+ 	setXSpeed: 60000
+ 	xSpeedPerFrame: 80
+ 	sprite: s32'tnn400_04', 2
+ 	sprite: s32'tnn400_05', 2
+ 	sprite: s32'tnn400_06', 2
+ 	sprite: s32'tnn400_07', 3
+ 	recoveryState: 
+ 	sprite: s32'tnn400_08', 3
+ 	mouthPose: (CLOSED)
+ 	sprite: s32'tnn400_09', 3
+ 	sprite: s32'tnn400_10', 3
+ 	resetSpeed: 1
+ 	sprite: s32'tnn400_11', 2
+ 	sprite: s32'tnn400_12', 3
+ 	sprite: s32'tnn400_13', 3
+ 	sprite: s32'tnn001_00', 3
+ 	sprite: s32'tnn001_01', 3
+ 	sprite: s32'tnn000_00', 6
+ 	flipDirection: 
+ 	sprite: s32'tnn000_01', 6
+ 	sprite: s32'tnn000_02', 6
+ 	sprite: s32'tnn000_03', 6
+ 	sprite: s32'tnn000_04', 6
+ 	sprite: s32'tnn000_05', 6
+ 	sprite: s32'tnn000_06', 6
+ 	sprite: s32'tnn000_07', 6
+ 	sprite: s32'tnn000_08', 6
+ 	sprite: s32'tnn000_09', 6
+ 	sprite: s32'tnn000_10', 6
+ 	sprite: s32'tnn000_11', 6
+ 	sprite: s32'tnn000_00', 6
+ 	sprite: s32'tnn000_01', 6
+ 	sprite: s32'tnn000_02', 6
+ 	sprite: s32'tnn000_03', 6
+ 	sprite: s32'tnn000_04', 6
+ 	sprite: s32'tnn000_05', 6
+ 	sprite: s32'tnn000_06', 6
+ 	sprite: s32'tnn000_07', 6
+ 	sprite: s32'tnn000_08', 6
+ 	sprite: s32'tnn000_09', 6
+ 	sprite: s32'tnn000_10', 6
+ 	sprite: s32'tnn000_11', 6
+ 	label: s32'koware'
+ 	sprite: s32'tnn000_00', 6
+ 	sprite: s32'tnn000_01', 6
+ 	sprite: s32'tnn000_02', 6
+ } endState: 
+ 
+ beginState: s32'HaikyukenS2' {
+ 	upon: (IMMEDIATE) {
+ 		linkModelSelfTeam: s32'TNN', s32''
+ 		linkObjectStop: (PLAYER)
+ 		screenCollision: 1
+ 		setActionTimeMax: 300
+ 		pushCollisionWidth: 155000
+ 		pushCollisionHeight: 260000
+ 		pushCollisionHeightLow: -70000
+ 		setNoCollision: 1
+ 		upon: (SIGNAL0) {
+ 			copyVar: var(act0), int(1)
+ 			deactivateObject: (SELF)
+ 		} endUpon: 
+ 		upon: (BEFORE_EXIT) {
+ 			ifNot: var(act0) {
+ 				createParticle: s32'cmn_Warp', (CENTER)
+ 			} endIf: 
+ 		} endUpon: 
+ 		upon: (NO_STOP_IDLING) {
+ 			checkCurrentStateName: (PLAYER), s32'Haikyuken_TossC'
+ 			ifNot: var(Result) {
+ 				checkCurrentStateName: (PLAYER), s32'Haikyuken_AttackC'
+ 				ifNot: var(Result) {
+ 					deactivateObject: (SELF)
+ 				} endIf: 
+ 			} endIf: 
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'tnn402_04', 3
+ 	mouthPose: (OPEN)
+ 	enableHitbox: 
+ 	sprite: s32'tnn402_05', 2
+ 	recoveryState: 
+ 	facePose: (ANGRY)
+ 	sprite: s32'tnn402_06', 2
+ 	sprite: s32'tnn402_07', 2
+ 	mouthPose: (CLOSED)
+ 	sprite: s32'tnn402_08', 3
+ 	sprite: s32'tnn402_09', 3
+ 	sprite: s32'tnn402_10', 3
+ 	sprite: s32'tnn402_11', 3
+ 	sprite: s32'tnn000_00', 6
+ 	sprite: s32'tnn000_01', 6
+ 	sprite: s32'tnn000_02', 6
+ 	sprite: s32'tnn000_03', 6
+ 	sprite: s32'tnn000_04', 6
+ 	sprite: s32'tnn000_05', 6
+ 	sprite: s32'tnn000_06', 6
+ 	sprite: s32'tnn000_07', 6
+ 	sprite: s32'tnn000_08', 6
+ 	sprite: s32'tnn000_09', 6
+ 	sprite: s32'tnn000_10', 6
+ 	sprite: s32'tnn000_11', 6
+ 	sprite: s32'tnn000_00', 6
+ 	sprite: s32'tnn000_01', 6
+ 	sprite: s32'tnn000_02', 6
+ 	sprite: s32'tnn000_03', 6
+ 	sprite: s32'tnn000_04', 6
+ 	sprite: s32'tnn000_05', 6
+ 	sprite: s32'tnn000_06', 6
+ 	sprite: s32'tnn000_07', 6
+ 	sprite: s32'tnn000_08', 6
+ 	sprite: s32'tnn000_09', 6
+ 	sprite: s32'tnn000_10', 6
+ 	sprite: s32'tnn000_11', 6
+ } endState: 
+ 
+ beginState: s32'403_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkParticle: s32'tnn403_Attack'
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectStop: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		upon: (SIGNAL0) {
+ 			linkObjectPosition: (NULL)
+ 			linkObjectChangeToEliminate: (NULL)
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'null', 30
+ 	setXPosition: 30000
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'HaikyukenS3' {
+ 	upon: (IMMEDIATE) {
+ 		linkModelSelfTeam: s32'TNN', s32''
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		linkObjectStop: (PLAYER)
+ 		setActionTimeMax: 60
+ 		pushCollisionWidth: 155000
+ 		pushCollisionHeight: 260000
+ 		pushCollisionHeightLow: -70000
+ 		upon: (NO_STOP_IDLING) {
+ 			copyVarFromPlayer: var(PosY), var(PosY)
+ 		} endUpon: 
+ 		upon: (BEFORE_EXIT) {
+ 			createParticle: s32'cmn_Warp', (CENTER)
+ 			characterSfx: s32'ARC_BTL_TNN_Chnryk_CHZ_TLP'
+ 		} endUpon: 
+ 		upon: (SIGNAL0) {
+ 			clearRegisteredUponCode: (NO_STOP_IDLING)
+ 			linkObjectChangeToEliminate: (NULL)
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'tnn032_00ex', 2
+ 	facePose: (ANGRY)
+ 	setXSpeed: 80000
+ 	setGravity: 2000
+ 	sprite: s32'tnn032_01ex', 2
+ 	sprite: s32'tnn403_00', 2
+ 	faceOpponent: 
+ 	ySpeedPerFrame: 85
+ 	sprite: s32'tnn403_01', 2
+ 	setXSpeed: 0
+ 	sprite: s32'tnn403_02', 2
+ 	sprite: s32'tnn403_03', 4
+ 	sprite: s32'tnn403_04', 2
+ 	sprite: s32'tnn403_05', 3
+ 	mouthPose: (OPEN)
+ 	createObject: s32'403_Eff', (ZERO)
+ 	enableHitbox: 
+ 	sprite: s32'tnn403_06', 2
+ 	recoveryState: 
+ 	sprite: s32'tnn403_07', 2
+ 	mouthPose: (CLOSED)
+ 	sprite: s32'tnn403_08', 3
+ 	ySpeedPerFrame: 100
+ 	objectGravity: 
+ 	sprite: s32'tnn403_09', 3
+ 	sprite: s32'tnn403_10', 3
+ 	sprite: s32'tnn403_11', 3
+ } endState: 
+ 
+ beginState: s32'HaikyukenS4' {
+ 	upon: (IMMEDIATE) {
+ 		linkModelSelfTeam: s32'TNN', s32''
+ 		linkObjectStop: (PLAYER)
+ 		setActionTimeMax: 60
+ 		pushCollisionWidth: 155000
+ 		pushCollisionHeight: 260000
+ 		pushCollisionHeightLow: -70000
+ 		copyVarFromPlayer: var(SpeedY), var(SpeedY)
+ 		upon: (BEFORE_EXIT) {
+ 			createParticle: s32'cmn_Warp', (CENTER)
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'tnn403_06', 2
+ 	recoveryState: 
+ 	setGravity: 2000
+ 	sprite: s32'tnn403_07', 2
+ 	mouthPose: (CLOSED)
+ 	sprite: s32'tnn403_08', 3
+ 	ySpeedPerFrame: 100
+ 	objectGravity: 
+ 	sprite: s32'tnn403_09', 3
+ 	sprite: s32'tnn403_10', 3
+ 	sprite: s32'tnn403_11', 3
+ } endState: 
+ 
+ beginState: s32'HaikyukenS_Assist' {
+ 	upon: (IMMEDIATE) {
+ 		specialAttack: 
+ 		linkModelSelfTeam: s32'TNN', s32''
+ 		linkObjectStop: (PLAYER)
+ 		screenCollision: 1
+ 		setActionTimeMax: 300
+ 		pushCollisionWidth: 155000
+ 		pushCollisionHeight: 260000
+ 		pushCollisionHeightLow: -70000
+ 		setNoCollision: 0
+ 		upon: (SIGNAL1) {
+ 			clearRegisteredUponCode: (SIGNAL1)
+ 			screenCollision: 0
+ 			setNoCollision: 0
+ 		} endUpon: 
+ 		upon: (BEFORE_EXIT) {
+ 			createParticle: s32'cmn_Warp', (CENTER)
+ 			characterSfx: s32'ARC_BTL_TNN_Chnryk_CHZ_TLP'
+ 		} endUpon: 
+ 		upon: (NO_STOP_IDLING) {
+ 			checkCurrentStateName: (PLAYER), s32'AssistAttack3'
+ 			ifNot: var(Result) {
+ 				checkCurrentStateName: (PLAYER), s32'AssistAttack3'
+ 				ifNot: var(Result) {
+ 					deactivateObject: (SELF)
+ 				} endIf: 
+ 			} endIf: 
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'tnn032_00', 2
+ 	moveToPosType: (ENEMY_MAIN_PLAYER), (PLAYER_LAND)
+ 	addXPosition: -120000
+ 	createParticle: s32'cmn_Warp', (CENTER)
+ 	setXSpeed: 60000
+ 	sprite: s32'tnn032_01', 2
+ 	sprite: s32'tnn402_00', 2
+ 	facePose: (STRESSED)
+ 	flipDirection: 
+ 	sprite: s32'tnn402_01', 2
+ 	resetSpeed: 1
+ 	sprite: s32'tnn402_02', 2
+ 	sprite: s32'tnn402_03', 2
+ 	sprite: s32'tnn402_03', 3
+ 	characterSfx: s32'ARC_BTL_TNN_Haikyu_TossFuri'
+ 	sprite: s32'tnn402_04', 3
+ 	mouthPose: (OPEN)
+ 	createObject: s32'402_Eff', (ZERO)
+ 	sprite: s32'tnn402_05', 6
+ 	setNoCollision: 0
+ 	screenCollision: 0
+ 	sprite: s32'tnn402_06', 3
+ 	sprite: s32'tnn402_07', 3
+ 	mouthPose: (CLOSED)
+ 	sprite: s32'tnn402_08', 3
+ 	sprite: s32'tnn402_09', 3
+ 	sprite: s32'tnn402_10', 3
+ 	sprite: s32'tnn402_11', 3
+ 	sprite: s32'tnn000_00', 6
+ 	sprite: s32'tnn000_01', 6
+ 	sprite: s32'tnn000_02', 6
+ 	sprite: s32'tnn000_03', 6
+ 	sprite: s32'tnn000_04', 6
+ 	sprite: s32'tnn000_05', 6
+ 	sprite: s32'tnn000_06', 6
+ } endState: 
+ 
+ beginState: s32'HaikyukenS_Assist2' {
+ 	upon: (IMMEDIATE) {
+ 		specialAttack: 
+ 		linkModelSelfTeam: s32'TNN', s32''
+ 		linkObjectStop: (PLAYER)
+ 		screenCollision: 1
+ 		setActionTimeMax: 300
+ 		pushCollisionWidth: 155000
+ 		pushCollisionHeight: 260000
+ 		pushCollisionHeightLow: -70000
+ 		setNoCollision: 0
+ 		upon: (SIGNAL1) {
+ 			clearRegisteredUponCode: (SIGNAL1)
+ 			screenCollision: 0
+ 			setNoCollision: 0
+ 		} endUpon: 
+ 		upon: (BEFORE_EXIT) {
+ 			createParticle: s32'cmn_Warp', (CENTER)
+ 			characterSfx: s32'ARC_BTL_TNN_Chnryk_CHZ_TLP'
+ 		} endUpon: 
+ 		upon: (NO_STOP_IDLING) {
+ 			checkCurrentStateName: (PLAYER), s32'AssistAttack3'
+ 			ifNot: var(Result) {
+ 				checkCurrentStateName: (PLAYER), s32'AssistAttack3'
+ 				ifNot: var(Result) {
+ 					deactivateObject: (SELF)
+ 				} endIf: 
+ 			} endIf: 
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'tnn403_01', 1
+ 	moveToPosType: (ENEMY_MAIN_PLAYER), (ZERO)
+ 	ifOperation: (IS_LESS_OR_EQUAL), var(PosY), int(10000) {
+ 		copyVar: var(PosY), int(10000)
+ 	} endIf: 
+ 	addXPosition: 250000
+ 	addYPosition: 100000
+ 	faceOpponent: 
+ 	displayModel: 1
+ 	setNoCollision: 1
+ 	pushCollisionHeightLow: 40000
+ 	facePose: (STRESSED)
+ 	cmnSfx: s32'ARC_BTL_CMN_TLP_Short'
+ 	createParticle: s32'cmn_Warp', (CENTER)
+ 	sprite: s32'tnn403_02', 2
+ 	copyVarFromObject: (SELF), var(SpeedY), (ENEMY_MAIN_PLAYER), var(SpeedY)
+ 	ifOperation: (IS_GREATER_OR_EQUAL), var(SpeedY), int(25000) {
+ 		setYSpeed: 25000
+ 		objectGravity: 
+ 	} endIf: 
+ 	ifOperation: (IS_LESS_OR_EQUAL), var(SpeedY), int(0) {
+ 		setYSpeed: 0
+ 	} endIf: 
+ 	sprite: s32'tnn403_03', 4
+ 	sprite: s32'tnn403_04', 2
+ 	sprite: s32'tnn403_05', 3
+ 	mouthPose: (OPEN)
+ 	createObject: s32'403_Eff', (ZERO)
+ 	ySpeedPerFrame: 70
+ 	sprite: s32'tnn403_06', 2
+ 	recoveryState: 
+ 	setNoCollision: 0
+ 	screenCollision: 0
+ 	ySpeedPerFrame: 100
+ 	objectGravity: 
+ 	sprite: s32'tnn403_07', 2
+ 	mouthPose: (CLOSED)
+ 	sprite: s32'tnn403_08', 3
+ 	sprite: s32'tnn403_09', 3
+ 	sprite: s32'tnn403_10', 3
+ 	sprite: s32'tnn403_11', 3
+ } endState: 
+ 
+ beginState: s32'HaikyukenS_Assist3' {
+ 	upon: (IMMEDIATE) {
+ 		specialAttack: 
+ 		linkModelSelfTeam: s32'TNN', s32''
+ 		linkObjectStop: (PLAYER)
+ 		setActionTimeMax: 300
+ 		pushCollisionWidth: 155000
+ 		pushCollisionHeight: 260000
+ 		pushCollisionHeightLow: -70000
+ 		setNoCollision: 0
+ 		putObjectIntoStackEx: (SELF), (STACK0), (PARENT), (STACK3)
+ 		upon: (SIGNAL1) {
+ 			clearRegisteredUponCode: (SIGNAL1)
+ 			screenCollision: 0
+ 			setNoCollision: 0
+ 		} endUpon: 
+ 		upon: (BEFORE_EXIT) {
+ 			createParticle: s32'cmn_Warp', (CENTER)
+ 			characterSfx: s32'ARC_BTL_TNN_Chnryk_CHZ_TLP'
+ 		} endUpon: 
+ 		upon: (NO_STOP_IDLING) {
+ 			checkCurrentStateName: (PLAYER), s32'AssistAttack3'
+ 			ifNot: var(Result) {
+ 				checkCurrentStateName: (PLAYER), s32'AssistAttack3'
+ 				ifNot: var(Result) {
+ 					deactivateObject: (SELF)
+ 				} endIf: 
+ 			} endIf: 
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'tnn403_01', 1
+ 	moveToPosType: (STACK0), (ZERO)
+ 	addXPosition: -500000
+ 	faceOpponent: 
+ 	linkObjectPosition: (STACK0)
+ 	displayModel: 1
+ 	setNoCollision: 1
+ 	pushCollisionHeightLow: 40000
+ 	facePose: (STRESSED)
+ 	createParticle: s32'cmn_Warp', (CENTER)
+ 	sprite: s32'tnn403_02', 2
+ 	sprite: s32'tnn403_03', 4
+ 	sprite: s32'tnn403_04', 2
+ 	sprite: s32'tnn403_05', 3
+ 	mouthPose: (OPEN)
+ 	createObject: s32'403_Eff', (ZERO)
+ 	sprite: s32'tnn403_06', 2
+ 	recoveryState: 
+ 	setNoCollision: 0
+ 	screenCollision: 0
+ 	sprite: s32'tnn403_07', 2
+ 	mouthPose: (CLOSED)
+ 	sprite: s32'tnn403_08', 3
+ 	ySpeedPerFrame: 100
+ 	objectGravity: 
+ 	sprite: s32'tnn403_09', 3
+ 	sprite: s32'tnn403_10', 3
+ 	sprite: s32'tnn403_11', 3
+ } endState: 
+ 
+ beginState: s32'tnn_sisin_hit' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByAll: 1
+ 		linkObjectChangeToEliminate: (NULL)
+ 		linkObjectStop: (NULL)
+ 		linkParticle: s32'cmn_hit_l'
+ 		ignoreFinishStop: 1
+ 		createObject: s32'tnn_sisin_hit2', (ZERO)
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ } endState: 
+ 
+ beginState: s32'tnn_sisin_hit2' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByAll: 1
+ 		linkObjectChangeToEliminate: (NULL)
+ 		linkObjectPosition: (ENEMY)
+ 		linkObjectStop: (NULL)
+ 		linkParticle: s32'cmn_hit_l'
+ 		ignoreFinishStop: 1
+ 		flipDirection: 
+ 		addXPosition: 100000
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ } endState: 
+ 
+ beginState: s32'groundSmoke' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		setActionTimeMax: 300
+ 		addXPosition: 150000
+ 	} endUpon: 
+ 	label: s32'loop'
+ 	sprite: s32'null', 10
+ 	createParticle: s32'bg_undersmoke00', (ZERO)
+ 	spriteEnd: 
+ 	gotoLabel: s32'loop'
+ } endState: 
+ 
+ beginState: s32'Dodonpa_shadow' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		setActionTimeMax: 300
+ 		jumpToStateInObject: (SELF), s32'end'
+ 	} endUpon: 
+ 	sprite: s32'null', 2147483647
+ 	linkParticle: s32'cmn_shadowLine_loop'
+ 	spriteEnd: 
+ 	label: s32'end'
+ 	sprite: s32'null', 1
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'Dodonpa_Tame' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectDamageToEliminate: (PARENT)
+ 		linkParticle: s32'tnn405_tame'
+ 		upon: (NO_STOP_IDLING) {
+ 			moveToPosType: (PARENT), (EX_POINT_0)
+ 			ifNot: var(IsMainPlayerSelf) {
+ 				addXPosition: 50000
+ 			} endIf: 
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'null', 17
+ 	characterSfx: s32'ARC_BTL_TNN_Dodonpa_Chrg'
+ } endState: 
+ 
+ beginState: s32'Dodonpa_Core' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectStop: (PLAYER)
+ 		linkObjectPosition: (PLAYER)
+ 		setActionTimeMax: 300
+ 		linkParticle: s32'tnn405_Beam_core00'
+ 		privateBankSE: 0, s32'ARC_BTL_TNN_Dodonpa_Fire', 100
+ 		jumpToStateInObject: (SELF), s32'end'
+ 		jumpToStateInObject: 47, s32'end'
+ 		upon: (PLAYER_DAMAGE) {
+ 			linkObjectPosition: (NULL)
+ 			linkObjectStop: (NULL)
+ 			ignoreWorldStopByAll: 1
+ 		} endUpon: 
+ 		upon: (SIGNAL1) {
+ 			clearRegisteredUponCode: (SIGNAL1)
+ 			copyVar: var(act0), int(0)
+ 			triggerUponInObject: s32'Dodonpa_Atk', (SIGNAL6)
+ 			checkCurrentStateName: (PLAYER), s32'Dodonpa'
+ 			if: var(Result) {
+ 				copyVarFromObject: (PLAYER), var(act0), (SELF), int(0)
+ 				sendSignal: (PLAYER), (SIGNAL2)
+ 			} endIf: 
+ 			checkCurrentStateName: (PLAYER), s32'AirDodonpa'
+ 			if: var(Result) {
+ 				copyVarFromObject: (PLAYER), var(act0), (SELF), int(0)
+ 				sendSignal: (PLAYER), (SIGNAL2)
+ 			} endIf: 
+ 			checkCurrentStateName: (PLAYER), s32'AssistAttack'
+ 			if: var(Result) {
+ 				copyVarFromObject: (PLAYER), var(act0), (SELF), int(0)
+ 			} endIf: 
+ 			copyVar: var(act2), int(1)
+ 			copyVar: var(act6), int(1)
+ 			upon: (SIGNAL1) {
+ 				modifyVar: (ADD), var(act2), int(1)
+ 				ifOperation: (IS_GREATER_OR_EQUAL), var(act2), int(4) {
+ 					checkCurrentStateName: (PLAYER), s32'Dodonpa'
+ 					if: var(Result) {
+ 						sendSignal: (PLAYER), (SIGNAL1)
+ 					} endIf: 
+ 					checkCurrentStateName: (PLAYER), s32'AirDodonpa'
+ 					if: var(Result) {
+ 						sendSignal: (PLAYER), (SIGNAL1)
+ 					} endIf: 
+ 					checkCurrentStateName: (PLAYER), s32'AssistAttack'
+ 					if: var(Result) {
+ 						sendSignal: (PLAYER), (SIGNAL1)
+ 					} endIf: 
+ 				} endIf: 
+ 				else:  {
+ 					checkCurrentStateName: (PLAYER), s32'Dodonpa'
+ 					if: var(Result) {
+ 						sendSignal: (PLAYER), (SIGNAL2)
+ 					} endIf: 
+ 					checkCurrentStateName: (PLAYER), s32'AirDodonpa'
+ 					if: var(Result) {
+ 						sendSignal: (PLAYER), (SIGNAL2)
+ 					} endIf: 
+ 				} endElse: 
+ 			} endUpon: 
+ 		} endUpon: 
+ 		upon: (IDLING) {
+ 			ifNot: var(act1) {
+ 				sendSignalActionNameOldest: s32'Dodonpa_Atk', (SIGNAL0)
+ 			} endIf: 
+ 		} endUpon: 
+ 	} endUpon: 
+ 	label: s32'loop'
+ 	sprite: s32'null', 2
+ 	modifyVar: (ADD), var(act3), int(1)
+ 	setArg_objectParameters: var(act3), var(act6)
+ 	createObjectWithArg: s32'Dodonpa_Atk', (ZERO)
+ 	ifOperation: (IS_GREATER_OR_EQUAL), var(act0), int(3) {
+ 		copyVarFromObject: (PREVIOUS), var(act0), (SELF), int(1)
+ 	} endIf: 
+ 	sprite: s32'null', 2
+ 	spriteEnd: 
+ 	modifyVar: (ADD), var(act0), int(1)
+ 	gotoLabelIfOperation: s32'loop', (IS_LESS_OR_EQUAL), var(act0), int(5)
+ 	label: s32'end'
+ 	sprite: s32'null', 1
+ 	clearRegisteredUponCode: (SIGNAL0)
+ 	clearRegisteredUponCode: (SIGNAL1)
+ 	clearRegisteredUponCode: (AFTER_EXIT)
+ 	clearRegisteredUponCode: (IDLING)
+ 	copyVar: var(act4), int(1)
+ 	createObject: s32'Dodonpa_Atk', (ZERO)
+ 	triggerUponInObject: s32'Dodonpa_Atk', (SIGNAL7)
+ 	checkCurrentStateName: (PLAYER), s32'Dodonpa'
+ 	if: var(Result) {
+ 		sendSignal: (PLAYER), (SIGNAL1)
+ 	} endIf: 
+ 	checkCurrentStateName: (PLAYER), s32'AirDodonpa'
+ 	if: var(Result) {
+ 		sendSignal: (PLAYER), (SIGNAL1)
+ 	} endIf: 
+ 	checkCurrentStateName: (PLAYER), s32'AssistAttack'
+ 	if: var(Result) {
+ 		sendSignal: (PLAYER), (SIGNAL1)
+ 	} endIf: 
+ 	linkObjectPosition: (NULL)
+ 	linkObjectStop: (NULL)
+ 	ignoreWorldStopByFriend: 1
+ 	sprite: s32'null', 1
+ 	deactivateObjectByName: s32'Dodonpa_Atk'
+ 	sprite: s32'null', 13
+ 	linkParticle: s32'tnn405_Beam_core01'
+ 	sprite: s32'null', 35
+ 	stopBankSE: 0, 35
+ } endState: 
+ 
+ beginState: s32'Dodonpa_Atk' {
+ 	upon: (IMMEDIATE) {
+ 		specialAttack: 
+ 		callSubroutine: s32'cmnAtkLevel_3_AtkInit'
+ 		callSubroutine: s32'cmnSpecialShot_AtkInit'
+ 		damage: 900
+ 		callSubroutine: s32'cmn_AssistShotHosei'
+ 		groundKnockbackEffect: (KirimomiLand)
+ 		airKnockbackEffect: (KirimomiLand)
+ 		attackXKnockback: 1000
+ 		attackYKnockback: 35000
+ 		wallBounceCount: 0
+-		airHitstun: 25
++		airHitstun: 31
+ 		atkRange: 50000000, -490000, 0, 0
+ 		checkCurrentStateName: (PLAYER), s32'AssistAttack'
+ 		if: var(Result) {
+ 			damage: 800
+ 			airHitstun: 35
+ 		} endIf: 
+ 		atkSousaiSevereCheck: 1
+ 		atkEffectBeamSousai: 1
+ 		atkIgnoreSousaiSameLevel: 1
+ 		damageSoundEffect: s32'ARC_BTL_CMN_Hit_Beam'
+ 		guardSoundEffect: s32'ARC_BTL_CMN_Guard_Beam'
+ 		atkShakeCamera: s32'ShakeYoko', 600, 1, 25, 5
+ 		upon: (SIGNAL7) {
+ 			recoveryState: 
+ 			ifVarOfObjectOperation: (IS_GREATER_OR_EQUAL), (PARENT), var(act2), int(4) {
+ 				recoveryState: 
+ 			} endIf: 
+ 		} endUpon: 
+ 		linkObjectStop: (PARENT)
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		linkObjectAngle: 2
+ 		setActionTimeMax: 60
+ 		autoHitSignalSending: 1
+ 		worldOutToEliminate: 1
+ 		linkParticle: s32'tnn405_Beam_naka00'
+ 		upon: (SIGNAL0) {
+ 			clearRegisteredUponCode: (SIGNAL0)
+ 			createObject: s32'Dodonpa_End', (ZERO)
+ 			copyVar: var(act1), int(1)
+ 			copyVarFromObject: (PARENT), var(act1), (SELF), int(1)
+ 		} endUpon: 
+ 		upon: (SHOT_SOUSAI_REACTION) {
+ 			clearRegisteredUponCode: (ATTACK_COLLISION)
+ 			copyVarFromObject: (PARENT), var(ObjectParameter1), (SELF), var(ObjectParameter1)
+ 			deactivateObject: (SELF)
+ 			sendSignal: (PARENT), (SIGNAL1)
+ 		} endUpon: 
+ 		upon: (SIGNAL6) {
+ 			copyVar: var(act0), int(0)
+ 		} endUpon: 
+ 		upon: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE) {
+ 			if: var(ObjectParameter2) {
+ 				checkCurrentStateName: (PLAYER), s32'Dodonpa'
+ 				if: var(Result) {
+ 					copyVarFromObject: (PLAYER), var(act0), (SELF), int(0)
+ 				} endIf: 
+ 				checkCurrentStateName: (PLAYER), s32'AirDodonpa'
+ 				if: var(Result) {
+ 					copyVarFromObject: (PLAYER), var(act0), (SELF), int(0)
+ 				} endIf: 
+ 			} endIf: 
+ 		} endUpon: 
+ 		upon: (ATTACK_COLLISION) {
+ 			copyVarFromObject: (PARENT), var(ObjectParameter1), (SELF), var(ObjectParameter1)
+ 			createObject: s32'cmn_kidan_end_M', (ATTACK)
+ 			cmnSfx: s32'ARC_BTL_CMN_KidanLast_Expl'
+ 			sendSignal: (PARENT), (SIGNAL0)
+ 			checkCurrentStateName: (PLAYER), s32'Dodonpa'
+ 			if: var(Result) {
+ 				copyVarFromObject: (PLAYER), var(act1), (SELF), int(1)
+ 			} endIf: 
+ 			checkCurrentStateName: (PLAYER), s32'AirDodonpa'
+ 			if: var(Result) {
+ 				copyVarFromObject: (PLAYER), var(act1), (SELF), int(1)
+ 			} endIf: 
+ 		} endUpon: 
+ 		upon: (IDLING) {
+ 			ifVarOfObjectFalse: (PARENT), var(act4) {
+ 				copyVarFromObject: (SELF), var(Result), (PARENT), var(ObjectParameter1)
+ 				ifOperation: (IS_LESS_OR_EQUAL), var(ObjectParameter1), var(Result) {
+ 					copyVar: var(act2), int(1)
+ 					deactivateObject: (SELF)
+ 				} endIf: 
+ 			} endIf: 
+ 			ifOperation: (IS_LESS_OR_EQUAL), var(PosY), int(400000) {
+ 				effectForLandBreak: 2, 1000, 0, 0
+ 			} endIf: 
+ 		} endUpon: 
+ 		upon: (BEFORE_EXIT) {
+ 			if: var(act1) {
+ 				copyVar: var(act1), int(0)
+ 				copyVarFromObject: (PARENT), var(act1), (SELF), int(0)
+ 			} endIf: 
+ 			ifNot: var(act2) {
+ 				setArg_multiplyScale: int(1000)
+ 				setArg_addAngle: int(0)
+ 				createParticleWithArg: s32'tnn405_Beam_naka01', (ZERO)
+ 			} endIf: 
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'dodonpa0', 1
+ 	enableHitbox: 
+ 	setSpeedByCurrentAngle: 100000, 0
+ 	label: s32'loop'
+ 	sprite: s32'dodonpa0', 1
+ 	atkIgnoreSousaiSameLevel: 0
+ 	sprite: s32'dodonpa0', 2
+ 	scaleForLinkY: 1200
+ 	sprite: s32'dodonpa0', 1
+ 	scaleForLinkY: 1000
+ 	spriteEnd: 
+ 	gotoLabelIfOperation: s32'loop', (IS_LESS_OR_EQUAL), var(LoopCount), int(120)
+ } endState: 
+ 
+ beginState: s32'Dodonpa_End' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectStop: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		setActionTimeMax: 60
+ 		moveToPosType: (PARENT), (EX_POINT_0)
+ 		copyVarFromParent: var(PosZ), var(PosZ)
+ 		worldOutToEliminate: 1
+ 		linkParticle: s32'tnn405_Beam_end00'
+ 		upon: (IDLING) {
+ 			checkIsObjectActive: (PARENT)
+ 			if: var(Result) {
+ 				copyVarFromParent: var(PosZ), var(PosZ)
+ 				moveToPosType: (PARENT), (EX_POINT_0)
+ 			} endIf: 
+ 		} endUpon: 
+ 		upon: (BEFORE_EXIT) {
+ 			setArg_multiplyScale: int(1000)
+ 			setArg_addAngle: int(0)
+ 			createParticleWithArg: s32'tnn405_Beam_end01', (ZERO)
+ 		} endUpon: 
+ 	} endUpon: 
+ 	label: s32'loop'
+ 	sprite: s32'null', 2
+ 	scaleForLinkY: 1000
+ 	sprite: s32'null', 2
+ 	scaleForLinkY: 1200
+ 	spriteEnd: 
+ 	gotoLabelIfOperation: s32'loop', (IS_LESS_OR_EQUAL), var(LoopCount), int(120)
+ } endState: 
+ 
+ beginState: s32'404Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkParticle: s32'tnn404_wind01'
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		jumpToStateInObject: (SELF), s32'end'
+ 	} endUpon: 
+ 	sprite: s32'null', 100
+ 	spriteEnd: 
+ 	exitState: 
+ 	label: s32'end'
+ 	sprite: s32'null', 30
+ 	clearRegisteredUponCode: (SIGNAL0)
+ 	linkObjectPosition: (NULL)
+ 	linkParticle: s32'tnn404_wind02'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'404_Line_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkParticle: s32'tnn404_Line01'
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		jumpToStateInObject: (SELF), s32'end'
+ 	} endUpon: 
+ 	sprite: s32'null', 100
+ 	spriteEnd: 
+ 	exitState: 
+ 	label: s32'end'
+ 	sprite: s32'null', 30
+ 	clearRegisteredUponCode: (SIGNAL0)
+ 	linkObjectPosition: (NULL)
+ 	linkParticle: s32'tnn404_Line02'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginSubroutine: s32'czn_start' {
+ 	linkPawnWithAnimation: s32'czn', s32''
+ 	zLine: int(4)
+ 	setZPosition: -100000
+ 	addSkillForceDisableFlag: 1
+ 	screenCollision: 1
+ 	screenSideCollisionCheck: 1
+ 	setWallCollision: 1
+ 	atkIgnoreCaution: 1
+ 	kowareAssariEx: 1
+ 	numberOfHits: 1
+ 	destroyOnPlayerDamage: 1
+ 	upon: (DESTROY) {
+ 		clearRegisteredUponCode: (DESTROY)
+ 		screenCollision: 0
+ 		jumpToLabel: s32'czn_koware'
+ 	} endUpon: 
+ 	upon: (FRAME_STEP_AFTER) {
+ 		checkCurrentStateName: (ENEMY_MAIN_PLAYER), s32'CmnActFuttobiFinish'
+ 		if: var(Result) {
+ 			clearRegisteredUponCode: (DESTROY)
+ 			clearRegisteredUponCode: (SIGNAL0)
+ 			deactivateObject: (SELF)
+ 			setEX_POINT_F: (CENTER), 0, 150000
+ 			createParticle: s32'cmn_Warp', (EX_POINT_F)
+ 			characterSfx: s32'ARC_BTL_TNN_Chnryk_CHZ_TLP'
+ 			linkPawnWithAnimation: s32'', s32''
+ 		} endIf: 
+ 	} endUpon: 
+ } endSubroutine: 
+ 
+ beginSubroutine: s32'czn_end' {
+ 	linkPawnWithAnimation: s32'', s32''
+ 	setEX_POINT_F: (CENTER), 0, 150000
+ 	createParticle: s32'cmn_Warp', (EX_POINT_F)
+ 	characterSfx: s32'ARC_BTL_TNN_Chnryk_CHZ_TLP'
+ 	spriteAddTime: 5
+ 	resetSpeed: 1
+ } endSubroutine: 
+ 
+ beginState: s32'S_Chaozu' {
+ 	upon: (IMMEDIATE) {
+ 		callSubroutine: s32'czn_start'
+ 		setActionTimeMax: 300
+ 		checkCurrentStateName: (PLAYER), s32'AssistAttack2'
+ 		if: var(Result) {
+ 			copyVar: var(act2), int(1)
+ 			upon: (ON_MAIN_PLAYER_DAMAGE) {
+ 				clearRegisteredUponCode: (ON_MAIN_PLAYER_DAMAGE)
+ 				requestDestroy: (SELF)
+ 			} endUpon: 
+ 		} endIf: 
+ 		upon: (SIGNAL0) {
+ 			clearRegisteredUponCode: (SIGNAL0)
+ 			clearRegisteredUponCode: (SIGNAL1)
+ 			clearRegisteredUponCode: (SIGNAL2)
+ 			linkPawnWithAnimation: s32'', s32''
+ 			setEX_POINT_F: (CENTER), 0, 150000
+ 			createParticle: s32'cmn_Warp', (EX_POINT_F)
+ 			requestDestroy: (SELF)
+ 		} endUpon: 
+ 		upon: (SIGNAL1) {
+ 			spriteOverrideFrame: s32'czn407_06'
+ 			upon: (NO_STOP_IDLING) {
+ 				checkLastAttackHitStateName: (ENEMY_MAIN_PLAYER), s32'czn_chounouryoku'
+ 				ifNot: var(Result) {
+ 					clearRegisteredUponCode: (NO_STOP_IDLING)
+ 					jumpToLabel: s32'atk_end'
+ 				} endIf: 
+ 			} endUpon: 
+ 			clearRegisteredUponCode: (SIGNAL1)
+ 			jumpToLabel: s32'atk_loop'
+ 		} endUpon: 
+ 		jumpToStateInObject: (DEFENDER), s32'stop'
+ 		if: var(ObjectParameter1) {
+ 			moveTo: (ENEMY_MAIN_PLAYER)
+ 			addXPosition: 150000
+ 			addYPosition: 250000
+ 			flipDirection: 
+ 		} endIf: 
+ 		else:  {
+ 			moveTo: (PARENT)
+ 			addXPosition: -100000
+ 			copyVarFromObject: (SELF), var(PosY), (ENEMY_MAIN_PLAYER), var(PosY)
+ 			ifVarOfObjectOperation: (IS_EQUAL), (ENEMY_MAIN_PLAYER), var(IsLand), int(1) {
+ 				addYPosition: 300000
+ 			} endIf: 
+ 			else:  {
+ 				ifVarOfObjectOperation: (IS_EQUAL), (ENEMY_MAIN_PLAYER), var(PosY), int(400000) {
+ 					addYPosition: 150000
+ 				} endIf: 
+ 			} endElse: 
+ 		} endElse: 
+ 	} endUpon: 
+ 	sprite: s32'czn407_00', 1
+ 	setEX_POINT_F: (CENTER), 0, 150000
+ 	createParticle: s32'cmn_Warp', (EX_POINT_F)
+ 	characterSfx: s32'ARC_BTL_TNN_Chnryk_CHZ_TLP'
+ 	displayModel: 0
+ 	sprite: s32'czn407_00', 1
+ 	displayModel: 1
+ 	faceOpponent: 
+ 	screenCollision: 0
+ 	screenSideCollisionCheck: 0
+ 	sprite: s32'czn407_01', 3
+ 	faceAnimation: 501
+ 	mouthPose: (CLOSED)
+ 	setYSpeed: 2000
+ 	sprite: s32'czn407_02', 3
+ 	sprite: s32'czn407_03', 3
+ 	sprite: s32'czn407_02', 3
+ 	sprite: s32'czn407_03', 3
+ 	sprite: s32'czn407_02', 3
+ 	sprite: s32'czn407_03', 1
+ 	sprite: s32'czn407_03', 2
+ 	if: var(act2) {
+ 		ifNot: var(ObjectParameter1) {
+ 			createObject: s32'czn_chounouryoku', (ENEMY_CENTER)
+ 		} endIf: 
+ 	} endIf: 
+ 	sprite: s32'czn407_02', 3
+ 	sprite: s32'czn407_03', 3
+ 	soundOption_VoiceChannel: 1
+ 	randomVoice: s16'vczn004', 100, s16'vczn006', 100, s16'', 0, s16'', 0
+ 	sprite: s32'czn407_04', 2
+ 	resetSpeed: 1
+ 	sprite: s32'czn407_05', 3
+ 	mouthPose: (OPEN)
+ 	ifNot: var(act2) {
+ 		createObject: s32'czn_chounouryoku', (ENEMY_CENTER)
+ 	} endIf: 
+ 	createObject: s32'czn_Aura_Eff', (ZERO)
+ 	setXSpeed: -4000
+ 	xSpeedPerFrame: 90
+ 	setYSpeed: 2000
+ 	ySpeedPerFrame: 90
+ 	spriteEnd: 
+ 	gotoLabel: s32'atk_end'
+ 	label: s32'atk_loop'
+ 	sprite: s32'czn407_06', 2
+ 	sprite: s32'czn407_07', 2
+ 	sprite: s32'czn407_08', 2
+ 	spriteEnd: 
+ 	modifyVar: (ADD), var(act1), int(1)
+ 	gotoLabelIfOperation: s32'atk_loop', (IS_LESS_OR_EQUAL), var(act1), int(5)
+ 	label: s32'atk_end'
+ 	sprite: s32'czn407_06', 4
+ 	clearRegisteredUponCode: (SIGNAL1)
+ 	clearRegisteredUponCode: (SIGNAL2)
+ 	clearRegisteredUponCode: (NO_STOP_IDLING)
+ 	sprite: s32'czn407_07', 4
+ 	sprite: s32'czn407_08', 4
+ 	deactivateObjectByName: s32'czn_Aura_Eff'
+ 	sprite: s32'czn407_06', 4
+ 	sprite: s32'czn407_07', 4
+ 	sprite: s32'czn407_08', 4
+ 	callSubroutine: s32'czn_end'
+ 	exitState: 
+ 	label: s32'stop'
+ 	sprite: s32'czn407_09', 4
+ 	faceAnimation: 500
+ 	clearRegisteredUponCode: (SIGNAL1)
+ 	clearRegisteredUponCode: (SIGNAL2)
+ 	clearRegisteredUponCode: (NO_STOP_IDLING)
+ 	resetSpeed: 1
+ 	cameraShake: s32'ShakeTate', 300, 5, 20, 5
+ 	deactivateObjectByName: s32'czn_chounouryoku'
+ 	deactivateObjectByName: s32'czn_Aura_Eff'
+ 	sprite: s32'czn407_10', 4
+ 	sprite: s32'czn407_11', 4
+ 	sprite: s32'czn407_12', 4
+ 	sprite: s32'czn407_10', 4
+ 	sprite: s32'czn407_11', 4
+ 	sprite: s32'czn407_12', 4
+ 	soundOption_VoiceChannel: 1
+ 	randomVoice: s16'vczn007', 100, s16'vczn008', 100, s16'vczn009', 100, s16'', 0
+ 	sprite: s32'czn407_10', 4
+ 	sprite: s32'czn407_11', 4
+ 	sprite: s32'czn407_12', 4
+ 	callSubroutine: s32'czn_end'
+ 	exitState: 
+ 	label: s32'czn_koware'
+ 	sprite: s32'keep', 1
+ 	deactivateObjectByName: s32'czn_Aura_Eff'
+ 	triggerUponInObject: s32'czn_chounouryoku', (SIGNAL0)
+ 	callSubroutine: s32'czn_end'
+ } endState: 
+ 
+ beginState: s32'czn_chounouryoku' {
+ 	upon: (IMMEDIATE) {
+ 		specialAttack: 
+ 		callSubroutine: s32'cmnAtkLevel_1_AtkInit'
+ 		callSubroutine: s32'cmnSpecialShot_AtkInit'
+ 		setProjectileDurability: 1
+ 		damage: 0
+ 		groundHitstun: 20
+ 		airHitstun: 20
+ 		hitstop: 9
+ 		enemyHitstopAddition: 20, 30, 30
+ 		atkHitBackForHit: 0
+ 		atkMainPlayerHitOnly: 1
+ 		disableAttackClashing: 1
+ 		attackDamageEffect: 4, s32'cmn_BomHit'
+ 		atkShakeCamera: s32'ShakeTate', 600, 0, 20, 0
+ 		setWallCollision: 1
+ 		checkCurrentStateName: (PLAYER), s32'AssistAttack2'
+ 		if: var(Result) {
+ 			callSubroutine: s32'cmn_AssistHosei'
+ 			enemyHitstopAddition: 20, 31, 31
+ 			copyVar: var(act2), int(1)
+ 			upon: (ON_MAIN_PLAYER_DAMAGE) {
+ 				clearRegisteredUponCode: (ON_MAIN_PLAYER_DAMAGE)
+ 				requestDestroy: (SELF)
+ 			} endUpon: 
+ 		} endIf: 
+ 		damageSoundEffect: s32'dammy'
+ 		guardSoundEffect: s32'ARC_BTL_CMN_Guard_Beam'
+ 		numberOfHits: 1
+ 		destroyOnPlayerDamage: 1
+ 		destroyOnEnemyDamage: 1
+ 		destroyOnEnemyGuard: 1
+ 		jumpToStateInObject: 45, s32'end'
+ 		upon: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE) {
+ 			clearRegisteredUponCode: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE)
+ 			sendSignal: (PARENT), (SIGNAL1)
+ 			characterSfx: s32'ARC_BTL_TNN_Chnryk_CHZ_Hit'
+ 		} endUpon: 
+ 	} endUpon: 
+ 	characterSfx: s32'ARC_BTL_TNN_Chnryk_CHZ_Fire'
+ 	gotoLabelIfTrue: s32'atk', var(EnemyInHitstun)
+ 	gotoLabelIfFalse: s32'atk', var(act2)
+ 	sprite: s32'null', 10
+ 	linkParticle: s32''
+ 	label: s32'atk'
+ 	sprite: s32'czn_Satk', 3
+ 	linkParticle: s32'tnn407_chounou'
+ 	enableHitbox: 
+ 	label: s32'end'
+ 	sprite: s32'null', 50
+ 	recoveryState: 
+ 	clearRegisteredUponCode: (DESTROY)
+ 	clearRegisteredUponCode: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE)
+ } endState: 
+ 
+ beginState: s32'czn_Aura_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkParticle: s32'tnn407_Aura01'
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 	} endUpon: 
+ 	sprite: s32'null', 240
+ 	addYPosition: 155000
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'U_Chaozu' {
+ 	upon: (IMMEDIATE) {
+ 		overdriveAttack: 
+ 		callSubroutine: s32'czn_start'
+ 		callSubroutine: s32'cmnAtkLevel_1_AtkInit'
+ 		callSubroutine: s32'cmnUltimateShot_AtkInit'
+ 		callSubroutine: s32'cmnAtkTemplNageLand'
+ 		canGrab: 0
+ 		atkRange: 250000, 0, 450000, -200000
+ 		atkFrontDirection: 3
+ 		atkDamageToRecovery: 1
+ 		onlyHitGrounded: 0
+ 		attackWhiffCrouch: 1
+ 		disableAttackClashing: 1
+ 		atkShakeCamera: s32'ShakeYoko', 600, 0, 20, 10
+ 		damage: 610
+ 		minimalDamagePercent: 100
+ 		setActionTimeMax: 800
+ 		ignoreWorldStopByFriend: 1
+ 		jumpToStateInObject: (ATTACKER), s32'atk'
+ 		upon: (AFTER_EXIT) {
+ 			clearRegisteredUponCode: (AFTER_EXIT)
+ 			copyVar: var(act4), int(1)
+ 		} endUpon: 
+ 		upon: (ON_PLAYER_DAMAGE_AFTER_FIX_PARAM) {
+ 			clearRegisteredUponCode: (ON_PLAYER_DAMAGE_AFTER_FIX_PARAM)
+ 			copyVar: var(act4), int(1)
+ 			requestDestroy: (SELF)
+ 		} endUpon: 
+ 		upon: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE) {
+ 			ifNot: var(act4) {
+ 				clearRegisteredUponCode: (IDLING)
+ 				clearRegisteredUponCode: (DESTROY)
+ 				clearRegisteredUponCode: (SIGNAL1)
+ 				clearRegisteredUponCode: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE)
+ 				callSubroutine: s32'cmnUltimate_CameraCombo'
+ 				enemyHitstopAddition: 0, 100, 100
+ 				groundKnockbackEffect: (ExDamageBallMof)
+ 				airKnockbackEffect: (ExDamageBallMof)
+ 				atkDirectionReverse: 1
+ 				atkDamageCell: 11
+ 				ignoreForceUnactivate: 1
+ 				forceStopAllAssistAttack: 
+ 				dmgGuardStopCount: 
+ 				forceUnactivateObjects: 
+ 				resetSpeed: 1
+ 				applyAttackLockWithStateName: s32'U_Chaozu_explosion'
+ 				checkCurrentStateName: (PLAYER), s32'SayonaraTensan'
+ 				if: var(Result) {
+ 					triggerUponInObject: s32'SayonaraTensan', (SIGNAL2)
+ 				} endIf: 
+ 				checkEnemyName: s16'gtl'
+ 				if: var(Result) {
+ 					atkDamageCell: 7
+ 				} endIf: 
+ 				checkEnemyName: s16'cen'
+ 				if: var(Result) {
+ 					atkDamageCell: 8
+ 				} endIf: 
+ 				checkEnemyName: s16'ton'
+ 				if: var(Result) {
+ 					atkDamageCell: 8
+ 				} endIf: 
+ 				checkEnemyName: s16'toa'
+ 				if: var(Result) {
+ 					atkDamageCell: 8
+ 				} endIf: 
+ 				checkEnemyName: s16'toz'
+ 				if: var(Result) {
+ 					atkDamageCell: 8
+ 				} endIf: 
+ 				jumpToLabel: s32'hit'
+ 			} endIf: 
+ 		} endUpon: 
+ 		upon: (IDLING) {
+ 			if: var(act1) {
+ 				ifOperation: (IS_GREATER_OR_EQUAL), var(ScreenTouch), int(1) {
+ 					if: var(Direction) {
+ 						ifOperation: (IS_LESS_OR_EQUAL), var(WSBPoint), int(-500000) {
+ 							screenCollision: 0
+ 							screenSideCollisionCheck: 0
+ 							setWallCollision: 0
+ 							checkCurrentStateName: (PLAYER), s32'SayonaraTensan'
+ 							if: var(Result) {
+ 								clearRegisteredUponCode: (IDLING)
+ 								triggerUponInObject: s32'SayonaraTensan', (SIGNAL3)
+ 								recoveryState: 
+ 								jumpToLabel: s32'czn_koware'
+ 							} endIf: 
+ 						} endIf: 
+ 					} endIf: 
+ 					else:  {
+ 						ifOperation: (IS_GREATER_OR_EQUAL), var(PlayerArmorHit), int(500000) {
+ 							screenCollision: 0
+ 							screenSideCollisionCheck: 0
+ 							setWallCollision: 0
+ 							checkCurrentStateName: (PLAYER), s32'SayonaraTensan'
+ 							if: var(Result) {
+ 								clearRegisteredUponCode: (IDLING)
+ 								triggerUponInObject: s32'SayonaraTensan', (SIGNAL3)
+ 								recoveryState: 
+ 								jumpToLabel: s32'czn_koware'
+ 							} endIf: 
+ 						} endIf: 
+ 					} endElse: 
+ 				} endIf: 
+ 			} endIf: 
+ 			ifNot: var(IN_BATTLE) {
+ 				recoveryState: 
+ 			} endIf: 
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'czn432_00', 1
+ 	zLine: var(plr2)
+ 	faceAnimation: 501
+ 	flipDirection: 
+ 	screenCollision: 0
+ 	screenSideCollisionCheck: 0
+ 	setWallCollision: 0
+ 	moveTo: (ENEMY_MAIN_PLAYER)
+ 	addXPosition: -500000
+ 	createObject: s32'chaoz_enter', (CENTER)
+ 	soundOption_VoiceChannel: 1
+ 	randomVoice: s16'vczn010', 100, s16'vczn011', 100, s16'', 0, s16'', 0
+ 	label: s32'loop'
+ 	sprite: s32'czn432_00', 2
+ 	sprite: s32'czn432_01', 2
+ 	sprite: s32'czn432_02', 2
+ 	spriteEnd: 
+ 	modifyVar: (ADD), var(act0), int(1)
+ 	gotoLabelIfOperation: s32'loop', (IS_LESS_OR_EQUAL), var(act0), int(20)
+ 	gotoLabel: s32'czn_koware'
+ 	exitState: 
+ 	label: s32'atk'
+ 	sprite: s32'czn432_00', 2
+ 	deactivateObjectByName: s32'chaoz_enter'
+ 	setXSpeed: 25000
+ 	xSpeedPerFrame: 110
+ 	sprite: s32'czn432_01', 2
+ 	sprite: s32'czn432_02', 2
+ 	ifNot: var(act1) {
+ 		upon: (FRAME_STEP) {
+ 			if: var(Direction) {
+ 				ifOperation: (IS_LESS_OR_EQUAL), var(WSBPoint), int(160000) {
+ 					clearRegisteredUponCode: (FRAME_STEP)
+ 					enableHitbox: 
+ 				} endIf: 
+ 				ifOperation: (IS_LESS_OR_EQUAL), var(PlayerArmorHit), int(100000) {
+ 					clearRegisteredUponCode: (FRAME_STEP)
+ 					recoveryState: 
+ 				} endIf: 
+ 			} endIf: 
+ 			else:  {
+ 				ifOperation: (IS_GREATER_OR_EQUAL), var(PlayerArmorHit), int(-160000) {
+ 					clearRegisteredUponCode: (FRAME_STEP)
+ 					enableHitbox: 
+ 				} endIf: 
+ 				ifOperation: (IS_GREATER_OR_EQUAL), var(WSBPoint), int(-100000) {
+ 					clearRegisteredUponCode: (FRAME_STEP)
+ 					recoveryState: 
+ 				} endIf: 
+ 			} endElse: 
+ 		} endUpon: 
+ 	} endIf: 
+ 	sprite: s32'czn432_00', 2
+ 	sprite: s32'czn432_01', 2
+ 	sprite: s32'czn432_02', 2
+ 	spriteEnd: 
+ 	screenCollision: 1
+ 	screenSideCollisionCheck: 1
+ 	setWallCollision: 1
+ 	modifyVar: (ADD), var(act1), int(1)
+ 	gotoLabelIfOperation: s32'atk', (IS_LESS_OR_EQUAL), var(act1), int(50)
+ 	gotoLabel: s32'czn_koware'
+ 	exitState: 
+ 	label: s32'hit'
+ 	sprite: s32'czn432_03', 6
+ 	clearRegisteredUponCode: (FRAME_STEP)
+ 	faceAnimation: 11
+ 	mouthPose: (OPEN)
+ 	screenSideCollisionCheck: 0
+ 	jumpToStateInObject: (DEFENDER), s32'explosion'
+ 	ifVarOfObjectOperation: (IS_LESS_OR_EQUAL), (PLAYER), var(BackWallDistance), int(1200000) {
+ 		ifVarOfObjectOperation: (IS_LESS_OR_EQUAL), (PLAYER), var(EnemyFrontDistance), int(1200000) {
+ 			linkObjectPosition: (DEFENDER)
+ 			applyTo: (DEFENDER) {
+ 				addXPosition: 1200001
+ 			} endApply: 
+ 		} endIf: 
+ 	} endIf: 
+ 	ifVarOfObjectOperation: (IS_GREATER_OR_EQUAL), (DEFENDER), var(PosY), int(300000) {
+ 		copyVar: var(act5), int(1)
+ 		linkObjectPosition: (DEFENDER)
+ 		applyTo: (DEFENDER) {
+ 			setYPosition: 800000
+ 		} endApply: 
+ 	} endIf: 
+ 	directionPlayer: 
+ 	zLine: var(plr1)
+ 	moveToPosTypeToPosTypeEx: (DEFENDER), (EX_POINT_0), (SELF), (EX_POINT_0)
+ 	addZPosition: 100000
+ 	checkEnemyName: s16'gtl'
+ 	if: var(Result) {
+ 		copyVar: var(act6), int(1)
+ 		addZPosition: 45000
+ 	} endIf: 
+ 	checkEnemyName: s16'ton'
+ 	if: var(Result) {
+ 		addZPosition: 22000
+ 	} endIf: 
+ 	checkEnemyName: s16'toa'
+ 	if: var(Result) {
+ 		addZPosition: 22000
+ 	} endIf: 
+ 	checkEnemyName: s16'toz'
+ 	if: var(Result) {
+ 		addZPosition: 22000
+ 	} endIf: 
+ 	label: s32'hit_loop'
+ 	sprite: s32'czn432_04', 4
+ 	linkParticle: s32'tnn_jibaku_charge'
+ 	sprite: s32'czn432_05', 4
+ 	if: var(act6) {
+ 		ifOperation: (IS_EQUAL), var(act2), int(1) {
+ 			if: var(act5) {
+ 				setZSpeed: -2333
+ 				setYSpeed: -3333
+ 				setXSpeed: 1333
+ 			} endIf: 
+ 			else:  {
+ 				setZSpeed: -833
+ 			} endElse: 
+ 		} endIf: 
+ 	} endIf: 
+ 	sprite: s32'czn432_06', 4
+ 	setLightColorRed: 0
+ 	setLightColorGreen: 0
+ 	setLightColorBlue: 0
+ 	setLightColorRedSpeed: 5
+ 	setLightColorGreenSpeed: 20
+ 	setLightColorBlueSpeed: 25
+ 	sprite: s32'czn432_04', 4
+ 	sprite: s32'czn432_05', 4
+ 	sprite: s32'czn432_06', 4
+ 	if: var(act6) {
+ 		ifOperation: (IS_EQUAL), var(act2), int(1) {
+ 			setZSpeed: 0
+ 			setYSpeed: 0
+ 			setXSpeed: 0
+ 		} endIf: 
+ 	} endIf: 
+ 	sprite: s32'czn432_04', 4
+ 	sprite: s32'czn432_05', 4
+ 	sprite: s32'czn432_06', 4
+ 	spriteEnd: 
+ 	modifyVar: (ADD), var(act2), int(1)
+ 	gotoLabelIfOperation: s32'hit_loop', (IS_LESS_OR_EQUAL), var(act2), int(50)
+ 	gotoLabel: s32'czn_koware'
+ 	exitState: 
+ 	label: s32'explosion'
+ 	sprite: s32'czn432_04', 4
+ 	clearRegisteredUponCode: (SIGNAL2)
+ 	sprite: s32'czn432_05', 4
+ 	sprite: s32'czn432_06', 4
+ 	sprite: s32'czn432_04', 4
+ 	createObject: s32'U_Chaozu_explosion', (ZERO)
+ 	displayModel: 0
+ 	exitState: 
+ 	label: s32'czn_koware'
+ 	sprite: s32'keep', 1
+ 	callSubroutine: s32'czn_end'
+ 	clearRegisteredUponCode: (FRAME_STEP)
+ 	recoveryState: 
+ } endState: 
+ 
+ beginState: s32'chaoz_enter' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		ignoreWorldStopByFriend: 1
+ 	} endUpon: 
+ 	sprite: s32'explosion', 60
+ 	linkParticle: s32'tnn_chaoz_enter'
+ } endState: 
+ 
+ beginState: s32'U_Chaozu_explosion' {
+ 	upon: (IMMEDIATE) {
+ 		overdriveAttack: 
+ 		callSubroutine: s32'cmnAtkLevel_4_AtkInit'
+ 		callSubroutine: s32'cmnUltimateShot_AtkInit'
+ 		damage: 3031
+ 		minimalDamagePercent: 66
+ 		damageScalingOverride: 500
+ 		hitstop: 0
+ 		groundKnockbackEffect: (AIR_VERTICAL)
+ 		airKnockbackEffect: (AIR_VERTICAL)
+ 		attackXKnockback: 0
+ 		attackYKnockback: 0
+ 		attackGravity: 0
+ 		guardPushback: 0
+ 		airHitstun: 500
+ 		disableOpponentRecovery: 0
+ 		disableAttackClashing: 1
+ 		atkFrontDirection: 1
+ 		expandHitboxToFullscreen: 1
+ 		ignoreWorldStopByFriend: 1
+ 		attackDamageEffect: 4, s32'cmn_BomHit'
+ 		cameraShake: s32'ShakeTateYoko', 2000, 0, 35, 10
+ 		damageSoundEffect: s32'dammy'
+ 		copyVar: var(plr1), int(1)
+ 		upon: (SIGNAL0) {
+ 			clearRegisteredUponCode: (SIGNAL0)
+ 			moveTo: (PLAYER)
+ 			addXPosition: 800000
+ 			addYPosition: 300000
+ 			jumpToLabel: s32'end_atk'
+ 		} endUpon: 
+ 		upon: (SIGNAL1) {
+ 			clearRegisteredUponCode: (SIGNAL1)
+ 			jumpToLabel: s32'end_atk2'
+ 		} endUpon: 
+ 		upon: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE) {
+ 			clearRegisteredUponCode: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE)
+ 			checkCurrentStateName: (PLAYER), s32'SayonaraTensan'
+ 			if: var(Result) {
+ 				applyTo: (ENEMY_MAIN_PLAYER) {
+ 					displayModel: 0
+ 				} endApply: 
+ 				upon: (BEFORE_EXIT) {
+ 					applyTo: (ENEMY_MAIN_PLAYER) {
+ 						displayModel: 1
+ 					} endApply: 
+ 				} endUpon: 
+ 			} endIf: 
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'explosion', 30
+ 	characterSfx: s32'ARC_BTL_TNN_Sayonara_Expl'
+ 	linkParticle: s32'cmn_bomb_s2'
+ 	addWindPowerOffset: 0, 0, 0, 1000, 0, 100, 30
+ 	destructionCollision: 0, 0, 0, 10000
+ 	ifOperation: (IS_LESS_OR_EQUAL), var(PosY), int(400000) {
+ 		effectForLandBreak: 1, 1000, 0, 0
+ 	} endIf: 
+ 	enableHitbox: 
+ 	sprite: s32'null', 600
+ 	exitState: 
+ 	label: s32'end_atk'
+ 	sprite: s32'explosion', 3
+ 	damage: 0
+ 	hitstop: 0
+ 	atkHitPositionType: 4, 1, 1
+ 	disableHitsparks: 1
+ 	atkShutUp: 1
+ 	dontAddComboCount: 1
+ 	enableHitbox: 
+ 	sprite: s32'null', 600
+ 	applyTo: (ENEMY_MAIN_PLAYER) {
+ 		displayModel: 1
+ 	} endApply: 
+ 	exitState: 
+ 	label: s32'end_atk2'
+ 	sprite: s32'explosion', 3
+ 	damage: 0
+ 	hitstop: 0
+ 	atkHitPositionType: 0, 0, 0
+ 	groundKnockbackEffect: (AIR_FACE_UP)
+ 	airKnockbackEffect: (AIR_FACE_UP)
+ 	attackXKnockback: 6000
+ 	attackYKnockback: -60000
+ 	attackGravity: 4000
+ 	airHitstun: 30
+ 	disableHitsparks: 1
+ 	atkShutUp: 1
+ 	dontAddComboCount: 1
+ 	applyAttackLockWithStateName: s32'CmnNeutral'
+ 	enableHitbox: 
+ } endState: 
+ 
+ beginState: s32'Kikouho_shot' {
+ 	upon: (IMMEDIATE) {
+ 		overdriveAttack: 
+ 		callSubroutine: s32'cmnAtkLevel_4_AtkInit'
+ 		callSubroutine: s32'cmnUltimateShot_AtkInit'
+ 		damage: 2400
+ 		minimalDamagePercent: 43
+ 		groundKnockbackEffect: (AIR_STRONG)
+ 		airKnockbackEffect: (AIR_STRONG)
+ 		attackXKnockback: 20000
+ 		attackYKnockback: -80000
+ 		airHitstun: 33
+ 		enemyHitstopAddition: 0, 5, 5
+ 		wallBounceCount: 0
+ 		groundBounceCount: 1
+ 		groundBounceYVelocity: 30000
+ 		groundBounceYVelocityPercent: 100
+ 		disableAttackClashing: 1
+ 		atkFrontDirection: 0
+ 		attackDamageEffect: 4, s32'cmn_BomHit'
+ 		atkShakeCamera: s32'ShakeTate', 2000, 0, 30, 10
++		autoHitSignalSending: 1
+ 		damageSoundEffect: s32'ARC_BTL_CMN_Hit_Large-A'
+ 		guardSoundEffect: s32'ARC_BTL_CMN_Guard_Beam'
+ 		addYPosition: 300000
+ 		setActionTimeMax: 60
+ 		ifVarOfObjectOperation: (IS_LESS_OR_EQUAL), (PLAYER), var(PosY), int(400000) {
+ 			createObject: s32'tnn_430_Hole', (PLAYER_LAND)
+ 			applyTo: (PREVIOUS) {
+ 				addXPosition: 450000
+ 			} endApply: 
+ 		} endIf: 
+ 		else:  {
+ 			ifVarOfObjectOperation: (IS_LESS_OR_EQUAL), (PLAYER), var(PosY), int(600000) {
+ 				createObject: s32'tnn_430_Hole', (PLAYER_LAND)
+ 				applyTo: (PREVIOUS) {
+ 					addXPosition: 600000
+ 				} endApply: 
+ 			} endIf: 
+ 			else:  {
+ 				ifVarOfObjectOperation: (IS_LESS_OR_EQUAL), (PLAYER), var(PosY), int(800000) {
+ 					createObject: s32'tnn_430_Hole', (PLAYER_LAND)
+ 					applyTo: (PREVIOUS) {
+ 						addXPosition: 800000
+ 					} endApply: 
+ 				} endIf: 
+ 				else:  {
+ 					ifVarOfObjectOperation: (IS_LESS_OR_EQUAL), (PLAYER), var(PosY), int(1000000) {
+ 						createObject: s32'tnn_430_Hole', (PLAYER_LAND)
+ 						applyTo: (PREVIOUS) {
+ 							addXPosition: 1000000
+ 						} endApply: 
+ 					} endIf: 
+ 					else:  {
+ 						ifVarOfObjectOperation: (IS_GREATER), (PLAYER), var(PosY), int(1000001) {
+ 							createObject: s32'tnn_430_Hole', (PLAYER_LAND)
+ 							applyTo: (PREVIOUS) {
+ 								addXPosition: 1200000
+ 							} endApply: 
+ 						} endIf: 
+ 					} endElse: 
+ 				} endElse: 
+ 			} endElse: 
+ 		} endElse: 
+ 		effectForLandBreak: 1, 3000, 0, 0
+ 		upon: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE) {
+ 			clearRegisteredUponCode: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE)
+ 			callSubroutine: s32'cmnUltimate_CameraCombo'
+ 		} endUpon: 
+ 	} endUpon: 
+ 	sprite: s32'kikouho', 3
+ 	characterSfx: s32'ARC_BTL_TNN_Kikouho_Fire'
+ 	addWindPowerOffset: 0, 0, 0, 1000, 0, 170, 30
+ 	enableHitbox: 
+ } endState: 
+ 
+ beginSubroutine: s32'Kikouhou_S_Init' {
+ 	linkModelSelfTeam: s32'TNN', s32''
+ 	linkObjectStop: (PLAYER)
+ 	setActionTimeMax: 65
+ 	pushCollisionWidth: 155000
+ 	pushCollisionHeight: 260000
+ 	pushCollisionHeightLow: -70000
+ 	setNoCollision: 0
+ 	facePose: (STRESSED)
+ 	createObject: s32'430_Aura_Eff', (ZERO)
+ 	upon: (IDLING) {
+ 		ifOnFrame: int(10) {
+ 			setNoCollision: 1
+ 			pushFix: 1
+ 		} endIf: 
+ 		ifOnFrame: int(25) {
+ 			setNoCollision: 0
+ 			pushFix: 0
+ 		} endIf: 
+ 		ifVarOfObjectFalse: (PLAYER), var(IsMainPlayerSelf) {
+ 			deactivateObject: (SELF)
+ 		} endIf: 
+ 	} endUpon: 
+ 	upon: (BEFORE_EXIT) {
+ 		createParticle: s32'cmn_Warp', (HEAD)
+ 		createObject: s32'430_AuraEnd_Eff_S', (ZERO)
+ 	} endUpon: 
+ 	linkObjectChangeToEliminate: (PLAYER)
+ } endSubroutine: 
+ 
+ beginState: s32'Kikouho_S1' {
+ 	upon: (IMMEDIATE) {
+ 		callSubroutine: s32'Kikouhou_S_Init'
+ 	} endUpon: 
+ 	sprite: s32'tnn430_22', 4
+ 	setXSpeed: 60000
+ 	setYSpeed: 20000
+ 	sprite: s32'tnn430_23', 4
+ 	resetSpeed: 1
+ 	sprite: s32'tnn430_24', 4
+ 	sprite: s32'tnn430_21', 4
+ 	sprite: s32'tnn430_22', 4
+ 	sprite: s32'tnn430_23', 4
+ 	sprite: s32'tnn430_24', 4
+ 	sprite: s32'tnn430_25', 3
+ 	facePose: (ANGRY)
+ 	setArg_objectParameters: int(0), int(1)
+ 	createObjectWithArg: s32'Kikouho_S_shot', (ZERO)
+ 	createObject: s32'430_Beam_S_Eff', (ZERO)
+ 	createObject: s32'430_Mazzle_S_Eff', (ZERO)
+ 	createObject: s32'cmn_bigSmokeEff', (ZERO)
+ 	setXSpeed: -35000
+ 	xSpeedPerFrame: 80
+ 	setYSpeed: 45000
+ 	ySpeedPerFrame: 80
+ 	sprite: s32'tnn430_26', 3
+ 	sprite: s32'tnn430_27', 3
+ 	sprite: s32'tnn430_28', 3
+ 	sprite: s32'tnn430_29', 3
+ 	sprite: s32'tnn430_30', 3
+ 	sprite: s32'tnn430_26', 3
+ 	sprite: s32'tnn430_27', 3
+ 	sprite: s32'tnn430_28', 3
+ 	sprite: s32'tnn430_29', 3
+ 	sprite: s32'tnn430_30', 3
+ 	sprite: s32'tnn430_26', 3
+ 	sprite: s32'tnn430_27', 3
+ 	sprite: s32'tnn430_28', 3
+ 	sprite: s32'tnn430_29', 3
+ 	sprite: s32'tnn430_30', 3
+ } endState: 
+ 
+ beginState: s32'Kikouho_S2' {
+ 	upon: (IMMEDIATE) {
+ 		callSubroutine: s32'Kikouhou_S_Init'
+ 	} endUpon: 
+ 	sprite: s32'tnn430_22', 4
+ 	setXSpeed: 60000
+ 	setYSpeed: 20000
+ 	sprite: s32'tnn430_23', 4
+ 	sprite: s32'tnn430_24', 4
+ 	resetSpeed: 1
+ 	sprite: s32'tnn430_21', 4
+ 	sprite: s32'tnn430_22', 4
+ 	sprite: s32'tnn430_23', 4
+ 	sprite: s32'tnn430_24', 4
+ 	sprite: s32'tnn430_25', 3
+ 	facePose: (ANGRY)
+ 	callSubroutine: s32'tnn_430_Hole_Create'
+ 	createObject: s32'430_Beam_S_Eff', (ZERO)
+ 	createObject: s32'430_Mazzle_S_Eff', (ZERO)
+ 	createObject: s32'cmn_bigSmokeEff', (ZERO)
+ 	setXSpeed: -35000
+ 	xSpeedPerFrame: 80
+ 	setYSpeed: 45000
+ 	ySpeedPerFrame: 80
+ 	sprite: s32'tnn430_26', 3
+ 	sprite: s32'tnn430_27', 3
+ 	sprite: s32'tnn430_28', 3
+ 	sprite: s32'tnn430_29', 3
+ 	sprite: s32'tnn430_30', 3
+ 	sprite: s32'tnn430_26', 3
+ 	sprite: s32'tnn430_27', 3
+ 	sprite: s32'tnn430_28', 3
+ 	sprite: s32'tnn430_29', 3
+ 	sprite: s32'tnn430_30', 3
+ 	sprite: s32'tnn430_26', 3
+ 	sprite: s32'tnn430_27', 3
+ 	sprite: s32'tnn430_28', 3
+ 	sprite: s32'tnn430_29', 3
+ 	sprite: s32'tnn430_30', 3
+ } endState: 
+ 
+ beginState: s32'Kikouho_S3' {
+ 	upon: (IMMEDIATE) {
+ 		callSubroutine: s32'Kikouhou_S_Init'
+ 	} endUpon: 
+ 	sprite: s32'tnn430_22', 4
+ 	setXSpeed: 60000
+ 	setYSpeed: 20000
+ 	sprite: s32'tnn430_23', 4
+ 	sprite: s32'tnn430_24', 4
+ 	sprite: s32'tnn430_21', 4
+ 	resetSpeed: 1
+ 	sprite: s32'tnn430_22', 4
+ 	sprite: s32'tnn430_23', 4
+ 	sprite: s32'tnn430_24', 4
+ 	sprite: s32'tnn430_21', 4
+ 	sprite: s32'tnn430_22', 4
+ 	sprite: s32'tnn430_23', 4
+ 	sprite: s32'tnn430_24', 1
+ 	sprite: s32'tnn430_25', 3
+ 	facePose: (ANGRY)
+ 	callSubroutine: s32'tnn_430_Hole_Create'
+ 	createObject: s32'430_Beam_S_Eff', (ZERO)
+ 	createObject: s32'430_Mazzle_S_Eff', (ZERO)
+ 	createObject: s32'cmn_bigSmokeEff', (ZERO)
+ 	setXSpeed: -35000
+ 	xSpeedPerFrame: 80
+ 	setYSpeed: 45000
+ 	ySpeedPerFrame: 80
+ 	sprite: s32'tnn430_26', 3
+ 	sprite: s32'tnn430_27', 3
+ 	sprite: s32'tnn430_28', 3
+ 	sprite: s32'tnn430_29', 3
+ 	sprite: s32'tnn430_30', 3
+ 	sprite: s32'tnn430_26', 3
+ 	sprite: s32'tnn430_27', 3
+ 	sprite: s32'tnn430_28', 3
+ 	sprite: s32'tnn430_29', 3
+ 	sprite: s32'tnn430_30', 3
+ } endState: 
+ 
+ beginState: s32'Kikouho_S1_C' {
+ 	upon: (IMMEDIATE) {
+ 		callSubroutine: s32'Kikouhou_S_Init'
+ 	} endUpon: 
+ 	sprite: s32'tnn430_22', 4
+ 	setXSpeed: -25000
+ 	setYSpeed: -10000
+ 	sprite: s32'tnn430_23', 4
+ 	sprite: s32'tnn430_24', 2
+ 	sprite: s32'tnn430_24', 2
+ 	resetSpeed: 1
+ 	sprite: s32'tnn430_21', 4
+ 	sprite: s32'tnn430_22', 4
+ 	sprite: s32'tnn430_23', 4
+ 	sprite: s32'tnn430_24', 4
+ 	sprite: s32'tnn430_25', 3
+ 	facePose: (ANGRY)
+ 	setArg_objectParameters: int(1), int(1)
+ 	createObjectWithArg: s32'Kikouho_S_shot', (ZERO)
+ 	createObject: s32'430_Beam_S_Eff', (ZERO)
+ 	createObject: s32'430_Mazzle_S_Eff', (ZERO)
+ 	createObject: s32'cmn_bigSmokeEff', (ZERO)
+ 	setXSpeed: -35000
+ 	xSpeedPerFrame: 80
+ 	setYSpeed: 45000
+ 	ySpeedPerFrame: 80
+ 	sprite: s32'tnn430_26', 3
+ 	sprite: s32'tnn430_27', 3
+ 	sprite: s32'tnn430_28', 3
+ 	sprite: s32'tnn430_29', 3
+ 	sprite: s32'tnn430_30', 3
+ 	sprite: s32'tnn430_26', 3
+ 	sprite: s32'tnn430_27', 3
+ 	sprite: s32'tnn430_28', 3
+ 	sprite: s32'tnn430_29', 3
+ 	sprite: s32'tnn430_30', 3
+ 	sprite: s32'tnn430_26', 3
+ 	sprite: s32'tnn430_27', 3
+ 	sprite: s32'tnn430_28', 3
+ 	sprite: s32'tnn430_29', 3
+ 	sprite: s32'tnn430_30', 3
+ } endState: 
+ 
+ beginState: s32'Kikouho_S2_C' {
+ 	upon: (IMMEDIATE) {
+ 		callSubroutine: s32'Kikouhou_S_Init'
+ 	} endUpon: 
+ 	sprite: s32'tnn430_22', 2
+ 	flipDirection: 
+ 	setXSpeed: -50000
+ 	sprite: s32'tnn430_22', 2
+ 	setXSpeed: -100000
+ 	sprite: s32'tnn430_23', 2
+ 	sprite: s32'tnn430_23', 2
+ 	resetSpeed: 1
+ 	sprite: s32'tnn430_24', 2
+ 	sprite: s32'tnn430_24', 2
+ 	sprite: s32'tnn430_21', 4
+ 	sprite: s32'tnn430_22', 4
+ 	sprite: s32'tnn430_23', 4
+ 	sprite: s32'tnn430_24', 4
+ 	sprite: s32'tnn430_25', 3
+ 	facePose: (ANGRY)
+ 	callSubroutine: s32'tnn_430_Hole_Create'
+ 	createObject: s32'430_Beam_S_Eff', (ZERO)
+ 	createObject: s32'430_Mazzle_S_Eff', (ZERO)
+ 	createObject: s32'cmn_bigSmokeEff', (ZERO)
+ 	setXSpeed: -35000
+ 	xSpeedPerFrame: 80
+ 	setYSpeed: 45000
+ 	ySpeedPerFrame: 80
+ 	sprite: s32'tnn430_26', 3
+ 	sprite: s32'tnn430_27', 3
+ 	sprite: s32'tnn430_28', 3
+ 	sprite: s32'tnn430_29', 3
+ 	sprite: s32'tnn430_30', 3
+ 	sprite: s32'tnn430_26', 3
+ 	sprite: s32'tnn430_27', 3
+ 	sprite: s32'tnn430_28', 3
+ 	sprite: s32'tnn430_29', 3
+ 	sprite: s32'tnn430_30', 3
+ 	sprite: s32'tnn430_26', 3
+ 	sprite: s32'tnn430_27', 3
+ 	sprite: s32'tnn430_28', 3
+ 	sprite: s32'tnn430_29', 3
+ 	sprite: s32'tnn430_30', 3
+ } endState: 
+ 
+ beginState: s32'Kikouho_S3_C' {
+ 	upon: (IMMEDIATE) {
+ 		callSubroutine: s32'Kikouhou_S_Init'
+ 	} endUpon: 
+ 	sprite: s32'tnn430_22', 2
+ 	flipDirection: 
+ 	setXSpeed: -50000
+ 	sprite: s32'tnn430_22', 2
+ 	setXSpeed: -100000
+ 	sprite: s32'tnn430_23', 2
+ 	sprite: s32'tnn430_23', 2
+ 	setXSpeed: -50000
+ 	setYSpeed: -20000
+ 	sprite: s32'tnn430_24', 3
+ 	sprite: s32'tnn430_24', 1
+ 	resetSpeed: 1
+ 	sprite: s32'tnn430_21', 4
+ 	sprite: s32'tnn430_22', 4
+ 	sprite: s32'tnn430_23', 4
+ 	sprite: s32'tnn430_24', 4
+ 	sprite: s32'tnn430_21', 4
+ 	sprite: s32'tnn430_22', 4
+ 	sprite: s32'tnn430_23', 4
+ 	sprite: s32'tnn430_24', 1
+ 	sprite: s32'tnn430_25', 3
+ 	facePose: (ANGRY)
+ 	callSubroutine: s32'tnn_430_Hole_Create'
+ 	createObject: s32'430_Beam_S_Eff', (ZERO)
+ 	createObject: s32'430_Mazzle_S_Eff', (ZERO)
+ 	createObject: s32'cmn_bigSmokeEff', (ZERO)
+ 	setXSpeed: -35000
+ 	xSpeedPerFrame: 80
+ 	setYSpeed: 45000
+ 	ySpeedPerFrame: 80
+ 	sprite: s32'tnn430_26', 3
+ 	sprite: s32'tnn430_27', 3
+ 	sprite: s32'tnn430_28', 3
+ 	sprite: s32'tnn430_29', 3
+ 	sprite: s32'tnn430_30', 3
+ 	sprite: s32'tnn430_26', 3
+ 	sprite: s32'tnn430_27', 3
+ 	sprite: s32'tnn430_28', 3
+ 	sprite: s32'tnn430_29', 3
+ 	sprite: s32'tnn430_30', 3
+ } endState: 
+ 
+ beginSubroutine: s32'tnn_430_Hole_Create' {
+ 	ifVarOfObjectOperation: (IS_LESS_OR_EQUAL), (PARENT), var(PosY), int(400000) {
+ 		createObject: s32'tnn_430_Hole', (PLAYER_LAND)
+ 		applyTo: (PREVIOUS) {
+ 			addXPosition: 450000
+ 		} endApply: 
+ 	} endIf: 
+ 	else:  {
+ 		ifVarOfObjectOperation: (IS_LESS_OR_EQUAL), (PARENT), var(PosY), int(600000) {
+ 			createObject: s32'tnn_430_Hole', (PLAYER_LAND)
+ 			applyTo: (PREVIOUS) {
+ 				addXPosition: 600000
+ 			} endApply: 
+ 		} endIf: 
+ 		else:  {
+ 			ifVarOfObjectOperation: (IS_LESS_OR_EQUAL), (PARENT), var(PosY), int(800000) {
+ 				createObject: s32'tnn_430_Hole', (PLAYER_LAND)
+ 				applyTo: (PREVIOUS) {
+ 					addXPosition: 800000
+ 				} endApply: 
+ 			} endIf: 
+ 			else:  {
+ 				ifVarOfObjectOperation: (IS_LESS_OR_EQUAL), (PARENT), var(PosY), int(1000000) {
+ 					createObject: s32'tnn_430_Hole', (PLAYER_LAND)
+ 					applyTo: (PREVIOUS) {
+ 						addXPosition: 1000000
+ 					} endApply: 
+ 				} endIf: 
+ 				else:  {
+ 					ifVarOfObjectOperation: (IS_GREATER), (PARENT), var(PosY), int(1000001) {
+ 						createObject: s32'tnn_430_Hole', (PLAYER_LAND)
+ 						applyTo: (PREVIOUS) {
+ 							addXPosition: 1200000
+ 						} endApply: 
+ 					} endIf: 
+ 				} endElse: 
+ 			} endElse: 
+ 		} endElse: 
+ 	} endElse: 
+ } endSubroutine: 
+ 
+ beginState: s32'tnn_430_Hole' {
+ 	upon: (IMMEDIATE) {
+ 		linkParticle: s32'tnn_430_Hole'
+ 		destructionCollision: 0, 0, 0, 10000
+ 		effectForLandBreak: 1, 3000, 0, 0
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ } endState: 
+ 
+ beginState: s32'Kikouho_S_shot' {
+ 	upon: (IMMEDIATE) {
+ 		overdriveAttack: 
+ 		callSubroutine: s32'cmnAtkLevel_4_AtkInit'
+ 		callSubroutine: s32'cmnUltimateShot_AtkInit'
+ 		damage: 1699
+ 		minimalDamagePercent: 42
+ 		groundKnockbackEffect: (AIR_STRONG)
+ 		airKnockbackEffect: (AIR_STRONG)
+ 		attackXKnockback: 20000
+ 		attackYKnockback: -80000
+ 		airHitstun: 33
+ 		hitstop: 0
+ 		enemyHitstopAddition: 5, 10, 10
+ 		atkAdditionalHitCount: 1
+ 		wallBounceCount: 0
+ 		groundBounceCount: 1
+ 		groundBounceYVelocity: 25000
+ 		groundBounceYVelocityPercent: 100
+ 		disableAttackClashing: 1
+ 		atkFrontDirection: 0
+ 		attackDamageEffect: 4, s32'cmn_BomHit'
+ 		atkShakeCamera: s32'ShakeTate', 2000, 0, 30, 10
++		autoHitSignalSending: 1
+ 		if: var(ObjectParameter2) {
+ 			groundKnockbackEffect: (SPIN)
+ 			airKnockbackEffect: (SPIN)
+ 			attackXKnockback: 20000
+ 			attackYKnockback: 40000
+ 			groundBounceCount: 0
+ 			airHitstun: 40
+ 			enemyHitstopAddition: 5, 3, 3
+ 		} endIf: 
+ 		if: var(ObjectParameter1) {
+ 			atkDirectionReverse: 1
+ 			attackXKnockback: 0
+ 			if: var(ObjectParameter2) {
+ 				groundKnockbackEffect: (AIR_STRONG)
+ 				airKnockbackEffect: (AIR_STRONG)
+ 				attackYKnockback: -80000
+ 				groundBounceCount: 1
+ 				airHitstun: 35
+ 				enemyHitstopAddition: 5, 8, 8
+ 			} endIf: 
+ 		} endIf: 
+ 		damageSoundEffect: s32'ARC_BTL_CMN_Hit_Large-A'
+ 		guardSoundEffect: s32'ARC_BTL_CMN_Guard_Beam'
+ 		addYPosition: 300000
+ 		setActionTimeMax: 60
+ 		callSubroutine: s32'tnn_430_Hole_Create'
+ 		upon: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE) {
+ 			clearRegisteredUponCode: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE)
+ 			callSubroutine: s32'cmnUltimate_CameraCombo'
+ 		} endUpon: 
+ 		putObjectIntoStackEx: (SELF), (STACK5), (PLAYER), (STACK5)
+ 		checkIsObjectActive: (STACK5)
+ 		if: var(Result) {
+ 			exPointFResetObject: (STACK5), (ZERO), 0, 0
+ 			if: var(ObjectParameter1) {
+ 				setArg_objectParameters: int(1), int(0)
+ 				createObjectWithArg: s32'Kikouho_S_Eff', (EX_POINT_F)
+ 			} endIf: 
+ 			else:  {
+ 				createObjectWithArg: s32'Kikouho_S_Eff', (EX_POINT_F)
+ 			} endElse: 
+ 			linkObjectCollision: (PREVIOUS)
+ 		} endIf: 
+ 	} endUpon: 
+ 	sprite: s32'kikouho', 3
+ 	characterSfx: s32'ARC_BTL_TNN_Kikouho_Fire'
+ 	addWindPowerOffset: 0, 0, 0, 1000, 0, 170, 30
+ 	enableHitbox: 
+ } endState: 
+ 
+ beginState: s32'Kikouho_S_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		if: var(ObjectParameter1) {
+ 			flipDirection: 
+ 		} endIf: 
+ 		addYPosition: 300000
+ 		setActionTimeMax: 60
+ 	} endUpon: 
+ 	sprite: s32'kikouho', 3
+ } endState: 
+ 
+ beginState: s32'430_Tame_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkParticle: s32'tnn430_tame'
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		ignoreWorldStopByFriend: 1
+ 		setXPosition: 15000
+ 		setYPosition: 270000
+ 	} endUpon: 
+ 	sprite: s32'null', 25
+ 	setXPosition: 20000
+ 	sprite: s32'null', 5
+ 	setXPosition: 36000
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'430_TameSpark_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkParticle: s32'tnn430_tame_hand'
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		ignoreWorldStopByFriend: 1
+ 		setXPosition: 120000
+ 		setYPosition: 280000
+ 		setZPosition: 150000
+ 	} endUpon: 
+ 	sprite: s32'null', 30
+ 	characterSfx: s32'ARC_BTL_TNN_Kikouho_Chrg'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'430_TameSpark2_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkParticle: s32'tnn430_tame_hand'
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		ignoreWorldStopByFriend: 1
+ 		setXPosition: 120000
+ 		setYPosition: 280000
+ 		setZPosition: 250000
+ 	} endUpon: 
+ 	sprite: s32'null', 30
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'430_Mazzle_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkParticle: s32'tnn430_Mazzle'
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		addYPosition: 300000
+ 		addXPosition: 27000
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'430_Mazzle_S_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkParticle: s32'tnn430_Mazzle2'
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		addYPosition: 300000
+ 		addXPosition: 27000
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'430_Beam_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkParticle: s32'tnn430_burst'
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		addYPosition: 300000
+ 		setAngle: 38000
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'430_Beam_S_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkParticle: s32'tnn430_burst2'
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		addYPosition: 300000
+ 		setAngle: 38000
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'430_Aura_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkParticle: s32'tnn430_Aura'
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		ignoreWorldStopByFriend: 1
+ 		addYPosition: 200000
+ 		setAngle: -30000
+ 	} endUpon: 
+ 	sprite: s32'null', 240
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'430_AuraEnd_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkParticle: s32'tnn430_AuraEnd'
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		ignoreWorldStopByFriend: 1
+ 		addYPosition: 200000
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'430_AuraEnd_Eff_S' {
+ 	upon: (IMMEDIATE) {
+ 		linkParticle: s32'tnn430_AuraEnd'
+ 		ignoreWorldStopByAll: 1
+ 		addYPosition: 200000
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ } endState: 
+ 
+ beginState: s32'Sinkikouho_shot' {
+ 	upon: (IMMEDIATE) {
+ 		overdriveAttack: 
+ 		callSubroutine: s32'cmnAtkLevel_4_AtkInit'
+ 		callSubroutine: s32'cmnUltimateShot_AtkInit'
+ 		damage: 3600
+ 		chipDamagePercent: 30
+ 		minimalDamagePercent: 52
+ 		damageScalingOverride: 500
+ 		atkHoseiTadan: 1
+ 		hitstop: 0
+ 		enemyHitstopAddition: 30, 23, 23
+ 		groundKnockbackEffect: (AIR_STRONG)
+ 		airKnockbackEffect: (AIR_STRONG)
+ 		attackXKnockback: 30000
+ 		attackYKnockback: -150000
+ 		airHitstun: 100
+ 		attackGravity: 0
+ 		atkHitPositionType: 3, 0, 10
+ 		wallBounceCount: 0
+ 		groundBounceYVelocity: 35000
+ 		groundBounceGravity: 10000
+ 		groundBounceCount: 1
+ 		groundBounceYVelocityPercent: 100
+ 		slidingKnockdownDuration: 25
+ 		groundBounceUntechTime: 8000
+ 		disableOpponentRecovery: 0
+ 		disableAttackClashing: 1
+ 		atkDamageToRecovery: 1
+ 		atkFrontDirection: 2
+ 		attackDamageEffect: 4, s32'cmn_BomHit'
+ 		applyAttackLockWithStateName: s32'Sinkikouho_shot'
+ 		damageSoundEffect: s32'ARC_BTL_CMN_Hit_Large-A'
+ 		guardSoundEffect: s32'ARC_BTL_CMN_Guard_Beam'
+ 		setActionTimeMax: 60
+ 		addXPosition: -300000
+ 		createObject: s32'shinkikou_Beam_Eff', (ZERO)
+ 		ifOperation: (IS_GREATER_OR_EQUAL), var(ObjectParameter1), int(2) {
+ 			damage: 1000
+ 			minimalDamagePercent: 60
+ 		} endIf: 
+ 		upon: (AFTER_EXIT) {
+ 			clearRegisteredUponCode: (AFTER_EXIT)
+ 			copyVar: var(act1), int(1)
+ 		} endUpon: 
+ 		upon: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE) {
+ 			clearRegisteredUponCode: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE)
+ 			callSubroutine: s32'cmnUltimate_CameraCombo'
+ 			ifNot: var(act1) {
+ 				checkCurrentStateName: (PLAYER), s32'Sinkikouho'
+ 				if: var(Result) {
+ 					sendSignalName: (PLAYER), s32'Sinkikouho_Hit', 0
+ 				} endIf: 
+ 				checkCurrentStateName: (PLAYER), s32'AirSinkikouho'
+ 				if: var(Result) {
+ 					sendSignalName: (PLAYER), s32'Sinkikouho_Hit', 0
+ 				} endIf: 
+ 			} endIf: 
+ 		} endUpon: 
+ 		setEX_POINT_F: (PLAYER_LAND), 400000, 0
+ 		setArg_scale: int(800)
+ 		createParticleWithArg: s32'bg_groundsmokeL', (EX_POINT_F)
+ 		setEX_POINT_F: (PLAYER_LAND), -400000, 0
+ 		setArg_setDirection: 1
+ 		setArg_scale: int(1200)
+ 		createParticleWithArg: s32'bg_groundsmokeL', (EX_POINT_F)
+ 		effectForLandBreak: 1, 20000, 0, 0
+ 		destructionCollision: 0, 0, 0, 30000
+ 	} endUpon: 
+ 	sprite: s32'shinkikouho', 3
+ 	characterSfx: s32'ARC_BTL_TNN_ShinKikh_Fire'
+ 	addWindPowerOffset: 0, 0, 0, 1000, 0, 100, 30
+ 	enableHitbox: 
+ } endState: 
+ 
+ beginState: s32'shinkikou_Beam_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkObjectStop: (PARENT)
+ 	} endUpon: 
+ 	sprite: s32'null', 45
+ 	linkParticle: s32'tnn431_burst'
+ 	setAngle: 35000
+ 	addXPosition: 350000
+ } endState: 
+ 
+ beginState: s32'Enemy_Position' {
+ 	upon: (IMMEDIATE) {
+ 		upon: (IDLING) {
+ 			moveTo: (ENEMY_MAIN_PLAYER)
+ 		} endUpon: 
+ 		linkObjectChangeToEliminate: (PLAYER)
+ 		ignoreDispOnlyMe: 1
+ 	} endUpon: 
+ 	sprite: s32'null', 1000
+ } endState: 
+ 
+ beginState: s32'Tnn_hijump_obj' {
+ 	sprite: s32'null', 15
+ 	linkParticle: s32'cmn_hijump'
+ 	linkObjectPosition: (PARENT)
+ 	linkObjectStop: (PARENT)
+ 	linkObjectDamageToEliminate: (PARENT)
+ 	ignoreDispOnlyMe: 1
+ 	setYScale: 3000
+ } endState: 
+ 
+ beginState: s32'431_shot_Eff' {
+ 	upon: (IMMEDIATE) {
+ 		linkParticle: s32'tnn431_shot'
+ 		linkObjectPosition: (PARENT)
+ 		linkObjectChangeToEliminate: (PARENT)
+ 		ignoreWorldStopByFriend: 1
+ 		addYPosition: 360000
+ 		addXPosition: 50000
+ 		setAngle: -30000
+ 	} endUpon: 
+ 	sprite: s32'null', 240
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'FinishCamera_NmlAtk2C' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByFriend: 1
+ 		ignoreFinishStop: 1
+ 		resetCamera: 
+ 		linkCommonPawn: 
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	createObject: s32'cmn_syutyusen', (ENEMY_CENTER)
+ 	cmnSfx: s32'ARC_BTL_CMN_Hit_XLarge'
+ 	cameraShake: s32'ShakeTate', 1500, 3, 25, 3
+ 	cameraMotion: -211040, 86896, 40470, 4539, 12874, 0, 72, 0, 90, 30, 1
+ 	sprite: s32'null', 30
+ 	deactivateObjectByName: s32'cmn_syutyusen'
+ } endState: 
+ 
+ beginState: s32'FinishCamera_NmlAtkAir2C' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByFriend: 1
+ 		ignoreFinishStop: 1
+ 		resetCamera: 
+ 		linkCommonPawn: 
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	createObject: s32'cmn_syutyusen', (ENEMY_CENTER)
+ 	cmnSfx: s32'ARC_BTL_CMN_Hit_XLarge'
+ 	cameraShake: s32'ShakeTate', 1500, 3, 25, 3
+ 	cameraMotion: -69542, 353193, 54154, 3354, 2947, 0, 54, 0, 90, 30, 1
+ 	sprite: s32'null', 30
+ 	deactivateObjectByName: s32'cmn_syutyusen'
+ } endState: 
+ 
+ beginState: s32'FinishCamera_Toss' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByFriend: 1
+ 		ignoreFinishStop: 1
+ 		resetCamera: 
+ 		linkCommonPawn: 
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	createObject: s32'cmn_syutyusen', (ENEMY_CENTER)
+ 	cmnSfx: s32'ARC_BTL_CMN_Hit_XLarge'
+ 	cameraShake: s32'ShakeTate', 1500, 3, 25, 3
+ 	cameraMotion: -138215, 472418, 40084, 2727, 2962, 0, 54, 0, 90, 30, 1
+ 	sprite: s32'null', 30
+ 	deactivateObjectByName: s32'cmn_syutyusen'
+ } endState: 
+ 
+ beginState: s32'FinishCamera_Attack' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByFriend: 1
+ 		ignoreFinishStop: 1
+ 		resetCamera: 
+ 		linkCommonPawn: 
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	createObject: s32'cmn_syutyusen', (ENEMY_CENTER)
+ 	cmnSfx: s32'ARC_BTL_CMN_Hit_XLarge'
+ 	cameraShake: s32'ShakeTate', 1500, 3, 25, 3
+ 	cameraMotion: -13856, 341685, 166328, -1722, 2395, 0, 54, 0, 90, 30, 1
+ 	sprite: s32'null', 30
+ 	deactivateObjectByName: s32'cmn_syutyusen'
+ } endState: 
+ 
+ beginState: s32'FinishCamera_SayonaraTensan' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByFriend: 1
+ 		ignoreFinishStop: 1
+ 		resetCamera: 
+ 		linkCommonPawn: 
+ 	} endUpon: 
+ 	sprite: s32'null', 3
+ 	createObject: s32'cmn_syutyusen', (ENEMY_CENTER)
+ 	cmnSfx: s32'ARC_BTL_CMN_Hit_XLarge'
+ 	cameraShake: s32'ShakeTate', 2000, 3, 50, 10
+ 	moveCameraEx: (LOSER), -308384, 481512, 187997, -1600, 6261, 0, 54, 0, 180, 0, 0, 0, 0
+ 	sprite: s32'null', 3
+ 	moveCameraEx: (LOSER), -287293, 450706, 182224, -1600, 6261, 0, 54, 1, 180, 0, 0, 0, 0
+ 	sprite: s32'null', 3
+ 	moveCameraEx: (LOSER), -308384, 481512, 187997, -1600, 6261, 0, 54, 1, 180, 0, 0, 0, 0
+ 	sprite: s32'null', 3
+ 	moveCameraEx: (LOSER), -287293, 450706, 182224, -1600, 6261, 0, 54, 1, 180, 0, 0, 0, 0
+ 	sprite: s32'null', 3
+ 	moveCameraEx: (LOSER), -308384, 481512, 187997, -1600, 6261, 0, 54, 1, 180, 0, 0, 0, 0
+ 	sprite: s32'null', 3
+ 	moveCameraEx: (LOSER), -287293, 450706, 182224, -1600, 6261, 0, 54, 1, 180, 0, 0, 0, 0
+ 	sprite: s32'null', 42
+ 	moveCameraEx: (LOSER), -251313, 398154, 172337, -1600, 6261, 0, 54, 1, 180, 0, 0, 0, 0
+ 	sprite: s32'null', 30
+ 	deactivateObjectByName: s32'cmn_syutyusen'
+ 	spriteEnd: 
+ } endState: 
+ 
+ beginState: s32'FinishCamera_Kikouho' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByFriend: 1
+ 		ignoreFinishStop: 1
+ 		resetCamera: 
+ 		linkCommonPawn: 
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	createObject: s32'cmn_syutyusen', (ENEMY_CENTER)
+ 	cmnSfx: s32'ARC_BTL_CMN_Hit_XLarge'
+ 	cameraShake: s32'ShakeTate', 1500, 3, 50, 10
+ 	moveCameraEx: (ENEMY_MAIN_PLAYER), -230011, 433575, 205517, -2298, 5500, 0, 54, 0, 100, 20, 0, 2, 1
+ 	sprite: s32'null', 30
+ 	deactivateObjectByName: s32'cmn_syutyusen'
+ } endState: 
+ 
+ beginState: s32'FinishCamera_Sinkikouho' {
+ 	upon: (IMMEDIATE) {
+ 		ignoreWorldStopByFriend: 1
+ 		ignoreFinishStop: 1
+ 		resetCamera: 
+ 		linkCommonPawn: 
+ 	} endUpon: 
+ 	sprite: s32'null', 60
+ 	createObject: s32'cmn_syutyusen', (ENEMY_CENTER)
+ 	cmnSfx: s32'ARC_BTL_CMN_Hit_XLarge'
+ 	cameraShake: s32'ShakeTate', 2000, 3, 60, 10
+ 	moveCameraEx: (ENEMY_MAIN_PLAYER), -230011, 433575, 205517, -2298, 5500, 0, 54, 0, 100, 20, 0, 2, 1
+ 	sprite: s32'null', 30
+ 	deactivateObjectByName: s32'cmn_syutyusen'
+ } endState: 
+ 
+ beginState: s32'DUMMYDUMMY' {
+ 	sprite: s32'null', 1
+ } endState: 
+ 

@@ -1,6 +1,6 @@
---- 1.31/BBS_GNNEF.bbs	2023-05-23 14:16:13.374748951 +0200
-+++ 1.32/BBS_GNNEF.bbs	2023-05-23 14:14:48.994302182 +0200
-@@ -1,4582 +1,4588 @@
+--- 1.32/BBS_GNNEF.bbs	2023-05-24 20:54:46.935001090 +0200
++++ 1.33/BBS_GNNEF.bbs	2023-08-23 04:23:02.372909667 +0200
+@@ -1,4588 +1,4622 @@
  beginState: s32'dmy' {
  	sprite: s32'null', 1
  } endState: 
@@ -362,6 +362,33 @@
  		addXPosition: -300000
  		addYPosition: -75000
  	} endIf: 
++	checkInput: (INPUT_HOLD_KI)
++	if: var(Result) {
++		checkCurrentStateName: (PLAYER), s32'NmlAtk5D'
++		if: var(Result) {
++			spriteAddTime: 30
++		} endIf: 
++		checkCurrentStateName: (PLAYER), s32'NmlAtkAir5D'
++		if: var(Result) {
++			spriteAddTime: 30
++		} endIf: 
++		checkCurrentStateName: (PLAYER), s32'Comehere_GinyuForce'
++		if: var(Result) {
++			spriteAddTime: 30
++		} endIf: 
++		checkCurrentStateName: (PLAYER), s32'AirComehere_GinyuForce'
++		if: var(Result) {
++			spriteAddTime: 30
++		} endIf: 
++		checkCurrentStateName: (PLAYER), s32'Comehere_GinyuForce_214'
++		if: var(Result) {
++			spriteAddTime: 30
++		} endIf: 
++		checkCurrentStateName: (PLAYER), s32'AirComehere_GinyuForce_214'
++		if: var(Result) {
++			spriteAddTime: 30
++		} endIf: 
++	} endIf: 
  	enableSuperArmor: 1
  	displayModel: 0
  	setNoCollision: 0
@@ -875,16 +902,13 @@
  	mouthPose: (OPEN)
  	cameraShake: s32'ShakeTate', 400, 0, 5, 2
  	effectForDashStart: 104, 1, 1
--	setXSpeed: 75000
-+	setXSpeed: 95000
+ 	setXSpeed: 95000
  	xSpeedPerFrame: 105
  	changeWeight: 500
  	atkZReversal: 1
  	upon: (IDLING) {
--		ifOperation: (IS_GREATER), var(SpeedX), int(90000) {
--			setXSpeed: 85000
-+		ifOperation: (IS_GREATER), var(SpeedX), int(120000) {
-+			setXSpeed: 120000
+ 		ifOperation: (IS_GREATER), var(SpeedX), int(120000) {
+ 			setXSpeed: 120000
  			xSpeedPerFrame: 100
  		} endIf: 
  		ifOperation: (IS_LESS), var(EnemyFrontDistance), int(1000000) {
@@ -916,14 +940,13 @@
  	resetWeightDefault: 
  	upon: (ON_ATTACK_COLLISION_MAIN_PLAYER) {
  		clearRegisteredUponCode: (ON_ATTACK_COLLISION_MAIN_PLAYER)
--		percentageXSpeed: 30
-+		if: var(ObjectParameter2) {
-+			percentageXSpeed: 30
-+		} endIf: 
-+		else:  {
-+			setNoCollision: 0
-+			setWallCollision: 0
-+		} endElse: 
+ 		if: var(ObjectParameter2) {
+ 			percentageXSpeed: 30
+ 		} endIf: 
+ 		else:  {
+ 			setNoCollision: 0
+ 			setWallCollision: 0
+ 		} endElse: 
  	} endUpon: 
  	sprite: s32'rkn200_12', 1
  	createParticle: s32'bg_dash_default', (ZERO)
@@ -935,8 +958,7 @@
  	enableHitbox: 
  	sprite: s32'rkn200_13', 4
  	sprite: s32'rkn200_14', 2
--	xSpeedPerFrame: 50
-+	xSpeedPerFrame: 80
+ 	xSpeedPerFrame: 80
  	setNoCollision: 0
  	atkZReversal: 0
  	recoveryState: 
@@ -3541,8 +3563,7 @@
  		groundKnockbackEffect: (AIR_FACE_UP)
  		airKnockbackEffect: (AIR_FACE_UP)
  		attackXKnockback: 40000
--		attackYKnockback: 40000
-+		attackYKnockback: 30000
+ 		attackYKnockback: 30000
  		hitstop: 15
  		airHitstun: 40
  		atkFrontDirection: 0
@@ -3559,10 +3580,8 @@
  			copyVar: var(act1), int(8)
  		} endIf: 
  		ifOperation: (IS_EQUAL), var(ObjectParameter1), int(2) {
--			damage: 2500
--			minimalDamagePercent: 44
-+			damage: 2000
-+			minimalDamagePercent: 40
+ 			damage: 2000
+ 			minimalDamagePercent: 40
  			setScale: 1250
  			scaleForLinkIndependent: 1250
  			copyVar: var(act1), int(12)
@@ -3576,8 +3595,10 @@
  			groundKnockbackEffect: (SPIN)
  			airKnockbackEffect: (SPIN)
  			attackXKnockback: 45000
- 			attackYKnockback: 45000
- 			attackGravity: 2500
+-			attackYKnockback: 45000
+-			attackGravity: 2500
++			attackYKnockback: 25000
++			attackGravity: 1300
  			hitstop: 20
  			airHitstun: 50
  			disableOpponentRecovery: 0
@@ -3623,8 +3644,7 @@
  				damage: 2000
  			} endIf: 
  			ifOperation: (IS_EQUAL), var(ObjectParameter1), int(2) {
--				damage: 2500
-+				damage: 2000
+ 				damage: 2000
  			} endIf: 
  			ifOperation: (IS_EQUAL), var(ObjectParameter1), int(3) {
  				damage: 3000
@@ -3919,6 +3939,13 @@
  			else:  {
  				atkNoHitCombo: 1
  			} endElse: 
++			checkLastAttackHitStateName: (ENEMY_MAIN_PLAYER), s32'PEnergyWave_Shot'
++			if: var(Result) {
++				atkNoHitCombo: 0
++			} endIf: 
++			else:  {
++				atkNoHitCombo: 1
++			} endElse: 
  		} endUpon: 
  		upon: (SIGNAL5) {
  			clearRegisteredUponCode: (BEFORE_EXIT)

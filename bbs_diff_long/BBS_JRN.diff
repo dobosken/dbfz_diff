@@ -1,6 +1,6 @@
---- 1.31/BBS_JRN.bbs	2023-05-23 14:16:14.272764348 +0200
-+++ 1.32/BBS_JRN.bbs	2023-05-23 14:14:49.866317134 +0200
-@@ -1,7132 +1,7132 @@
+--- 1.32/BBS_JRN.bbs	2023-05-24 20:54:47.886016776 +0200
++++ 1.33/BBS_JRN.bbs	2023-08-23 04:23:03.365926588 +0200
+@@ -1,7132 +1,7201 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'jrn'
  } endSubroutine: 
@@ -419,6 +419,20 @@
  		skillEstInterval: 900
  		skillEstLevelLimit: 60
  	} endMove: 
++	addMove: s32'ExEnd_Chain' {
++		moveType: (OVERDRIVE)
++		characterState: (STANDING_OR_AIRBORNE)
++		moveInput: (INPUT_214)
++		moveInput: (INPUT_PRESS_L)
++		moveInput: (INPUT_PRESS_M)
++		moveInput: (INPUT_BOOLEAN_OR)
++		moveInput: (INPUT_214)
++		moveInput: (INPUT_PRESS_H)
++		moveInput: (INPUT_PRESS_KI)
++		addMoveCondition: (THREE)
++		isFollowupMove: 1
++		moveAlias: s32'ExEnd'
++	} endMove: 
  	addMove: s32'RC_Arenda' {
  		skillEstAtkBox: -325, -260, 255, 60
  		skillEstLevelLimit: 30
@@ -571,6 +585,7 @@
  	registerMove: s32'AirHPSlash'
  	registerMove: s32'HPUpper'
  	registerMove: s32'ExEnd'
++	registerMove: s32'ExEnd_Chain'
  	registerMove: s32'CmnActSparkingBurst'
  	registerMove: s32'RequestChangeMember1'
  	registerMove: s32'RequestChangeMember2'
@@ -2530,8 +2545,7 @@
  	setXSpeed: 90000
  	xSpeedPerFrame: 70
  	createObject: s32'jrn230_Smoke_Eff', (PLAYER_LAND)
--	sprite: s32'jrn230_02', 2
-+	sprite: s32'jrn230_02', 1
+ 	sprite: s32'jrn230_02', 1
  	attackVoice: 0, -1
  	cmnSfx: s32'ARC_BTL_CMN_Furi_Hook'
  	sprite: s32'jrn230_03', 1
@@ -2562,19 +2576,18 @@
  		callSubroutine: s32'cmnNmlAtk5B_AtkInit'
  		callSubroutine: s32'cmnNmlAtk5B_Init'
  		addGatlingOption: s32'NmlAtk2D'
++		addGatlingOption: s32'NmlAtk2A'
  	} endUpon: 
  	sprite: s32'jrn203_00', 1
  	facePose: (STRESSED)
--	sprite: s32'jrn203_01', 2
-+	sprite: s32'jrn203_01', 1
+ 	sprite: s32'jrn203_01', 1
  	sprite: s32'jrn203_02', 1
  	sprite: s32'jrn203_03', 1
  	setXSpeed: 110000
  	xSpeedPerFrame: 80
  	attackVoice: 1, 112
  	sprite: s32'jrn203_04', 1
--	sprite: s32'jrn203_05', 2
-+	sprite: s32'jrn203_05', 1
+ 	sprite: s32'jrn203_05', 1
  	xSpeedPerFrame: 60
  	effectForLanding: 100, 1, 0
  	cmnSfx: s32'ARC_BTL_CMN_Furi_Keri'
@@ -2636,8 +2649,7 @@
  	attackVoice: 1, 112
  	sprite: s32'jrn231_03', 2
  	cmnSfx: s32'ARC_BTL_CMN_Furi_SyagamiKeri'
--	sprite: s32'jrn231_04', 4
-+	sprite: s32'jrn231_04', 2
+ 	sprite: s32'jrn231_04', 2
  	sprite: s32'jrn231_05', 1
  	enableHitbox: 
  	callSubroutine: s32'cmnRendaChain_Clear_Idling'
@@ -3967,10 +3979,12 @@
  	facePose: (STRESSED)
  	sprite: s32'jrn400_01', 1
  	sprite: s32'jrn400_02', 1
- 	sprite: s32'jrn400_03', 2
+-	sprite: s32'jrn400_03', 2
++	sprite: s32'jrn400_03', 1
  	characterSfx: s32'ARC_BTL_JRN_Justice_Bishi'
  	randomVoice: s16'vxxx200', 100, s16'vxxx201', 100, s16'vxxx202', 100, s16'', 0
- 	sprite: s32'jrn400_04', 2
+-	sprite: s32'jrn400_04', 2
++	sprite: s32'jrn400_04', 1
  	sprite: s32'jrn400_05', 1
  	sprite: s32'jrn400_06', 2
  	sendSignalName: (SELF), s32'Justice_Set', 0
@@ -3999,14 +4013,19 @@
  	upon: (IMMEDIATE) {
  		callSubroutine: s32'Justice_Init'
  	} endUpon: 
- 	sprite: s32'jrn400_00', 3
+-	sprite: s32'jrn400_00', 3
++	sprite: s32'jrn400_00', 2
  	facePose: (ANGRY)
- 	sprite: s32'jrn400_01', 3
- 	sprite: s32'jrn400_02', 3
- 	sprite: s32'jrn400_03', 3
+-	sprite: s32'jrn400_01', 3
+-	sprite: s32'jrn400_02', 3
+-	sprite: s32'jrn400_03', 3
++	sprite: s32'jrn400_01', 2
++	sprite: s32'jrn400_02', 2
++	sprite: s32'jrn400_03', 2
  	characterSfx: s32'ARC_BTL_JRN_Justice_Bishi'
  	randomVoice: s16'vxxx200', 100, s16'vxxx201', 100, s16'vxxx202', 100, s16'', 0
- 	sprite: s32'jrn400_04', 3
+-	sprite: s32'jrn400_04', 3
++	sprite: s32'jrn400_04', 2
  	sprite: s32'jrn400_05', 1
  	sprite: s32'jrn400_06', 2
  	sendSignalName: (SELF), s32'Justice_Set', 0
@@ -4041,11 +4060,14 @@
  	sprite: s32'jrn400_00', 2
  	facePose: (STRESSED)
  	sprite: s32'jrn400_01', 2
- 	sprite: s32'jrn400_02', 3
- 	sprite: s32'jrn400_03', 3
+-	sprite: s32'jrn400_02', 3
+-	sprite: s32'jrn400_03', 3
++	sprite: s32'jrn400_02', 2
++	sprite: s32'jrn400_03', 2
  	characterSfx: s32'ARC_BTL_JRN_Justice_Bishi'
  	randomVoice: s16'vxxx200', 100, s16'vxxx201', 100, s16'vxxx202', 100, s16'', 0
- 	sprite: s32'jrn400_04', 3
+-	sprite: s32'jrn400_04', 3
++	sprite: s32'jrn400_04', 2
  	sprite: s32'jrn400_05', 1
  	sprite: s32'jrn400_06', 2
  	sendSignalName: (SELF), s32'Justice_Set', 0
@@ -4081,10 +4103,12 @@
  	facePose: (STRESSED)
  	sprite: s32'jrn401_01', 1
  	sprite: s32'jrn401_02', 1
- 	sprite: s32'jrn401_03', 2
+-	sprite: s32'jrn401_03', 2
++	sprite: s32'jrn401_03', 1
  	characterSfx: s32'ARC_BTL_JRN_Justice_Bishi'
  	randomVoice: s16'vxxx200', 100, s16'vxxx201', 100, s16'vxxx202', 100, s16'', 0
- 	sprite: s32'jrn401_04', 2
+-	sprite: s32'jrn401_04', 2
++	sprite: s32'jrn401_04', 1
  	sprite: s32'jrn401_05', 1
  	sprite: s32'jrn401_06', 2
  	sendSignalName: (SELF), s32'Justice_Set', 0
@@ -4123,15 +4147,20 @@
  	upon: (IMMEDIATE) {
  		callSubroutine: s32'Justice_Init'
  	} endUpon: 
- 	sprite: s32'jrn401_00', 3
+-	sprite: s32'jrn401_00', 3
++	sprite: s32'jrn401_00', 2
  	resetSpeed: 1
  	facePose: (ANGRY)
- 	sprite: s32'jrn401_01', 3
- 	sprite: s32'jrn401_02', 3
- 	sprite: s32'jrn401_03', 3
+-	sprite: s32'jrn401_01', 3
+-	sprite: s32'jrn401_02', 3
+-	sprite: s32'jrn401_03', 3
++	sprite: s32'jrn401_01', 2
++	sprite: s32'jrn401_02', 2
++	sprite: s32'jrn401_03', 2
  	characterSfx: s32'ARC_BTL_JRN_Justice_Bishi'
  	randomVoice: s16'vxxx200', 100, s16'vxxx201', 100, s16'vxxx202', 100, s16'', 0
- 	sprite: s32'jrn401_04', 3
+-	sprite: s32'jrn401_04', 3
++	sprite: s32'jrn401_04', 2
  	sprite: s32'jrn401_05', 1
  	sprite: s32'jrn401_06', 2
  	sendSignalName: (SELF), s32'Justice_Set', 0
@@ -4176,11 +4205,14 @@
  	resetSpeed: 1
  	facePose: (ANGRY)
  	sprite: s32'jrn401_01', 2
- 	sprite: s32'jrn401_02', 3
- 	sprite: s32'jrn401_03', 3
+-	sprite: s32'jrn401_02', 3
+-	sprite: s32'jrn401_03', 3
++	sprite: s32'jrn401_02', 2
++	sprite: s32'jrn401_03', 2
  	characterSfx: s32'ARC_BTL_JRN_Justice_Bishi'
  	randomVoice: s16'vxxx200', 100, s16'vxxx201', 100, s16'vxxx202', 100, s16'', 0
- 	sprite: s32'jrn401_04', 3
+-	sprite: s32'jrn401_04', 3
++	sprite: s32'jrn401_04', 2
  	sprite: s32'jrn401_05', 1
  	sprite: s32'jrn401_06', 2
  	sendSignalName: (SELF), s32'Justice_Set', 0
@@ -4391,6 +4423,7 @@
  		checkLastStateName: s32'Shock_B'
  		if: var(Result) {
  			damage: 2400
++			attackGravity: 1600
  			copyVar: var(act0), int(1)
  		} endIf: 
  		checkLastStateName: s32'Shock_C'
@@ -4946,6 +4979,12 @@
  	sprite: s32'jrn430_23', 20
  	clearRegisteredUponCode: (SIGNAL0)
  	clearRegisteredUponCode: (SIGNAL1)
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'ExEnd'
++		addGatlingOption: s32'ExEnd_Chain'
++		whiffCancelOptionBufferTime: s32'ExEnd', 60
++		whiffCancelOptionBufferTime: s32'ExEnd_Chain', 60
++	} endIf: 
  	sprite: s32'jrn430_24', 4
  	resetSpeed: 1
  	objectGravity: 
@@ -5079,6 +5118,12 @@
  	sprite: s32'jrn430_23', 20
  	clearRegisteredUponCode: (SIGNAL0)
  	clearRegisteredUponCode: (SIGNAL1)
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'ExEnd'
++		addGatlingOption: s32'ExEnd_Chain'
++		whiffCancelOptionBufferTime: s32'ExEnd', 40
++		whiffCancelOptionBufferTime: s32'ExEnd_Chain', 40
++	} endIf: 
  	sprite: s32'jrn430_24', 4
  	resetSpeed: 1
  	objectGravity: 
@@ -5136,12 +5181,12 @@
  		playerActionInitializeByCategory: 20, 1
  		callSubroutine: s32'cmnAtkLevel_4_AtkInit'
  		callSubroutine: s32'cmn_UltimateHosei'
--		damage: 2600
-+		damage: 2800
+ 		damage: 2800
  		minimalDamagePercent: 35
  		groundKnockbackEffect: (KirimomiLand)
  		airKnockbackEffect: (KirimomiLand)
- 		airHitstun: 60
+-		airHitstun: 60
++		airHitstun: 81
  		disableAttackClashing: 1
  		attackXKnockback: -2000
  		attackYKnockback: 80000
@@ -5251,6 +5296,12 @@
  	enableSuperArmor: 0
  	clearRegisteredUponCode: (IDLING)
  	recoveryState: 
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'ExEnd'
++		addGatlingOption: s32'ExEnd_Chain'
++		whiffCancelOptionBufferTime: s32'ExEnd', 60
++		whiffCancelOptionBufferTime: s32'ExEnd_Chain', 60
++	} endIf: 
  	sprite: s32'jrn431_20', 5
  	sprite: s32'jrn431_21', 5
  	sprite: s32'jrn431_22', 5
@@ -5314,11 +5365,45 @@
  			} endElse: 
  		} endUpon: 
  		tensionUsage: 30000
++		if: var(EnemyInHitstun) {
++			checkLastStateName: s32'HPSlash'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'AirHPSlash'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'HPUpper'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++		} endIf: 
  	} endUpon: 
++	if: var(IsLand) {
++		gotoLabel: s32'start'
++	} endIf: 
++	sprite: s32'jrn038_00', 300
++	enableSuperArmor: 1
++	resetSpeed: 1
++	displayModel: 0
++	setNoCollision: 0
++	createParticle: s32'cmn_Warp', (CENTER)
++	cmnSfx: s32'ARC_BTL_CMN_TLP_Short'
++	warpSelfDirOffset: (ENEMY_MAIN_PLAYER), (PLAYER_LAND), -400000, 0, 10
++	upon: (TOUCH_GROUND) {
++		clearRegisteredUponCode: (TOUCH_GROUND)
++		jumpToLabel: s32'start'
++	} endUpon: 
++	spriteEnd: 
++	label: s32'start'
  	sprite: s32'jrn432_00', 2
  	faceAnimation: 502
  	enableSuperArmor: 1
  	resetSpeed: 1
++	clearRegisteredUponCode: (IDLING)
++	displayModel: 1
++	setNoCollision: 1
  	sprite: s32'jrn432_01', 3
  	sprite: s32'jrn432_02', 3
  	characterSfx: s32'ARC_BTL_JRN_ExEnd_Basa'

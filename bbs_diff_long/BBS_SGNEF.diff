@@ -1,6 +1,6 @@
---- 1.31/BBS_SGNEF.bbs	2023-05-23 14:16:16.806807797 +0200
-+++ 1.32/BBS_SGNEF.bbs	2023-05-23 14:14:52.255358096 +0200
-@@ -1,3298 +1,3298 @@
+--- 1.32/BBS_SGNEF.bbs	2023-05-24 20:54:50.684062926 +0200
++++ 1.33/BBS_SGNEF.bbs	2023-08-23 04:23:05.754967298 +0200
+@@ -1,3298 +1,3306 @@
  beginState: s32'dmy' {
  	sprite: s32'null', 1
  } endState: 
@@ -1280,19 +1280,16 @@
  		airKnockbackEffect: (AIR_FACE_UP)
  		attackXKnockback: 5000
  		attackYKnockback: 10000
--		blockstun: 11
-+		blockstun: 18
+ 		blockstun: 18
  		wallBounceCount: 0
--		airHitstun: 30
-+		airHitstun: 35
+ 		airHitstun: 35
  		guardPushback: 50
  		attackYSuctionBaseObject: (PREVIOUS), (CENTER), -200000, 100000, 100, 0
  		atkRange: 50000000, -325000, 0, 0
  		checkCurrentStateName: (PLAYER), s32'AssistAttack'
  		if: var(Result) {
  			damage: 200
--			airHitstun: 30
-+			airHitstun: 40
+ 			airHitstun: 40
  			damageScalingOverride: 1000
  			atkRange: 50000000, -410000, 0, 0
  		} endIf: 
@@ -1628,8 +1625,7 @@
  		attackXKnockback: 5000
  		attackYKnockback: 10000
  		wallBounceCount: 0
--		airHitstun: 25
-+		airHitstun: 37
+ 		airHitstun: 37
  		attackYSuctionBaseObject: (PREVIOUS), (ZERO), -200000, 50000, 100, 0
  		atkRange: 50000000, -325000, 0, 0
  		atkSousaiSevereCheck: 1
@@ -1646,8 +1642,7 @@
  		upon: (SIGNAL7) {
  			groundKnockbackEffect: (SPIN)
  			airKnockbackEffect: (SPIN)
--			attackXKnockback: 26000
-+			attackXKnockback: 16000
+ 			attackXKnockback: 16000
  			attackYKnockback: 32000
  			attackYSuctionBaseObject: (NULL), (ZERO), 0, 0, 0, 0
  			groundBounceCount: 0
@@ -1911,6 +1906,13 @@
  			attackYSuction: 0, 0, 0, 0, 0
  			airHitstun: 22
  			enemyHitstopAddition: 0, 8, 8
++			ifVarOfObjectTrue: (PLAYER), var(act1) {
++				attackXKnockback: 80000
++				attackYKnockback: 35000
++				airHitstun: 36
++				wallBounceCount: 1
++				wallBounceXVelocityPercent: 0
++			} endIf: 
  			ifVarOfObjectFalse: (PLAYER), var(PlayerDamage) {
  				enableHitbox: 
  			} endIf: 
@@ -2186,6 +2188,7 @@
  
  beginState: s32'sgn_430_kaijo_Eff' {
  	upon: (IMMEDIATE) {
++		linkObjectStop: (PARENT)
  		linkParticle: s32'sgn430_kaijo'
  		setScale: 750
  		addYPosition: -100000

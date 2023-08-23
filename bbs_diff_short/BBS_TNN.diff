@@ -1,0 +1,97 @@
+1681,1684c1681,1684
+< 	sprite: s32'tnn310_03', 2
+< 	sprite: s32'tnn310_04', 2
+< 	sprite: s32'tnn310_05', 2
+< 	sprite: s32'tnn310_06', 3
+---
+> 	sprite: s32'tnn310_03', 1
+> 	sprite: s32'tnn310_04', 1
+> 	sprite: s32'tnn310_05', 1
+> 	sprite: s32'tnn310_06', 1
+2409a2410,2412
+> 	setXSpeed: 50000
+> 	xSpeedPerFrame: 90
+> 	addPositionX: 100000
+2410a2414
+> 	xSpeedPerFrame: 85
+2895,2897d2898
+< 		upon: (ON_ATTACK_COLLISION_MAIN_PLAYER) {
+< 			attackGuardtype: (MID)
+< 		} endUpon: 
+3953a3955
+> 			addTensionUnscaled: 0, 5000
+4011a4014
+> 			addTensionUnscaled: 0, 5000
+4071a4075
+> 			addTensionUnscaled: 0, 5000
+5171a5176,5178
+> 	enableWhiffCancel: 1
+> 	addWhiffCancelOption: s32'CmnActHomingDash'
+> 	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 10
+5287a5295,5297
+> 	enableWhiffCancel: 1
+> 	addWhiffCancelOption: s32'CmnActHomingDash'
+> 	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 10
+5356c5366
+< 	sprite: s32'tnn407_01', 4
+---
+> 	sprite: s32'tnn407_01', 2
+5359c5369
+< 	sprite: s32'tnn407_02', 4
+---
+> 	sprite: s32'tnn407_02', 2
+5374a5385,5395
+> 	spriteEnd: 
+> 	upon: (IDLING) {
+> 		ifNot: var(act0) {
+> 			checkInput: (INPUT_PRESS_KI)
+> 			if: var(Result) {
+> 				clearRegisteredUponCode: (IDLING)
+> 				copyVar: var(plr0), int(0)
+> 				jumpToLabel: s32'stop'
+> 			} endIf: 
+> 		} endIf: 
+> 	} endUpon: 
+5383a5405
+> 	clearRegisteredUponCode: (IDLING)
+5399c5421,5425
+< 	addTension: 300
+---
+> 	if: var(act0) {
+> 		addTension: 300
+> 	} endIf: 
+> 	copyVar: var(plr0), int(0)
+> 	clearRegisteredUponCode: (IDLING)
+5403a5430,5433
+> 	ifNot: var(act0) {
+> 		enableNormals: 1
+> 		enableSpecials: 1
+> 	} endIf: 
+6128a6159,6164
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Sinkikouho'
+> 		addGatlingOption: s32'AirSinkikouho'
+> 		whiffCancelOptionBufferTime: s32'Sinkikouho', 30
+> 		whiffCancelOptionBufferTime: s32'AirSinkikouho', 30
+> 	} endIf: 
+6275a6312,6317
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Sinkikouho'
+> 		addGatlingOption: s32'AirSinkikouho'
+> 		whiffCancelOptionBufferTime: s32'Sinkikouho', 30
+> 		whiffCancelOptionBufferTime: s32'AirSinkikouho', 30
+> 	} endIf: 
+6462a6505,6510
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Sinkikouho'
+> 		addGatlingOption: s32'AirSinkikouho'
+> 		whiffCancelOptionBufferTime: s32'Sinkikouho', 30
+> 		whiffCancelOptionBufferTime: s32'AirSinkikouho', 30
+> 	} endIf: 
+6609a6658,6663
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Sinkikouho'
+> 		addGatlingOption: s32'AirSinkikouho'
+> 		whiffCancelOptionBufferTime: s32'Sinkikouho', 30
+> 		whiffCancelOptionBufferTime: s32'AirSinkikouho', 30
+> 	} endIf: 

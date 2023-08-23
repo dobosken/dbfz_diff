@@ -1,54 +1,110 @@
-1498c1498
-< 		airHitstun: 36
+2554,2555d2553
+< 		removeGatlingOption: s32'NmlAtk5A'
+< 		removeWhiffCancelOption: s32'NmlAtk5A'
+2556a2555,2556
+> 	checkLastStateName: s32'NmlAtk5A'
+> 	gotoLabelIfTrue: s32'Renda', var(Result)
+2557a2558
+> 	label: s32'Renda'
+2559a2561,2562
+> 	checkLastStateName: s32'NmlAtk5A'
+> 	spriteOverrideTime: 3, var(Result)
+2750c2753
+< 	sprite: s32'ght230_03', 3
 ---
-> 		airHitstun: 40
-1656a1657,1690
-> 	sprite: s32'ght233_07', 1
-> 	setXSpeed: 5000
-> 	setYSpeed: 12000
-> 	objectGravity: 
-> 	sprite: s32'ght233_08', 2
-> 	createObject: s32'jumpkidan_2D_start', (EX_POINT_0)
-> 	sprite: s32'ght233_09', 1
-> 	voiceLine: s16'vxxx109'
-> 	characterSfx: s32'ARC_BTL_GHT_NmtnKame_Chrg'
-> 	landingRecovery: 6, 1
-> 	sprite: s32'ght233_10', 1
-> 	percentageXSpeed: 60
-> 	percentageYSpeed: 50
-> 	percentageGravity: 50
-> 	sprite: s32'ght233_11', 1
-> 	percentageXSpeed: 60
-> 	percentageYSpeed: 50
-> 	percentageGravity: 50
-> 	sprite: s32'ght233_12', 1
-> 	percentageYSpeed: 50
-> 	percentageGravity: 50
-> 	sprite: s32'ght233_13', 2
-> 	sprite: s32'ght233_14', 2
-> 	cmnSfx: s32'ARC_BTL_CMN_Furi_FuriOroshi'
-> 	sprite: s32'ght233_13', 2
-> 	sprite: s32'ght233_14', 2
-> 	sprite: s32'ght233_15', 3
-> 	setGravity: 1200
-> 	sprite: s32'ght233_16', 2
-> 	createObject: s32'crouchkidan', (EX_POINT_0)
-> 	cmnSfx: s32'ARC_BTL_CMN_kidan_Fire1'
-> 	sprite: s32'ght233_17', 1
-> 	sprite: s32'ght233_18', 1
-> 	sprite: s32'ght233_19', 1
-1659,1661c1693,1695
-< 	sprite: s32'ght233_07', 2
+> 	sprite: s32'ght230_03', 5
+2751a2755,2756
+> 	setXSpeed: 40000
+> 	xSpeedPerFrame: 70
+2757,2758c2762,2763
+< 	sprite: s32'ght230_06', 3
+< 	sprite: s32'ght230_07', 3
+---
+> 	sprite: s32'ght230_06', 2
+> 	sprite: s32'ght230_07', 2
+2765c2770
+< 	sprite: s32'ght230_03', 3
+---
+> 	sprite: s32'ght230_03', 5
+2772,2773c2777,2778
+< 	sprite: s32'ght230_06', 3
+< 	sprite: s32'ght230_07', 3
+---
+> 	sprite: s32'ght230_06', 2
+> 	sprite: s32'ght230_07', 2
+2786,2787c2791,2792
+< 	sprite: s32'ght203_02', 2
 < 	setXSpeed: 30000
-< 	setYSpeed: 15000
 ---
-> 	sprite: s32'ght233_07', 5
-> 	setXSpeed: 5000
-> 	setYSpeed: 20000
-1680c1714
-< 	sprite: s32'ght233_13', 1
+> 	sprite: s32'ght203_02', 1
+> 	setXSpeed: 45000
+2789c2794
+< 	sprite: s32'ght203_03', 2
 ---
-> 	sprite: s32'ght233_13', 2
-1682a1717,1718
-> 	sprite: s32'ght233_13', 2
-> 	sprite: s32'ght233_14', 2
+> 	sprite: s32'ght203_03', 1
+2833c2838
+< 	setXSpeed: 80000
+---
+> 	setXSpeed: 100000
+3208a3214,3216
+> 		attackXKnockback: 12000
+> 		airHitstun: 24
+> 		airKnockbackEffect: (KirimomiLand)
+3591a3600
+> 	atkEasyGuard: 1
+4007c4016
+< 	sprite: s32'ght401_00', 2
+---
+> 	sprite: s32'ght401_00', 1
+4019c4028
+< 	sprite: s32'ght401_05', 2
+---
+> 	sprite: s32'ght401_05', 1
+4021c4030
+< 	setXSpeed: 10000
+---
+> 	setXSpeed: 20000
+4696c4705
+< 	sprite: s32'ght401_00', 2
+---
+> 	sprite: s32'ght401_00', 1
+4710c4719
+< 	sprite: s32'ght401_05', 2
+---
+> 	sprite: s32'ght401_05', 1
+4712c4721
+< 	setXSpeed: 35000
+---
+> 	setXSpeed: 70000
+4730a4740
+> 	setYSpeed: 22000
+5858a5869,5871
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'Oyako_Kamehameha'
+> 		} endIf: 
+5864c5877,5878
+< 	sprite: s32'ght430_02', 2
+---
+> 	sprite: s32'ght430_02', 1
+> 	sprite: s32'ght430_02', 1
+5865a5880
+> 	enableSuperArmor: 1
+5940a5956,5964
+> 	enableWhiffCancel: 1
+> 	addWhiffCancelOption: s32'CmnActHomingDash'
+> 	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 10
+> 	sprite: s32'ght430_15', 3
+> 	sprite: s32'ght430_13', 3
+> 	sprite: s32'ght430_14', 3
+> 	sprite: s32'ght430_15', 3
+> 	sprite: s32'ght430_13', 3
+> 	sprite: s32'ght430_14', 3
+5943d5966
+< 	recoveryState: 
+6005a6029,6034
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'Kamehameha'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 		} endIf: 

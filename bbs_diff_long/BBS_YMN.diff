@@ -1,6 +1,6 @@
---- 1.31/BBS_YMN.bbs	2023-05-23 14:16:19.660856732 +0200
-+++ 1.32/BBS_YMN.bbs	2023-05-23 14:14:54.588398098 +0200
-@@ -1,8517 +1,8522 @@
+--- 1.32/BBS_YMN.bbs	2023-05-24 20:54:53.624111418 +0200
++++ 1.33/BBS_YMN.bbs	2023-08-23 04:23:08.152008145 +0200
+@@ -1,8522 +1,8547 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'ymn'
  } endSubroutine: 
@@ -1651,8 +1651,7 @@
  	attackDamageEffect: 4, s32'cmn_hit_sp'
  	attackLevel: 3
  	damage: 300
--	hitstop: 6
-+	hitstop: 11
+ 	hitstop: 11
  	disableHitstop: 0
  	attackXKnockback: 5000
  	attackYKnockback: 8000
@@ -2744,8 +2743,8 @@
  	sprite: s32'ymn203_01', 1
  	sprite: s32'ymn203_02', 1
  	sprite: s32'ymn203_03', 2
-+	enableSuperArmor: 1
-+	superArmorLoseLow: 0
+ 	enableSuperArmor: 1
+ 	superArmorLoseLow: 0
  	sprite: s32'ymn203_04', 2
  	attackVoice: 1, -1
  	sprite: s32'ymn203_05', 3
@@ -2753,7 +2752,7 @@
  	sprite: s32'ymn203_07', 2
  	cmnSfx: s32'ARC_BTL_CMN_Furi_Hook'
  	sprite: s32'ymn203_08', 1
-+	enableSuperArmor: 0
+ 	enableSuperArmor: 0
  	setXSpeed: 50000
  	xSpeedPerFrame: 90
  	sprite: s32'ymn203_09', 1
@@ -2876,7 +2875,7 @@
  	sprite: s32'ymn204_01', 1
  	sprite: s32'ymn204_02', 1
  	sprite: s32'ymn204_03', 1
-+	enableSuperArmor: 1
+ 	enableSuperArmor: 1
  	sprite: s32'ymn204_04', 1
  	sprite: s32'ymn204_05', 1
  	sprite: s32'ymn204_06', 1
@@ -2896,7 +2895,7 @@
  	sprite: s32'ymn204_14', 1
  	effectForLanding: 100, 0, 1
  	sprite: s32'ymn204_15', 1
-+	enableSuperArmor: 0
+ 	enableSuperArmor: 0
  	createObject: s32'ymn204_Smoke3', (ZERO)
  	attackVoice: 2, -1
  	sprite: s32'ymn204_16', 1
@@ -3222,6 +3221,7 @@
  		attackYKnockback: 25000
  		guardPushback: 150
  		attackFinishBlowback: 1
++		airHitstun: 22
  		addGatlingOption: s32'NmlAtkAir2C'
  		addGatlingOption: s32'NmlAtkAir5D'
  		if: var(IsSparking) {
@@ -3432,6 +3432,8 @@
  		atkGuardCommonBankSE: 3, s32'ARC_BTL_CMN_Grd_BeamLoop_LP', 0
  		enableWhiffCancel: 1
  		addWhiffCancelOption: s32'RFK_sen'
++		addWhiffCancelOption: s32'RFK_mae'
++		addWhiffCancelOption: s32'RFK_ushiro'
  		copyVar: var(obj0), int(0)
  		copyVar: var(obj1), int(0)
  		upon: (ATTACK_COLLISION) {
@@ -3598,6 +3600,8 @@
  	enableWhiffCancel: 0
  	sprite: s32'ymn400_20', 2
  	resetSpeed: 1
++	addGatlingOption: s32'CmnActRushStart'
++	whiffCancelOptionBufferTime: s32'CmnActRushStart', 10
  	sprite: s32'ymn400_21', 2
  	sprite: s32'ymn400_22', 2
  	sprite: s32'ymn400_23', 2
@@ -3627,6 +3631,8 @@
  		atkGuardCommonBankSE: 3, s32'ARC_BTL_CMN_Grd_BeamLoop_LP', 0
  		enableWhiffCancel: 1
  		addWhiffCancelOption: s32'RFK_sen'
++		addWhiffCancelOption: s32'RFK_mae'
++		addWhiffCancelOption: s32'RFK_ushiro'
  		copyVar: var(obj0), int(0)
  		copyVar: var(obj1), int(0)
  		upon: (ATTACK_COLLISION) {
@@ -3679,6 +3685,8 @@
  				ignorePushback: 1
  				setNoCollision: 0
  				removeWhiffCancelOption: s32'RFK_sen'
++				removeWhiffCancelOption: s32'RFK_mae'
++				removeWhiffCancelOption: s32'RFK_ushiro'
  				damage: 400
  				callSubroutine: s32'cmn_KuzushiHosei'
  				jumpToLabel: s32'ura'
@@ -3712,6 +3720,8 @@
  	faceOpponent: 
  	sprite: s32'keep', 4
  	addWhiffCancelOption: s32'RFK_sen'
++	addWhiffCancelOption: s32'RFK_mae'
++	addWhiffCancelOption: s32'RFK_ushiro'
  	sprite: s32'ymn400_08', 2
  	createParticle: s32'cmn_Warp', (CENTER)
  	cmnSfx: s32'ARC_BTL_CMN_TLP_Short_Assist'
@@ -3851,6 +3861,8 @@
  	enableWhiffCancel: 0
  	sprite: s32'ymn400_20', 2
  	resetSpeed: 1
++	addGatlingOption: s32'CmnActRushStart'
++	whiffCancelOptionBufferTime: s32'CmnActRushStart', 10
  	sprite: s32'ymn400_21', 2
  	sprite: s32'ymn400_22', 2
  	sprite: s32'ymn400_23', 2
@@ -3897,7 +3909,8 @@
  			stopBankSE: 3, 6
  		} endUpon: 
  	} endUpon: 
- 	sprite: s32'ymn400_00', 2
+-	sprite: s32'ymn400_00', 2
++	sprite: s32'ymn400_00', 1
  	facePose: (ANGRY)
  	mouthPose: (OPEN)
  	sprite: s32'ymn400_01', 1
@@ -3910,11 +3923,14 @@
  	else:  {
  		voiceLine: s16'vxxx202'
  	} endElse: 
- 	sprite: s32'ymn400_05', 2
+-	sprite: s32'ymn400_05', 2
++	sprite: s32'ymn400_05', 1
  	createObject: s32'ymn400_shadow1', (ZERO)
- 	setXSpeed: 50000
+-	setXSpeed: 50000
++	setXSpeed: 105000
  	sprite: s32'ymn400_08', 2
  	privateBankSE: 0, s32'ARC_BTL_YMN_RFK_Furi_x5', 100
++	setXSpeed: 50000
  	sprite: s32'ymn400_09', 1
  	deactivateObjectByName: s32'ymn400_shadow1'
  	createObject: s32'ymn400_slash1', (ZERO)
@@ -4492,6 +4508,8 @@
  	sprite: s32'ymn403_26', 2
  	label: s32'end'
  	sprite: s32'ymn403_06', 2
++	addGatlingOption: s32'CmnActRushStart'
++	whiffCancelOptionBufferTime: s32'CmnActRushStart', 10
  	sprite: s32'ymn403_10', 2
  	sprite: s32'ymn403_11', 2
  	sprite: s32'ymn403_12', 2
@@ -4679,6 +4697,8 @@
  	sprite: s32'ymn403_26', 2
  	label: s32'end'
  	sprite: s32'ymn403_06', 2
++	addGatlingOption: s32'CmnActRushStart'
++	whiffCancelOptionBufferTime: s32'CmnActRushStart', 10
  	sprite: s32'ymn403_10', 2
  	sprite: s32'ymn403_11', 2
  	sprite: s32'ymn403_12', 2
@@ -4754,6 +4774,8 @@
  	upon: (IMMEDIATE) {
  		callSubroutine: s32'RFK_moveInit'
  		copyVar: var(obj0), int(1)
++		addWhiffCancelOption: s32'CmnActRushStart'
++		whiffCancelOptionBufferTime: s32'CmnActRushStart', 10
  	} endUpon: 
  	gotoLabelIfOperation: s32'near', (IS_LESS_OR_EQUAL), var(EnemyDistanceX), int(300000)
  	sprite: s32'ymn032_00', 3
@@ -4797,6 +4819,8 @@
  	upon: (IMMEDIATE) {
  		callSubroutine: s32'RFK_moveInit'
  		copyVar: var(obj1), int(1)
++		addWhiffCancelOption: s32'CmnActRushStart'
++		whiffCancelOptionBufferTime: s32'CmnActRushStart', 10
  	} endUpon: 
  	sprite: s32'ymn033_00', 3
  	facePose: (STRESSED)
@@ -6114,6 +6138,9 @@
  		} endUpon: 
  		tensionUsage: 10000
  		setRandom: var(act4), int(0), int(1)
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'Sin_RFK'
++		} endIf: 
  	} endUpon: 
  	sprite: s32'ymn430_00', 2
  	faceAnimation: 22

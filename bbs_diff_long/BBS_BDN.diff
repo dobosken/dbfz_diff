@@ -1,6 +1,6 @@
---- 1.31/BBS_BDN.bbs	2023-05-23 14:16:08.568666547 +0200
-+++ 1.32/BBS_BDN.bbs	2023-05-23 14:14:44.390223241 +0200
-@@ -1,8426 +1,8430 @@
+--- 1.32/BBS_BDN.bbs	2023-05-24 20:54:42.094921259 +0200
++++ 1.33/BBS_BDN.bbs	2023-08-23 04:22:57.971834671 +0200
+@@ -1,8430 +1,8520 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'bdn'
  } endSubroutine: 
@@ -1473,8 +1473,7 @@
  		callSubroutine: s32'cmn_AssistHosei'
  		airKnockbackEffect: (SPIN)
  		damage: 800
--		attackXKnockback: 35000
-+		attackXKnockback: 15000
+ 		attackXKnockback: 15000
  		attackYKnockback: 15000
  		guardPushback: 100
  		hitstop: 12
@@ -2463,7 +2462,8 @@
  	mouthPose: (SHOW_TEETH)
  	sprite: s32'bdn200_01', 2
  	sprite: s32'bdn200_02', 1
- 	setXSpeed: 40000
+-	setXSpeed: 40000
++	setXSpeed: 60000
  	sprite: s32'bdn200_02', 1
  	commonSetSE: s32'FuriShort', 0, 100
  	attackVoice: 0, -1
@@ -3120,6 +3120,7 @@
  		attackYKnockback: 15000
  		guardPushback: 200
  		hitstop: 12
++		blockstun: 16
  		airKnockbackEffect: (SPIN)
  		atkFrontDirection: 0
  		atkShakeCamera: s32'ShakeYoko', 400, 0, 25, 5
@@ -3134,7 +3135,6 @@
  	sprite: s32'bdn400_00', 1
  	facePose: (STRESSED)
  	mouthPose: (SHOW_TEETH)
--	sprite: s32'bdn400_01', 1
  	sprite: s32'bdn400_03', 1
  	sprite: s32'bdn400_04', 1
  	setXSpeed: 10000
@@ -3144,8 +3144,7 @@
  	setXSpeed: 100000
  	createObject: s32'bdn400_LoopWind', (CENTER)
  	createObject: s32'bdn_400_smoke01_all', (ZERO)
--	sprite: s32'bdn400_08', 2
-+	sprite: s32'bdn400_08', 1
+ 	sprite: s32'bdn400_08', 1
  	deactivateObjectByName: s32'bdn400_LoopWind'
  	deactivateObjectByName: s32'bdn_400_smoke01_all'
  	createObject: s32'bdn400_EndWind', (CENTER)
@@ -3240,13 +3239,16 @@
  	enableHitbox: 
  	airKnockbackEffect: (SPIN)
  	damage: 750
- 	attackXKnockback: 38000
- 	attackYKnockback: 30000
+-	attackXKnockback: 38000
+-	attackYKnockback: 30000
++	attackXKnockback: 28000
++	attackYKnockback: 22000
  	hitstop: 12
  	blockstun: 19
  	onlyHitAirborne: 1
  	atkRange: 0, 0, 0, 0
  	atkHitPositionType: 0, 0, 0
++	airHitstun: 30
  	if: var(act6) {
  		if: var(obj1) {
  		} endIf: 
@@ -3268,6 +3270,8 @@
  					copyVar: var(SmashRegular), int(1)
  					copyVar: var(CameraComboOnce3), int(1)
  					callSubroutine: s32'Rebellion_Camera'
++					attackXKnockback: 38000
++					attackYKnockback: 30000
  					airHitstun: 50
  					removeLandingRecovery: 
  				} endIf: 
@@ -3326,10 +3330,9 @@
  	sprite: s32'bdn400_02', 1
  	sprite: s32'bdn400_03', 1
  	randomVoice: s16'vxxx217', 100, s16'', 0, s16'', 0, s16'', 0
-+	setXSpeed: 110000
+ 	setXSpeed: 110000
  	sprite: s32'bdn400_04', 1
--	setXSpeed: 10000
-+	setXSpeed: 110000
+ 	setXSpeed: 110000
  	characterSfx: s32'ARC_BTL_BDN_Rebellion_Dash'
  	sprite: s32'bdn400_05', 2
  	enableHitbox: 
@@ -3373,8 +3376,7 @@
  	attackXKnockback: -15000
  	attackYKnockback: 35000
  	guardPushback: 10
--	hitstop: 12
-+	hitstop: 3
+ 	hitstop: 3
  	atkRange: 0, 0, 0, 0
  	ifNot: var(act0) {
  		damage: 1100
@@ -3393,9 +3395,9 @@
  		clearRegisteredUponCode: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE)
  		copyVar: var(obj1), int(1)
  	} endUpon: 
-+	upon: (ON_ATTACK_HIT_PLAYER_DAMAGE_PRE_CTRL) {
-+		hitstop: 12
-+	} endUpon: 
+ 	upon: (ON_ATTACK_HIT_PLAYER_DAMAGE_PRE_CTRL) {
+ 		hitstop: 12
+ 	} endUpon: 
  	damageSoundEffect: s32'ARC_BTL_CMN_Hit_XLarge'
  	sprite: s32'bdn400_11', 2
  	label: s32'end'
@@ -3437,6 +3439,7 @@
  		attackYKnockback: 15000
  		guardPushback: 200
  		hitstop: 12
++		blockstun: 16
  		groundKnockbackEffect: (SPIN)
  		airKnockbackEffect: (SPIN)
  		atkFrontDirection: 0
@@ -3453,7 +3456,6 @@
  	ifOperation: (IS_LESS_OR_EQUAL), var(PosY), int(40000) {
  		setYPosition: 40000
  	} endIf: 
--	sprite: s32'bdn400_20', 1
  	sprite: s32'bdn400_03ex', 1
  	sprite: s32'bdn400_04ex', 1
  	setXSpeed: 10000
@@ -3463,8 +3465,7 @@
  	sprite: s32'bdn400_05ex', 1
  	setXSpeed: 100000
  	createObject: s32'bdn400_airLoopWind', (CENTER)
--	sprite: s32'bdn400_08ex', 2
-+	sprite: s32'bdn400_08ex', 1
+ 	sprite: s32'bdn400_08ex', 1
  	deactivateObjectByName: s32'bdn400_airLoopWind'
  	createObject: s32'bdn400_airEndWind', (CENTER)
  	characterSfx: s32'ARC_BTL_BDN_Rebellion_Furi'
@@ -3617,10 +3618,13 @@
  	attackYKnockback: -80000
  	guardPushback: 100
  	hitstop: 12
++	enemyHitstopAddition: 10, 0, 0
  	blockstun: 19
  	groundKnockbackEffect: (AIR_STRONG)
  	wallBounceCount: 0
- 	groundBounceCount: 0
+-	groundBounceCount: 0
++	groundBounceCount: 1
++	groundBounceYVelocityPercent: 50
  	atkRange: 0, 0, 0, 0
  	atkHitPositionType: 0, 0, 0
  	onlyHitAirborne: 0
@@ -3651,13 +3655,15 @@
  					copyVar: var(CameraComboOnce3), int(1)
  					callSubroutine: s32'Rebellion_Camera'
  					airHitstun: 45
- 					attackXKnockback: 12000
+-					attackXKnockback: 12000
++					attackXKnockback: 5000
  					attackYKnockback: -60000
  					attackGravity: 4500
  					groundBounceCount: 1
  					groundBounceYVelocityPercent: 60
  					atkLandBoundSpeedReset: 
- 					groundBounceGravity: 20000
+-					groundBounceGravity: 20000
++					groundBounceGravity: 5000
  					removeLandingRecovery: 
  				} endIf: 
  			} endIf: 
@@ -3680,8 +3686,10 @@
  	landingAutoAction: 1
  	landingAutoEffect: 1
  	if: var(act0) {
- 		setXSpeed: -5000
- 		setYSpeed: 12000
+-		setXSpeed: -5000
+-		setYSpeed: 12000
++		setXSpeed: 10000
++		setYSpeed: 6000
  	} endIf: 
  	sprite: s32'bdn402_16', 3
  	sprite: s32'bdn402_17', 3
@@ -3704,14 +3712,17 @@
  	enableHitbox: 
  	damage: 750
  	airHitstun: 35
- 	attackXKnockback: 22000
+-	attackXKnockback: 22000
++	attackXKnockback: 2000
  	attackYKnockback: -60000
  	guardPushback: 100
  	hitstop: 12
  	blockstun: 19
  	groundKnockbackEffect: (AIR_STRONG)
  	wallBounceCount: 0
- 	groundBounceCount: 0
+-	groundBounceCount: 0
++	groundBounceCount: 1
++	groundBounceYVelocityPercent: 50
  	atkRange: 0, 0, 0, 0
  	atkHitPositionType: 0, 0, 0
  	onlyHitAirborne: 0
@@ -3748,7 +3759,8 @@
  					airHitstun: 45
  					groundBounceCount: 1
  					groundBounceYVelocityPercent: 100
- 					groundBounceYVelocity: 35000
+-					groundBounceYVelocity: 35000
++					groundBounceYVelocity: 38000
  				} endIf: 
  			} endIf: 
  		} endIf: 
@@ -3811,14 +3823,12 @@
  	sprite: s32'bdn400_03ex', 1
  	randomVoice: s16'vxxx217', 100, s16'', 0, s16'', 0, s16'', 0
  	sprite: s32'bdn400_04ex', 1
--	setXSpeed: 10000
-+	setXSpeed: 110000
+ 	setXSpeed: 110000
  	createObject: s32'bdn400_circle_wind', (CENTER)
  	characterSfx: s32'ARC_BTL_BDN_Rebellion_Dash'
  	sprite: s32'bdn400_05ex', 2
  	enableHitbox: 
--	setXSpeed: 100000
-+	setXSpeed: 110000
+ 	setXSpeed: 110000
  	pushCollisionHeight: 320000
  	pushCollisionMainPlayerOnly: 1
  	createObject: s32'bdn400_airLoopWind', (CENTER)
@@ -3854,8 +3864,7 @@
  	attackXKnockback: 5000
  	attackYKnockback: 20000
  	guardPushback: 10
--	hitstop: 12
-+	hitstop: 3
+ 	hitstop: 3
  	atkRange: 0, 0, 0, 0
  	atkHitPositionType: 0, 0, 0
  	ifNot: var(act0) {
@@ -3875,9 +3884,9 @@
  		clearRegisteredUponCode: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE)
  		copyVar: var(obj1), int(1)
  	} endUpon: 
-+	upon: (ON_ATTACK_HIT_PLAYER_DAMAGE_PRE_CTRL) {
-+		hitstop: 12
-+	} endUpon: 
+ 	upon: (ON_ATTACK_HIT_PLAYER_DAMAGE_PRE_CTRL) {
+ 		hitstop: 12
+ 	} endUpon: 
  	damageSoundEffect: s32'ARC_BTL_CMN_Hit_XLarge'
  	sprite: s32'bdn400_11ex', 2
  	label: s32'end'
@@ -4594,10 +4603,8 @@
  	sprite: s32'bdn403_01', 3
  	characterSfx: s32'ARC_BTL_BDN_Tyrant_Basa'
  	sprite: s32'bdn403_28', 4
--	sprite: s32'bdn403_29', 4
--	sprite: s32'bdn403_30', 4
-+	sprite: s32'bdn403_29', 3
-+	sprite: s32'bdn403_30', 3
+ 	sprite: s32'bdn403_29', 3
+ 	sprite: s32'bdn403_30', 3
  	sprite: s32'bdn403_31', 3
  	sprite: s32'bdn403_32', 3
  	upon: (IDLING) {
@@ -4795,13 +4802,15 @@
  		if: var(IsMainPlayerSelf) {
  			modifyVar: (ADD), var(act4), int(1)
  			ifOperation: (IS_GREATER_OR_EQUAL), var(act4), int(10) {
- 				checkInput: (INPUT_ANY_UP)
+-				checkInput: (INPUT_ANY_UP)
++				checkInput: (INPUT_9)
  				if: var(Result) {
  					copyVar: var(act3), int(1)
  					copyVar: var(act4), int(0)
  				} endIf: 
  				else:  {
- 					checkInput: (INPUT_ANY_DOWN)
+-					checkInput: (INPUT_ANY_DOWN)
++					checkInput: (INPUT_3)
  					if: var(Result) {
  						copyVar: var(act3), int(1)
  						copyVar: var(act4), int(0)
@@ -4831,15 +4840,22 @@
  		} endIf: 
  		callSubroutine: s32'Riot_HaseiCheck'
  		tensionUsage: 10000
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'Revenger'
++			addGatlingOption: s32'Revenger_CD'
++			addGatlingOption: s32'AirRevenger'
++			addGatlingOption: s32'AirRevenger_CD'
++			whiffCancelOptionBufferTime: s32'Revenger', 40
++			whiffCancelOptionBufferTime: s32'Revenger_CD', 40
++			whiffCancelOptionBufferTime: s32'AirRevenger', 40
++			whiffCancelOptionBufferTime: s32'AirRevenger_CD', 40
++		} endIf: 
  	} endUpon: 
--	sprite: s32'bdn430_00', 3
-+	sprite: s32'bdn430_00', 1
+ 	sprite: s32'bdn430_00', 1
  	facePose: (ANGRY)
--	sprite: s32'bdn430_01', 1
  	sprite: s32'bdn430_01', 2
-+	sprite: s32'bdn430_02', 1
+ 	sprite: s32'bdn430_02', 1
  	characterSfx: s32'ARC_BTL_BDN_Riot_BishiBasa'
--	sprite: s32'bdn430_02', 3
  	sprite: s32'bdn430_03', 3
  	enableSuperArmor: 1
  	superFreeze: 3, 119, 61, 61
@@ -4997,15 +5013,22 @@
  		removeLandingRecovery: 
  		jumpToStateInObject: (PARENT), s32'landing'
  		tensionUsage: 10000
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'Revenger'
++			addGatlingOption: s32'Revenger_CD'
++			addGatlingOption: s32'AirRevenger'
++			addGatlingOption: s32'AirRevenger_CD'
++			whiffCancelOptionBufferTime: s32'Revenger', 40
++			whiffCancelOptionBufferTime: s32'Revenger_CD', 40
++			whiffCancelOptionBufferTime: s32'AirRevenger', 40
++			whiffCancelOptionBufferTime: s32'AirRevenger_CD', 40
++		} endIf: 
  	} endUpon: 
--	sprite: s32'bdn431_00', 3
-+	sprite: s32'bdn431_00', 2
+ 	sprite: s32'bdn431_00', 2
  	facePose: (ANGRY)
  	resetSpeed: 1
--	sprite: s32'bdn431_01', 3
--	sprite: s32'bdn431_02', 3
-+	sprite: s32'bdn431_01', 1
-+	sprite: s32'bdn431_02', 1
+ 	sprite: s32'bdn431_01', 1
+ 	sprite: s32'bdn431_02', 1
  	sprite: s32'bdn431_03', 3
  	enableSuperArmor: 1
  	superFreeze: 3, 119, 61, 61
@@ -5360,6 +5383,16 @@
  		createObject: s32'bdn432_shock1', (ZERO)
  	} endUpon: 
  	xSpeedPerFrame: 70
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'Revenger'
++		addGatlingOption: s32'Revenger_CD'
++		addGatlingOption: s32'AirRevenger'
++		addGatlingOption: s32'AirRevenger_CD'
++		whiffCancelOptionBufferTime: s32'Revenger', 40
++		whiffCancelOptionBufferTime: s32'Revenger_CD', 40
++		whiffCancelOptionBufferTime: s32'AirRevenger', 40
++		whiffCancelOptionBufferTime: s32'AirRevenger_CD', 40
++	} endIf: 
  	sprite: s32'bdn432_23', 1
  	sprite: s32'bdn432_24', 2
  	enableSuperArmor: 0
@@ -5374,16 +5407,24 @@
  	xSpeedPerFrame: 90
  	stopBankSE: 0, 30
  	stopBankSE: 1, 30
- 	sprite: s32'bdn432_28', 4
- 	sprite: s32'bdn432_29', 4
- 	sprite: s32'bdn432_30', 4
+-	sprite: s32'bdn432_28', 4
+-	sprite: s32'bdn432_29', 4
+-	sprite: s32'bdn432_30', 4
++	enableGatlings: 0
++	sprite: s32'bdn432_28', 3
++	sprite: s32'bdn432_29', 3
++	sprite: s32'bdn432_30', 2
  	dashStopEffect: 104, 1, 0
  	recoveryState: 
  	enableWhiffCancel: 0
- 	sprite: s32'bdn432_31', 3
- 	sprite: s32'bdn432_32', 3
- 	sprite: s32'bdn432_33', 3
- 	sprite: s32'bdn432_34', 3
+-	sprite: s32'bdn432_31', 3
+-	sprite: s32'bdn432_32', 3
+-	sprite: s32'bdn432_33', 3
+-	sprite: s32'bdn432_34', 3
++	sprite: s32'bdn432_31', 2
++	sprite: s32'bdn432_32', 2
++	sprite: s32'bdn432_33', 2
++	sprite: s32'bdn432_34', 2
  	spriteEnd: 
  	exitState: 
  	label: s32'hit'
@@ -5432,6 +5473,16 @@
  				createObject: s32'bdn432_groundsmoke_all', (PLAYER_LAND)
  			} endIf: 
  		} endUpon: 
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'Revenger'
++			addGatlingOption: s32'Revenger_CD'
++			addGatlingOption: s32'AirRevenger'
++			addGatlingOption: s32'AirRevenger_CD'
++			whiffCancelOptionBufferTime: s32'Revenger', 40
++			whiffCancelOptionBufferTime: s32'Revenger_CD', 40
++			whiffCancelOptionBufferTime: s32'AirRevenger', 40
++			whiffCancelOptionBufferTime: s32'AirRevenger_CD', 40
++		} endIf: 
  	} endUpon: 
  	sprite: s32'bdn432_23', 1
  	sprite: s32'bdn432_24', 3
@@ -5631,6 +5682,16 @@
  		createObject: s32'bdn432_air_shock1', (ZERO)
  	} endUpon: 
  	xSpeedPerFrame: 70
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'Revenger'
++		addGatlingOption: s32'Revenger_CD'
++		addGatlingOption: s32'AirRevenger'
++		addGatlingOption: s32'AirRevenger_CD'
++		whiffCancelOptionBufferTime: s32'Revenger', 40
++		whiffCancelOptionBufferTime: s32'Revenger_CD', 40
++		whiffCancelOptionBufferTime: s32'AirRevenger', 40
++		whiffCancelOptionBufferTime: s32'AirRevenger_CD', 40
++	} endIf: 
  	sprite: s32'bdn432_23ex', 1
  	sprite: s32'bdn432_24ex', 2
  	enableSuperArmor: 0
@@ -5644,6 +5705,7 @@
  	xSpeedPerFrame: 90
  	stopBankSE: 0, 30
  	stopBankSE: 1, 30
++	enableGatlings: 0
  	sprite: s32'bdn432_37', 4
  	sprite: s32'bdn432_38', 4
  	sprite: s32'bdn432_39', 4
@@ -5710,6 +5772,16 @@
  				superFreeze: 3, 100, 15, 15
  			} endIf: 
  		} endUpon: 
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'Revenger'
++			addGatlingOption: s32'Revenger_CD'
++			addGatlingOption: s32'AirRevenger'
++			addGatlingOption: s32'AirRevenger_CD'
++			whiffCancelOptionBufferTime: s32'Revenger', 40
++			whiffCancelOptionBufferTime: s32'Revenger_CD', 40
++			whiffCancelOptionBufferTime: s32'AirRevenger', 40
++			whiffCancelOptionBufferTime: s32'AirRevenger_CD', 40
++		} endIf: 
  	} endUpon: 
  	sprite: s32'bdn432_23ex', 1
  	sprite: s32'bdn432_24ex', 3
@@ -5818,6 +5890,16 @@
  			stopBankSE: 17, 20
  		} endUpon: 
  		tensionUsage: 30000
++		if: var(EnemyInHitstun) {
++			checkLastStateName: s32'Riot'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'AirRiot'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++		} endIf: 
  	} endUpon: 
  	sprite: s32'bdn433_00', 2
  	facePose: (ANGRY)
@@ -6267,6 +6349,16 @@
  		removeLandingRecovery: 
  		skillFinishToDownLoop: 1
  		tensionUsage: 30000
++		if: var(EnemyInHitstun) {
++			checkLastStateName: s32'Riot'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'AirRiot'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++		} endIf: 
  	} endUpon: 
  	sprite: s32'bdn433_80', 2
  	facePose: (ANGRY)

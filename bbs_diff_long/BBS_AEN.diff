@@ -1,6 +1,6 @@
---- 1.31/BBS_AEN.bbs	2023-05-23 14:16:07.778653002 +0200
-+++ 1.32/BBS_AEN.bbs	2023-05-23 14:14:43.623210090 +0200
-@@ -1,8726 +1,8769 @@
+--- 1.32/BBS_AEN.bbs	2023-05-24 20:54:41.191906365 +0200
++++ 1.33/BBS_AEN.bbs	2023-08-23 04:22:57.125820254 +0200
+@@ -1,8769 +1,8856 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'aen'
  } endSubroutine: 
@@ -2586,7 +2586,8 @@
  	callSubroutine: s32'cmnRendaChain_Clear_Idling'
  	addPositionX: 30000
  	setXSpeed: 120000
- 	xSpeedPerFrame: 75
+-	xSpeedPerFrame: 75
++	xSpeedPerFrame: 85
  	sprite: s32'aen202_05', 1
  	recoveryState: 
  	sprite: s32'aen202_06', 1
@@ -2607,6 +2608,7 @@
  		attackYKnockback: 17000
  		attackGuardtype: (LOW)
  		addGatlingOption: s32'NmlAtk2D'
++		guardPushback: 50
  		upon: (ON_ATTACK_HIT_PLAYER_GUARD) {
  			percentageInertia: 70
  		} endUpon: 
@@ -3780,33 +3782,95 @@
  beginSubroutine: s32'Call17' {
  	checkCurrentStateName: (SELF), s32'Call17_214A'
  	if: var(Result) {
- 		ifOperation: (IS_LESS), var(EnemyFrontDistance), int(0) {
- 			setEX_POINT_F: (PLAYER_LAND), 0, 0
+-		ifOperation: (IS_LESS), var(EnemyFrontDistance), int(0) {
+-			setEX_POINT_F: (PLAYER_LAND), 0, 0
++		checkInput: (INPUT_HOLD_L)
++		if: var(Result) {
++			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(-50000) {
++				setEX_POINT_F: (PLAYER_LAND), 0, 0
++			} endIf: 
++			else:  {
++				ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
++					setEX_POINT_F: (ENEMY_LAND), -200000, 0
++				} endIf: 
++				else:  {
++					setEX_POINT_F: (PLAYER_LAND), 400000, 0
++				} endElse: 
++			} endElse: 
++			if: var(EnemyInHitstun) {
++				ifVarOfObjectTrue: (ENEMY_MAIN_PLAYER), var(IsAir) {
++					setArg_objectParameters: int(1), int(0)
++					ifOperation: (IS_LESS), var(EnemyFrontDistance), int(400000) {
++						setEX_POINT_F: (ENEMY_LAND), 0, 0
++					} endIf: 
++					else:  {
++						setEX_POINT_F: (PLAYER_LAND), 400000, 0
++					} endElse: 
++				} endIf: 
++			} endIf: 
++			createObjectWithArg: s32'17_senkyuutai', (EX_POINT_F)
  		} endIf: 
  		else:  {
- 			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
- 				setEX_POINT_F: (ENEMY_LAND), -200000, 0
+-			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
+-				setEX_POINT_F: (ENEMY_LAND), -200000, 0
++			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(0) {
++				setEX_POINT_F: (PLAYER_LAND), 0, 0
  			} endIf: 
  			else:  {
- 				setEX_POINT_F: (PLAYER_LAND), 400000, 0
+-				setEX_POINT_F: (PLAYER_LAND), 400000, 0
++				ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
++					setEX_POINT_F: (ENEMY_LAND), -200000, 0
++				} endIf: 
++				else:  {
++					setEX_POINT_F: (PLAYER_LAND), 400000, 0
++				} endElse: 
  			} endElse: 
++			createObject: s32'17_middlekick', (EX_POINT_F)
  		} endElse: 
- 		createObject: s32'17_middlekick', (EX_POINT_F)
+-		createObject: s32'17_middlekick', (EX_POINT_F)
  	} endIf: 
  	checkCurrentStateName: (SELF), s32'Call17_214B'
  	if: var(Result) {
- 		ifOperation: (IS_LESS), var(EnemyFrontDistance), int(0) {
- 			setEX_POINT_F: (PLAYER_LAND), 0, 200000
+-		ifOperation: (IS_LESS), var(EnemyFrontDistance), int(0) {
+-			setEX_POINT_F: (PLAYER_LAND), 0, 200000
++		checkInput: (INPUT_HOLD_M)
++		if: var(Result) {
++			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(-50000) {
++				setEX_POINT_F: (CENTER), 0, 150000
++			} endIf: 
++			else:  {
++				ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
++					setEX_POINT_F: (ENEMY_CENTER), -300000, 850000
++				} endIf: 
++				else:  {
++					setEX_POINT_F: (PLAYER_LAND), 400000, 850000
++				} endElse: 
++			} endElse: 
++			if: var(EnemyInHitstun) {
++				ifVarOfObjectTrue: (ENEMY_MAIN_PLAYER), var(IsAir) {
++					setArg_objectParameters: int(1), int(0)
++				} endIf: 
++			} endIf: 
++			createObjectWithArg: s32'17_DSHammer', (EX_POINT_F)
  		} endIf: 
  		else:  {
- 			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
- 				setEX_POINT_F: (ENEMY_LAND), -300000, 200000
+-			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
+-				setEX_POINT_F: (ENEMY_LAND), -300000, 200000
++			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(0) {
++				setEX_POINT_F: (PLAYER_LAND), 0, 200000
  			} endIf: 
  			else:  {
- 				setEX_POINT_F: (PLAYER_LAND), 400000, 200000
+-				setEX_POINT_F: (PLAYER_LAND), 400000, 200000
++				ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
++					setEX_POINT_F: (ENEMY_LAND), -300000, 200000
++				} endIf: 
++				else:  {
++					setEX_POINT_F: (PLAYER_LAND), 400000, 200000
++				} endElse: 
  			} endElse: 
++			createObject: s32'17_OneTwoThree', (EX_POINT_F)
  		} endElse: 
- 		createObject: s32'17_OneTwoThree', (EX_POINT_F)
+-		createObject: s32'17_OneTwoThree', (EX_POINT_F)
  	} endIf: 
  	checkCurrentStateName: (SELF), s32'Call17_214C'
  	if: var(Result) {
@@ -3825,49 +3889,108 @@
  	} endIf: 
  	checkCurrentStateName: (SELF), s32'Call17_Air214A'
  	if: var(Result) {
- 		ifOperation: (IS_LESS), var(EnemyFrontDistance), int(-50000) {
- 			setEX_POINT_F: (PLAYER_LAND), 0, 0
+-		ifOperation: (IS_LESS), var(EnemyFrontDistance), int(-50000) {
+-			setEX_POINT_F: (PLAYER_LAND), 0, 0
++		checkInput: (INPUT_HOLD_L)
++		if: var(Result) {
++			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(0) {
++				setEX_POINT_F: (PLAYER_LAND), 0, 0
++			} endIf: 
++			else:  {
++				ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
++					setEX_POINT_F: (ENEMY_LAND), -200000, 0
++				} endIf: 
++				else:  {
++					setEX_POINT_F: (PLAYER_LAND), 400000, 0
++				} endElse: 
++			} endElse: 
++			createObject: s32'17_middlekick', (EX_POINT_F)
  		} endIf: 
  		else:  {
- 			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
- 				setEX_POINT_F: (ENEMY_LAND), -200000, 0
+-			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
+-				setEX_POINT_F: (ENEMY_LAND), -200000, 0
++			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(-50000) {
++				setEX_POINT_F: (PLAYER_LAND), 0, 0
  			} endIf: 
  			else:  {
- 				setEX_POINT_F: (PLAYER_LAND), 400000, 0
- 			} endElse: 
- 		} endElse: 
- 		if: var(EnemyInHitstun) {
- 			ifVarOfObjectTrue: (ENEMY_MAIN_PLAYER), var(IsAir) {
- 				setArg_objectParameters: int(1), int(0)
- 				ifOperation: (IS_LESS), var(EnemyFrontDistance), int(400000) {
- 					setEX_POINT_F: (ENEMY_LAND), 0, 0
+-				setEX_POINT_F: (PLAYER_LAND), 400000, 0
+-			} endElse: 
+-		} endElse: 
+-		if: var(EnemyInHitstun) {
+-			ifVarOfObjectTrue: (ENEMY_MAIN_PLAYER), var(IsAir) {
+-				setArg_objectParameters: int(1), int(0)
+-				ifOperation: (IS_LESS), var(EnemyFrontDistance), int(400000) {
+-					setEX_POINT_F: (ENEMY_LAND), 0, 0
++				ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
++					setEX_POINT_F: (ENEMY_LAND), -200000, 0
  				} endIf: 
  				else:  {
  					setEX_POINT_F: (PLAYER_LAND), 400000, 0
  				} endElse: 
++			} endElse: 
++			if: var(EnemyInHitstun) {
++				ifVarOfObjectTrue: (ENEMY_MAIN_PLAYER), var(IsAir) {
++					setArg_objectParameters: int(1), int(0)
++					ifOperation: (IS_LESS), var(EnemyFrontDistance), int(400000) {
++						setEX_POINT_F: (ENEMY_LAND), 0, 0
++					} endIf: 
++					else:  {
++						setEX_POINT_F: (PLAYER_LAND), 400000, 0
++					} endElse: 
++				} endIf: 
  			} endIf: 
- 		} endIf: 
- 		createObjectWithArg: s32'17_senkyuutai', (EX_POINT_F)
+-		} endIf: 
+-		createObjectWithArg: s32'17_senkyuutai', (EX_POINT_F)
++			createObjectWithArg: s32'17_senkyuutai', (EX_POINT_F)
++		} endElse: 
  	} endIf: 
  	checkCurrentStateName: (SELF), s32'Call17_Air214B'
  	if: var(Result) {
- 		ifOperation: (IS_LESS), var(EnemyFrontDistance), int(-50000) {
- 			setEX_POINT_F: (CENTER), 0, 150000
+-		ifOperation: (IS_LESS), var(EnemyFrontDistance), int(-50000) {
+-			setEX_POINT_F: (CENTER), 0, 150000
++		checkInput: (INPUT_HOLD_M)
++		if: var(Result) {
++			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(0) {
++				setEX_POINT_F: (PLAYER_LAND), 0, 200000
++			} endIf: 
++			else:  {
++				ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
++					setEX_POINT_F: (ENEMY_LAND), -300000, 200000
++				} endIf: 
++				else:  {
++					setEX_POINT_F: (PLAYER_LAND), 400000, 200000
++				} endElse: 
++			} endElse: 
++			createObject: s32'17_OneTwoThree', (EX_POINT_F)
  		} endIf: 
  		else:  {
- 			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
- 				setEX_POINT_F: (ENEMY_CENTER), -300000, 150000
+-			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
+-				setEX_POINT_F: (ENEMY_CENTER), -300000, 150000
++			ifOperation: (IS_LESS), var(EnemyFrontDistance), int(-50000) {
++				setEX_POINT_F: (CENTER), 0, 150000
  			} endIf: 
  			else:  {
- 				setEX_POINT_F: (PLAYER_LAND), 400000, 150000
+-				setEX_POINT_F: (PLAYER_LAND), 400000, 150000
++				ifOperation: (IS_LESS), var(EnemyFrontDistance), int(600000) {
++					setEX_POINT_F: (ENEMY_CENTER), -300000, 150000
++				} endIf: 
++				else:  {
++					setEX_POINT_F: (PLAYER_LAND), 400000, 150000
++				} endElse: 
  			} endElse: 
- 		} endElse: 
- 		if: var(EnemyInHitstun) {
- 			ifVarOfObjectTrue: (ENEMY_MAIN_PLAYER), var(IsAir) {
- 				setArg_objectParameters: int(1), int(0)
+-		} endElse: 
+-		if: var(EnemyInHitstun) {
+-			ifVarOfObjectTrue: (ENEMY_MAIN_PLAYER), var(IsAir) {
+-				setArg_objectParameters: int(1), int(0)
++			if: var(EnemyInHitstun) {
++				ifVarOfObjectTrue: (ENEMY_MAIN_PLAYER), var(IsAir) {
++					setArg_objectParameters: int(1), int(0)
++				} endIf: 
  			} endIf: 
- 		} endIf: 
- 		createObjectWithArg: s32'17_DSHammer', (EX_POINT_F)
+-		} endIf: 
+-		createObjectWithArg: s32'17_DSHammer', (EX_POINT_F)
++			createObjectWithArg: s32'17_DSHammer', (EX_POINT_F)
++		} endElse: 
  	} endIf: 
  	checkCurrentStateName: (SELF), s32'Call17_Air214C'
  	if: var(Result) {
@@ -3886,31 +4009,27 @@
  	} endIf: 
  	checkCurrentStateName: (SELF), s32'Call17_214D'
  	if: var(Result) {
--		setEX_POINT_F: (PLAYER_LAND), -250000, 250000
--		createObject: s32'17_REnergyDan', (EX_POINT_F)
-+		checkInput: (INPUT_HOLD_KI)
-+		if: var(Result) {
-+			setEX_POINT_F: (ZERO), 150000, -150000
-+			createObject: s32'17_barrier', (EX_POINT_F)
-+		} endIf: 
-+		else:  {
-+			setEX_POINT_F: (PLAYER_LAND), -250000, 250000
-+			createObject: s32'17_REnergyDan', (EX_POINT_F)
-+		} endElse: 
+ 		checkInput: (INPUT_HOLD_KI)
+ 		if: var(Result) {
+ 			setEX_POINT_F: (ZERO), 150000, -150000
+ 			createObject: s32'17_barrier', (EX_POINT_F)
+ 		} endIf: 
+ 		else:  {
+ 			setEX_POINT_F: (PLAYER_LAND), -250000, 250000
+ 			createObject: s32'17_REnergyDan', (EX_POINT_F)
+ 		} endElse: 
  	} endIf: 
  	checkCurrentStateName: (SELF), s32'Call17_Air214D'
  	if: var(Result) {
--		setEX_POINT_F: (ZERO), 150000, -150000
--		createObject: s32'17_barrier', (EX_POINT_F)
-+		checkInput: (INPUT_HOLD_KI)
-+		if: var(Result) {
-+			setEX_POINT_F: (PLAYER_LAND), -250000, 250000
-+			createObject: s32'17_REnergyDan', (EX_POINT_F)
-+		} endIf: 
-+		else:  {
-+			setEX_POINT_F: (ZERO), 150000, -150000
-+			createObject: s32'17_barrier', (EX_POINT_F)
-+		} endElse: 
+ 		checkInput: (INPUT_HOLD_KI)
+ 		if: var(Result) {
+ 			setEX_POINT_F: (PLAYER_LAND), -250000, 250000
+ 			createObject: s32'17_REnergyDan', (EX_POINT_F)
+ 		} endIf: 
+ 		else:  {
+ 			setEX_POINT_F: (ZERO), 150000, -150000
+ 			createObject: s32'17_barrier', (EX_POINT_F)
+ 		} endElse: 
  	} endIf: 
  	checkCurrentStateName: (SELF), s32'AssistAttack3'
  	if: var(Result) {
@@ -4026,18 +4145,12 @@
  	sprite: s32'aen402_08', 2
  	mouthPose: (OPEN)
  	sprite: s32'aen402_09', 2
--	sprite: s32'aen402_10', 2
--	sprite: s32'aen402_11', 2
--	sprite: s32'aen402_12', 2
--	sprite: s32'aen402_13', 2
--	sprite: s32'aen402_14', 2
--	sprite: s32'aen402_15', 2
-+	sprite: s32'aen402_10', 1
-+	sprite: s32'aen402_11', 1
-+	sprite: s32'aen402_12', 1
-+	sprite: s32'aen402_13', 1
-+	sprite: s32'aen402_14', 1
-+	sprite: s32'aen402_15', 1
+ 	sprite: s32'aen402_10', 1
+ 	sprite: s32'aen402_11', 1
+ 	sprite: s32'aen402_12', 1
+ 	sprite: s32'aen402_13', 1
+ 	sprite: s32'aen402_14', 1
+ 	sprite: s32'aen402_15', 1
  } endState: 
  
  beginState: s32'Call17_214C_Hasei' {
@@ -4067,12 +4180,9 @@
  	sprite: s32'aen402_11', 2
  	sprite: s32'aen402_12', 2
  	mouthPose: (CLOSED)
--	sprite: s32'aen402_13', 2
--	sprite: s32'aen402_14', 2
--	sprite: s32'aen402_15', 2
-+	sprite: s32'aen402_13', 1
-+	sprite: s32'aen402_14', 1
-+	sprite: s32'aen402_15', 1
+ 	sprite: s32'aen402_13', 1
+ 	sprite: s32'aen402_14', 1
+ 	sprite: s32'aen402_15', 1
  } endState: 
  
  beginState: s32'Call17_Air214A' {
@@ -4185,14 +4295,10 @@
  	sprite: s32'aen403_08', 2
  	mouthPose: (OPEN)
  	sprite: s32'aen403_09', 2
--	sprite: s32'aen403_10', 2
--	sprite: s32'aen403_11', 2
--	sprite: s32'aen403_12', 2
--	sprite: s32'aen403_13', 2
-+	sprite: s32'aen403_10', 1
-+	sprite: s32'aen403_11', 1
-+	sprite: s32'aen403_12', 1
-+	sprite: s32'aen403_13', 1
+ 	sprite: s32'aen403_10', 1
+ 	sprite: s32'aen403_11', 1
+ 	sprite: s32'aen403_12', 1
+ 	sprite: s32'aen403_13', 1
  	popXSpeed: 
  	popYSpeed: 
  	ifOperation: (IS_GREATER_OR_EQUAL), var(SpeedX), int(500000) {
@@ -4202,10 +4308,8 @@
  		setYSpeed: 50000
  	} endIf: 
  	objectGravity: 
--	sprite: s32'aen403_14', 2
--	sprite: s32'aen403_15', 2
-+	sprite: s32'aen403_14', 1
-+	sprite: s32'aen403_15', 1
+ 	sprite: s32'aen403_14', 1
+ 	sprite: s32'aen403_15', 1
  } endState: 
  
  beginState: s32'Call17_Air214C_Hasei' {
@@ -4238,8 +4342,7 @@
  	sprite: s32'aen403_10', 3
  	sprite: s32'aen403_11', 2
  	sprite: s32'aen403_12', 2
--	sprite: s32'aen403_13', 2
-+	sprite: s32'aen403_13', 1
+ 	sprite: s32'aen403_13', 1
  	popXSpeed: 
  	popYSpeed: 
  	ifOperation: (IS_GREATER_OR_EQUAL), var(SpeedX), int(500000) {
@@ -4249,10 +4352,8 @@
  		setYSpeed: 50000
  	} endIf: 
  	objectGravity: 
--	sprite: s32'aen403_14', 2
--	sprite: s32'aen403_15', 2
-+	sprite: s32'aen403_14', 1
-+	sprite: s32'aen403_15', 1
+ 	sprite: s32'aen403_14', 1
+ 	sprite: s32'aen403_15', 1
  } endState: 
  
  beginState: s32'Call17_214D' {
@@ -4278,11 +4379,10 @@
  	mouthPose: (OPEN)
  	sprite: s32'aen402_09', 3
  	sprite: s32'aen402_10', 3
--	sprite: s32'aen402_11', 2
-+	sprite: s32'aen402_11', 1
-+	sprite: s32'aen402_11', 1
-+	enableWhiffCancel: 1
-+	addWhiffCancelOption: s32'NmlAtk5D'
+ 	sprite: s32'aen402_11', 1
+ 	sprite: s32'aen402_11', 1
+ 	enableWhiffCancel: 1
+ 	addWhiffCancelOption: s32'NmlAtk5D'
  	sprite: s32'aen402_12', 2
  	sprite: s32'aen402_13', 2
  	sprite: s32'aen402_14', 2
@@ -4463,21 +4563,21 @@
  	sprite: s32'aen301_07', 3
  	sprite: s32'aen301_08', 3
  	triggerUponInObject: s32'aen_Barrier_Eff', (SIGNAL0)
-+	enableWhiffCancel: 1
-+	addWhiffCancelOption: s32'EnergyWave'
-+	addWhiffCancelOption: s32'AccelDance'
-+	addWhiffCancelOption: s32'EnergyWave_Chain'
-+	addWhiffCancelOption: s32'AccelDance_Chain'
-+	addWhiffCancelOption: s32'GrappleBack_A'
-+	addWhiffCancelOption: s32'GrappleBack_B'
-+	addWhiffCancelOption: s32'GrappleBack_C'
-+	addWhiffCancelOption: s32'Call17_214A'
-+	addWhiffCancelOption: s32'Call17_214B'
-+	addWhiffCancelOption: s32'Call17_214C'
-+	addWhiffCancelOption: s32'Call17_214C_Hasei'
-+	addWhiffCancelOption: s32'kienzan'
-+	addWhiffCancelOption: s32'Call17_214D'
-+	addWhiffCancelOption: s32'Call17_Air214D'
+ 	enableWhiffCancel: 1
+ 	addWhiffCancelOption: s32'EnergyWave'
+ 	addWhiffCancelOption: s32'AccelDance'
+ 	addWhiffCancelOption: s32'EnergyWave_Chain'
+ 	addWhiffCancelOption: s32'AccelDance_Chain'
+ 	addWhiffCancelOption: s32'GrappleBack_A'
+ 	addWhiffCancelOption: s32'GrappleBack_B'
+ 	addWhiffCancelOption: s32'GrappleBack_C'
+ 	addWhiffCancelOption: s32'Call17_214A'
+ 	addWhiffCancelOption: s32'Call17_214B'
+ 	addWhiffCancelOption: s32'Call17_214C'
+ 	addWhiffCancelOption: s32'Call17_214C_Hasei'
+ 	addWhiffCancelOption: s32'kienzan'
+ 	addWhiffCancelOption: s32'Call17_214D'
+ 	addWhiffCancelOption: s32'Call17_Air214D'
  	sprite: s32'aen301_06', 3
  	sprite: s32'aen301_07', 3
  	sprite: s32'aen301_08', 2
@@ -4486,7 +4586,7 @@
  	sprite: s32'aen301_09', 3
  	ifNot: var(act1) {
  		enableSuperArmor: 0
-+		enableWhiffCancel: 0
+ 		enableWhiffCancel: 0
  	} endIf: 
  	clearRegisteredUponCode: (SIGNAL_NAME)
  	recoveryState: 
@@ -4547,16 +4647,16 @@
  	sprite: s32'aen301_07', 3
  	sprite: s32'aen301_08', 3
  	triggerUponInObject: s32'aen_Barrier_Eff', (SIGNAL0)
-+	enableWhiffCancel: 1
-+	addWhiffCancelOption: s32'EnergyWave'
-+	addWhiffCancelOption: s32'AccelDance_Air'
-+	addWhiffCancelOption: s32'EnergyWave_Chain'
-+	addWhiffCancelOption: s32'AccelDance_Air_Chain'
-+	addWhiffCancelOption: s32'Call17_Air214A'
-+	addWhiffCancelOption: s32'Call17_Air214B'
-+	addWhiffCancelOption: s32'Call17_Air214C'
-+	addWhiffCancelOption: s32'Call17_Air214C_Hasei'
-+	addWhiffCancelOption: s32'Call17_Air214D'
+ 	enableWhiffCancel: 1
+ 	addWhiffCancelOption: s32'EnergyWave'
+ 	addWhiffCancelOption: s32'AccelDance_Air'
+ 	addWhiffCancelOption: s32'EnergyWave_Chain'
+ 	addWhiffCancelOption: s32'AccelDance_Air_Chain'
+ 	addWhiffCancelOption: s32'Call17_Air214A'
+ 	addWhiffCancelOption: s32'Call17_Air214B'
+ 	addWhiffCancelOption: s32'Call17_Air214C'
+ 	addWhiffCancelOption: s32'Call17_Air214C_Hasei'
+ 	addWhiffCancelOption: s32'Call17_Air214D'
  	sprite: s32'aen301_06', 3
  	sprite: s32'aen301_07', 3
  	sprite: s32'aen301_08', 2
@@ -4565,7 +4665,7 @@
  	sprite: s32'aen301_09', 3
  	ifNot: var(act1) {
  		enableSuperArmor: 0
-+		enableWhiffCancel: 0
+ 		enableWhiffCancel: 0
  	} endIf: 
  	clearRegisteredUponCode: (SIGNAL_NAME)
  	recoveryState: 
@@ -4587,7 +4687,6 @@
  	} endIf: 
  	if: var(act5) {
  		faceOpponent: 
--		superFreeze: 3, 119, 20, 20
  		ignoreWorldStopByFriend: 1
  	} endIf: 
  } endSubroutine: 
@@ -4876,6 +4975,10 @@
  	sprite: s32'aen430_13', 3
  	objectGravity: 
  	ySpeedPerFrame: 100
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'AccelDance_Air'
++		whiffCancelOptionBufferTime: s32'AccelDance_Air', 30
++	} endIf: 
  	sprite: s32'aen430_14', 3
  	sprite: s32'aen430_15', 3
  	exitState: 
@@ -4901,6 +5004,10 @@
  		} endIf: 
  	} endIf: 
  	sprite: s32'aen430_13', 3
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'AccelDance_Air'
++		whiffCancelOptionBufferTime: s32'AccelDance_Air', 30
++	} endIf: 
  	sprite: s32'aen430_14', 3
  	sprite: s32'aen430_15', 3
  	exitState: 
@@ -4940,41 +5047,46 @@
  	sprite: s32'aen430_12', 3
  	sprite: s32'aen430_10', 3
  	sprite: s32'aen430_13', 3
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'AccelDance_Air'
++		whiffCancelOptionBufferTime: s32'AccelDance_Air', 30
++	} endIf: 
  	sprite: s32'aen430_14', 3
  	enableSuperArmor: 0
  	recoveryState: 
  	sprite: s32'aen430_15', 3
  } endState: 
  
- sprite: s32'aen232_06', 1
- createObject: s32'cmn_Windpressure_Tate', (CENTER)
- applyTo: (PREVIOUS) {
- 	setAngle: -20000
- 	addYPosition: 245000
- 	addXPosition: 160000
- 	} endApply: 
- 	resetSpeed: 1
- 	setXSpeed: 35000
- 	xSpeedPerFrame: 90
- 	setYSpeed: 50000
- 	objectGravity: 
- 	enableHitbox: 
- 	callSubroutine: s32'cmnRendaChain_Clear_Idling'
- 	sprite: s32'aen232_07', 1
- 	sprite: s32'aen232_08', 1
- 	ySpeedPerFrame: 75
- 	sprite: s32'aen232_09', 1
- 	setGravity: 1000
- 	recoveryState: 
- 	headInvul: 0
- 	sprite: s32'aen232_10', 1
- 	sprite: s32'aen232_11', 1
- 	sprite: s32'aen232_12', 4
- 	ySpeedPerFrame: 100
- 	sprite: s32'aen232_13', 4
- 	xSpeedPerFrame: 80
- 	objectGravity: 
- 	beginSubroutine: s32'AccelDance_default' {
+-sprite: s32'aen232_06', 1
+-createObject: s32'cmn_Windpressure_Tate', (CENTER)
+-applyTo: (PREVIOUS) {
+-	setAngle: -20000
+-	addYPosition: 245000
+-	addXPosition: 160000
+-	} endApply: 
+-	resetSpeed: 1
+-	setXSpeed: 35000
+-	xSpeedPerFrame: 90
+-	setYSpeed: 50000
+-	objectGravity: 
+-	enableHitbox: 
+-	callSubroutine: s32'cmnRendaChain_Clear_Idling'
+-	sprite: s32'aen232_07', 1
+-	sprite: s32'aen232_08', 1
+-	ySpeedPerFrame: 75
+-	sprite: s32'aen232_09', 1
+-	setGravity: 1000
+-	recoveryState: 
+-	headInvul: 0
+-	sprite: s32'aen232_10', 1
+-	sprite: s32'aen232_11', 1
+-	sprite: s32'aen232_12', 4
+-	ySpeedPerFrame: 100
+-	sprite: s32'aen232_13', 4
+-	xSpeedPerFrame: 80
+-	objectGravity: 
+-	beginSubroutine: s32'AccelDance_default' {
++beginSubroutine: s32'AccelDance_default' {
  	playerActionInitializeByCategory: 20, 1
  	callSubroutine: s32'cmnAtkLevel_4_AtkInit'
  	damage: 100
@@ -5658,9 +5770,28 @@
  	upon: (IMMEDIATE) {
  		callSubroutine: s32'AccelDance_default'
  	} endUpon: 
- 	sprite: s32'aen022_00', 8
+-	sprite: s32'aen022_00', 8
++	sprite: s32'aen022_00', 4
  	enableSuperArmor: 1
  	resetSpeed: 1
++	checkLastStateName: s32'EnergyWave'
++	if: var(Result) {
++		createParticle: s32'cmn_Warp', (CENTER)
++		setNoCollision: 0
++		displayModel: 0
++	} endIf: 
++	sprite: s32'aen022_00', 1
++	checkLastStateName: s32'EnergyWave'
++	if: var(Result) {
++		warp: (ENEMY_MAIN_PLAYER), (ZERO), 300000, 25000, 1
++	} endIf: 
++	sprite: s32'aen022_00', 3
++	checkLastStateName: s32'EnergyWave'
++	if: var(Result) {
++		resetSpeed: 1
++		setNoCollision: 1
++		displayModel: 1
++	} endIf: 
  	sprite: s32'null', 1
  	callSubroutine: s32'AccelDance_17_Delete'
  	superFreeze: 4, 119, 102, 103

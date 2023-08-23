@@ -1,0 +1,9 @@
+145c145
+< 		enemyHitstopAddition: 0, 10, 10
+---
+> 		enemyHitstopAddition: 4, 14, 14
+398a399,400
+> 			hitstop: 12
+> 			attackXKnockback: 1000
+868a871
+> 	autoHitSignalSending: 1

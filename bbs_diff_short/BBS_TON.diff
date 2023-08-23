@@ -1,78 +1,94 @@
-4103,4105d4102
-< 	sprite: s32'ton403_13', 3
-< 	sprite: s32'ton403_14', 1
-< 	sprite: s32'ton403_14', 2
-4109d4105
-< 	sprite: s32'ton403_12', 3
-4111,4112c4107,4111
-< 	sprite: s32'ton403_14', 3
-< 	sprite: s32'ton403_12', 3
+1159,1162d1158
+< 		moveInput: (INPUT_BOOLEAN_OR)
+< 		moveInput: (INPUT_214)
+< 		moveInput: (INPUT_PRESS_H)
+< 		moveInput: (INPUT_PRESS_KI)
+1178,1181d1173
+< 		moveInput: (INPUT_BOOLEAN_OR)
+< 		moveInput: (INPUT_ANY_BACK)
+< 		moveInput: (INPUT_HOLD_H)
+< 		moveInput: (INPUT_HOLD_KI)
+1261c1253,1257
+< 		addMoveCondition: (plr6_true)
 ---
-> 	sprite: s32'ton403_14', 2
-> 	sprite: s32'ton403_12', 2
-> 	sprite: s32'ton403_13', 2
-> 	sprite: s32'ton403_14', 2
-> 	sprite: s32'ton403_12', 2
-4325,4329c4324
-< 	sprite: s32'ton403_12', 3
-< 	sprite: s32'ton403_13', 3
-< 	sprite: s32'ton403_14', 3
-< 	sprite: s32'ton403_12', 3
-< 	spriteOverrideTime: 1, var(act0)
+> 		addMoveCondition: (plr0_true)
+> 		addMoveCondition: (plr1_true)
+> 		addMoveCondition: (plr2_true)
+> 		addMoveCondition: (plr3_true)
+> 		addMoveCondition: (plr5_false)
+1268a1265,1279
+> 	addMove: s32'Dangertime_Chain' {
+> 		moveType: (OVERDRIVE)
+> 		characterState: (STANDING)
+> 		moveInput: (INPUT_ANY_BACK)
+> 		moveInput: (INPUT_HOLD_H)
+> 		moveInput: (INPUT_HOLD_KI)
+> 		addMoveCondition: (THREE)
+> 		addMoveCondition: (plr0_true)
+> 		addMoveCondition: (plr1_true)
+> 		addMoveCondition: (plr2_true)
+> 		addMoveCondition: (plr3_true)
+> 		addMoveCondition: (plr5_false)
+> 		isFollowupMove: 1
+> 		moveAlias: s32'Dangertime'
+> 	} endMove: 
+1450a1462
+> 	registerMove: s32'Dangertime_Chain'
+3315a3328
+> 		groundKnockbackEffect: (FORCE_STAND)
+3327c3340
+< 	setXSpeed: 50000
 ---
-> 	sprite: s32'ton403_12', 1
-4332a4328,4331
-> 	sprite: s32'ton403_13', 2
-> 	sprite: s32'ton403_14', 2
-> 	sprite: s32'ton403_12', 2
-> 	spriteOverrideTime: 1, var(act0)
-6496a6496
-> 	enableSpecialCancel: 1
-6557a6558,6560
-> 		enableSpecialCancel: 1
-> 		addGatlingOption: s32'CmnFAirDash'
-> 		addGatlingOption: s32'CmnActFAirDash2Button'
-6823,6825c6826,6828
-< 	sprite: s32'ton205_09', 4
-< 	sprite: s32'ton205_10', 4
-< 	sprite: s32'ton205_11', 4
+> 	setXSpeed: 100000
+3362c3375,3377
+< 	sprite: s32'ton202_01', 2
 ---
-> 	sprite: s32'ton205_09', 2
-> 	sprite: s32'ton205_10', 2
-> 	sprite: s32'ton205_11', 2
-6827c6830
-< 	sprite: s32'ton205_12', 3
+> 	sprite: s32'ton202_01', 1
+> 	sprite: s32'ton202_01', 1
+> 	headInvul: 1
+3364c3379
+< 	setXSpeed: 90000
 ---
-> 	sprite: s32'ton205_12', 1
-6915a6919
-> 	enableSpecialCancel: 1
-6980a6985,6987
-> 		enableSpecialCancel: 1
-> 		addGatlingOption: s32'CmnFAirDash'
-> 		addGatlingOption: s32'CmnActFAirDash2Button'
-7262d7268
-< 	landingRecovery: 6, 1
-7284,7287c7290,7293
-< 	sprite: s32'ton022_02', 3
-< 	sprite: s32'ton022_03', 2
-< 	sprite: s32'ton022_04', 2
-< 	sprite: s32'ton022_05', 2
+> 	setXSpeed: 140000
+3378a3394
+> 	headInvul: 0
+3878a3895
+> 		enableJumpCancel: 1
+4479a4497,4498
+> 			addWhiffCancelOption: s32'Dangertime'
+> 			addWhiffCancelOption: s32'Dangertime_Chain'
+7571a7591,7592
+> 			addWhiffCancelOption: s32'Dangertime'
+> 			addWhiffCancelOption: s32'Dangertime_Chain'
+7991a8013,8014
+> 			addWhiffCancelOption: s32'Dangertime'
+> 			addWhiffCancelOption: s32'Dangertime_Chain'
+8281a8305,8310
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Hungry'
+> 		addGatlingOption: s32'Fullcourse'
+> 		whiffCancelOptionBufferTime: s32'Hungry', 40
+> 		whiffCancelOptionBufferTime: s32'Fullcourse', 40
+> 	} endIf: 
+8407a8437,8442
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Hungry'
+> 		addGatlingOption: s32'Fullcourse'
+> 		whiffCancelOptionBufferTime: s32'Hungry', 40
+> 		whiffCancelOptionBufferTime: s32'Fullcourse', 40
+> 	} endIf: 
+9385c9420,9431
+< 	forceRandomVoice: s16'vxxx615', 100, s16'', 0, s16'', 0, s16'', 0
 ---
-> 	sprite: s32'ton022_02', 1
-> 	sprite: s32'ton022_03', 1
-> 	sprite: s32'ton022_04', 1
-> 	sprite: s32'ton022_05', 1
-7291c7297
-< 	sprite: s32'ton037_02', 4
----
-> 	sprite: s32'ton037_02', 2
-7293,7294c7299,7300
-< 	sprite: s32'ton037_01', 3
-< 	sprite: s32'ton037_00', 3
----
-> 	sprite: s32'ton037_01', 1
-> 	sprite: s32'ton037_00', 1
-7299a7306
-> 		headInvul: 1
-7688a7696
-> 		headInvul: 1
+> 	if: var(plr6) {
+> 		forceRandomVoice: s16'vxxx615', 100, s16'', 0, s16'', 0, s16'', 0
+> 	} endIf: 
+> 	else:  {
+> 		forceRandomVoice: s16'vxxx215', 100, s16'', 0, s16'', 0, s16'', 0
+> 		ifOperation: (MOD_EQUALS_0), var(TrainingValue), int(2) {
+> 			copyVar: var(plr0), int(0)
+> 			copyVar: var(plr1), int(0)
+> 			copyVar: var(plr2), int(0)
+> 			copyVar: var(plr3), int(0)
+> 		} endIf: 
+> 	} endElse: 

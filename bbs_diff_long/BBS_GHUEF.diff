@@ -1,6 +1,6 @@
---- 1.31/BBS_GHUEF.bbs	2023-05-23 14:16:12.309730690 +0200
-+++ 1.32/BBS_GHUEF.bbs	2023-05-23 14:14:47.985284882 +0200
-@@ -1,3259 +1,3259 @@
+--- 1.32/BBS_GHUEF.bbs	2023-05-24 20:54:45.841983062 +0200
++++ 1.33/BBS_GHUEF.bbs	2023-08-23 04:23:01.382892797 +0200
+@@ -1,3259 +1,3260 @@
  beginState: s32'dmy' {
  	sprite: s32'null', 1
  } endState: 
@@ -435,8 +435,7 @@
  		attackYKnockback: 13000
  		attackYSuction: 1, 15000, 300000, 100, 0
  		wallBounceCount: 0
--		airHitstun: 25
-+		airHitstun: 35
+ 		airHitstun: 35
  		atkRange: 50000000, -385000, 0, 0
  		atkSousaiSevereCheck: 1
  		atkEffectBeamSousai: 1
@@ -697,8 +696,7 @@
  		attackYKnockback: 10000
  		attackYSuction: 1, 15000, 300000, 100, 0
  		wallBounceCount: 0
--		airHitstun: 25
-+		airHitstun: 35
+ 		airHitstun: 35
  		atkRange: 50000000, -385000, 0, 0
  		atkSousaiSevereCheck: 1
  		atkEffectBeamSousai: 1
@@ -851,9 +849,11 @@
  		airKnockbackEffect: (SPIN)
  		attackXKnockback: 60000
  		attackYKnockback: 38000
- 		airHitstun: 34
+-		airHitstun: 34
++		airHitstun: 40
  		autoHitStopSending: 1
  		atkYogore: 0
++		autoHitSignalSending: 1
  		ifOperation: (IS_EQUAL), var(ObjectParameter1), int(1) {
  			damage: 2043
  			minimalDamagePercent: 42

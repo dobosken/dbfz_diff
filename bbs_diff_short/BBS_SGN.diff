@@ -1,12 +1,61 @@
-3341a3342
-> 	atkZReversal: 1
-3416a3418
-> 	atkZReversal: 0
-3670a3673
-> 		enableJumpCancel: 1
-8371,8372c8374,8375
-< 	ifOperation: (IS_GREATER_OR_EQUAL), var(PosY), int(5000000) {
-< 		setYPosition: 5000000
+2715c2715
+< 	setXSpeed: 35000
 ---
-> 	ifOperation: (IS_GREATER_OR_EQUAL), var(PosY), int(4500000) {
-> 		setYPosition: 4500000
+> 	setXSpeed: 55000
+3266a3267
+> 		blockstun: 18
+3859a3861
+> 		blockstun: 18
+6056a6059
+> 	superArmorKiBlastInvul: 1
+6266a6270
+> 	superArmorKiBlastInvul: 0
+6703a6708,6710
+> 	enableSuperArmor: 1
+> 	callSubroutine: s32'cmn_MutekiArmor'
+> 	noGuardEffect: 0
+6788a6796
+> 	enableSuperArmor: 0
+6852a6861
+> 	enableSuperArmor: 0
+6912a6922
+> 	enableSuperArmor: 0
+6951a6962
+> 	enableSuperArmor: 0
+6987a6999,7004
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'Ryuken'
+> 			addGatlingOption: s32'SU_Genkidama'
+> 			whiffCancelOptionBufferTime: s32'Ryuken', 40
+> 			whiffCancelOptionBufferTime: s32'SU_Genkidama', 40
+> 		} endIf: 
+7111a7129
+> 	deactivateObjectByName: s32'SGN_S_Kamehameha_Tame'
+7315a7334,7342
+> 		deactivateObjectByName: s32'SGN430_aura_Eff'
+> 		deactivateObjectByName: s32'SGN431_aura_Eff'
+> 		deactivateObjectByName: s32'SGN_groundSmoke_EXtame'
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'SGN_S_Kamehameha'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 		} endIf: 
+7377a7405,7411
+> 	if: var(EnemyInHitstun) {
+> 		checkLastStateName: s32'SGN_S_Kamehameha'
+> 		if: var(Result) {
+> 			setXSpeed: 180000
+> 			superFreeze: 7, 100, 0, 10
+> 		} endIf: 
+> 	} endIf: 
+8385a8420,8428
+> 		deactivateObjectByName: s32'SGN430_aura_Eff'
+> 		deactivateObjectByName: s32'SGN431_aura_Eff'
+> 		deactivateObjectByName: s32'SGN_groundSmoke_EXtame'
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'SGN_S_Kamehameha'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 30
+> 			} endIf: 
+> 		} endIf: 

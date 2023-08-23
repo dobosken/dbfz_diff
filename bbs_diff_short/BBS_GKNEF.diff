@@ -1,15 +1,21 @@
-817c817
-< 		airHitstun: 30
+1699a1700,1701
+> 		hitstop: 9
+> 		attackOTG: 1
+2469d2470
+< 		linkObjectPosition: (PARENT)
+2511a2513
+> 		autoHitSignalSending: 1
+2569a2572
+> 		autoHitSignalSending: 1
+2615d2617
+< 		linkObjectPosition: (PARENT)
+3748,3751c3750,3753
+< 	setXSpeed: 6000
+< 	setYSpeed: -8400
+< 	xSpeedPerFrame: 101
+< 	ySpeedPerFrame: 101
 ---
-> 		airHitstun: 45
-819c819
-< 		wallBounceXVelocityPercent: 0
----
-> 		wallBounceXVelocityPercent: 10
-933a934,939
-> 			} endIf: 
-> 			checkCurrentStateName: (PLAYER), s32'AssistAttack3'
-> 			ifNot: var(Result) {
-> 				ifOperation: (IS_GREATER_OR_EQUAL), var(LoopCount), int(4) {
-> 					enemyHitstopAddition: 0, 14, 14
-> 				} endIf: 
+> 	setXSpeed: 7500
+> 	setYSpeed: -10500
+> 	xSpeedPerFrame: 104
+> 	ySpeedPerFrame: 105

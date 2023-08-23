@@ -1,6 +1,6 @@
---- 1.31/BBS_BRS.bbs	2023-05-23 14:16:08.848671348 +0200
-+++ 1.32/BBS_BRS.bbs	2023-05-23 14:14:44.638227494 +0200
-@@ -1,7628 +1,7633 @@
+--- 1.32/BBS_BRS.bbs	2023-05-24 20:54:42.344925383 +0200
++++ 1.33/BBS_BRS.bbs	2023-08-23 04:22:58.198838539 +0200
+@@ -1,7633 +1,7678 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'brs'
  } endSubroutine: 
@@ -2404,8 +2404,7 @@
  	sprite: s32'brs202_02', 2
  	spriteEnd: 
  	cmnSfx: s32'ARC_BTL_CMN_Furi_SyagamiKeri'
--	setXSpeed: 100000
-+	setXSpeed: 150000
+ 	setXSpeed: 150000
  	xSpeedPerFrame: 85
  	effectForDashStart: 104, 1, 0
  	label: s32'loop'
@@ -3205,8 +3204,7 @@
  	atkHitPositionType: 4, 10000, 1
  	attackXKnockback: 7000
  	attackYKnockback: 35000
--	airHitstun: 30
-+	airHitstun: 40
+ 	airHitstun: 40
  	upon: (ATTACK_COLLISION_PLAYER) {
  		enableSpecialCancel: 1
  		enableSparkCancel: 1
@@ -3288,17 +3286,17 @@
  	resetSpeed: 1
  	sprite: s32'brs263_01', 3
  	setYSpeed: 35000
-+	checkInput: (INPUT_ANY_FORWARD)
-+	if: var(Result) {
-+		addXSpeed: 15000
-+	} endIf: 
+ 	checkInput: (INPUT_ANY_FORWARD)
+ 	if: var(Result) {
+ 		addXSpeed: 15000
+ 	} endIf: 
  	sprite: s32'brs263_02', 5
  	attackVoice: 2, -1
  	commonBankSE: 0, s32'ARC_BTL_CMN_Blow_Down', 100
  	sprite: s32'brs263_03', 3
  	sprite: s32'brs263_04', 3
  	createObject: s32'brs_263_line01', (CENTER)
-+	setXSpeed: 0
+ 	setXSpeed: 0
  	setYSpeed: -10000
  	objectGravity: 
  	sprite: s32'brs263_05', 3
@@ -3963,14 +3961,20 @@
  	xSpeedPerFrame: 90
  	cameraFast: 0
  	cameraTargetSelf: 0
- 	sprite: s32'brs400_14', 4
- 	sprite: s32'brs400_15', 4
- 	sprite: s32'brs400_16', 4
+-	sprite: s32'brs400_14', 4
+-	sprite: s32'brs400_15', 4
+-	sprite: s32'brs400_16', 4
++	sprite: s32'brs400_14', 3
++	sprite: s32'brs400_15', 3
++	sprite: s32'brs400_16', 3
  	mouthPose: (SHOW_TEETH)
- 	sprite: s32'brs400_17', 4
- 	sprite: s32'brs400_18', 3
+-	sprite: s32'brs400_17', 4
+-	sprite: s32'brs400_18', 3
++	sprite: s32'brs400_17', 2
++	sprite: s32'brs400_18', 2
  	resetSpeed: 1
- 	sprite: s32'brs400_19', 3
+-	sprite: s32'brs400_19', 3
++	sprite: s32'brs400_19', 2
  } endState: 
  
  beginSubroutine: s32'Gclaw_Atk' {
@@ -4899,14 +4903,17 @@
  		initializeForLockExe: 18, 1
  		callSubroutine: s32'cmnAtkLevel_3_AtkInit'
  		callSubroutine: s32'cmnAtkTemplNageExe'
- 		damage: 1500
+-		damage: 1500
++		damage: 1000
  		damageScalingOverride: 500
  		airKnockbackEffect: (AIR_FACE_UP)
  		groundKnockbackEffect: (AIR_FACE_UP)
- 		attackXKnockback: 60000
+-		attackXKnockback: 60000
++		attackXKnockback: 30000
  		attackYKnockback: 30000
  		noHitstunScaling: 0
  		attackFinishBlowback: 1
++		airHitstun: 27
  		damageSoundEffect: s32'ARC_BTL_CMN_Hit_Beam'
  		guardSoundEffect: s32'ARC_BTL_CMN_Guard_Beam'
  		upon: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE_PRE_CTRL) {
@@ -4917,9 +4924,15 @@
  					copyVar: var(CameraComboOnce3), int(1)
  					atkHitPositionType: 4, 500000, 50000
  					cameraMotion: -145063, 336461, 149909, -362, 7890, 0, 54, 1, 20, 10, 1
++					damage: 1500
++					airKnockbackEffect: (KirimomiSide)
++					groundKnockbackEffect: (KirimomiSide)
++					attackXKnockback: 10000
++					attackYKnockback: 45000
  					hitstop: 0
  					airHitstun: 60
- 					wallBounceCount: 1
+-					wallBounceCount: 1
++					wallBounceCount: 0
  					wallBounceXVelocityPercent: 0
  					wallBounceInCornerOnly: 1
  					upon: (ON_PLAYER_AFTER_EXECUTE_DAMAGE) {
@@ -5091,10 +5104,11 @@
  			} endIf: 
  		} endUpon: 
  		tensionUsage: 10000
- 		callSubroutine: s32'SuperArmor_Special'
+-		callSubroutine: s32'SuperArmor_Special'
  		setRandom: var(obj2), int(0), int(1)
  	} endUpon: 
- 	sprite: s32'brs430_00', 2
+-	sprite: s32'brs430_00', 2
++	sprite: s32'brs430_00', 1
  	facePose: (NORMAL)
  	createObject: s32'brs_430_aura01_loop', (ZERO)
  	createObject: s32'brs_groundSmoke_EXtame01', (ZERO)
@@ -5108,14 +5122,17 @@
  	} endApply: 
  	mouthPose: (OPEN)
  	resetSpeed: 1
- 	sprite: s32'brs430_01', 3
- 	sprite: s32'brs430_28', 3
+-	sprite: s32'brs430_01', 3
+-	sprite: s32'brs430_28', 3
++	sprite: s32'brs430_01', 1
++	sprite: s32'brs430_28', 1
  	sprite: s32'brs430_29', 3
  	setEX_POINT_F: (ZERO), -40000, 230000
  	createParticle: s32'cmn_kakusei_hatudo', (EX_POINT_F)
  	ignoreWorldStopByFriend: 1
  	ignoreSpeedTime: 50
- 	superFreeze: 3, 119, 35, 35
+-	superFreeze: 3, 119, 35, 35
++	superFreeze: 3, 119, 35, 37
  	upon: (SUPERFREEZE) {
  		clearRegisteredUponCode: (SUPERFREEZE)
  		cameraForceMove: 1
@@ -5269,6 +5286,16 @@
  	enableSuperArmor: 0
  	label: s32'end'
  	sprite: s32'brs430_23', 3
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'GmeteorAB'
++		addGatlingOption: s32'GmeteorCD'
++		addGatlingOption: s32'Air_GmeteorAB'
++		addGatlingOption: s32'Air_GmeteorCD'
++		whiffCancelOptionBufferTime: s32'GmeteorAB', 60
++		whiffCancelOptionBufferTime: s32'GmeteorCD', 40
++		whiffCancelOptionBufferTime: s32'Air_GmeteorAB', 60
++		whiffCancelOptionBufferTime: s32'Air_GmeteorCD', 40
++	} endIf: 
  	sprite: s32'brs430_21', 3
  	sprite: s32'brs430_22', 3
  	enableSuperArmor: 0
@@ -5325,6 +5352,16 @@
  		callSubroutine: s32'SuperArmor_Special'
  		tensionUsage: 10000
  		setRandom: var(obj2), int(0), int(1)
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'GmeteorAB'
++			addGatlingOption: s32'GmeteorCD'
++			addGatlingOption: s32'Air_GmeteorAB'
++			addGatlingOption: s32'Air_GmeteorCD'
++			whiffCancelOptionBufferTime: s32'GmeteorAB', 40
++			whiffCancelOptionBufferTime: s32'GmeteorCD', 40
++			whiffCancelOptionBufferTime: s32'Air_GmeteorAB', 40
++			whiffCancelOptionBufferTime: s32'Air_GmeteorCD', 40
++		} endIf: 
  	} endUpon: 
  	sprite: s32'brs430_00', 3
  	facePose: (NORMAL)
@@ -5509,6 +5546,16 @@
  			enableSuperArmor: 1
  		} endUpon: 
  		tensionUsage: 30000
++		if: var(EnemyInHitstun) {
++			checkLastStateName: s32'Erasercannon'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'Erasercannon_CD'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++		} endIf: 
  	} endUpon: 
  	sprite: s32'brs010_00', 2
  	triggerUponInObject: s32'PoweredShell_eff3', (SIGNAL0)
@@ -5706,6 +5753,16 @@
  			flipDirection: 
  		} endIf: 
  		tensionUsage: 30000
++		if: var(EnemyInHitstun) {
++			checkLastStateName: s32'Erasercannon'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'Erasercannon_CD'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++		} endIf: 
  	} endUpon: 
  	sprite: s32'brs010_00', 2
  	triggerUponInObject: s32'PoweredShell_eff3', (SIGNAL0)

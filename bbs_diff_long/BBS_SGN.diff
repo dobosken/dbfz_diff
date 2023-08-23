@@ -1,6 +1,6 @@
---- 1.31/BBS_SGN.bbs	2023-05-23 14:16:16.685805722 +0200
-+++ 1.32/BBS_SGN.bbs	2023-05-23 14:14:52.136356056 +0200
-@@ -1,10349 +1,10352 @@
+--- 1.32/BBS_SGN.bbs	2023-05-24 20:54:50.558060848 +0200
++++ 1.33/BBS_SGN.bbs	2023-08-23 04:23:05.647965475 +0200
+@@ -1,10352 +1,10395 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'sgn'
  } endSubroutine: 
@@ -2715,7 +2715,8 @@
  	enableHitbox: 
  	createObject: s32'sgn201_smoke01all_Eff', (ZERO)
  	createObject: s32'sgn201_Line_Eff', (ZERO)
- 	setXSpeed: 35000
+-	setXSpeed: 35000
++	setXSpeed: 55000
  	xSpeedPerFrame: 93
  	sprite: s32'sgn201_05', 1
  	sprite: s32'sgn201_06', 1
@@ -3267,6 +3268,7 @@
  		airHitstun: 22
  		atkFrontDirection: 0
  		attackFinishBlowback: 1
++		blockstun: 18
  		upon: (ON_ATTACK_HIT_PLAYER_GUARD) {
  			clearRegisteredUponCode: (ON_ATTACK_HIT_PLAYER_GUARD)
  			percentageXSpeed: 50
@@ -3342,7 +3344,7 @@
  	createObject: s32'sgn205_Smoke_Eff', (PLAYER_LAND)
  	createObject: s32'sgn205_Roll_Eff', (ZERO)
  	sprite: s32'sgn205_02', 1
-+	atkZReversal: 1
+ 	atkZReversal: 1
  	sprite: s32'sgn205_02', 1
  	forceRandomVoiceWeak: s16'vxxx106', 100, s16'vxxx107', 100, s16'', 0, s16'', 0
  	characterSfx: s32'ARC_BTL_SGN_Atk5D_Basa'
@@ -3418,7 +3420,7 @@
  	sprite: s32'sgn205_19', 2
  	spriteOverrideTime: 3, var(act1)
  	sprite: s32'sgn205_20', 2
-+	atkZReversal: 0
+ 	atkZReversal: 0
  	spriteOverrideTime: 3, var(act1)
  	sprite: s32'sgn205_21', 2
  	spriteOverrideTime: 3, var(act1)
@@ -3673,7 +3675,7 @@
  			addGatlingOption: s32'CmnFAirDash'
  			addGatlingOption: s32'CmnActFAirDash2Button'
  		} endIf: 
-+		enableJumpCancel: 1
+ 		enableJumpCancel: 1
  		if: var(SmashRegular) {
  			copyVar: var(SmashRegular), int(2)
  		} endIf: 
@@ -3860,6 +3862,7 @@
  		attackXKnockback: 20000
  		attackYKnockback: 10000
  		atkFrontDirection: 0
++		blockstun: 18
  		addGatlingOption: s32'NmlAtkAir2C'
  		addGatlingOption: s32'NmlAtkAir1D'
  		addGatlingOption: s32'NmlAtkAir2D'
@@ -6057,6 +6060,7 @@
  			setXSpeed: 40000
  		} endIf: 
  	} endUpon: 
++	superArmorKiBlastInvul: 1
  	sprite: s32'sgn402_02', 2
  	createObject: s32'SGN_Kamehameha_Tame', (EX_POINT_0)
  	characterSfx: s32'ARC_BTL_SGN_Kame_Bishi'
@@ -6267,6 +6271,7 @@
  	triggerUponInObject: s32'SGN_Kamehameha_Core', (SIGNAL0)
  	deactivateObjectByName: s32'sgn402_kamehameha_shadow'
  	deactivateObjectByName: s32'SGN_Kamehameha_groundSmoke'
++	superArmorKiBlastInvul: 0
  	enableWhiffCancel: 1
  	addWhiffCancelOption: s32'CmnActHomingDash'
  	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 10
@@ -6704,6 +6709,9 @@
  	spriteOverrideTime: 1, var(act0)
  	callSubroutine: s32'Kamehameha_HaseiCheck'
  	landingRecovery: 15, 1
++	enableSuperArmor: 1
++	callSubroutine: s32'cmn_MutekiArmor'
++	noGuardEffect: 0
  	sprite: s32'sgn404_07', 2
  	spriteOverrideTime: 1, var(act0)
  	sprite: s32'sgn404_08', 2
@@ -6789,6 +6797,7 @@
  	enableWhiffCancel: 0
  	objectGravity: 
  	autoAirTurn: 1
++	enableSuperArmor: 0
  	sprite: s32'sgn022_03', 3
  	sprite: s32'sgn022_04', 3
  	spriteEnd: 
@@ -6853,6 +6862,7 @@
  	autoAirTurn: 1
  	xSpeedPerFrame: 100
  	ySpeedPerFrame: 100
++	enableSuperArmor: 0
  	sprite: s32'sgn022_03', 3
  	sprite: s32'sgn022_04', 3
  	spriteEnd: 
@@ -6913,6 +6923,7 @@
  	xSpeedPerFrame: 85
  	ySpeedPerFrame: 100
  	setXSpeed: 30000
++	enableSuperArmor: 0
  	recoveryState: 
  	sprite: s32'sgn406_07', 2
  	sprite: s32'sgn406_08', 2
@@ -6952,6 +6963,7 @@
  	sprite: s32'sgn038_00', 2
  	sprite: s32'sgn022_02', 3
  	objectGravity: 
++	enableSuperArmor: 0
  	sprite: s32'sgn022_03', 3
  	recoveryState: 
  	enableGatlings: 0
@@ -6988,6 +7000,12 @@
  			copyVar: var(act1), int(1)
  		} endIf: 
  		tensionUsage: 10000
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'Ryuken'
++			addGatlingOption: s32'SU_Genkidama'
++			whiffCancelOptionBufferTime: s32'Ryuken', 40
++			whiffCancelOptionBufferTime: s32'SU_Genkidama', 40
++		} endIf: 
  	} endUpon: 
  	sprite: s32'sgn430_00', 3
  	facePose: (ANGRY)
@@ -7112,6 +7130,7 @@
  	createObject: s32'SGN_S_kamehameha_shadow', (EX_POINT_2)
  	createObject: s32'SGN_S_kamehameha_shadow', (EX_POINT_3)
  	createObject: s32'SGN_S_kamehameha_shadow', (EX_POINT_4)
++	deactivateObjectByName: s32'SGN_S_Kamehameha_Tame'
  	label: s32'loop'
  	sprite: s32'sgn430_25', 2
  	cameraShake: s32'ShakeYoko', 1000, 0, 6, 0
@@ -7316,6 +7335,15 @@
  			stopBankSE: 16, 20
  			stopBankSE: 17, 20
  		} endUpon: 
++		deactivateObjectByName: s32'SGN430_aura_Eff'
++		deactivateObjectByName: s32'SGN431_aura_Eff'
++		deactivateObjectByName: s32'SGN_groundSmoke_EXtame'
++		if: var(EnemyInHitstun) {
++			checkLastStateName: s32'SGN_S_Kamehameha'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++		} endIf: 
  	} endUpon: 
  	sprite: s32'sgn432_00', 2
  	facePose: (ANGRY)
@@ -7378,6 +7406,13 @@
  	objectGravity: 
  	landingRecovery: 15, 1
  	characterSfx: s32'ARC_BTL_SGN_Ryuken_Kick'
++	if: var(EnemyInHitstun) {
++		checkLastStateName: s32'SGN_S_Kamehameha'
++		if: var(Result) {
++			setXSpeed: 180000
++			superFreeze: 7, 100, 0, 10
++		} endIf: 
++	} endIf: 
  	sprite: s32'sgn432_14', 2
  	sprite: s32'sgn432_15', 2
  	sprite: s32'sgn432_16', 1
@@ -8374,10 +8409,8 @@
  	else:  {
  		warpSelfDirOffset: (ENEMY_MAIN_PLAYER), (ZERO), -1500000, 1000000, 2
  	} endElse: 
--	ifOperation: (IS_GREATER_OR_EQUAL), var(PosY), int(5000000) {
--		setYPosition: 5000000
-+	ifOperation: (IS_GREATER_OR_EQUAL), var(PosY), int(4500000) {
-+		setYPosition: 4500000
+ 	ifOperation: (IS_GREATER_OR_EQUAL), var(PosY), int(4500000) {
+ 		setYPosition: 4500000
  	} endIf: 
  	ifOperation: (IS_LESS_OR_EQUAL), var(PosY), int(1000000) {
  		setYPosition: 1000000
@@ -8388,6 +8421,15 @@
  	upon: (IMMEDIATE) {
  		playerActionInitializeByCategory: 20, 1
  		tensionUsage: 30000
++		deactivateObjectByName: s32'SGN430_aura_Eff'
++		deactivateObjectByName: s32'SGN431_aura_Eff'
++		deactivateObjectByName: s32'SGN_groundSmoke_EXtame'
++		if: var(EnemyInHitstun) {
++			checkLastStateName: s32'SGN_S_Kamehameha'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++		} endIf: 
  	} endUpon: 
  	setMeteoUltimateSkillOffset: 2
  	sprite: s32'sgn037_00', 1

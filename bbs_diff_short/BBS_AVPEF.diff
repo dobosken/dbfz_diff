@@ -1,0 +1,4 @@
+571a572,574
+> 		upon: (ATTACK_COLLISION) {
+> 			copyVar: var(act7), int(1)
+> 		} endUpon: 

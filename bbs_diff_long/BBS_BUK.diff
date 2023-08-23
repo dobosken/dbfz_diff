@@ -1,6 +1,6 @@
---- 1.31/BBS_BUK.bbs	2023-05-23 14:16:09.353680007 +0200
-+++ 1.32/BBS_BUK.bbs	2023-05-23 14:14:45.144236169 +0200
-@@ -1,6901 +1,6901 @@
+--- 1.32/BBS_BUK.bbs	2023-05-24 20:54:42.863933943 +0200
++++ 1.33/BBS_BUK.bbs	2023-08-23 04:22:58.671846599 +0200
+@@ -1,6901 +1,6988 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'buk'
  } endSubroutine: 
@@ -242,6 +242,18 @@
  		skillEstTagXFarPanashi: 
  		skillEstTagShot: 
  	} endMove: 
++	addMove: s32'NmlAtkAir2D' {
++		moveType: (NORMAL)
++		characterState: (AIRBORNE)
++		moveInput: (INPUT_ANY_DOWN)
++		moveInput: (INPUT_PRESS_KI)
++		maxChainIntoSelf: 1
++		skillForceDisableFlag: 1073741824
++		skillEstAtkBox: -380, -300, 380, 100
++		skillEstLevelLimit: 30
++		skillEstTagXFarPanashi: 
++		skillEstTagShot: 
++	} endMove: 
  	addMove: s32'MBAttackA' {
  		moveType: (SPECIAL)
  		characterState: (STANDING)
@@ -577,6 +589,7 @@
  	registerMove: s32'NmlAtk5A3rd'
  	registerMove: s32'NmlAtk2A'
  	registerMove: s32'NmlAtkAir5D'
++	registerMove: s32'NmlAtkAir2D'
  	registerMove: s32'NmlAtkAir5C'
  	registerMove: s32'NmlAtkAir2C'
  	registerMove: s32'NmlAtkAir5B'
@@ -2724,6 +2737,7 @@
  	upon: (IMMEDIATE) {
  		callSubroutine: s32'cmnNmlAtkAir5A_AtkInit'
  		callSubroutine: s32'cmnNmlAtkAir5A_Init'
++		addGatlingOption: s32'NmlAtkAir2D'
  		checkLastStateName: s32'NmlAtkAir5B'
  		if: var(Result) {
  			if: var(obj3) {
@@ -2773,6 +2787,7 @@
  		callSubroutine: s32'cmnNmlAtkAir5B_AtkInit'
  		callSubroutine: s32'cmnNmlAtkAir5B_Init'
  		callSubroutine: s32'cmn_JumpBTadanHosei'
++		addGatlingOption: s32'NmlAtkAir2D'
  		attackXKnockback: 5000
  		attackYKnockback: 11000
  		hitstop: 8
@@ -2931,6 +2946,7 @@
  	upon: (IMMEDIATE) {
  		callSubroutine: s32'cmnNmlAtkAir5C_AtkInit'
  		callSubroutine: s32'cmnNmlAtkAir5C_Init'
++		addGatlingOption: s32'NmlAtkAir2D'
  		facePose: (STRESSED)
  		upon: (SIGNAL_NAME) {
  			checkSignalName: s32'CameraCombo_Air5C'
@@ -2966,6 +2982,7 @@
  	upon: (IMMEDIATE) {
  		callSubroutine: s32'cmnNmlAtkAir2C_AtkInit'
  		callSubroutine: s32'cmnNmlAtkAir2C_Init'
++		addGatlingOption: s32'NmlAtkAir2D'
  		facePose: (STRESSED)
  		upon: (SIGNAL_NAME) {
  			checkSignalName: s32'CameraCombo_Air2C'
@@ -3016,6 +3033,7 @@
  	upon: (IMMEDIATE) {
  		callSubroutine: s32'cmnNmlAtkAir5D_Init'
  		addGatlingOption: s32'NmlAtkAir5B'
++		addGatlingOption: s32'NmlAtkAir2D'
  	} endUpon: 
  	sprite: s32'buk265_00', 1
  	mouthPose: (OPEN)
@@ -3047,6 +3065,45 @@
  	sprite: s32'buk265_12', 3
  } endState: 
  
++beginState: s32'NmlAtkAir2D' {
++	upon: (IMMEDIATE) {
++		callSubroutine: s32'cmnNmlAtkAir5D_Init'
++		addGatlingOption: s32'NmlAtkAir5B'
++		addGatlingOption: s32'NmlAtkAir5D'
++	} endUpon: 
++	sprite: s32'buk038_00', 1
++	facePose: (STRESSED)
++	mouthPose: (OPEN)
++	sprite: s32'buk038_01', 1
++	sprite: s32'buk038_02', 1
++	sprite: s32'buk038_03', 1
++	resetSpeed: 1
++	randomVoiceLine2: s16'vxxx106', 100, s16'vxxx107', 100, s16'', 0, s16'', 0
++	sprite: s32'buk038_04', 2
++	sprite: s32'buk233_04', 2
++	addXPosition: 30000
++	setXSpeed: 15000
++	setYSpeed: 15000
++	objectGravity: 
++	landingRecovery: 7, 1
++	createObject: s32'kidan_start', (EX_POINT_0)
++	sprite: s32'buk233_05', 3
++	sprite: s32'buk233_06', 1
++	sprite: s32'buk233_07', 1
++	sprite: s32'buk233_08', 3
++	createObject: s32'buk233_eff', (ZERO)
++	createObject: s32'crouchkidan', (EX_POINT_0)
++	ifVarOfObjectTrue: (ENEMY_MAIN_PLAYER), var(IsLand) {
++		sendSignal: (PREVIOUS), (SIGNAL0)
++	} endIf: 
++	commonSetSE: s32'KidanFire', 0, 100
++	sprite: s32'buk233_09', 4
++	sprite: s32'buk233_10', 3
++	sprite: s32'buk233_11', 3
++	sprite: s32'buk233_12', 3
++	sprite: s32'buk233_13', 3
++} endState: 
++
  beginSubroutine: s32'MBAttack_Init' {
  	callSubroutine: s32'cmnAtkLevel_3_AtkInit'
  	callSubroutine: s32'cmn_AirAtkHosei'
@@ -4343,7 +4400,8 @@
  	tensionGainOnConnect: 0
  	groundKnockbackEffect: (AIR_FACE_UP)
  	airKnockbackEffect: (AIR_FACE_UP)
- 	airHitstun: 30
+-	airHitstun: 30
++	airHitstun: 40
  	noHitstunScaling: 1
  	attackXKnockback: 25000
  	attackYKnockback: 30000
@@ -4382,6 +4440,7 @@
  	sprite: s32'buk402_31', 2
  	sprite: s32'buk402_32', 2
  	sprite: s32'buk402_30', 2
++	callSubroutine: s32'cmn_NandemoEnableStand'
  	sprite: s32'buk402_31', 2
  	sprite: s32'buk402_32', 2
  	sprite: s32'buk402_30', 2
@@ -4568,6 +4627,9 @@
  		airHitstun: 40
  		atkIgnoreCaution: 1
  		ignorePushback: 1
++		guardPushback: 150
++		enemyHitstopAddition: 5, 0, 0
++		blockstun: 20
  		damageSoundEffect: s32'ARC_BTL_CMN_Hit_Kidan'
  		guardSoundEffect: s32'ARC_BTL_CMN_Guard_Kidan'
  		upon: (ON_ATTACK_HIT_MAIN_PLAYER_DAMAGE) {
@@ -4575,12 +4637,19 @@
  		} endUpon: 
  		tensionUsage: 10000
  		finishCameraRequest: s32'FinishCamera_Zetsumetsu'
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'EarthBreak'
++			addGatlingOption: s32'AirEarthBreak'
++		} endIf: 
  	} endUpon: 
  	sprite: s32'buk430_00', 2
  	facePose: (STRESSED)
  	mouthPose: (CLOSED)
  	createObject: s32'buk430_tameAura_loop00', (ZERO)
- 	sprite: s32'buk430_01', 2
+-	sprite: s32'buk430_01', 2
++	sprite: s32'buk430_01', 1
++	sprite: s32'buk430_01', 1
++	enableSuperArmor: 1
  	sprite: s32'buk430_02', 1
  	superFreeze: 3, 119, 90, 90
  	enableSuperArmor: 1
@@ -4675,8 +4744,7 @@
  		callSubroutine: s32'cmnAtkLevel_4_AtkInit'
  		callSubroutine: s32'cmn_UltimateHosei'
  		damage: 2300
--		minimalDamagePercent: 31
-+		minimalDamagePercent: 35
+ 		minimalDamagePercent: 35
  		groundKnockbackEffect: (AIR_STRONG)
  		airKnockbackEffect: (AIR_STRONG)
  		atkWallBoundCountReset: 
@@ -4826,6 +4894,11 @@
  	sprite: s32'buk431_24', 1
  	label: s32'up'
  	sprite: s32'buk431_24', 1
++	if: var(CmnCharaReg7) {
++		addGatlingOption: s32'EarthBreak'
++		addGatlingOption: s32'AirEarthBreak'
++		senkoInputUltimate: 30
++	} endIf: 
  	sprite: s32'buk431_22', 1
  	sprite: s32'buk431_23', 1
  	sprite: s32'buk431_24', 1
@@ -4886,6 +4959,13 @@
  			} endIf: 
  		} endUpon: 
  		tensionUsage: 30000
++		if: var(EnemyInHitstun) {
++			checkLastStateName: s32'Pearlflash'
++			if: var(Result) {
++				faceOpponent: 
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++		} endIf: 
  	} endUpon: 
  	sprite: s32'buk010_00', 2
  	facePose: (ANGRY)
@@ -4988,6 +5068,13 @@
  			} endIf: 
  		} endUpon: 
  		tensionUsage: 30000
++		if: var(EnemyInHitstun) {
++			checkLastStateName: s32'Pearlflash'
++			if: var(Result) {
++				faceOpponent: 
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++		} endIf: 
  	} endUpon: 
  	sprite: s32'buk022_00', 3
  	facePose: (ANGRY)
@@ -5281,6 +5368,7 @@
  	} endIf: 
  	destructionCollision: 0, 0, 0, 10000
  	effectForLandBreak: 1, 1000, 0, 0
++	deactivateObjectByName: s32'Extinction_fall'
  	label: s32'loop_1'
  	sprite: s32'buk432_25', 3
  	sprite: s32'buk432_26', 3

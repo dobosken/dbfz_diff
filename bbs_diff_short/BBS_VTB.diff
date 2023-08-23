@@ -1,0 +1,61 @@
+431a432
+> 		maxChainIntoSelf: 1
+445a447
+> 		move_ShareChain: s32'Omegafinishblow'
+458a461
+> 		maxChainIntoSelf: 1
+476a480
+> 		move_ShareChain: s32'FinalKamehameha'
+2440a2445
+> 		copyVar: var(CameraCombo1), int(1)
+2522a2528
+> 		attackGuardtype: (LOW)
+3163a3170
+> 		enableJumpCancel: 1
+5563a5571,5581
+> 	checkInput: (INPUT_HOLD_KI)
+> 	if: var(Result) {
+> 		clearRegisteredUponCode: (MUTEKI_PRE_HITSTOP)
+> 		enableSuperArmor: 0
+> 		faceOpponent: 
+> 		zLine: var(plr1)
+> 		enableVanish: 0
+> 		onlyHitGrounded: 1
+> 		counterHitUkeru: 1
+> 		jumpToLabel: s32'Hasei_NmlAtk5A3rd'
+> 	} endIf: 
+5616c5634,5641
+< 	enableHitbox: 
+---
+> 	if: var(IN_BATTLE) {
+> 		if: var(CameraCombo1) {
+> 			disableHitbox: 
+> 		} endIf: 
+> 		else:  {
+> 			enableHitbox: 
+> 		} endElse: 
+> 	} endIf: 
+5738a5764,5769
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'FinalKamehameha'
+> 		addGatlingOption: s32'AirFinalKamehameha'
+> 		whiffCancelOptionBufferTime: s32'FinalKamehameha', 40
+> 		whiffCancelOptionBufferTime: s32'AirFinalKamehameha', 40
+> 	} endIf: 
+5988a6020,6025
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'FinalKamehameha'
+> 		addGatlingOption: s32'AirFinalKamehameha'
+> 		whiffCancelOptionBufferTime: s32'FinalKamehameha', 40
+> 		whiffCancelOptionBufferTime: s32'AirFinalKamehameha', 40
+> 	} endIf: 
+6011a6049,6050
+> 		groundBounceCount: 1
+> 		groundBounceYVelocity: 10000
+6130a6170,6175
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'FinalKamehameha'
+> 		addGatlingOption: s32'AirFinalKamehameha'
+> 		whiffCancelOptionBufferTime: s32'FinalKamehameha', 40
+> 		whiffCancelOptionBufferTime: s32'AirFinalKamehameha', 40
+> 	} endIf: 

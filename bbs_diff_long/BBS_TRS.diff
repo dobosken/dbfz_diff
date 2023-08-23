@@ -1,6 +1,6 @@
---- 1.31/BBS_TRS.bbs	2023-05-23 14:16:17.746823914 +0200
-+++ 1.32/BBS_TRS.bbs	2023-05-23 14:14:53.142373305 +0200
-@@ -1,8174 +1,8175 @@
+--- 1.32/BBS_TRS.bbs	2023-05-24 20:54:51.724080080 +0200
++++ 1.33/BBS_TRS.bbs	2023-08-23 04:23:06.647982516 +0200
+@@ -1,8175 +1,8312 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'trs'
  } endSubroutine: 
@@ -459,7 +459,20 @@
  		moveInput: (INPUT_214)
  		moveInput: (INPUT_PRESS_L)
  		moveInput: (INPUT_PRESS_M)
- 		moveInput: (INPUT_BOOLEAN_OR)
+-		moveInput: (INPUT_BOOLEAN_OR)
++		addMoveCondition: (THREE)
++		skillEstAtkBox: -210, -330, 200, 330
++		skillEstLevelLimit: 60
++		skillEstPoint: 30
++		skillEstTagMuteki: 
++		cpuIsThrow: 
++		cpuBigDamage: 
++		skillEstTagCombo: 
++		skillEstInterval: 1200
++	} endMove: 
++	addMove: s32'HeatDomeAttack_CD' {
++		moveType: (OVERDRIVE)
++		characterState: (STANDING)
  		moveInput: (INPUT_214)
  		moveInput: (INPUT_PRESS_H)
  		moveInput: (INPUT_PRESS_KI)
@@ -608,6 +621,7 @@
  	registerMove: s32'CmnActGuardCancelMikiwameAttack'
  	registerMove: s32'BurningAttack'
  	registerMove: s32'HeatDomeAttack'
++	registerMove: s32'HeatDomeAttack_CD'
  	registerMove: s32'CmnActSparkingBurst'
  	registerMove: s32'RequestChangeMember1'
  	registerMove: s32'RequestChangeMember2'
@@ -1635,25 +1649,18 @@
  	shoesSE: 0, 100
  	facePose: (STRESSED)
  	atkZReversal: 1
--	sprite: s32'trs404_01', 2
--	sprite: s32'trs404_02', 2
--	setXSpeed: 10000
-+	sprite: s32'trs404_01', 1
-+	sprite: s32'trs404_02', 1
-+	setXSpeed: 20000
+ 	sprite: s32'trs404_01', 1
+ 	sprite: s32'trs404_02', 1
+ 	setXSpeed: 20000
  	pushCollisionWidth: 250000
  	changeWeight: 500
  	privateBankSE: 0, s32'ARC_BTL_TRS_ChngThFtr_Dash', 100
--	sprite: s32'trs404_03', 2
--	setXSpeed: 50000
-+	sprite: s32'trs404_03', 1
-+	setXSpeed: 90000
+ 	sprite: s32'trs404_03', 1
+ 	setXSpeed: 90000
  	xSpeedPerFrame: 110
  	effectForDashStart: 104, 1, 0
--	sprite: s32'trs404_04', 2
--	sprite: s32'trs404_05', 2
-+	sprite: s32'trs404_04', 1
-+	sprite: s32'trs404_05', 1
+ 	sprite: s32'trs404_04', 1
+ 	sprite: s32'trs404_05', 1
  	xSpeedPerFrame: 80
  	sprite: s32'trs404_06', 2
  	sprite: s32'trs404_07', 2
@@ -2578,14 +2585,17 @@
  	sprite: s32'trs202_01', 2
  	facePose: (ANGRY)
  	mouthPose: (OPEN)
++	enableSuperArmor: 1
  	sprite: s32'trs202_02', 4
  	sprite: s32'trs202_03', 3
  	cmnSfx: s32'ARC_BTL_CMN_GK_Jump'
  	sprite: s32'trs202_04', 1
  	attackVoice: 1, 0
++	setXSpeed: 150000
  	sprite: s32'trs202_05', 2
  	effectForDashStart: 104, 1, 0
- 	setXSpeed: 80000
+-	setXSpeed: 80000
++	setXSpeed: 180000
  	pushCollisionHeight: 300000
  	sprite: s32'trs202_05', 5
  	enableSuperArmor: 1
@@ -2912,8 +2922,7 @@
  	cmnSfx: s32'ARC_BTL_CMN_Furi_YokoKeri'
  	sprite: s32'trs204_03', 1
  	effectForDashStart: 104, 1, 0
--	setXSpeed: 50000
-+	setXSpeed: 100000
+ 	setXSpeed: 100000
  	xSpeedPerFrame: 90
  	characterSfx: s32'ARC_BTL_TRS_ShngSlsh_Slash_1'
  	sprite: s32'trs204_04', 1
@@ -3016,10 +3025,13 @@
  	sprite: s32'trs205_00', 2
  	facePose: (STRESSED)
  	mouthPose: 2
- 	sprite: s32'trs205_01', 2
- 	sprite: s32'trs205_02', 2
+-	sprite: s32'trs205_01', 2
+-	sprite: s32'trs205_02', 2
++	sprite: s32'trs205_01', 1
++	sprite: s32'trs205_02', 1
  	randomVoiceLine2: s16'vxxx106', 100, s16'vxxx107', 100, s16'', 0, s16'', 0
- 	sprite: s32'trs205_03', 2
+-	sprite: s32'trs205_03', 2
++	sprite: s32'trs205_03', 1
  	sprite: s32'trs205_04', 2
  	characterSfx: s32'ARC_BTL_TRS_cyclnbstr_Basa'
  	sprite: s32'trs205_05', 2
@@ -3180,15 +3192,13 @@
  			} endIf: 
  		} endUpon: 
  	} endUpon: 
--	sprite: s32'trs262_00', 3
-+	sprite: s32'trs262_00', 2
+ 	sprite: s32'trs262_00', 2
  	facePose: (ANGRY)
  	mouthPose: (OPEN)
  	sprite: s32'trs262_01', 2
  	sprite: s32'trs262_02', 2
  	attackVoice: 2, -1
--	sprite: s32'trs262_03', 4
-+	sprite: s32'trs262_03', 2
+ 	sprite: s32'trs262_03', 2
  	characterSfx: s32'ARC_BTL_TRS_ShngSlsh_Slash_1'
  	sprite: s32'trs262_04', 1
  	sprite: s32'trs262_05ex01', 1
@@ -3544,6 +3554,12 @@
  					spriteAddTime: 5
  					checkCurrentStateName: (SELF), s32'ShiningSlash_B'
  					if: var(Result) {
++						attackXKnockback: 150000
++						attackYKnockback: 5000
++						attackGravity: 1000
++						wallBounceCount: 1
++						wallBounceXVelocityPercent: 15
++						groundBounceUntechTime: -20000
  						slidingKnockdownDuration: 40
  					} endIf: 
  					checkCurrentStateName: (SELF), s32'AirShiningSlash_B'
@@ -3552,6 +3568,12 @@
  					} endIf: 
  					checkCurrentStateName: (SELF), s32'ShiningSlash_C'
  					if: var(Result) {
++						attackXKnockback: 150000
++						attackYKnockback: 5000
++						attackGravity: 1000
++						wallBounceCount: 1
++						wallBounceXVelocityPercent: 18
++						groundBounceUntechTime: -20000
  						slidingKnockdownDuration: 45
  					} endIf: 
  					checkCurrentStateName: (SELF), s32'AirShiningSlash_C'
@@ -3609,8 +3631,7 @@
  	characterSfx: s32'ARC_BTL_TRS_ShngSlsh_Jump'
  	sprite: s32'trs400_07', 2
  	floorEffect: 5, 125
--	setXSpeed: 55000
-+	setXSpeed: 75000
+ 	setXSpeed: 75000
  	setYSpeed: 11000
  	pushCollisionHeightLow: 100000
  	sprite: s32'trs400_10', 2
@@ -4145,18 +4166,15 @@
  	sprite: s32'trs400_61', 2
  	cmnSfx: s32'ARC_BTL_CMN_GK_JumpAir'
  	sprite: s32'trs400_07', 2
--	setXSpeed: 50000
-+	setXSpeed: 65000
+ 	setXSpeed: 65000
  	setYSpeed: 9000
--	sprite: s32'trs400_10', 2
-+	sprite: s32'trs400_10', 1
+ 	sprite: s32'trs400_10', 1
  	sprite: s32'trs400_11', 2
  	sprite: s32'trs400_15', 2
  	xSpeedPerFrame: 90
  	sprite: s32'trs400_16', 2
  	objectGravity: 
--	sprite: s32'trs400_17', 2
-+	sprite: s32'trs400_17', 1
+ 	sprite: s32'trs400_17', 1
  	characterSfx: s32'ARC_BTL_TRS_ShngSlsh_Slash_1'
  	sprite: s32'trs400_18', 3
  	createObject: s32'trs400_slashEff00', (ZERO)
@@ -4553,10 +4571,8 @@
  	setXSpeed: 85000
  	setYSpeed: 9000
  	sprite: s32'trs400_10', 1
--	sprite: s32'trs400_11', 2
--	sprite: s32'trs400_15', 2
-+	sprite: s32'trs400_11', 1
-+	sprite: s32'trs400_15', 1
+ 	sprite: s32'trs400_11', 1
+ 	sprite: s32'trs400_15', 1
  	xSpeedPerFrame: 90
  	sprite: s32'trs400_16', 2
  	objectGravity: 
@@ -4767,6 +4783,9 @@
  	enableAirBackDash: 0
  	enableBlock: 0
  	enableProximityBlock: 0
++	addWhiffCancelOption: s32'CmnFAirDash'
++	addWhiffCancelOption: s32'CmnBAirDash'
++	addWhiffCancelOption: s32'CmnActFAirDash2Button'
  } endSubroutine: 
  
  beginSubroutine: s32'PreAction_Cyclone' {
@@ -4889,7 +4908,7 @@
  	sprite: s32'trs401_01', 2
  	randomVoice: s16'vxxx204', 100, s16'vxxx205', 100, s16'', 0, s16'', 0
  	privateBankSE: 0, s32'ARC_BTL_TRS_cyclonejump', 100
- 	landingRecovery: 6, 0
+-	landingRecovery: 6, 0
  	sprite: s32'trs401_02', 2
  	sprite: s32'trs401_03', 2
  	createObject: s32'CycloneJump_WindEff', (ZERO)
@@ -4939,7 +4958,7 @@
  	sprite: s32'trs401_01', 2
  	randomVoice: s16'vxxx204', 100, s16'vxxx205', 100, s16'', 0, s16'', 0
  	privateBankSE: 0, s32'ARC_BTL_TRS_cyclonejump', 100
- 	landingRecovery: 6, 0
+-	landingRecovery: 6, 0
  	sprite: s32'trs410_02', 2
  	sprite: s32'trs410_03', 2
  	createObject: s32'CycloneJump_WindEffReverse', (ZERO)
@@ -5052,12 +5071,17 @@
  	sprite: s32'trs401_11', 2
  	sprite: s32'trs401_12', 2
  	addXSpeed: 20000
++	ifVarOfObjectTrue: (ENEMY_MAIN_PLAYER), var(IsAir) {
++		if: var(EnemyInHitstun) {
++			addXSpeed: 15000
++		} endIf: 
++	} endIf: 
  	setYSpeed: 35000
  	xSpeedPerFrame: 106
  	setGravity: 3000
  	copyVar: var(plr0), int(1)
  	privateBankSE: 0, s32'ARC_BTL_TRS_cyclonejump', 100
- 	landingRecovery: 6, 0
+-	landingRecovery: 6, 0
  	sprite: s32'trs401_02', 2
  	randomVoice: s16'vxxx204', 100, s16'vxxx205', 100, s16'', 0, s16'', 0
  	sprite: s32'trs401_03', 2
@@ -5109,7 +5133,7 @@
  	setGravity: 3000
  	copyVar: var(plr0), int(1)
  	privateBankSE: 0, s32'ARC_BTL_TRS_cyclonejump', 100
- 	landingRecovery: 6, 0
+-	landingRecovery: 6, 0
  	sprite: s32'trs410_03', 2
  	randomVoice: s16'vxxx204', 100, s16'vxxx205', 100, s16'', 0, s16'', 0
  	sprite: s32'trs410_03', 1
@@ -5522,7 +5546,7 @@
  	sprite: s32'trs036_03', 3
  	dashStopEffect: 104, 1, 1
  	pushCollisionWidth: -1
-+	enableSpecials: 1
+ 	enableSpecials: 1
  	sprite: s32'trs036_02', 3
  	sprite: s32'trs036_01', 2
  	sprite: s32'trs036_00', 2
@@ -5533,10 +5557,16 @@
  		playerActionInitializeByCategory: 20, 1
  		copyVar: var(plr2), int(0)
  		tensionUsage: 10000
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'HeatDomeAttack'
++			addGatlingOption: s32'HeatDomeAttack_CD'
++		} endIf: 
  	} endUpon: 
- 	sprite: s32'trs430_00', 4
+-	sprite: s32'trs430_00', 4
++	sprite: s32'trs430_00', 2
  	facePose: (STRESSED)
- 	sprite: s32'trs430_01', 4
+-	sprite: s32'trs430_01', 4
++	sprite: s32'trs430_01', 3
  	sprite: s32'trs430_02', 1
  	enableSuperArmor: 1
  	superFreeze: 3, 119, 92, 92
@@ -5645,6 +5675,7 @@
  				tensionUsage: 10000
  				enableSuperArmor: 1
  				enableMemberChangeUltimate: 0
++				enableGatlings: 0
  				jumpToLabel: s32'add'
  				clearRegisteredUponCode: (SIGNAL0)
  				clearRegisteredUponCode: (SIGNAL2)
@@ -5701,6 +5732,7 @@
  				tensionUsage: 10000
  				enableSuperArmor: 1
  				enableMemberChangeUltimate: 0
++				enableGatlings: 0
  				jumpToLabel: s32'add'
  				clearRegisteredUponCode: (SIGNAL0)
  				clearRegisteredUponCode: (SIGNAL2)
@@ -5796,6 +5828,7 @@
  	attackGuardtype: (HIGH)
  	canGrab: 1
  	jumpToStateOnHit: s32'BurningAttack_Exe'
++	blockstun: 20
  	damageSoundEffect: s32'ARC_BTL_TRS_ShngSlsh_Hit_1'
  	guardSoundEffect: s32'ARC_BTL_TRS_ShngSlsh_Grd_1'
  	upon: (ON_ATTACK_HIT_PLAYER_DAMAGE_PRE_CTRL) {
@@ -5840,14 +5873,17 @@
  		} endIf: 
  		setXSpeed: 100
  		setYSpeed: 10000
++		cameraShake: s32'ShakeTate', 500, 0, 10, 0
  	} endUpon: 
- 	landingRecovery: 10, 1
+-	landingRecovery: 10, 1
++	landingRecovery: 3, 1
  	sprite: s32'trs400_19', 2
  	sprite: s32'trs400_20', 2
  	sprite: s32'trs400_21', 2
  	sprite: s32'trs400_22', 2
  	sprite: s32'trs400_62', 3
  	recoveryState: 
++	setGravity: 3000
  	sprite: s32'trs400_63', 2
  	sprite: s32'trs400_50', 4
  	createObject: s32'trs400_end', (ZERO)
@@ -6033,6 +6069,7 @@
  	enableHitbox: 
  	jumpToStateInObject: 90, s32'Finish'
  	sprite: s32'trs400_37', 5
++	jumpToStateInObject: (PARENT), s32'landing'
  	sprite: s32'trs400_38', 5
  	sprite: s32'trs400_50', 4
  	createObject: s32'trs400_end', (ZERO)
@@ -6078,10 +6115,13 @@
  		minimalDamagePercent: 20
  	} endIf: 
  	hitstop: 20
- 	groundKnockbackEffect: (AIR_FACE_UP)
- 	airKnockbackEffect: (AIR_FACE_UP)
+-	groundKnockbackEffect: (AIR_FACE_UP)
+-	airKnockbackEffect: (AIR_FACE_UP)
++	groundKnockbackEffect: (KirimomiSide)
++	airKnockbackEffect: (KirimomiSide)
  	atkAirStunTimeReset: 
- 	attackXKnockback: 50000
+-	attackXKnockback: 50000
++	attackXKnockback: 15000
  	attackYKnockback: 10000
  	attackGravity: 4000
  	airHitstun: 80
@@ -6096,9 +6136,10 @@
  			if: var(IsMainPlayerSelf) {
  				cameraMotion: -91510, 305835, 111399, 0, 4511, 0, 54, 1, 20, 10, 1
  				hitstop: 0
- 				slidingKnockdownDuration: 25
+-				slidingKnockdownDuration: 25
++				slidingKnockdownDuration: 20
  				groundBounceUntechTime: 15000
- 				spriteAddTime: 20
+-				spriteAddTime: 20
  				upon: (ON_PLAYER_AFTER_EXECUTE_DAMAGE) {
  					clearRegisteredUponCode: (ON_PLAYER_AFTER_EXECUTE_DAMAGE)
  					ifBeginAliveEnemyPlayer: 0 {
@@ -6111,6 +6152,8 @@
  	sprite: s32'trs400_45', 2
  	sprite: s32'trs400_46', 2
  	sprite: s32'trs400_47', 2
++	jumpToStateInObject: (PARENT), s32'landing'
++	setGravity: 6000
  	sprite: s32'trs400_48', 2
  	sprite: s32'trs400_49', 2
  	createObject: s32'trs400_end', (ZERO)
@@ -6124,9 +6167,16 @@
  	spriteEnd: 
  	gotoLabel: s32'loop'
  	label: s32'landing'
- 	sprite: s32'trs037_03', 3
+-	sprite: s32'trs037_03', 3
++	sprite: s32'trs037_03', 7
  	resetSpeed: 1
- 	sprite: s32'trs037_02', 3
+-	sprite: s32'trs037_02', 3
++	if: var(CmnCharaReg7) {
++		enableGatlings: 1
++		addGatlingOption: s32'HeatDomeAttack'
++		addGatlingOption: s32'HeatDomeAttack_CD'
++	} endIf: 
++	sprite: s32'trs037_02', 6
  	sprite: s32'trs037_01', 3
  	sprite: s32'trs037_00', 3
  } endState: 
@@ -6145,6 +6195,12 @@
  			} endIf: 
  		} endUpon: 
  		tensionUsage: 30000
++		if: var(EnemyInHitstun) {
++			checkLastStateName: s32'BurningAttack'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++		} endIf: 
  	} endUpon: 
  	sprite: s32'trs000_00', 2
  	enableSuperArmor: 1
@@ -6203,6 +6259,90 @@
  	sprite: s32'trs431_32', 3
  } endState: 
  
++beginState: s32'HeatDomeAttack_CD' {
++	upon: (IMMEDIATE) {
++		playerActionInitializeByCategory: 20, 1
++		callSubroutine: s32'cmnAtkTemplNageLand'
++		jumpToStateOnHit: s32'HeatDomeAttackExe'
++		atkRange: 250000, 0, 300000, 0
++		atkDamageToRecovery: 1
++		atkYogore: 0
++		upon: (FRAME_STEP) {
++			ifNot: var(IN_BATTLE) {
++				recoveryState: 
++			} endIf: 
++		} endUpon: 
++		tensionUsage: 30000
++		if: var(EnemyInHitstun) {
++			checkLastStateName: s32'BurningAttack'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++			checkLastStateName: s32'BurningAttack_Exe'
++			if: var(Result) {
++				superFreeze: 7, 100, 0, 30
++			} endIf: 
++		} endIf: 
++	} endUpon: 
++	sprite: s32'trs000_00', 2
++	enableSuperArmor: 1
++	sprite: s32'trs431_00', 1
++	facePose: (ANGRY)
++	sprite: s32'trs431_00', 5
++	forceRandomVoice: s16'vxxx216', 100, s16'', 0, s16'', 0, s16'', 0
++	mouthPose: (OPEN)
++	sprite: s32'trs431_01', 4
++	mouthPose: (CLOSED)
++	superFreeze: 4, 119, 27, 27
++	upon: (SUPERFREEZE) {
++		clearRegisteredUponCode: (SUPERFREEZE)
++		darkenBackground: 1
++		cameraForceMove: 1
++		cameraMotion: 70304, 138270, 66240, 2000, -4500, 0, 75, 5, 17, 5, 1
++		callSubroutine: s32'cmn3gaugeWLDSTP'
++	} endUpon: 
++	sprite: s32'trs431_01', 2
++	hideAllButSelf: 1
++	createObject: s32'cmn_syutyusen', (ENEMY_CENTER)
++	sprite: s32'trs431_02', 6
++	mouthPose: 2
++	sprite: s32'trs431_03', 5
++	mouthPose: (SHOW_TEETH)
++	sprite: s32'trs431_03', 7
++	mouthPose: 2
++	deactivateObjectByName: s32'cmn_syutyusen'
++	sprite: s32'trs431_03', 2
++	mouthPose: (CLOSED)
++	sprite: s32'trs431_03', 1
++	hideAllButSelf: 0
++	sprite: s32'trs431_03', 2
++	setXSpeed: 100000
++	floorEffect: 5, 125
++	sprite: s32'trs431_04', 4
++	setXSpeed: 100000
++	characterSfx: s32'ARC_BTL_TRS_HeatDomeCatch'
++	upon: (IDLING) {
++		ifOperation: (IS_LESS), var(EnemyFrontDistance), int(50000) {
++			percentageXSpeed: 50
++		} endIf: 
++	} endUpon: 
++	sprite: s32'trs431_05', 1
++	xSpeedPerFrame: 50
++	grabOrRelease: 
++	shoesSE: 0, 100
++	sprite: s32'trs431_05', 2
++	disableHitbox: 
++	clearRegisteredUponCode: (IDLING)
++	sprite: s32'trs431_27', 3
++	enableSuperArmor: 0
++	sprite: s32'trs431_28', 3
++	sprite: s32'trs431_29', 20
++	recoveryState: 
++	sprite: s32'trs431_30', 3
++	sprite: s32'trs431_31', 3
++	sprite: s32'trs431_32', 3
++} endState: 
++
  beginState: s32'HeatDomeAttackExe' {
  	upon: (IMMEDIATE) {
  		initializeForLockExe: 20, 1

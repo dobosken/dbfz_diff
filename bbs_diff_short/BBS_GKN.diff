@@ -1,40 +1,74 @@
-5792c5792
-< 		enemyHitstopAddition: -3, -3, -3
+2454c2454
+< 	sprite: s32'gkn201_00', 2
 ---
-> 		enemyHitstopAddition: 11, -3, -3
-5799c5799
-< 		blockstun: 20
+> 	sprite: s32'gkn201_00', 1
+2457c2457
+< 	sprite: s32'gkn201_01', 2
 ---
-> 		blockstun: 25
-5911,5913c5911,5913
-< 	sprite: s32'gkn430_29', 3
-< 	sprite: s32'gkn430_37', 3
-< 	sprite: s32'gkn430_38', 3
+> 	sprite: s32'gkn201_01', 1
+2460c2460
+< 	sprite: s32'gkn201_03', 3
 ---
-> 	sprite: s32'gkn430_29', 2
-> 	sprite: s32'gkn430_37', 2
-> 	sprite: s32'gkn430_38', 2
-5924c5924
-< 		enemyHitstopAddition: -3, -3, -3
+> 	sprite: s32'gkn201_03', 2
+2463c2463
+< 	setXSpeed: 110000
 ---
-> 		enemyHitstopAddition: -3, 3, 3
-6004d6003
-< 	sprite: s32'gkn101_07', 1
-6006d6004
-< 	sprite: s32'gkn101_01', 1
-6010d6007
-< 	sprite: s32'gkn262_00', 1
-6566,6571c6563,6568
-< 	sprite: s32'gkn401_03', 3
-< 	sprite: s32'gkn401_04', 3
-< 	sprite: s32'gkn401_02', 3
-< 	sprite: s32'gkn401_03', 3
-< 	sprite: s32'gkn401_04', 3
-< 	sprite: s32'gkn401_02', 3
+> 	setXSpeed: 150000
+3110c3110
+< 						groundBounceYVelocity: 13000
 ---
-> 	sprite: s32'gkn401_03', 2
-> 	sprite: s32'gkn401_04', 2
-> 	sprite: s32'gkn401_02', 2
-> 	sprite: s32'gkn401_03', 2
-> 	sprite: s32'gkn401_04', 2
-> 	sprite: s32'gkn401_02', 2
+> 						groundBounceYVelocity: 18000
+4625a4626,4628
+> 	if: var(EnemyInHitstun) {
+> 		superFreeze: 3, 100, 0, 10
+> 	} endIf: 
+5395a5399,5404
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'S_Genkidama'
+> 		addGatlingOption: s32'AirS_Genkidama'
+> 		whiffCancelOptionBufferTime: s32'S_Genkidama', 40
+> 		whiffCancelOptionBufferTime: s32'AirS_Genkidama', 40
+> 	} endIf: 
+6770a6780,6785
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'S_Genkidama'
+> 			addGatlingOption: s32'AirS_Genkidama'
+> 			whiffCancelOptionBufferTime: s32'S_Genkidama', 40
+> 			whiffCancelOptionBufferTime: s32'AirS_Genkidama', 40
+> 		} endIf: 
+6875a6891
+> 	enableGatlings: 0
+7098a7115,7120
+> 			if: var(CmnCharaReg7) {
+> 				addGatlingOption: s32'S_Genkidama'
+> 				addGatlingOption: s32'AirS_Genkidama'
+> 				whiffCancelOptionBufferTime: s32'S_Genkidama', 40
+> 				whiffCancelOptionBufferTime: s32'AirS_Genkidama', 40
+> 			} endIf: 
+7848a7871,7876
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'S_Genkidama'
+> 		addGatlingOption: s32'AirS_Genkidama'
+> 		whiffCancelOptionBufferTime: s32'S_Genkidama', 40
+> 		whiffCancelOptionBufferTime: s32'AirS_Genkidama', 40
+> 	} endIf: 
+7992a8021,8029
+> 		callSubroutine: s32'Kaioken_End'
+> 		callSubroutine: s32'Kaioken_AuraOff'
+> 		deactivateObjectByName: s32'424_AuraEff00'
+> 		deactivateObjectByName: s32'424_AuraEff01'
+> 		deactivateObjectByName: s32'424_TossinAuraEff'
+> 		deactivateObjectByName: s32'K20_Kamehameha_aura'
+> 		if: var(EnemyInHitstun) {
+> 			superFreeze: 7, 100, 0, 30
+> 		} endIf: 
+8143a8181,8189
+> 		callSubroutine: s32'Kaioken_End'
+> 		callSubroutine: s32'Kaioken_AuraOff'
+> 		deactivateObjectByName: s32'424_AuraEff00'
+> 		deactivateObjectByName: s32'424_AuraEff01'
+> 		deactivateObjectByName: s32'424_TossinAuraEff'
+> 		deactivateObjectByName: s32'K20_Kamehameha_aura'
+> 		if: var(EnemyInHitstun) {
+> 			superFreeze: 7, 100, 0, 30
+> 		} endIf: 

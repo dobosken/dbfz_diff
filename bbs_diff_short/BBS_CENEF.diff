@@ -1,14 +1,30 @@
-714c714
-< 		airHitstun: 25
+1522a1523,1524
+> 	damageScalingOverride: 500
+> 	atkHoseiTadan: 1
+1638a1641
+> 		autoHitSignalSending: 1
+1691,1693c1694,1713
+< 	airHitstun: 45
+< 	attackXKnockback: 20000
+< 	attackYKnockback: 60000
 ---
-> 		airHitstun: 35
-727a728
-> 			atkWallBoundWaitTime: 10
-1247c1248
-< 		airHitstun: 25
----
-> 		airHitstun: 35
-1282c1283
-< 			airHitstun: 33
----
-> 			airHitstun: 40
+> 	airHitstun: 40
+> 	groundKnockbackEffect: (AIR_STRONG)
+> 	airKnockbackEffect: (AIR_STRONG)
+> 	attackXKnockback: 120000
+> 	attackYKnockback: 30000
+> 	ifVarOfObjectOperation: (IS_GREATER_OR_EQUAL), (ENEMY_MAIN_PLAYER), var(PosY), int(200000) {
+> 		attackYKnockback: 10000
+> 	} endIf: 
+> 	ifVarOfObjectOperation: (IS_GREATER_OR_EQUAL), (ENEMY_MAIN_PLAYER), var(PosY), int(400000) {
+> 		attackYKnockback: -20000
+> 	} endIf: 
+> 	wallBounceCount: 1
+> 	wallBounceXVelocityPercent: 0
+> 	checkCurrentStateName: (PLAYER), s32'AirEnergyField'
+> 	if: var(Result) {
+> 		attackXKnockback: 50000
+> 		attackYKnockback: -80000
+> 		wallBounceCount: 0
+> 		slidingKnockdownDuration: 20
+> 	} endIf: 

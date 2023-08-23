@@ -1,0 +1,220 @@
+1557a1558
+> 	headInvul: 1
+1574a1576
+> 	headInvul: 0
+2325a2328
+> 	headInvul: 1
+2342a2346
+> 	headInvul: 0
+2453a2458,2459
+> 	addXSpeed: 25000
+> 	xSpeedPerFrame: 90
+2463a2470
+> 	setXSpeed: 0
+2779a2787,2792
+> 	checkInput: (INPUT_ANY_BACK)
+> 	if: var(Result) {
+> 		setXSpeed: -8000
+> 		setYSpeed: 34000
+> 		copyVar: var(act1), int(1)
+> 	} endIf: 
+2782a2796
+> 	spriteOverrideTime: 2, var(act1)
+3620a3635,3639
+> 	spriteEnd: 
+> 	checkInput: (INPUT_ANY_DOWN)
+> 	if: var(Result) {
+> 		jumpToLabel: s32'Land'
+> 	} endIf: 
+3640a3660,3684
+> 	spriteEnd: 
+> 	exitState: 
+> 	label: s32'Land'
+> 	sprite: s32'gbr401_03', 3
+> 	sprite: s32'gbr401_03', 7
+> 	createParticle: s32'gbr_warp01', (CENTER)
+> 	characterSfx: s32'ARC_BTL_GBR_Syunkan_TLP'
+> 	setColorAlpha: 0
+> 	enableSuperArmor: 1
+> 	pushCollisionHeightLow: -70000
+> 	pushCollisionMainPlayerOnly: 1
+> 	warpSelfDirOffset: (ENEMY_MAIN_PLAYER), (PLAYER_LAND), -200000, 0, 7
+> 	sprite: s32'gbr401_04', 2
+> 	mouthPose: (OPEN)
+> 	createParticle: s32'gbr_warp01', (CENTER)
+> 	pushCollisionMainPlayerOnly: 0
+> 	enableSuperArmor: 0
+> 	setColorAlpha: 255
+> 	warpSelfDirOffset: (ENEMY_MAIN_PLAYER), (PLAYER_LAND), -200000, 0, 1
+> 	resetSpeed: 1
+> 	objectGravity: 
+> 	sprite: s32'gbr401_03', 2
+> 	sprite: s32'gbr401_02', 2
+> 	sprite: s32'gbr401_01', 2
+> 	sprite: s32'gbr401_00', 2
+3656a3701,3705
+> 	spriteEnd: 
+> 	checkInput: (INPUT_ANY_DOWN)
+> 	if: var(Result) {
+> 		jumpToLabel: s32'Land'
+> 	} endIf: 
+3676a3726,3750
+> 	spriteEnd: 
+> 	exitState: 
+> 	label: s32'Land'
+> 	sprite: s32'gbr401_03', 3
+> 	sprite: s32'gbr401_03', 7
+> 	createParticle: s32'gbr_warp01', (CENTER)
+> 	characterSfx: s32'ARC_BTL_GBR_Syunkan_TLP'
+> 	setColorAlpha: 0
+> 	enableSuperArmor: 1
+> 	pushCollisionHeightLow: -70000
+> 	pushCollisionMainPlayerOnly: 1
+> 	warpSelfDirOffset: (ENEMY_MAIN_PLAYER), (PLAYER_LAND), -700000, 0, 7
+> 	sprite: s32'gbr401_04', 2
+> 	mouthPose: (OPEN)
+> 	createParticle: s32'gbr_warp01', (CENTER)
+> 	pushCollisionMainPlayerOnly: 0
+> 	enableSuperArmor: 0
+> 	setColorAlpha: 255
+> 	warpSelfDirOffset: (ENEMY_MAIN_PLAYER), (PLAYER_LAND), -700000, 0, 1
+> 	resetSpeed: 1
+> 	objectGravity: 
+> 	sprite: s32'gbr401_03', 2
+> 	sprite: s32'gbr401_02', 2
+> 	sprite: s32'gbr401_01', 2
+> 	sprite: s32'gbr401_00', 2
+3693a3768,3772
+> 	spriteEnd: 
+> 	checkInput: (INPUT_ANY_DOWN)
+> 	if: var(Result) {
+> 		jumpToLabel: s32'Land'
+> 	} endIf: 
+3716a3796,3824
+> 	spriteEnd: 
+> 	exitState: 
+> 	label: s32'Land'
+> 	sprite: s32'gbr401_03', 2
+> 	sprite: s32'gbr401_03', 7
+> 	createParticle: s32'gbr_warp01', (CENTER)
+> 	characterSfx: s32'ARC_BTL_GBR_Syunkan_TLP'
+> 	setColorAlpha: 0
+> 	enableSuperArmor: 1
+> 	pushCollisionHeightLow: 200000
+> 	screenAdditionalWidth: -1
+> 	ignorePushback: 1
+> 	setNoCollision: 0
+> 	warpSelfDirOffset: (ENEMY_MAIN_PLAYER), (PLAYER_LAND), 250000, 0, 7
+> 	sprite: s32'gbr401_04', 2
+> 	mouthPose: (OPEN)
+> 	createParticle: s32'gbr_warp01', (CENTER)
+> 	pushCollisionMainPlayerOnly: 0
+> 	setNoCollision: 1
+> 	faceOpponent: 
+> 	enableSuperArmor: 0
+> 	setColorAlpha: 255
+> 	warpSelfDirOffset: (ENEMY_MAIN_PLAYER), (PLAYER_LAND), 0, 0, 1
+> 	resetSpeed: 1
+> 	objectGravity: 
+> 	sprite: s32'gbr401_03', 2
+> 	sprite: s32'gbr401_02', 2
+> 	sprite: s32'gbr401_01', 2
+> 	sprite: s32'gbr401_00', 2
+4823a4932,4937
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Kaminomiwaza'
+> 		addGatlingOption: s32'AirKaminomiwaza'
+> 		whiffCancelOptionBufferTime: s32'Kaminomiwaza', 40
+> 		whiffCancelOptionBufferTime: s32'AirKaminomiwaza', 40
+> 	} endIf: 
+4838a4953,4958
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Kaminomiwaza'
+> 		addGatlingOption: s32'AirKaminomiwaza'
+> 		whiffCancelOptionBufferTime: s32'Kaminomiwaza', 40
+> 		whiffCancelOptionBufferTime: s32'AirKaminomiwaza', 40
+> 	} endIf: 
+5079a5200,5205
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Kaminomiwaza'
+> 		addGatlingOption: s32'AirKaminomiwaza'
+> 		whiffCancelOptionBufferTime: s32'Kaminomiwaza', 40
+> 		whiffCancelOptionBufferTime: s32'AirKaminomiwaza', 40
+> 	} endIf: 
+5094a5221,5226
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Kaminomiwaza'
+> 		addGatlingOption: s32'AirKaminomiwaza'
+> 		whiffCancelOptionBufferTime: s32'Kaminomiwaza', 40
+> 		whiffCancelOptionBufferTime: s32'AirKaminomiwaza', 40
+> 	} endIf: 
+5292a5425,5430
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Kaminomiwaza'
+> 		addGatlingOption: s32'AirKaminomiwaza'
+> 		whiffCancelOptionBufferTime: s32'Kaminomiwaza', 40
+> 		whiffCancelOptionBufferTime: s32'AirKaminomiwaza', 40
+> 	} endIf: 
+5293a5432
+> 	enableGatlings: 0
+5314a5454,5459
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Kaminomiwaza'
+> 		addGatlingOption: s32'AirKaminomiwaza'
+> 		whiffCancelOptionBufferTime: s32'Kaminomiwaza', 40
+> 		whiffCancelOptionBufferTime: s32'AirKaminomiwaza', 40
+> 	} endIf: 
+5537a5683,5688
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Kaminomiwaza'
+> 		addGatlingOption: s32'AirKaminomiwaza'
+> 		whiffCancelOptionBufferTime: s32'Kaminomiwaza', 40
+> 		whiffCancelOptionBufferTime: s32'AirKaminomiwaza', 40
+> 	} endIf: 
+5538a5690
+> 	enableGatlings: 0
+5559a5712,5717
+> 	if: var(CmnCharaReg7) {
+> 		addGatlingOption: s32'Kaminomiwaza'
+> 		addGatlingOption: s32'AirKaminomiwaza'
+> 		whiffCancelOptionBufferTime: s32'Kaminomiwaza', 40
+> 		whiffCancelOptionBufferTime: s32'AirKaminomiwaza', 40
+> 	} endIf: 
+5692a5851,5868
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'Sinretsuenbuzan'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 10
+> 			} endIf: 
+> 			checkLastStateName: s32'AirSinretsuenbuzan'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 10
+> 			} endIf: 
+> 			checkLastStateName: s32'TwinpowerBall'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 10
+> 			} endIf: 
+> 			checkLastStateName: s32'AirTwinpowerBall'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 10
+> 			} endIf: 
+> 		} endIf: 
+6017a6194,6211
+> 		if: var(EnemyInHitstun) {
+> 			checkLastStateName: s32'Sinretsuenbuzan'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 10
+> 			} endIf: 
+> 			checkLastStateName: s32'AirSinretsuenbuzan'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 10
+> 			} endIf: 
+> 			checkLastStateName: s32'TwinpowerBall'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 10
+> 			} endIf: 
+> 			checkLastStateName: s32'AirTwinpowerBall'
+> 			if: var(Result) {
+> 				superFreeze: 7, 100, 0, 10
+> 			} endIf: 
+> 		} endIf: 

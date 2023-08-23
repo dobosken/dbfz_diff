@@ -1,6 +1,6 @@
---- 1.31/BBS_KRN.bbs	2023-05-23 14:16:14.790773230 +0200
-+++ 1.32/BBS_KRN.bbs	2023-05-23 14:14:50.367325724 +0200
-@@ -1,7962 +1,7966 @@
+--- 1.32/BBS_KRN.bbs	2023-05-24 20:54:48.528027365 +0200
++++ 1.33/BBS_KRN.bbs	2023-08-23 04:23:03.846934785 +0200
+@@ -1,7966 +1,7987 @@
  beginSubroutine: s32'PreInit' {
  	charaName: s16'krn'
  } endSubroutine: 
@@ -3005,12 +3005,17 @@
  	sprite: s32'krn205_00', 2
  	facePose: (ANGRY)
  	mouthPose: (OPEN)
- 	sprite: s32'krn205_01', 2
- 	sprite: s32'krn205_02', 2
+-	sprite: s32'krn205_01', 2
+-	sprite: s32'krn205_02', 2
++	sprite: s32'krn205_01', 1
++	sprite: s32'krn205_02', 1
  	randomVoiceLine2: s16'vxxx106', 100, s16'vxxx107', 100, s16'', 0, s16'', 0
- 	sprite: s32'krn205_03', 2
- 	sprite: s32'krn205_04', 2
- 	sprite: s32'krn205_05', 2
+-	sprite: s32'krn205_03', 2
+-	sprite: s32'krn205_04', 2
+-	sprite: s32'krn205_05', 2
++	sprite: s32'krn205_03', 1
++	sprite: s32'krn205_04', 1
++	sprite: s32'krn205_05', 1
  	sprite: s32'krn205_06', 2
  	copyVar: var(act1), int(0)
  	createObject: s32'kidan_5D', (EX_POINT_0)
@@ -3055,10 +3060,14 @@
  	sprite: s32'krn206_02', 2
  	sprite: s32'krn206_03', 2
  	sprite: s32'krn206_04', 2
- 	sprite: s32'krn206_05', 3
- 	sprite: s32'krn206_08', 3
- 	sprite: s32'krn206_09', 3
- 	sprite: s32'krn206_10', 3
+-	sprite: s32'krn206_05', 3
+-	sprite: s32'krn206_08', 3
+-	sprite: s32'krn206_09', 3
+-	sprite: s32'krn206_10', 3
++	sprite: s32'krn206_05', 2
++	sprite: s32'krn206_08', 2
++	sprite: s32'krn206_09', 2
++	sprite: s32'krn206_10', 2
  	sprite: s32'krn206_11', 1
  	sprite: s32'krn206_12', 1
  } endState: 
@@ -3406,12 +3415,17 @@
  	facePose: (ANGRY)
  	mouthPose: (OPEN)
  	resetSpeed: 1
- 	sprite: s32'krn265_01', 2
- 	sprite: s32'krn265_02', 2
+-	sprite: s32'krn265_01', 2
+-	sprite: s32'krn265_02', 2
++	sprite: s32'krn265_01', 1
++	sprite: s32'krn265_02', 1
  	randomVoiceLine2: s16'vxxx106', 100, s16'vxxx107', 100, s16'', 0, s16'', 0
- 	sprite: s32'krn265_03', 2
- 	sprite: s32'krn265_04', 2
- 	sprite: s32'krn265_05', 2
+-	sprite: s32'krn265_03', 2
+-	sprite: s32'krn265_04', 2
+-	sprite: s32'krn265_05', 2
++	sprite: s32'krn265_03', 1
++	sprite: s32'krn265_04', 1
++	sprite: s32'krn265_05', 1
  	sprite: s32'krn265_06', 2
  	copyVar: var(act1), int(0)
  	createObject: s32'jumpkidan', (EX_POINT_0)
@@ -3463,15 +3477,23 @@
  	} endIf: 
  	objectGravity: 
  	voiceLine: s16'vxxx108'
- 	sprite: s32'krn266_01', 3
+-	sprite: s32'krn266_01', 3
++	sprite: s32'krn266_01', 2
  	cmnSfx: s32'ARC_BTL_CMN_Charge_Bishi'
- 	sprite: s32'krn266_02', 2
- 	sprite: s32'krn266_03', 2
- 	sprite: s32'krn266_04', 2
- 	sprite: s32'krn266_05', 2
- 	sprite: s32'krn266_06', 2
- 	sprite: s32'krn266_07', 3
- 	sprite: s32'krn266_08', 2
+-	sprite: s32'krn266_02', 2
+-	sprite: s32'krn266_03', 2
+-	sprite: s32'krn266_04', 2
+-	sprite: s32'krn266_05', 2
+-	sprite: s32'krn266_06', 2
+-	sprite: s32'krn266_07', 3
+-	sprite: s32'krn266_08', 2
++	sprite: s32'krn266_02', 1
++	sprite: s32'krn266_03', 1
++	sprite: s32'krn266_04', 1
++	sprite: s32'krn266_05', 1
++	sprite: s32'krn266_06', 1
++	sprite: s32'krn266_07', 1
++	sprite: s32'krn266_08', 1
  	sprite: s32'krn266_09', 1
  	sprite: s32'krn266_10', 1
  } endState: 
@@ -4011,7 +4033,10 @@
  	mouthPose: (OPEN)
  	setCrouch: 1
  	resetSpeed: 1
- 	sprite: s32'krn400_16', 2
+-	sprite: s32'krn400_16', 2
++	sprite: s32'krn400_16', 1
++	sprite: s32'krn400_16', 1
++	enableSuperArmor: 1
  	sprite: s32'krn400_17', 2
  	voiceLine: s16'vxxx200'
  	characterSfx: s32'ARC_BTL_KRN_Znzkn_Ba'
@@ -4066,6 +4091,7 @@
  	deactivateObject: (STACK4)
  	stopBankSE: 0, 20
  	sprite: s32'krn400_06', 3
++	enableSuperArmor: 0
  	sprite: s32'krn400_07', 2
  	sprite: s32'krn400_08', 2
  	clearRegisteredUponCode: (IDLING)
@@ -4078,6 +4104,7 @@
  	sprite: s32'krn400_10', 2
  	label: s32'end'
  	sprite: s32'krn400_11', 2
++	enableSuperArmor: 0
  	recoveryState: 
  	sprite: s32'krn400_12', 2
  	sprite: s32'krn400_13', 2
@@ -4115,15 +4142,13 @@
  	dashStopEffect: 100, 1, 1
  	stopBankSE: 0, 20
  	sprite: s32'krn036_03', 3
--	sprite: s32'krn036_02', 3
--	sprite: s32'krn036_01', 3
--	sprite: s32'krn036_00', 3
-+	ifNot: var(act6) {
-+		callSubroutine: s32'cmn_NandemoEnableStand'
-+	} endIf: 
-+	sprite: s32'krn036_02', 2
-+	sprite: s32'krn036_01', 2
-+	sprite: s32'krn036_00', 2
+ 	ifNot: var(act6) {
+ 		callSubroutine: s32'cmn_NandemoEnableStand'
+ 	} endIf: 
++	enableSuperArmor: 0
+ 	sprite: s32'krn036_02', 2
+ 	sprite: s32'krn036_01', 2
+ 	sprite: s32'krn036_00', 2
  } endState: 
  
  beginState: s32'AirZanzou_A' {
@@ -4397,7 +4422,10 @@
  	xSpeedPerFrame: 95
  	facePose: (ANGRY)
  	mouthPose: (OPEN)
- 	sprite: s32'krn400_25', 2
+-	sprite: s32'krn400_25', 2
++	sprite: s32'krn400_25', 1
++	sprite: s32'krn400_25', 1
++	enableSuperArmor: 1
  	sprite: s32'krn400_26', 2
  	voiceLine: s16'vxxx200'
  	characterSfx: s32'ARC_BTL_KRN_Znzkn_Appear'
@@ -4412,6 +4440,7 @@
  	sprite: s32'krn022_04', 3
  	sprite: s32'krn022_05', 2
  	sprite: s32'krn022_05', 1
++	enableSuperArmor: 0
  	sprite: s32'krn022_06', 3
  	atkIgnoreCaution: 1
  	landingAutoAction: 1
@@ -4424,6 +4453,7 @@
  	sprite: s32'krn037_04', 3
  	effectForLanding: 123, 1, 1
  	clearRegisteredUponCode: (TOUCH_GROUND)
++	enableSuperArmor: 0
  	sprite: s32'krn037_03', 3
  	sprite: s32'krn037_02', 3
  	sprite: s32'krn037_01', 3
@@ -4438,6 +4468,7 @@
  	randomVoice: s16'vxxx201', 100, s16'vxxx202', 100, s16'', 0, s16'', 0
  	characterSfx: s32'ARC_BTL_KRN_Znzkn_Keri_L'
  	skillFinishToDownLoop: 1
++	enableSuperArmor: 0
  	sprite: s32'krn400_09', 2
  	label: s32'end'
  	sprite: s32'krn400_10', 2
@@ -4457,6 +4488,7 @@
  			objectGravity: 
  		} endUpon: 
  	} endIf: 
++	enableSuperArmor: 0
  	sprite: s32'krn400_11', 2
  	sprite: s32'krn400_12', 2
  	sprite: s32'krn400_13', 2
@@ -4478,6 +4510,7 @@
  	spriteOverrideTime: 4, var(act5)
  	faceOpponent: 
  	resetSpeed: 1
++	enableSuperArmor: 0
  	sprite: s32'krn037_01', 2
  	spriteOverrideTime: 3, var(act5)
  	sprite: s32'krn037_00', 2
@@ -5137,12 +5170,12 @@
  	sprite: s32'krn404_00', 1
  	facePose: 14
  	mouthPose: 5
-+	headInvul: 1
+ 	headInvul: 1
  	sprite: s32'krn404_01', 1
  	sprite: s32'krn404_02', 1
  	sprite: s32'krn404_03', 1
  	headInvul: 1
- 	sprite: s32'krn404_04', 2
+-	sprite: s32'krn404_04', 2
  	characterSfx: s32'ARC_BTL_KRN_Taiyouken_Ba'
  	sprite: s32'krn404_05', 1
  	sprite: s32'krn404_06', 1
@@ -5527,13 +5560,11 @@
  	triggerUponInObject: s32'Kamehameha_Core', (SIGNAL0)
  	deactivateObjectByName: s32'Kamehameha_Shadow'
  	deactivateObjectByName: s32'cmn_GroundSmoke'
--	sprite: s32'krn402_13', 3
--	sprite: s32'krn402_14', 3
  	enableWhiffCancel: 1
  	addWhiffCancelOption: s32'CmnActHomingDash'
  	whiffCancelOptionBufferTime: s32'CmnActHomingDash', 10
-+	sprite: s32'krn402_13', 3
-+	sprite: s32'krn402_14', 3
+ 	sprite: s32'krn402_13', 3
+ 	sprite: s32'krn402_14', 3
  	spriteEnd: 
  	gotoLabelIfFalse: s32'end_land2', var(act7)
  	sprite: s32'krn402_12', 2
@@ -5736,6 +5767,7 @@
  						if: var(Result) {
  							if: var(act1) {
  								enableMemberChangeUltimate: 0
++								enableGatlings: 0
  								if: var(act2) {
  									tensionUsage: 10000
  									jumpToLabel: s32'even'
@@ -5761,6 +5793,10 @@
  			} endIf: 
  		} endUpon: 
  		tensionUsage: 10000
++		if: var(CmnCharaReg7) {
++			addGatlingOption: s32'KakusanE'
++			whiffCancelOptionBufferTime: s32'KakusanE', 40
++		} endIf: 
  	} endUpon: 
  	sprite: s32'krn430_00', 3
  	facePose: (ANGRY)
@@ -5921,6 +5957,7 @@
  	mouthPose: (OPEN)
  	createObject: s32'krn_kienretuzanStartEff2', (ZERO)
  	enableMemberChangeUltimate: 1
++	enableGatlings: 0
  	ifOperation: (IS_LESS_OR_EQUAL), var(act0), int(1) {
  		forceRandomVoice: s16'vxxx217', 100, s16'', 0, s16'', 0, s16'', 0
  	} endIf: 
@@ -5942,6 +5979,7 @@
  	jumpToStateInObject: (ATTACKER), s32'end_odd'
  	jumpToStateInObject: (DEFENDER), s32'sousai_odd'
  	sprite: s32'krn430_14', 1
++	enableGatlings: 1
  	spriteEnd: 
  	gotoLabel: s32'end_odd'
  	label: s32'even'
@@ -5949,6 +5987,7 @@
  	mouthPose: (OPEN)
  	createObject: s32'krn_kienretuzanStartEff', (ZERO)
  	enableMemberChangeUltimate: 1
++	enableGatlings: 0
  	sprite: s32'krn431_01', 2
  	sprite: s32'krn431_02', 2
  	sprite: s32'krn431_03', 2
@@ -5967,6 +6006,8 @@
  	jumpToStateInObject: (ATTACKER), s32'end_even'
  	jumpToStateInObject: (DEFENDER), s32'sousai_even'
  	sprite: s32'krn431_04', 1
++	enableGatlings: 1
++	spriteEnd: 
  	label: s32'end_even'
  	sprite: s32'krn431_05', 2
  	jumpToStateInObject: (ATTACKER), s32'end_even'

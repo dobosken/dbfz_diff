@@ -1,6 +1,6 @@
---- 1.31/BBS_BUKEF.bbs	2023-05-23 14:16:09.466681944 +0200
-+++ 1.32/BBS_BUKEF.bbs	2023-05-23 14:14:45.270238330 +0200
-@@ -1,2137 +1,2137 @@
+--- 1.32/BBS_BUKEF.bbs	2023-05-24 20:54:42.997936153 +0200
++++ 1.33/BBS_BUKEF.bbs	2023-08-23 04:22:58.771848303 +0200
+@@ -1,2137 +1,2164 @@
  beginState: s32'dmy' {
  	sprite: s32'null', 1
  } endState: 
@@ -551,6 +551,10 @@
  				if: var(Result) {
  					copyVarFromObject: (PLAYER), var(act7), (PLAYER), int(1)
  				} endIf: 
++				checkCurrentStateName: (PLAYER), s32'NmlAtkAir2D'
++				if: var(Result) {
++					copyVarFromObject: (PLAYER), var(act7), (PLAYER), int(1)
++				} endIf: 
  			} endIf: 
  		} endUpon: 
  		upon: (SIGNAL0) {
@@ -567,6 +571,13 @@
  		setYSpeed: -70000
  	} endIf: 
  	xSpeedPerFrame: 102
++	checkCurrentStateName: (PLAYER), s32'NmlAtkAir2D'
++	if: var(Result) {
++		setXSpeed: 80000
++		setYSpeed: -30000
++		xSpeedPerFrame: 98
++		ySpeedPerFrame: 102
++	} endIf: 
  	objectGravity: 
  	worldOutToEliminate: 1
  	sprite: s32'kidan_kyokusen', 100
@@ -1263,8 +1274,7 @@
  		attackYKnockback: 10000
  		attackYSuction: 1, 15000, 300000, 100, 0
  		wallBounceCount: 0
--		airHitstun: 28
-+		airHitstun: 35
+ 		airHitstun: 35
  		atkRange: 50000000, -395000, 0, 0
  		atkSousaiSevereCheck: 1
  		atkEffectBeamSousai: 1
@@ -1646,6 +1656,8 @@
  	sprite: s32'null', 6
  	createObject: s32'Extinction_fall', (ZERO)
  	sendSignal: (PREVIOUS), (SIGNAL1)
++	createObject: s32'Extinction_fall', (ZERO)
++	sendSignal: (PREVIOUS), (SIGNAL8)
  	sprite: s32'null', 6
  	createObject: s32'Extinction_fall', (ZERO)
  	sendSignal: (PREVIOUS), (SIGNAL7)
@@ -1676,6 +1688,12 @@
  	sprite: s32'null', 6
  	createObject: s32'Extinction_fall', (ZERO)
  	sendSignal: (PREVIOUS), (SIGNAL4)
++	sprite: s32'null', 6
++	createObject: s32'Extinction_fall', (ZERO)
++	sendSignal: (PREVIOUS), (SIGNAL1)
++	sprite: s32'null', 6
++	createObject: s32'Extinction_fall', (ZERO)
++	sendSignal: (PREVIOUS), (SIGNAL3)
  } endState: 
  
  beginState: s32'Extinction_fall' {
@@ -1733,6 +1751,7 @@
  		jumpToStateInObject: (PLAYER_2), s32'AT5'
  		jumpToStateInObject: (SELF_MAIN_PLAYER), s32'AT6'
  		jumpToStateInObject: (SELF_SUB_MEMBER1), s32'homing'
++		jumpToStateInObject: (SELF_SUB_MEMBER2), s32'AT8'
  	} endUpon: 
  	label: s32'AT1'
  	sprite: s32'extinctionfall', 600
@@ -1776,6 +1795,13 @@
  	setYPosition: 7000000
  	setYSpeed: -150000
  	enableHitbox: 
++	label: s32'AT8'
++	sprite: s32'extinctionfall', 600
++	setXSpeed: 10000
++	addXPosition: 100000
++	setYPosition: 7000000
++	setYSpeed: -320000
++	enableHitbox: 
  	label: s32'homing'
  	sprite: s32'extinctionfall', 600
  	setYPosition: 7000000
@@ -1797,8 +1823,7 @@
  		callSubroutine: s32'cmnUltimateShot_AtkInit'
  		setProjectileDurability: 5
  		damage: 300
--		minimalDamagePercent: 30
-+		minimalDamagePercent: 60
+ 		minimalDamagePercent: 60
  		attackXKnockback: 10000
  		attackYKnockback: 48000
  		groundKnockbackEffect: (AIR_DEFAULT)

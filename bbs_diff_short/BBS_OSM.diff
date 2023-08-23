@@ -1,10 +1,69 @@
-2966,2967c2966,2967
-< 	sprite: s32'osm230_02', 4
-< 	setXSpeed: 60000
+605d604
+< 		disableCancelsIntoMove: 1
+3712c3711
+< 	sprite: s32'osm205_00', 2
 ---
-> 	sprite: s32'osm230_02', 2
-> 	setXSpeed: 80000
-3023c3023
-< 	sprite: s32'osm203_04', 5
+> 	sprite: s32'osm205_00', 1
+3715,3717c3714,3716
+< 	sprite: s32'osm205_01', 2
+< 	sprite: s32'osm205_02', 2
+< 	sprite: s32'osm205_03', 2
 ---
-> 	sprite: s32'osm203_04', 3
+> 	sprite: s32'osm205_01', 1
+> 	sprite: s32'osm205_02', 1
+> 	sprite: s32'osm205_03', 1
+3922c3921,3926
+< 	sprite: s32'osm404_01', 2
+---
+> 	sprite: s32'osm404_01', 1
+> 	sprite: s32'osm404_01', 1
+> 	enableSuperArmor: 1
+> 	superArmorGrabInvul: 0
+> 	superArmorBurstGuard: 0
+> 	superArmorPhysicalGuard: 0
+3933d3936
+< 	enableSuperArmor: 0
+3939a3943
+> 	enableSuperArmor: 0
+4253c4257
+< 	sprite: s32'osm265_00', 3
+---
+> 	sprite: s32'osm265_00', 1
+4260,4261c4264,4265
+< 	sprite: s32'osm265_01', 2
+< 	sprite: s32'osm265_02', 2
+---
+> 	sprite: s32'osm265_01', 1
+> 	sprite: s32'osm265_02', 1
+4290a4295,4299
+> 	if: var(EnemyInHitstun) {
+> 		applyTo: (PREVIOUS) {
+> 			atkRange: 0, 0, -100000, -1000000
+> 		} endApply: 
+> 	} endIf: 
+4318c4327
+< 	sprite: s32'osm265_09', 3
+---
+> 	sprite: s32'osm265_09', 2
+4322,4324c4331,4333
+< 	sprite: s32'osm265_10', 3
+< 	sprite: s32'osm265_11', 3
+< 	sprite: s32'osm265_12', 3
+---
+> 	sprite: s32'osm265_10', 2
+> 	sprite: s32'osm265_11', 2
+> 	sprite: s32'osm265_12', 2
+6743a6753,6758
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'RDBall'
+> 			addGatlingOption: s32'AirRDBall'
+> 			whiffCancelOptionBufferTime: s32'RDBall', 40
+> 			whiffCancelOptionBufferTime: s32'AirRDBall', 40
+> 		} endIf: 
+6952a6968,6973
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'RDBall'
+> 			addGatlingOption: s32'AirRDBall'
+> 			whiffCancelOptionBufferTime: s32'RDBall', 40
+> 			whiffCancelOptionBufferTime: s32'AirRDBall', 40
+> 		} endIf: 

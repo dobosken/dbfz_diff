@@ -1,20 +1,84 @@
-1903c1903
-< 	copyVar: var(act6), int(800000)
+4118,4120c4118,4120
+< 	sprite: s32'frn400_12', 3
+< 	sprite: s32'frn400_13', 3
+< 	sprite: s32'frn400_14', 3
 ---
-> 	copyVar: var(act6), int(1100000)
-2668c2668
-< 	sprite: s32'frn202_00', 4
+> 	sprite: s32'frn400_12', 2
+> 	sprite: s32'frn400_13', 2
+> 	sprite: s32'frn400_14', 2
+4131c4131
+< 	sprite: s32'frn400_02', 3
 ---
-> 	sprite: s32'frn202_00', 3
-2670c2670
-< 	sprite: s32'frn202_01', 4
+> 	sprite: s32'frn400_02', 2
+4134,4136c4134,4136
+< 	sprite: s32'frn400_03', 3
+< 	sprite: s32'frn400_04', 4
+< 	sprite: s32'frn400_05', 3
 ---
-> 	sprite: s32'frn202_01', 2
-2673c2673
-< 	sprite: s32'frn202_02', 4
+> 	sprite: s32'frn400_03', 2
+> 	sprite: s32'frn400_04', 3
+> 	sprite: s32'frn400_05', 2
+4165,4166c4165,4166
+< 	sprite: s32'frn400_04', 3
+< 	sprite: s32'frn400_05', 2
 ---
-> 	sprite: s32'frn202_02', 2
-2819c2819
-< 	xSpeedPerFrame: 105
+> 	sprite: s32'frn400_04', 2
+> 	sprite: s32'frn400_05', 1
+4178,4180c4178,4180
+< 	sprite: s32'frn400_12', 3
+< 	sprite: s32'frn400_13', 3
+< 	sprite: s32'frn400_14', 3
 ---
-> 	xSpeedPerFrame: 110
+> 	sprite: s32'frn400_12', 2
+> 	sprite: s32'frn400_13', 2
+> 	sprite: s32'frn400_14', 2
+4586d4585
+< 	sprite: s32'frn403_01', 2
+4589c4588
+< 	sprite: s32'frn403_02', 2
+---
+> 	sprite: s32'frn403_02', 1
+4695c4694
+< 	objectGravity: 
+---
+> 	setGravity: 3000
+4724a4724,4728
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'NovaStrike'
+> 			addGatlingOption: s32'AirNovaStrike'
+> 			addGatlingOption: s32'GoldenFrieza'
+> 		} endIf: 
+4855a4860,4864
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'NovaStrike'
+> 			addGatlingOption: s32'AirNovaStrike'
+> 			addGatlingOption: s32'GoldenFrieza'
+> 		} endIf: 
+4987a4997,5001
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'NovaStrike'
+> 			addGatlingOption: s32'AirNovaStrike'
+> 			addGatlingOption: s32'GoldenFrieza'
+> 		} endIf: 
+5111a5126,5130
+> 		if: var(CmnCharaReg7) {
+> 			addGatlingOption: s32'NovaStrike'
+> 			addGatlingOption: s32'AirNovaStrike'
+> 			addGatlingOption: s32'GoldenFrieza'
+> 		} endIf: 
+5417c5436,5438
+< 		atkRange: 50000000, -100000, 400000, -50000000
+---
+> 		ifNot: var(EnemyInHitstun) {
+> 			atkRange: 50000000, -100000, 400000, -50000000
+> 		} endIf: 
+5977c5998
+< 	sprite: s32'frn070_00', 4
+---
+> 	sprite: s32'frn070_00', 2
+5987,5988c6008,6009
+< 	sprite: s32'frn070_01', 5
+< 	sprite: s32'frn070_02', 46
+---
+> 	sprite: s32'frn070_01', 2
+> 	sprite: s32'frn070_02', 16
